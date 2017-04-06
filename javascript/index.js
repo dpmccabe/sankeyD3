@@ -49,9 +49,6 @@ HTMLWidgets.widget({
         // save the x in our instance (for calling back from resize)
         instance.x = x;
         
-        // add d3.scale within scope so colour will work
-        var d3 = d3Scale;
-
         // alias sankey and options
         var sankey = instance.sankey;
         var options = x.options;

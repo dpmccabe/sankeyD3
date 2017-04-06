@@ -2,7 +2,7 @@
   typeof exports === 'object' && typeof module !== 'undefined' ? factory(require('d3-format'), require('d3-selection'), require('d3-array'), require('d3-scale'), require('d3-color'), require('d3-drag'), require('d3-zoom'), require('d3-collection'), require('d3-axis'), require('d3-interpolate')) :
   typeof define === 'function' && define.amd ? define(['d3-format', 'd3-selection', 'd3-array', 'd3-scale', 'd3-color', 'd3-drag', 'd3-zoom', 'd3-collection', 'd3-axis', 'd3-interpolate'], factory) :
   (factory(global.d3,global.d3,global.d3,global.d3,global.d3,global.d3,global.d3,global.d3,global.d3,global.d3));
-}(this, function (d3Format,d3Selection,d3Array,d3Scale$1,d3Color,d3Drag,d3Zoom,d3Collection,d3Axis,d3Interpolate) { 'use strict';
+}(this, function (d3Format,d3Selection,d3Array,d3Scale,d3Color,d3Drag,d3Zoom,d3Collection,d3Axis,d3Interpolate) { 'use strict';
 
   function sankey() {
     var sankey = {},
@@ -685,9 +685,6 @@
           // save the x in our instance (for calling back from resize)
           instance.x = x;
           
-          // add d3.scale within scope so colour will work
-          var d3 = d3Scale;
-
           // alias sankey and options
           var sankey = instance.sankey;
           var options = x.options;
@@ -1189,7 +1186,7 @@
             var axisXPos = new Array(options.xAxisDomain.length);
             sankey.nodes().forEach(function(node) { axisXPos[node.posX] = node.x + options.nodeWidth/2; });
 
-            var x = d3Scale$1.scaleOrdinal().domain(options.xAxisDomain).range(axisXPos);
+            var x = d3Scale.scaleOrdinal().domain(options.xAxisDomain).range(axisXPos);
             svg.append("g").attr("class", "x axis")
                .attr("transform", "translate(0," + height + ")")  // move into position
              .call(d3Axis.axisBottom(x));
