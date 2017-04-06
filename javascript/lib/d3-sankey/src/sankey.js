@@ -1,8 +1,8 @@
-//import {ascending, min, sum} from "d3-array";
-//import {nest} from "d3-collection";
-//import {number} from "d3-interpolate";
+import {ascending, min, max, sum} from "d3-array";
+import {nest} from "d3-collection";
+import {interpolateNumber} from "d3-interpolate";
 
-d3.sankey = function() {
+export default function() {
   var sankey = {},
       nodeWidth = 24,
       nodePadding = 8,
@@ -141,7 +141,7 @@ d3.sankey = function() {
       
       var x0 = d.source.x + d.source.dx - nodeCornerRadius,  // x source point
           x1 = d.target.x  + nodeCornerRadius,               // x target point
-          xi = d3.interpolateNumber(x0, x1),
+          xi = interpolateNumber(x0, x1),
           x2 = xi(curvature),
           x3 = xi(1 - curvature);
 
@@ -158,7 +158,7 @@ d3.sankey = function() {
         xsc = xs + xdelta;
         xtc = xt - xdelta;
         var xm = xi(0.5);
-        var ym = d3.interpolateNumber(ys, yt)(0.5);
+        var ym = interpolateNumber(ys, yt)(0.5);
         var ydelta = (2 * d.dy + 0.1 * Math.abs(xs - xt) + 0.1 * Math.abs(ys - yt)) * (ym < (size[1] / 2) ? -1 : 1);
         
         ld = M(xs,ys) + C(xsc,ys, xsc,(ys + ydelta), xm,(ym + ydelta)) + S(xtc,yt, xt,yt);
@@ -230,8 +230,8 @@ d3.sankey = function() {
     if (typeof nodes[0].value == "undefined") {
       nodes.forEach(function(node) {
         node.value = Math.max(
-          d3.sum(node.sourceLinks, value),
-          d3.sum(node.targetLinks, value)
+          sum(node.sourceLinks, value),
+          sum(node.targetLinks, value)
         );
       });
     }
@@ -287,7 +287,7 @@ d3.sankey = function() {
     }
 
     // calculate maximum string lengths at each posX
-    max_posX= d3.max(nodes, function(d) { return(d.posX); } ) + 1;
+    max_posX= max(nodes, function(d) { return(d.posX); } ) + 1;
     var max_str_length = new Array(max_posX);
     nodes.forEach(function(node) {
         if (typeof max_str_length[node.x] == "undefined" || node.name.length > max_str_length[node.x]) {
@@ -309,7 +309,7 @@ d3.sankey = function() {
 
     });
 
-    for (i=1; i<max_posX; ++i) {
+    for (var i=1; i<max_posX; ++i) {
         summed_str_length[i] = summed_str_length[i-1] + max_str_length[i-1] * 6 + nodeWidth + nodePadding;
     }
 
@@ -391,7 +391,7 @@ d3.sankey = function() {
       .sort(function(a, b) { return b.x - a.x; })
       .forEach(function(node) {
         if (!node.targetLinks.length) {
-          node.x = d3.min(node.sourceLinks, function(d) { return d.target.x; }) - 1;
+          node.x = min(node.sourceLinks, function(d) { return d.target.x; }) - 1;
         }
       });
   }
@@ -432,7 +432,7 @@ d3.sankey = function() {
 
     if (orderByPath) {
       nodesByBreadth = new Array(max_posX);
-      for (i=0; i < nodesByBreadth.length; ++i) {
+      for (var i=0; i < nodesByBreadth.length; ++i) {
           nodesByBreadth[i] = [];
       }
 
@@ -464,7 +464,7 @@ d3.sankey = function() {
           }
       }
     } else {
-      nodesByBreadth = d3.nest()
+      nodesByBreadth = nest()
                              .key(function(d) { return d.x; })
                              .sortKeys(function(a, b) { return a - b; }) // pull request #124 in d3/d3-plugins
                              .entries(nodes)
@@ -493,8 +493,8 @@ d3.sankey = function() {
 
     function initializeNodeDepth() {
       // Calculate vertical scaling factor.
-      var ky = d3.min(nodesByBreadth, function(nodes) {
-        return (size[1] - (nodes.length - 1) * nodePadding) / d3.sum(nodes, value);
+      var ky = min(nodesByBreadth, function(nodes) {
+        return (size[1] - (nodes.length - 1) * nodePadding) / sum(nodes, value);
       });
 
       nodesByBreadth.forEach(function(nodes) {
@@ -514,7 +514,7 @@ d3.sankey = function() {
         nodes.forEach(function(node) {
           if (node.targetLinks.length) {
             // Value-weighted average of the y-position of source node centers linked to this node.
-            var y = d3.sum(node.targetLinks, weightedSource) / d3.sum(node.targetLinks, value);
+            var y = sum(node.targetLinks, weightedSource) / sum(node.targetLinks, value);
 
             //console.log([y, node.targetLinks[0].source.y, node.targetLinks[0].sy, node.targetLinks[0] ]);
             //var y = node.targetLinks[0].source.y;
@@ -536,7 +536,7 @@ d3.sankey = function() {
         nodes.forEach(function(node) {
           if (node.sourceLinks.length) {
             // Value-weighted average of the y-positions of target nodes linked to this node.
-            var y = d3.sum(node.sourceLinks, weightedTarget) / d3.sum(node.sourceLinks, value);
+            var y = sum(node.sourceLinks, weightedTarget) / sum(node.sourceLinks, value);
             node.y += (y - center(node)) * alpha;
           }
         });
@@ -557,7 +557,7 @@ d3.sankey = function() {
 
         // Push any overlapping nodes down.
         nodes.sort(ascendingDepth);
-        for (i = 0; i < n; ++i) {
+        for (var i = 0; i < n; ++i) {
           node = nodes[i];
           dy = y0 - node.y;
           if (dy > 0) node.y += dy;
@@ -570,7 +570,7 @@ d3.sankey = function() {
           y0 = node.y -= dy;
 
           // Push any overlapping nodes back up.
-          for (i = n - 2; i >= 0; --i) {
+          for (var i = n - 2; i >= 0; --i) {
             node = nodes[i];
             dy = node.y + node.dy + nodePadding - y0;
             if (dy > 0) node.y -= dy;
@@ -641,4 +641,4 @@ d3.sankey = function() {
   }
 
   return sankey;
-};
+}

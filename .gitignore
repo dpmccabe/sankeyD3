@@ -1,0 +1,6 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+javascript/node_modules
+javascript/lib/d3-sankey/node_modules
