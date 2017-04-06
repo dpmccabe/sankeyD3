@@ -11,6 +11,14 @@ browserify sankeyNetwork-rollup.js > sankeyNetwork.js
 ```
 
 ### copy to htmlwidgets
+
 ```
 cp sankeyNetwork.js ../inst/htmlwidgets/sankeyNetwork.js
+```
+
+### optional | uglify
+
+
+```
+uglifyjs sankeyNetwork.js -c -m -o sankeyNetwork.min.js
 ```
