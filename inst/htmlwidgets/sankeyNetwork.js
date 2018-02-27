@@ -1,4 +1,8672 @@
-!function t(n,e,r){function i(a,u){if(!e[a]){if(!n[a]){var c="function"==typeof require&&require;if(!u&&c)return c(a,!0);if(o)return o(a,!0);var f=new Error("Cannot find module '"+a+"'");throw f.code="MODULE_NOT_FOUND",f}var s=e[a]={exports:{}};n[a][0].call(s.exports,function(t){var e=n[a][1][t];return i(e?e:t)},s,s.exports,t,n,e,r)}return e[a].exports}for(var o="function"==typeof require&&require,a=0;a<r.length;a++)i(r[a]);return i}({1:[function(t,n,e){!function(t,r){"object"==typeof e&&"undefined"!=typeof n?r(e):"function"==typeof define&&define.amd?define(["exports"],r):r(t.d3=t.d3||{})}(this,function(t){"use strict";function n(t){return function(n,e){return o(t(n),e)}}function e(t,n){return[t,n]}function r(t,n,e){var r=Math.abs(n-t)/Math.max(0,e),i=Math.pow(10,Math.floor(Math.log(r)/Math.LN10)),o=r/i;return o>=M?i*=10:o>=k?i*=5:o>=S&&(i*=2),n<t?-i:i}function i(t){return t.length}var o=function(t,n){return t<n?-1:t>n?1:t>=n?0:NaN},a=function(t){return 1===t.length&&(t=n(t)),{left:function(n,e,r,i){for(null==r&&(r=0),null==i&&(i=n.length);r<i;){var o=r+i>>>1;t(n[o],e)<0?r=o+1:i=o}return r},right:function(n,e,r,i){for(null==r&&(r=0),null==i&&(i=n.length);r<i;){var o=r+i>>>1;t(n[o],e)>0?i=o:r=o+1}return r}}},u=a(o),c=u.right,f=u.left,s=function(t,n){null==n&&(n=e);for(var r=0,i=t.length-1,o=t[0],a=new Array(i<0?0:i);r<i;)a[r]=n(o,o=t[++r]);return a},l=function(t,n,r){var i,o,a,u,c=t.length,f=n.length,s=new Array(c*f);for(null==r&&(r=e),i=a=0;i<c;++i)for(u=t[i],o=0;o<f;++o,++a)s[a]=r(u,n[o]);return s},d=function(t,n){return n<t?-1:n>t?1:n>=t?0:NaN},h=function(t){return null===t?NaN:+t},p=function(t,n){var e,r,i=t.length,o=0,a=0,u=-1,c=0;if(null==n)for(;++u<i;)isNaN(e=h(t[u]))||(r=e-o,o+=r/++c,a+=r*(e-o));else for(;++u<i;)isNaN(e=h(n(t[u],u,t)))||(r=e-o,o+=r/++c,a+=r*(e-o));if(c>1)return a/(c-1)},g=function(t,n){var e=p(t,n);return e?Math.sqrt(e):e},y=function(t,n){var e,r,i,o=-1,a=t.length;if(null==n){for(;++o<a;)if(null!=(r=t[o])&&r>=r){e=i=r;break}for(;++o<a;)null!=(r=t[o])&&(e>r&&(e=r),i<r&&(i=r))}else{for(;++o<a;)if(null!=(r=n(t[o],o,t))&&r>=r){e=i=r;break}for(;++o<a;)null!=(r=n(t[o],o,t))&&(e>r&&(e=r),i<r&&(i=r))}return[e,i]},m=Array.prototype,v=m.slice,b=m.map,_=function(t){return function(){return t}},w=function(t){return t},x=function(t,n,e){t=+t,n=+n,e=(i=arguments.length)<2?(n=t,t=0,1):i<3?1:+e;for(var r=-1,i=0|Math.max(0,Math.ceil((n-t)/e)),o=new Array(i);++r<i;)o[r]=t+r*e;return o},M=Math.sqrt(50),k=Math.sqrt(10),S=Math.sqrt(2),T=function(t,n,e){var i=r(t,n,e);return x(Math.ceil(t/i)*i,Math.floor(n/i)*i+i/2,i)},C=function(t){return Math.ceil(Math.log(t.length)/Math.LN2)+1},A=function(){function t(t){var i,o,a=t.length,u=new Array(a);for(i=0;i<a;++i)u[i]=n(t[i],i,t);var f=e(u),s=f[0],l=f[1],d=r(u,s,l);Array.isArray(d)||(d=T(s,l,d));for(var h=d.length;d[0]<=s;)d.shift(),--h;for(;d[h-1]>=l;)d.pop(),--h;var p,g=new Array(h+1);for(i=0;i<=h;++i)p=g[i]=[],p.x0=i>0?d[i-1]:s,p.x1=i<h?d[i]:l;for(i=0;i<a;++i)o=u[i],s<=o&&o<=l&&g[c(d,o,0,h)].push(t[i]);return g}var n=w,e=y,r=C;return t.value=function(e){return arguments.length?(n="function"==typeof e?e:_(e),t):n},t.domain=function(n){return arguments.length?(e="function"==typeof n?n:_([n[0],n[1]]),t):e},t.thresholds=function(n){return arguments.length?(r="function"==typeof n?n:_(Array.isArray(n)?v.call(n):n),t):r},t},N=function(t,n,e){if(null==e&&(e=h),r=t.length){if((n=+n)<=0||r<2)return+e(t[0],0,t);if(n>=1)return+e(t[r-1],r-1,t);var r,i=(r-1)*n,o=Math.floor(i),a=+e(t[o],o,t),u=+e(t[o+1],o+1,t);return a+(u-a)*(i-o)}},E=function(t,n,e){return t=b.call(t,h).sort(o),Math.ceil((e-n)/(2*(N(t,.75)-N(t,.25))*Math.pow(t.length,-1/3)))},L=function(t,n,e){return Math.ceil((e-n)/(3.5*g(t)*Math.pow(t.length,-1/3)))},z=function(t,n){var e,r,i=-1,o=t.length;if(null==n){for(;++i<o;)if(null!=(r=t[i])&&r>=r){e=r;break}for(;++i<o;)null!=(r=t[i])&&r>e&&(e=r)}else{for(;++i<o;)if(null!=(r=n(t[i],i,t))&&r>=r){e=r;break}for(;++i<o;)null!=(r=n(t[i],i,t))&&r>e&&(e=r)}return e},D=function(t,n){var e,r=0,i=t.length,o=-1,a=i;if(null==n)for(;++o<i;)isNaN(e=h(t[o]))?--a:r+=e;else for(;++o<i;)isNaN(e=h(n(t[o],o,t)))?--a:r+=e;if(a)return r/a},P=function(t,n){var e,r=[],i=t.length,a=-1;if(null==n)for(;++a<i;)isNaN(e=h(t[a]))||r.push(e);else for(;++a<i;)isNaN(e=h(n(t[a],a,t)))||r.push(e);return N(r.sort(o),.5)},F=function(t){for(var n,e,r,i=t.length,o=-1,a=0;++o<i;)a+=t[o].length;for(e=new Array(a);--i>=0;)for(r=t[i],n=r.length;--n>=0;)e[--a]=r[n];return e},O=function(t,n){var e,r,i=-1,o=t.length;if(null==n){for(;++i<o;)if(null!=(r=t[i])&&r>=r){e=r;break}for(;++i<o;)null!=(r=t[i])&&e>r&&(e=r)}else{for(;++i<o;)if(null!=(r=n(t[i],i,t))&&r>=r){e=r;break}for(;++i<o;)null!=(r=n(t[i],i,t))&&e>r&&(e=r)}return e},U=function(t,n){for(var e=n.length,r=new Array(e);e--;)r[e]=t[n[e]];return r},j=function(t,n){if(e=t.length){var e,r,i=0,a=0,u=t[a];for(n||(n=o);++i<e;)(n(r=t[i],u)<0||0!==n(u,u))&&(u=r,a=i);return 0===n(u,u)?a:void 0}},X=function(t,n,e){for(var r,i,o=(null==e?t.length:e)-(n=null==n?0:+n);o;)i=Math.random()*o--|0,r=t[o+n],t[o+n]=t[i+n],t[i+n]=r;return t},Y=function(t,n){var e,r=0,i=t.length,o=-1;if(null==n)for(;++o<i;)(e=+t[o])&&(r+=e);else for(;++o<i;)(e=+n(t[o],o,t))&&(r+=e);return r},I=function(t){if(!(o=t.length))return[];for(var n=-1,e=O(t,i),r=new Array(e);++n<e;)for(var o,a=-1,u=r[n]=new Array(o);++a<o;)u[a]=t[a][n];return r},q=function(){return I(arguments)};t.bisect=c,t.bisectRight=c,t.bisectLeft=f,t.ascending=o,t.bisector=a,t.cross=l,t.descending=d,t.deviation=g,t.extent=y,t.histogram=A,t.thresholdFreedmanDiaconis=E,t.thresholdScott=L,t.thresholdSturges=C,t.max=z,t.mean=D,t.median=P,t.merge=F,t.min=O,t.pairs=s,t.permute=U,t.quantile=N,t.range=x,t.scan=j,t.shuffle=X,t.sum=Y,t.ticks=T,t.tickStep=r,t.transpose=I,t.variance=p,t.zip=q,Object.defineProperty(t,"__esModule",{value:!0})})},{}],2:[function(t,n,e){!function(t,r){"object"==typeof e&&"undefined"!=typeof n?r(e):"function"==typeof define&&define.amd?define(["exports"],r):r(t.d3=t.d3||{})}(this,function(t){"use strict";function n(t){return"translate("+t+",0)"}function e(t){return"translate(0,"+t+")"}function r(t){var n=t.bandwidth()/2;return t.round()&&(n=Math.round(n)),function(e){return t(e)+n}}function i(){return!this.__axis}function o(t,o){function a(n){var e=null==f?o.ticks?o.ticks.apply(o,c):o.domain():f,a=null==m?o.tickFormat?o.tickFormat.apply(o,c):l:m,s=Math.max(v,0)+_,k=o.range(),S=k[0]+.5,T=k[k.length-1]+.5,C=(o.bandwidth?r:l)(o.copy()),A=n.selection?n.selection():n,N=A.selectAll(".domain").data([null]),E=A.selectAll(".tick").data(e,o).order(),L=E.exit(),z=E.enter().append("g").attr("class","tick"),D=E.select("line"),P=E.select("text");N=N.merge(N.enter().insert("path",".tick").attr("class","domain").attr("stroke","#000")),E=E.merge(z),D=D.merge(z.append("line").attr("stroke","#000").attr(u+"2",w*v).attr(x+"1",.5).attr(x+"2",.5)),P=P.merge(z.append("text").attr("fill","#000").attr(u,w*s).attr(x,.5).attr("dy",t===d?"0em":t===p?"0.71em":"0.32em")),n!==A&&(N=N.transition(n),E=E.transition(n),D=D.transition(n),P=P.transition(n),L=L.transition(n).attr("opacity",y).attr("transform",function(t){return isFinite(t=C(t))?M(t):this.getAttribute("transform")}),z.attr("opacity",y).attr("transform",function(t){var n=this.parentNode.__axis;return M(n&&isFinite(n=n(t))?n:C(t))})),L.remove(),N.attr("d",t===g||t==h?"M"+w*b+","+S+"H0.5V"+T+"H"+w*b:"M"+S+","+w*b+"V0.5H"+T+"V"+w*b),E.attr("opacity",1).attr("transform",function(t){return M(C(t))}),D.attr(u+"2",w*v),P.attr(u,w*s).text(a),A.filter(i).attr("fill","none").attr("font-size",10).attr("font-family","sans-serif").attr("text-anchor",t===h?"start":t===g?"end":"middle"),A.each(function(){this.__axis=C})}var u,c=[],f=null,m=null,v=6,b=6,_=3,w=t===d||t===g?-1:1,x=t===g||t===h?(u="x","y"):(u="y","x"),M=t===d||t===p?n:e;return a.scale=function(t){return arguments.length?(o=t,a):o},a.ticks=function(){return c=s.call(arguments),a},a.tickArguments=function(t){return arguments.length?(c=null==t?[]:s.call(t),a):c.slice()},a.tickValues=function(t){return arguments.length?(f=null==t?null:s.call(t),a):f&&f.slice()},a.tickFormat=function(t){return arguments.length?(m=t,a):m},a.tickSize=function(t){return arguments.length?(v=b=+t,a):v},a.tickSizeInner=function(t){return arguments.length?(v=+t,a):v},a.tickSizeOuter=function(t){return arguments.length?(b=+t,a):b},a.tickPadding=function(t){return arguments.length?(_=+t,a):_},a}function a(t){return o(d,t)}function u(t){return o(h,t)}function c(t){return o(p,t)}function f(t){return o(g,t)}var s=Array.prototype.slice,l=function(t){return t},d=1,h=2,p=3,g=4,y=1e-6;t.axisTop=a,t.axisRight=u,t.axisBottom=c,t.axisLeft=f,Object.defineProperty(t,"__esModule",{value:!0})})},{}],3:[function(t,n,e){!function(t,r){"object"==typeof e&&"undefined"!=typeof n?r(e):"function"==typeof define&&define.amd?define(["exports"],r):r(t.d3=t.d3||{})}(this,function(t){"use strict";function n(){}function e(t,e){var r=new n;if(t instanceof n)t.each(function(t,n){r.set(n,t)});else if(Array.isArray(t)){var i,o=-1,a=t.length;if(null==e)for(;++o<a;)r.set(o,t[o]);else for(;++o<a;)r.set(e(i=t[o],o,t),i)}else if(t)for(var u in t)r.set(u,t[u]);return r}function r(){return{}}function i(t,n,e){t[n]=e}function o(){return e()}function a(t,n,e){t.set(n,e)}function u(){}function c(t,n){var e=new u;if(t instanceof u)t.each(function(t){e.add(t)});else if(t){var r=-1,i=t.length;if(null==n)for(;++r<i;)e.add(t[r]);else for(;++r<i;)e.add(n(t[r],r,t))}return e}var f="$";n.prototype=e.prototype={constructor:n,has:function(t){return f+t in this},get:function(t){return this[f+t]},set:function(t,n){return this[f+t]=n,this},remove:function(t){var n=f+t;return n in this&&delete this[n]},clear:function(){for(var t in this)t[0]===f&&delete this[t]},keys:function(){var t=[];for(var n in this)n[0]===f&&t.push(n.slice(1));return t},values:function(){var t=[];for(var n in this)n[0]===f&&t.push(this[n]);return t},entries:function(){var t=[];for(var n in this)n[0]===f&&t.push({key:n.slice(1),value:this[n]});return t},size:function(){var t=0;for(var n in this)n[0]===f&&++t;return t},empty:function(){for(var t in this)if(t[0]===f)return!1;return!0},each:function(t){for(var n in this)n[0]===f&&t(this[n],n.slice(1),this)}};var s=function(){function t(n,r,i,o){if(r>=s.length)return null!=c?c(n):null!=u?n.sort(u):n;for(var a,f,l,d=-1,h=n.length,p=s[r++],g=e(),y=i();++d<h;)(l=g.get(a=p(f=n[d])+""))?l.push(f):g.set(a,[f]);return g.each(function(n,e){o(y,e,t(n,r,i,o))}),y}function n(t,e){if(++e>s.length)return t;var r,i=l[e-1];return null!=c&&e>=s.length?r=t.entries():(r=[],t.each(function(t,i){r.push({key:i,values:n(t,e)})})),null!=i?r.sort(function(t,n){return i(t.key,n.key)}):r}var u,c,f,s=[],l=[];return f={object:function(n){return t(n,0,r,i)},map:function(n){return t(n,0,o,a)},entries:function(e){return n(t(e,0,o,a),0)},key:function(t){return s.push(t),f},sortKeys:function(t){return l[s.length-1]=t,f},sortValues:function(t){return u=t,f},rollup:function(t){return c=t,f}}},l=e.prototype;u.prototype=c.prototype={constructor:u,has:l.has,add:function(t){return t+="",this[f+t]=t,this},remove:l.remove,clear:l.clear,values:l.keys,size:l.size,empty:l.empty,each:l.each};var d=function(t){var n=[];for(var e in t)n.push(e);return n},h=function(t){var n=[];for(var e in t)n.push(t[e]);return n},p=function(t){var n=[];for(var e in t)n.push({key:e,value:t[e]});return n};t.nest=s,t.set=c,t.map=e,t.keys=d,t.values=h,t.entries=p,Object.defineProperty(t,"__esModule",{value:!0})})},{}],4:[function(t,n,e){!function(t,r){"object"==typeof e&&"undefined"!=typeof n?r(e):"function"==typeof define&&define.amd?define(["exports"],r):r(t.d3=t.d3||{})}(this,function(t){"use strict";function n(t,n){var e=Object.create(t.prototype);for(var r in n)e[r]=n[r];return e}function e(){}function r(t){var n;return t=(t+"").trim().toLowerCase(),(n=D.exec(t))?(n=parseInt(n[1],16),new c(n>>8&15|n>>4&240,n>>4&15|240&n,(15&n)<<4|15&n,1)):(n=P.exec(t))?i(parseInt(n[1],16)):(n=F.exec(t))?new c(n[1],n[2],n[3],1):(n=O.exec(t))?new c(255*n[1]/100,255*n[2]/100,255*n[3]/100,1):(n=U.exec(t))?o(n[1],n[2],n[3],n[4]):(n=j.exec(t))?o(255*n[1]/100,255*n[2]/100,255*n[3]/100,n[4]):(n=X.exec(t))?f(n[1],n[2]/100,n[3]/100,1):(n=Y.exec(t))?f(n[1],n[2]/100,n[3]/100,n[4]):I.hasOwnProperty(t)?i(I[t]):"transparent"===t?new c(NaN,NaN,NaN,0):null}function i(t){return new c(t>>16&255,t>>8&255,255&t,1)}function o(t,n,e,r){return r<=0&&(t=n=e=NaN),new c(t,n,e,r)}function a(t){return t instanceof e||(t=r(t)),t?(t=t.rgb(),new c(t.r,t.g,t.b,t.opacity)):new c}function u(t,n,e,r){return 1===arguments.length?a(t):new c(t,n,e,null==r?1:r)}function c(t,n,e,r){this.r=+t,this.g=+n,this.b=+e,this.opacity=+r}function f(t,n,e,r){return r<=0?t=n=e=NaN:e<=0||e>=1?t=n=NaN:n<=0&&(t=NaN),new d(t,n,e,r)}function s(t){if(t instanceof d)return new d(t.h,t.s,t.l,t.opacity);if(t instanceof e||(t=r(t)),!t)return new d;if(t instanceof d)return t;t=t.rgb();var n=t.r/255,i=t.g/255,o=t.b/255,a=Math.min(n,i,o),u=Math.max(n,i,o),c=NaN,f=u-a,s=(u+a)/2;return f?(c=n===u?(i-o)/f+6*(i<o):i===u?(o-n)/f+2:(n-i)/f+4,f/=s<.5?u+a:2-u-a,c*=60):f=s>0&&s<1?0:c,new d(c,f,s,t.opacity)}function l(t,n,e,r){return 1===arguments.length?s(t):new d(t,n,e,null==r?1:r)}function d(t,n,e,r){this.h=+t,this.s=+n,this.l=+e,this.opacity=+r}function h(t,n,e){return 255*(t<60?n+(e-n)*t/60:t<180?e:t<240?n+(e-n)*(240-t)/60:n)}function p(t){if(t instanceof y)return new y(t.l,t.a,t.b,t.opacity);if(t instanceof M){var n=t.h*q;return new y(t.l,Math.cos(n)*t.c,Math.sin(n)*t.c,t.opacity)}t instanceof c||(t=a(t));var e=_(t.r),r=_(t.g),i=_(t.b),o=m((.4124564*e+.3575761*r+.1804375*i)/R),u=m((.2126729*e+.7151522*r+.072175*i)/W),f=m((.0193339*e+.119192*r+.9503041*i)/V);return new y(116*u-16,500*(o-u),200*(u-f),t.opacity)}function g(t,n,e,r){return 1===arguments.length?p(t):new y(t,n,e,null==r?1:r)}function y(t,n,e,r){this.l=+t,this.a=+n,this.b=+e,this.opacity=+r}function m(t){return t>Q?Math.pow(t,1/3):t/G+$}function v(t){return t>Z?t*t*t:G*(t-$)}function b(t){return 255*(t<=.0031308?12.92*t:1.055*Math.pow(t,1/2.4)-.055)}function _(t){return(t/=255)<=.04045?t/12.92:Math.pow((t+.055)/1.055,2.4)}function w(t){if(t instanceof M)return new M(t.h,t.c,t.l,t.opacity);t instanceof y||(t=p(t));var n=Math.atan2(t.b,t.a)*H;return new M(n<0?n+360:n,Math.sqrt(t.a*t.a+t.b*t.b),t.l,t.opacity)}function x(t,n,e,r){return 1===arguments.length?w(t):new M(t,n,e,null==r?1:r)}function M(t,n,e,r){this.h=+t,this.c=+n,this.l=+e,this.opacity=+r}function k(t){if(t instanceof T)return new T(t.h,t.s,t.l,t.opacity);t instanceof c||(t=a(t));var n=t.r/255,e=t.g/255,r=t.b/255,i=(ot*r+rt*n-it*e)/(ot+rt-it),o=r-i,u=(et*(e-i)-tt*o)/nt,f=Math.sqrt(u*u+o*o)/(et*i*(1-i)),s=f?Math.atan2(u,o)*H-120:NaN;return new T(s<0?s+360:s,f,i,t.opacity)}function S(t,n,e,r){return 1===arguments.length?k(t):new T(t,n,e,null==r?1:r)}function T(t,n,e,r){this.h=+t,this.s=+n,this.l=+e,this.opacity=+r}var C=function(t,n,e){t.prototype=n.prototype=e,e.constructor=t},A=.7,N=1/A,E="\\s*([+-]?\\d+)\\s*",L="\\s*([+-]?\\d*\\.?\\d+(?:[eE][+-]?\\d+)?)\\s*",z="\\s*([+-]?\\d*\\.?\\d+(?:[eE][+-]?\\d+)?)%\\s*",D=/^#([0-9a-f]{3})$/,P=/^#([0-9a-f]{6})$/,F=new RegExp("^rgb\\("+[E,E,E]+"\\)$"),O=new RegExp("^rgb\\("+[z,z,z]+"\\)$"),U=new RegExp("^rgba\\("+[E,E,E,L]+"\\)$"),j=new RegExp("^rgba\\("+[z,z,z,L]+"\\)$"),X=new RegExp("^hsl\\("+[L,z,z]+"\\)$"),Y=new RegExp("^hsla\\("+[L,z,z,L]+"\\)$"),I={aliceblue:15792383,antiquewhite:16444375,aqua:65535,aquamarine:8388564,azure:15794175,beige:16119260,bisque:16770244,black:0,blanchedalmond:16772045,blue:255,blueviolet:9055202,brown:10824234,burlywood:14596231,cadetblue:6266528,chartreuse:8388352,chocolate:13789470,coral:16744272,cornflowerblue:6591981,cornsilk:16775388,crimson:14423100,cyan:65535,darkblue:139,darkcyan:35723,darkgoldenrod:12092939,darkgray:11119017,darkgreen:25600,darkgrey:11119017,darkkhaki:12433259,darkmagenta:9109643,darkolivegreen:5597999,darkorange:16747520,darkorchid:10040012,darkred:9109504,darksalmon:15308410,darkseagreen:9419919,darkslateblue:4734347,darkslategray:3100495,darkslategrey:3100495,darkturquoise:52945,darkviolet:9699539,deeppink:16716947,deepskyblue:49151,dimgray:6908265,dimgrey:6908265,dodgerblue:2003199,firebrick:11674146,floralwhite:16775920,forestgreen:2263842,fuchsia:16711935,gainsboro:14474460,ghostwhite:16316671,gold:16766720,goldenrod:14329120,gray:8421504,green:32768,greenyellow:11403055,grey:8421504,honeydew:15794160,hotpink:16738740,indianred:13458524,indigo:4915330,ivory:16777200,khaki:15787660,lavender:15132410,lavenderblush:16773365,lawngreen:8190976,lemonchiffon:16775885,lightblue:11393254,lightcoral:15761536,lightcyan:14745599,lightgoldenrodyellow:16448210,lightgray:13882323,lightgreen:9498256,lightgrey:13882323,lightpink:16758465,lightsalmon:16752762,lightseagreen:2142890,lightskyblue:8900346,lightslategray:7833753,lightslategrey:7833753,lightsteelblue:11584734,lightyellow:16777184,lime:65280,limegreen:3329330,linen:16445670,magenta:16711935,maroon:8388608,mediumaquamarine:6737322,mediumblue:205,mediumorchid:12211667,mediumpurple:9662683,mediumseagreen:3978097,mediumslateblue:8087790,mediumspringgreen:64154,mediumturquoise:4772300,mediumvioletred:13047173,midnightblue:1644912,mintcream:16121850,mistyrose:16770273,moccasin:16770229,navajowhite:16768685,navy:128,oldlace:16643558,olive:8421376,olivedrab:7048739,orange:16753920,orangered:16729344,orchid:14315734,palegoldenrod:15657130,palegreen:10025880,paleturquoise:11529966,palevioletred:14381203,papayawhip:16773077,peachpuff:16767673,peru:13468991,pink:16761035,plum:14524637,powderblue:11591910,purple:8388736,rebeccapurple:6697881,red:16711680,rosybrown:12357519,royalblue:4286945,saddlebrown:9127187,salmon:16416882,sandybrown:16032864,seagreen:3050327,seashell:16774638,sienna:10506797,silver:12632256,skyblue:8900331,slateblue:6970061,slategray:7372944,slategrey:7372944,snow:16775930,springgreen:65407,steelblue:4620980,tan:13808780,teal:32896,thistle:14204888,tomato:16737095,turquoise:4251856,violet:15631086,wheat:16113331,white:16777215,whitesmoke:16119285,yellow:16776960,yellowgreen:10145074};C(e,r,{displayable:function(){return this.rgb().displayable()},toString:function(){return this.rgb()+""}}),C(c,u,n(e,{brighter:function(t){return t=null==t?N:Math.pow(N,t),new c(this.r*t,this.g*t,this.b*t,this.opacity)},darker:function(t){return t=null==t?A:Math.pow(A,t),new c(this.r*t,this.g*t,this.b*t,this.opacity)},rgb:function(){return this},displayable:function(){return 0<=this.r&&this.r<=255&&0<=this.g&&this.g<=255&&0<=this.b&&this.b<=255&&0<=this.opacity&&this.opacity<=1},toString:function(){var t=this.opacity;return t=isNaN(t)?1:Math.max(0,Math.min(1,t)),(1===t?"rgb(":"rgba(")+Math.max(0,Math.min(255,Math.round(this.r)||0))+", "+Math.max(0,Math.min(255,Math.round(this.g)||0))+", "+Math.max(0,Math.min(255,Math.round(this.b)||0))+(1===t?")":", "+t+")")}})),C(d,l,n(e,{brighter:function(t){return t=null==t?N:Math.pow(N,t),new d(this.h,this.s,this.l*t,this.opacity)},darker:function(t){return t=null==t?A:Math.pow(A,t),new d(this.h,this.s,this.l*t,this.opacity)},rgb:function(){var t=this.h%360+360*(this.h<0),n=isNaN(t)||isNaN(this.s)?0:this.s,e=this.l,r=e+(e<.5?e:1-e)*n,i=2*e-r;return new c(h(t>=240?t-240:t+120,i,r),h(t,i,r),h(t<120?t+240:t-120,i,r),this.opacity)},displayable:function(){return(0<=this.s&&this.s<=1||isNaN(this.s))&&0<=this.l&&this.l<=1&&0<=this.opacity&&this.opacity<=1}}));var q=Math.PI/180,H=180/Math.PI,B=18,R=.95047,W=1,V=1.08883,$=4/29,Z=6/29,G=3*Z*Z,Q=Z*Z*Z;C(y,g,n(e,{brighter:function(t){return new y(this.l+B*(null==t?1:t),this.a,this.b,this.opacity)},darker:function(t){return new y(this.l-B*(null==t?1:t),this.a,this.b,this.opacity)},rgb:function(){var t=(this.l+16)/116,n=isNaN(this.a)?t:t+this.a/500,e=isNaN(this.b)?t:t-this.b/200;return t=W*v(t),n=R*v(n),e=V*v(e),new c(b(3.2404542*n-1.5371385*t-.4985314*e),b(-.969266*n+1.8760108*t+.041556*e),b(.0556434*n-.2040259*t+1.0572252*e),this.opacity)}})),C(M,x,n(e,{brighter:function(t){return new M(this.h,this.c,this.l+B*(null==t?1:t),this.opacity)},darker:function(t){return new M(this.h,this.c,this.l-B*(null==t?1:t),this.opacity)},rgb:function(){return p(this).rgb()}}));var J=-.14861,K=1.78277,tt=-.29227,nt=-.90649,et=1.97294,rt=et*nt,it=et*K,ot=K*tt-nt*J;C(T,S,n(e,{brighter:function(t){return t=null==t?N:Math.pow(N,t),new T(this.h,this.s,this.l*t,this.opacity)},darker:function(t){return t=null==t?A:Math.pow(A,t),new T(this.h,this.s,this.l*t,this.opacity)},rgb:function(){var t=isNaN(this.h)?0:(this.h+120)*q,n=+this.l,e=isNaN(this.s)?0:this.s*n*(1-n),r=Math.cos(t),i=Math.sin(t);return new c(255*(n+e*(J*r+K*i)),255*(n+e*(tt*r+nt*i)),255*(n+e*(et*r)),this.opacity)}})),t.color=r,t.rgb=u,t.hsl=l,t.lab=g,t.hcl=x,t.cubehelix=S,Object.defineProperty(t,"__esModule",{value:!0})})},{}],5:[function(t,n,e){!function(t,r){"object"==typeof e&&"undefined"!=typeof n?r(e):"function"==typeof define&&define.amd?define(["exports"],r):r(t.d3=t.d3||{})}(this,function(t){"use strict";function n(){for(var t,n=0,r=arguments.length,i={};n<r;++n){if(!(t=arguments[n]+"")||t in i)throw new Error("illegal type: "+t);i[t]=[]}return new e(i)}function e(t){this._=t}function r(t,n){return t.trim().split(/^|\s+/).map(function(t){var e="",r=t.indexOf(".");if(r>=0&&(e=t.slice(r+1),t=t.slice(0,r)),t&&!n.hasOwnProperty(t))throw new Error("unknown type: "+t);return{type:t,name:e}})}function i(t,n){for(var e,r=0,i=t.length;r<i;++r)if((e=t[r]).name===n)return e.value}function o(t,n,e){for(var r=0,i=t.length;r<i;++r)if(t[r].name===n){t[r]=a,t=t.slice(0,r).concat(t.slice(r+1));break}return null!=e&&t.push({name:n,value:e}),t}var a={value:function(){}};e.prototype=n.prototype={constructor:e,on:function(t,n){var e,a=this._,u=r(t+"",a),c=-1,f=u.length;{if(!(arguments.length<2)){if(null!=n&&"function"!=typeof n)throw new Error("invalid callback: "+n);for(;++c<f;)if(e=(t=u[c]).type)a[e]=o(a[e],t.name,n);else if(null==n)for(e in a)a[e]=o(a[e],t.name,null);return this}for(;++c<f;)if((e=(t=u[c]).type)&&(e=i(a[e],t.name)))return e}},copy:function(){var t={},n=this._;for(var r in n)t[r]=n[r].slice();return new e(t)},call:function(t,n){if((e=arguments.length-2)>0)for(var e,r,i=new Array(e),o=0;o<e;++o)i[o]=arguments[o+2];if(!this._.hasOwnProperty(t))throw new Error("unknown type: "+t);for(r=this._[t],o=0,e=r.length;o<e;++o)r[o].value.apply(n,i)},apply:function(t,n,e){if(!this._.hasOwnProperty(t))throw new Error("unknown type: "+t);for(var r=this._[t],i=0,o=r.length;i<o;++i)r[i].value.apply(n,e)}},t.dispatch=n,Object.defineProperty(t,"__esModule",{value:!0})})},{}],6:[function(t,n,e){!function(r,i){"object"==typeof e&&"undefined"!=typeof n?i(e,t("d3-dispatch"),t("d3-selection")):"function"==typeof define&&define.amd?define(["exports","d3-dispatch","d3-selection"],i):i(r.d3=r.d3||{},r.d3,r.d3)}(this,function(t,n,e){"use strict";function r(){e.event.stopImmediatePropagation()}function i(t,n){var r=t.document.documentElement,i=e.select(t).on("dragstart.drag",null);n&&(i.on("click.drag",f,!0),setTimeout(function(){i.on("click.drag",null)},0)),"onselectstart"in r?i.on("selectstart.drag",null):(r.style.MozUserSelect=r.__noselect,delete r.__noselect)}function o(t,n,e,r,i,o,a,u,c,f){this.target=t,this.type=n,this.subject=e,this.identifier=r,this.active=i,this.x=o,this.y=a,this.dx=u,this.dy=c,this._=f}function a(){return!e.event.button}function u(){return this.parentNode}function c(t){return null==t?{x:e.event.x,y:e.event.y}:t}var f=function(){e.event.preventDefault(),e.event.stopImmediatePropagation()},s=function(t){var n=t.document.documentElement,r=e.select(t).on("dragstart.drag",f,!0);"onselectstart"in n?r.on("selectstart.drag",f,!0):(n.__noselect=n.style.MozUserSelect,n.style.MozUserSelect="none")},l=function(t){return function(){return t}};o.prototype.on=function(){var t=this._.on.apply(this._,arguments);return t===this._?this:t};var d=function(){function t(t){t.on("mousedown.drag",d).on("touchstart.drag",g).on("touchmove.drag",y).on("touchend.drag touchcancel.drag",m).style("-webkit-tap-highlight-color","rgba(0,0,0,0)")}function d(){if(!_&&w.apply(this,arguments)){var t=v("mouse",x.apply(this,arguments),e.mouse,this,arguments);t&&(e.select(e.event.view).on("mousemove.drag",h,!0).on("mouseup.drag",p,!0),s(e.event.view),r(),b=!1,t("start"))}}function h(){f(),b=!0,k.mouse("drag")}function p(){e.select(e.event.view).on("mousemove.drag mouseup.drag",null),i(e.event.view,b),f(),k.mouse("end")}function g(){if(w.apply(this,arguments)){var t,n,i=e.event.changedTouches,o=x.apply(this,arguments),a=i.length;for(t=0;t<a;++t)(n=v(i[t].identifier,o,e.touch,this,arguments))&&(r(),n("start"))}}function y(){var t,n,r=e.event.changedTouches,i=r.length;for(t=0;t<i;++t)(n=k[r[t].identifier])&&(f(),n("drag"))}function m(){var t,n,i=e.event.changedTouches,o=i.length;for(_&&clearTimeout(_),_=setTimeout(function(){_=null},500),t=0;t<o;++t)(n=k[i[t].identifier])&&(r(),n("end"))}function v(n,r,i,a,u){var c,f,s,l=i(r,n),d=S.copy();if(e.customEvent(new o(t,"beforestart",c,n,T,l[0],l[1],0,0,d),function(){return null!=(e.event.subject=c=M.apply(a,u))&&(f=c.x-l[0]||0,s=c.y-l[1]||0,!0)}))return function h(p){var g,y=l;switch(p){case"start":k[n]=h,g=T++;break;case"end":delete k[n],--T;case"drag":l=i(r,n),g=T}e.customEvent(new o(t,p,c,n,g,l[0]+f,l[1]+s,l[0]-y[0],l[1]-y[1],d),d.apply,d,[p,a,u])}}var b,_,w=a,x=u,M=c,k={},S=n.dispatch("start","drag","end"),T=0;return t.filter=function(n){return arguments.length?(w="function"==typeof n?n:l(!!n),t):w},t.container=function(n){return arguments.length?(x="function"==typeof n?n:l(n),t):x},t.subject=function(n){return arguments.length?(M="function"==typeof n?n:l(n),t):M},t.on=function(){var n=S.on.apply(S,arguments);return n===S?t:n},t};t.drag=d,t.dragDisable=s,t.dragEnable=i,Object.defineProperty(t,"__esModule",{value:!0})})},{"d3-dispatch":5,"d3-selection":11}],7:[function(t,n,e){!function(t,r){"object"==typeof e&&"undefined"!=typeof n?r(e):"function"==typeof define&&define.amd?define(["exports"],r):r(t.d3=t.d3||{})}(this,function(t){"use strict";function n(t){return+t}function e(t){return t*t}function r(t){return t*(2-t)}function i(t){return((t*=2)<=1?t*t:--t*(2-t)+1)/2}function o(t){return t*t*t}function a(t){return--t*t*t+1}function u(t){return((t*=2)<=1?t*t*t:(t-=2)*t*t+2)/2}function c(t){return 1-Math.cos(t*S)}function f(t){return Math.sin(t*S)}function s(t){return(1-Math.cos(k*t))/2}function l(t){return Math.pow(2,10*t-10)}function d(t){return 1-Math.pow(2,-10*t)}function h(t){return((t*=2)<=1?Math.pow(2,10*t-10):2-Math.pow(2,10-10*t))/2}function p(t){return 1-Math.sqrt(1-t*t)}function g(t){return Math.sqrt(1- --t*t)}function y(t){return((t*=2)<=1?1-Math.sqrt(1-t*t):Math.sqrt(1-(t-=2)*t)+1)/2}function m(t){return 1-v(1-t)}function v(t){return(t=+t)<T?F*t*t:t<A?F*(t-=C)*t+N:t<L?F*(t-=E)*t+z:F*(t-=D)*t+P}function b(t){return((t*=2)<=1?1-v(1-t):v(t-1)+1)/2}var _=3,w=function t(n){function e(t){return Math.pow(t,n)}return n=+n,e.exponent=t,e}(_),x=function t(n){function e(t){return 1-Math.pow(1-t,n)}return n=+n,e.exponent=t,e}(_),M=function t(n){function e(t){return((t*=2)<=1?Math.pow(t,n):2-Math.pow(2-t,n))/2}return n=+n,e.exponent=t,e}(_),k=Math.PI,S=k/2,T=4/11,C=6/11,A=8/11,N=.75,E=9/11,L=10/11,z=.9375,D=21/22,P=63/64,F=1/T/T,O=1.70158,U=function t(n){function e(t){return t*t*((n+1)*t-n)}return n=+n,e.overshoot=t,e}(O),j=function t(n){function e(t){return--t*t*((n+1)*t+n)+1}return n=+n,e.overshoot=t,e}(O),X=function t(n){function e(t){return((t*=2)<1?t*t*((n+1)*t-n):(t-=2)*t*((n+1)*t+n)+2)/2}return n=+n,e.overshoot=t,e}(O),Y=2*Math.PI,I=1,q=.3,H=function t(n,e){function r(t){return n*Math.pow(2,10*--t)*Math.sin((i-t)/e)}var i=Math.asin(1/(n=Math.max(1,n)))*(e/=Y);return r.amplitude=function(n){return t(n,e*Y)},r.period=function(e){return t(n,e)},r}(I,q),B=function t(n,e){function r(t){return 1-n*Math.pow(2,-10*(t=+t))*Math.sin((t+i)/e)}var i=Math.asin(1/(n=Math.max(1,n)))*(e/=Y);return r.amplitude=function(n){return t(n,e*Y)},r.period=function(e){return t(n,e)},r}(I,q),R=function t(n,e){function r(t){return((t=2*t-1)<0?n*Math.pow(2,10*t)*Math.sin((i-t)/e):2-n*Math.pow(2,-10*t)*Math.sin((i+t)/e))/2}var i=Math.asin(1/(n=Math.max(1,n)))*(e/=Y);return r.amplitude=function(n){return t(n,e*Y)},r.period=function(e){return t(n,e)},r}(I,q);t.easeLinear=n,t.easeQuad=i,t.easeQuadIn=e,t.easeQuadOut=r,t.easeQuadInOut=i,t.easeCubic=u,t.easeCubicIn=o,t.easeCubicOut=a,t.easeCubicInOut=u,t.easePoly=M,t.easePolyIn=w,t.easePolyOut=x,t.easePolyInOut=M,t.easeSin=s,t.easeSinIn=c,t.easeSinOut=f,t.easeSinInOut=s,t.easeExp=h,t.easeExpIn=l,t.easeExpOut=d,t.easeExpInOut=h,t.easeCircle=y,t.easeCircleIn=p,t.easeCircleOut=g,t.easeCircleInOut=y,t.easeBounce=v,t.easeBounceIn=m,t.easeBounceOut=v,t.easeBounceInOut=b,t.easeBack=X,t.easeBackIn=U,t.easeBackOut=j,t.easeBackInOut=X,t.easeElastic=B,t.easeElasticIn=H,t.easeElasticOut=B,t.easeElasticInOut=R,Object.defineProperty(t,"__esModule",{value:!0})})},{}],8:[function(t,n,e){!function(t,r){"object"==typeof e&&"undefined"!=typeof n?r(e):"function"==typeof define&&define.amd?define(["exports"],r):r(t.d3=t.d3||{})}(this,function(t){"use strict";function n(t){return new e(t)}function e(t){if(!(n=h.exec(t)))throw new Error("invalid format: "+t);var n,e=n[1]||" ",r=n[2]||">",i=n[3]||"-",o=n[4]||"",a=!!n[5],u=n[6]&&+n[6],c=!!n[7],f=n[8]&&+n[8].slice(1),s=n[9]||"";"n"===s?(c=!0,s="g"):d[s]||(s=""),(a||"0"===e&&"="===r)&&(a=!0,e="0",r="="),this.fill=e,this.align=r,this.sign=i,this.symbol=o,this.zero=a,this.width=u,this.comma=c,this.precision=f,this.type=s}function r(n){return p=m(n),t.format=p.format,t.formatPrefix=p.formatPrefix,p}var i,o=function(t,n){if((e=(t=n?t.toExponential(n-1):t.toExponential()).indexOf("e"))<0)return null;var e,r=t.slice(0,e);return[r.length>1?r[0]+r.slice(2):r,+t.slice(e+1)]},a=function(t){return t=o(Math.abs(t)),t?t[1]:NaN},u=function(t,n){return function(e,r){for(var i=e.length,o=[],a=0,u=t[0],c=0;i>0&&u>0&&(c+u+1>r&&(u=Math.max(1,r-c)),o.push(e.substring(i-=u,i+u)),!((c+=u+1)>r));)u=t[a=(a+1)%t.length];return o.reverse().join(n)}},c=function(t){return function(n){return n.replace(/[0-9]/g,function(n){return t[+n]})}},f=function(t,n){t=t.toPrecision(n);t:for(var e,r=t.length,i=1,o=-1;i<r;++i)switch(t[i]){case".":o=e=i;break;case"0":0===o&&(o=i),e=i;break;case"e":break t;default:o>0&&(o=0)}return o>0?t.slice(0,o)+t.slice(e+1):t},s=function(t,n){var e=o(t,n);if(!e)return t+"";var r=e[0],a=e[1],u=a-(i=3*Math.max(-8,Math.min(8,Math.floor(a/3))))+1,c=r.length;return u===c?r:u>c?r+new Array(u-c+1).join("0"):u>0?r.slice(0,u)+"."+r.slice(u):"0."+new Array(1-u).join("0")+o(t,Math.max(0,n+u-1))[0]},l=function(t,n){var e=o(t,n);if(!e)return t+"";var r=e[0],i=e[1];return i<0?"0."+new Array(-i).join("0")+r:r.length>i+1?r.slice(0,i+1)+"."+r.slice(i+1):r+new Array(i-r.length+2).join("0")},d={"":f,"%":function(t,n){return(100*t).toFixed(n)},b:function(t){return Math.round(t).toString(2)},c:function(t){return t+""},d:function(t){return Math.round(t).toString(10)},e:function(t,n){return t.toExponential(n)},f:function(t,n){return t.toFixed(n)},g:function(t,n){return t.toPrecision(n)},o:function(t){return Math.round(t).toString(8)},p:function(t,n){return l(100*t,n)},r:l,s:s,X:function(t){return Math.round(t).toString(16).toUpperCase()},x:function(t){return Math.round(t).toString(16)}},h=/^(?:(.)?([<>=^]))?([+\-\( ])?([$#])?(0)?(\d+)?(,)?(\.\d+)?([a-z%])?$/i;n.prototype=e.prototype,e.prototype.toString=function(){return this.fill+this.align+this.sign+this.symbol+(this.zero?"0":"")+(null==this.width?"":Math.max(1,0|this.width))+(this.comma?",":"")+(null==this.precision?"":"."+Math.max(0,0|this.precision))+this.type};var p,g=function(t){return t},y=["y","z","a","f","p","n","µ","m","","k","M","G","T","P","E","Z","Y"],m=function(t){function e(t){function e(t){var n,e,c,f=_,d=w;if("c"===b)d=x(t)+d,t="";else{t=+t;var h=t<0;if(t=x(Math.abs(t),v),h&&0===+t&&(h=!1),f=(h?"("===u?u:"-":"-"===u||"("===u?"":u)+f,d=d+("s"===b?y[8+i/3]:"")+(h&&"("===u?")":""),M)for(n=-1,e=t.length;++n<e;)if(c=t.charCodeAt(n),48>c||c>57){d=(46===c?s+t.slice(n+1):t.slice(n))+d,
-t=t.slice(0,n);break}}m&&!p&&(t=o(t,1/0));var k=f.length+t.length+d.length,S=k<g?new Array(g-k+1).join(r):"";switch(m&&p&&(t=o(S+t,S.length?g-d.length:1/0),S=""),a){case"<":t=f+t+d+S;break;case"=":t=f+S+t+d;break;case"^":t=S.slice(0,k=S.length>>1)+f+t+d+S.slice(k);break;default:t=S+f+t+d}return l(t)}t=n(t);var r=t.fill,a=t.align,u=t.sign,c=t.symbol,p=t.zero,g=t.width,m=t.comma,v=t.precision,b=t.type,_="$"===c?f[0]:"#"===c&&/[boxX]/.test(b)?"0"+b.toLowerCase():"",w="$"===c?f[1]:/[%p]/.test(b)?h:"",x=d[b],M=!b||/[defgprs%]/.test(b);return v=null==v?b?6:12:/[gprs]/.test(b)?Math.max(1,Math.min(21,v)):Math.max(0,Math.min(20,v)),e.toString=function(){return t+""},e}function r(t,r){var i=e((t=n(t),t.type="f",t)),o=3*Math.max(-8,Math.min(8,Math.floor(a(r)/3))),u=Math.pow(10,-o),c=y[8+o/3];return function(t){return i(u*t)+c}}var o=t.grouping&&t.thousands?u(t.grouping,t.thousands):g,f=t.currency,s=t.decimal,l=t.numerals?c(t.numerals):g,h=t.percent||"%";return{format:e,formatPrefix:r}};r({decimal:".",thousands:",",grouping:[3],currency:["$",""]});var v=function(t){return Math.max(0,-a(Math.abs(t)))},b=function(t,n){return Math.max(0,3*Math.max(-8,Math.min(8,Math.floor(a(n)/3)))-a(Math.abs(t)))},_=function(t,n){return t=Math.abs(t),n=Math.abs(n)-t,Math.max(0,a(n)-a(t))+1};t.formatDefaultLocale=r,t.formatLocale=m,t.formatSpecifier=n,t.precisionFixed=v,t.precisionPrefix=b,t.precisionRound=_,Object.defineProperty(t,"__esModule",{value:!0})})},{}],9:[function(t,n,e){!function(r,i){"object"==typeof e&&"undefined"!=typeof n?i(e,t("d3-color")):"function"==typeof define&&define.amd?define(["exports","d3-color"],i):i(r.d3=r.d3||{},r.d3)}(this,function(t,n){"use strict";function e(t,n,e,r,i){var o=t*t,a=o*t;return((1-3*t+3*o-a)*n+(4-6*o+3*a)*e+(1+3*t+3*o-3*a)*r+a*i)/6}function r(t,n){return function(e){return t+e*n}}function i(t,n,e){return t=Math.pow(t,e),n=Math.pow(n,e)-t,e=1/e,function(r){return Math.pow(t+r*n,e)}}function o(t,n){var e=n-t;return e?r(t,e>180||e<-180?e-360*Math.round(e/360):e):C(isNaN(t)?n:t)}function a(t){return 1===(t=+t)?u:function(n,e){return e-n?i(n,e,t):C(isNaN(n)?e:n)}}function u(t,n){var e=n-t;return e?r(t,e):C(isNaN(t)?n:t)}function c(t){return function(e){var r,i,o=e.length,a=new Array(o),u=new Array(o),c=new Array(o);for(r=0;r<o;++r)i=n.rgb(e[r]),a[r]=i.r||0,u[r]=i.g||0,c[r]=i.b||0;return a=t(a),u=t(u),c=t(c),i.opacity=1,function(t){return i.r=a(t),i.g=u(t),i.b=c(t),i+""}}}function f(t){return function(){return t}}function s(t){return function(n){return t(n)+""}}function l(t){return"none"===t?I:(w||(w=document.createElement("DIV"),x=document.documentElement,M=document.defaultView),w.style.transform=t,t=M.getComputedStyle(x.appendChild(w),null).getPropertyValue("transform"),x.removeChild(w),t=t.slice(7,-1).split(","),q(+t[0],+t[1],+t[2],+t[3],+t[4],+t[5]))}function d(t){return null==t?I:(k||(k=document.createElementNS("http://www.w3.org/2000/svg","g")),k.setAttribute("transform",t),(t=k.transform.baseVal.consolidate())?(t=t.matrix,q(t.a,t.b,t.c,t.d,t.e,t.f)):I)}function h(t,n,e,r){function i(t){return t.length?t.pop()+" ":""}function o(t,r,i,o,a,u){if(t!==i||r!==o){var c=a.push("translate(",null,n,null,e);u.push({i:c-4,x:D(t,i)},{i:c-2,x:D(r,o)})}else(i||o)&&a.push("translate("+i+n+o+e)}function a(t,n,e,o){t!==n?(t-n>180?n+=360:n-t>180&&(t+=360),o.push({i:e.push(i(e)+"rotate(",null,r)-2,x:D(t,n)})):n&&e.push(i(e)+"rotate("+n+r)}function u(t,n,e,o){t!==n?o.push({i:e.push(i(e)+"skewX(",null,r)-2,x:D(t,n)}):n&&e.push(i(e)+"skewX("+n+r)}function c(t,n,e,r,o,a){if(t!==e||n!==r){var u=o.push(i(o)+"scale(",null,",",null,")");a.push({i:u-4,x:D(t,e)},{i:u-2,x:D(n,r)})}else 1===e&&1===r||o.push(i(o)+"scale("+e+","+r+")")}return function(n,e){var r=[],i=[];return n=t(n),e=t(e),o(n.translateX,n.translateY,e.translateX,e.translateY,r,i),a(n.rotate,e.rotate,r,i),u(n.skewX,e.skewX,r,i),c(n.scaleX,n.scaleY,e.scaleX,e.scaleY,r,i),n=e=null,function(t){for(var n,e=-1,o=i.length;++e<o;)r[(n=i[e]).i]=n.x(t);return r.join("")}}}function p(t){return((t=Math.exp(t))+1/t)/2}function g(t){return((t=Math.exp(t))-1/t)/2}function y(t){return((t=Math.exp(2*t))-1)/(t+1)}function m(t){return function(e,r){var i=t((e=n.hsl(e)).h,(r=n.hsl(r)).h),o=u(e.s,r.s),a=u(e.l,r.l),c=u(e.opacity,r.opacity);return function(t){return e.h=i(t),e.s=o(t),e.l=a(t),e.opacity=c(t),e+""}}}function v(t,e){var r=u((t=n.lab(t)).l,(e=n.lab(e)).l),i=u(t.a,e.a),o=u(t.b,e.b),a=u(t.opacity,e.opacity);return function(n){return t.l=r(n),t.a=i(n),t.b=o(n),t.opacity=a(n),t+""}}function b(t){return function(e,r){var i=t((e=n.hcl(e)).h,(r=n.hcl(r)).h),o=u(e.c,r.c),a=u(e.l,r.l),c=u(e.opacity,r.opacity);return function(t){return e.h=i(t),e.c=o(t),e.l=a(t),e.opacity=c(t),e+""}}}function _(t){return function e(r){function i(e,i){var o=t((e=n.cubehelix(e)).h,(i=n.cubehelix(i)).h),a=u(e.s,i.s),c=u(e.l,i.l),f=u(e.opacity,i.opacity);return function(t){return e.h=o(t),e.s=a(t),e.l=c(Math.pow(t,r)),e.opacity=f(t),e+""}}return r=+r,i.gamma=e,i}(1)}var w,x,M,k,S=function(t){var n=t.length-1;return function(r){var i=r<=0?r=0:r>=1?(r=1,n-1):Math.floor(r*n),o=t[i],a=t[i+1],u=i>0?t[i-1]:2*o-a,c=i<n-1?t[i+2]:2*a-o;return e((r-i/n)*n,u,o,a,c)}},T=function(t){var n=t.length;return function(r){var i=Math.floor(((r%=1)<0?++r:r)*n),o=t[(i+n-1)%n],a=t[i%n],u=t[(i+1)%n],c=t[(i+2)%n];return e((r-i/n)*n,o,a,u,c)}},C=function(t){return function(){return t}},A=function t(e){function r(t,e){var r=i((t=n.rgb(t)).r,(e=n.rgb(e)).r),o=i(t.g,e.g),a=i(t.b,e.b),c=u(t.opacity,e.opacity);return function(n){return t.r=r(n),t.g=o(n),t.b=a(n),t.opacity=c(n),t+""}}var i=a(e);return r.gamma=t,r}(1),N=c(S),E=c(T),L=function(t,n){var e,r=n?n.length:0,i=t?Math.min(r,t.length):0,o=new Array(r),a=new Array(r);for(e=0;e<i;++e)o[e]=j(t[e],n[e]);for(;e<r;++e)a[e]=n[e];return function(t){for(e=0;e<i;++e)a[e]=o[e](t);return a}},z=function(t,n){var e=new Date;return t=+t,n-=t,function(r){return e.setTime(t+n*r),e}},D=function(t,n){return t=+t,n-=t,function(e){return t+n*e}},P=function(t,n){var e,r={},i={};null!==t&&"object"==typeof t||(t={}),null!==n&&"object"==typeof n||(n={});for(e in n)e in t?r[e]=j(t[e],n[e]):i[e]=n[e];return function(t){for(e in r)i[e]=r[e](t);return i}},F=/[-+]?(?:\d+\.?\d*|\.?\d+)(?:[eE][-+]?\d+)?/g,O=new RegExp(F.source,"g"),U=function(t,n){var e,r,i,o=F.lastIndex=O.lastIndex=0,a=-1,u=[],c=[];for(t+="",n+="";(e=F.exec(t))&&(r=O.exec(n));)(i=r.index)>o&&(i=n.slice(o,i),u[a]?u[a]+=i:u[++a]=i),(e=e[0])===(r=r[0])?u[a]?u[a]+=r:u[++a]=r:(u[++a]=null,c.push({i:a,x:D(e,r)})),o=O.lastIndex;return o<n.length&&(i=n.slice(o),u[a]?u[a]+=i:u[++a]=i),u.length<2?c[0]?s(c[0].x):f(n):(n=c.length,function(t){for(var e,r=0;r<n;++r)u[(e=c[r]).i]=e.x(t);return u.join("")})},j=function(t,e){var r,i=typeof e;return null==e||"boolean"===i?C(e):("number"===i?D:"string"===i?(r=n.color(e))?(e=r,A):U:e instanceof n.color?A:e instanceof Date?z:Array.isArray(e)?L:isNaN(e)?P:D)(t,e)},X=function(t,n){return t=+t,n-=t,function(e){return Math.round(t+n*e)}},Y=180/Math.PI,I={translateX:0,translateY:0,rotate:0,skewX:0,scaleX:1,scaleY:1},q=function(t,n,e,r,i,o){var a,u,c;return(a=Math.sqrt(t*t+n*n))&&(t/=a,n/=a),(c=t*e+n*r)&&(e-=t*c,r-=n*c),(u=Math.sqrt(e*e+r*r))&&(e/=u,r/=u,c/=u),t*r<n*e&&(t=-t,n=-n,c=-c,a=-a),{translateX:i,translateY:o,rotate:Math.atan2(n,t)*Y,skewX:Math.atan(c)*Y,scaleX:a,scaleY:u}},H=h(l,"px, ","px)","deg)"),B=h(d,", ",")",")"),R=Math.SQRT2,W=2,V=4,$=1e-12,Z=function(t,n){var e,r,i=t[0],o=t[1],a=t[2],u=n[0],c=n[1],f=n[2],s=u-i,l=c-o,d=s*s+l*l;if(d<$)r=Math.log(f/a)/R,e=function(t){return[i+t*s,o+t*l,a*Math.exp(R*t*r)]};else{var h=Math.sqrt(d),m=(f*f-a*a+V*d)/(2*a*W*h),v=(f*f-a*a-V*d)/(2*f*W*h),b=Math.log(Math.sqrt(m*m+1)-m),_=Math.log(Math.sqrt(v*v+1)-v);r=(_-b)/R,e=function(t){var n=t*r,e=p(b),u=a/(W*h)*(e*y(R*n+b)-g(b));return[i+u*s,o+u*l,a*e/p(R*n+b)]}}return e.duration=1e3*r,e},G=m(o),Q=m(u),J=b(o),K=b(u),tt=_(o),nt=_(u),et=function(t,n){for(var e=new Array(n),r=0;r<n;++r)e[r]=t(r/(n-1));return e};t.interpolate=j,t.interpolateArray=L,t.interpolateBasis=S,t.interpolateBasisClosed=T,t.interpolateDate=z,t.interpolateNumber=D,t.interpolateObject=P,t.interpolateRound=X,t.interpolateString=U,t.interpolateTransformCss=H,t.interpolateTransformSvg=B,t.interpolateZoom=Z,t.interpolateRgb=A,t.interpolateRgbBasis=N,t.interpolateRgbBasisClosed=E,t.interpolateHsl=G,t.interpolateHslLong=Q,t.interpolateLab=v,t.interpolateHcl=J,t.interpolateHclLong=K,t.interpolateCubehelix=tt,t.interpolateCubehelixLong=nt,t.quantize=et,Object.defineProperty(t,"__esModule",{value:!0})})},{"d3-color":4}],10:[function(t,n,e){!function(r,i){"object"==typeof e&&"undefined"!=typeof n?i(e,t("d3-array"),t("d3-collection"),t("d3-interpolate"),t("d3-format"),t("d3-time"),t("d3-time-format"),t("d3-color")):"function"==typeof define&&define.amd?define(["exports","d3-array","d3-collection","d3-interpolate","d3-format","d3-time","d3-time-format","d3-color"],i):i(r.d3=r.d3||{},r.d3,r.d3,r.d3,r.d3,r.d3,r.d3,r.d3)}(this,function(t,n,e,r,i,o,a,u){"use strict";function c(t){function n(n){var e=n+"",a=r.get(e);if(!a){if(o!==H)return o;r.set(e,a=i.push(n))}return t[(a-1)%t.length]}var r=e.map(),i=[],o=H;return t=null==t?[]:q.call(t),n.domain=function(t){if(!arguments.length)return i.slice();i=[],r=e.map();for(var o,a,u=-1,c=t.length;++u<c;)r.has(a=(o=t[u])+"")||r.set(a,i.push(o));return n},n.range=function(e){return arguments.length?(t=q.call(e),n):t.slice()},n.unknown=function(t){return arguments.length?(o=t,n):o},n.copy=function(){return c().domain(i).range(t).unknown(o)},n}function f(){function t(){var t=o().length,i=u[1]<u[0],c=u[i-0],f=u[1-i];e=(f-c)/Math.max(1,t-l+2*d),s&&(e=Math.floor(e)),c+=(f-c-e*(t-l))*h,r=e*(1-l),s&&(c=Math.round(c),r=Math.round(r));var p=n.range(t).map(function(t){return c+e*t});return a(i?p.reverse():p)}var e,r,i=c().unknown(void 0),o=i.domain,a=i.range,u=[0,1],s=!1,l=0,d=0,h=.5;return delete i.unknown,i.domain=function(n){return arguments.length?(o(n),t()):o()},i.range=function(n){return arguments.length?(u=[+n[0],+n[1]],t()):u.slice()},i.rangeRound=function(n){return u=[+n[0],+n[1]],s=!0,t()},i.bandwidth=function(){return r},i.step=function(){return e},i.round=function(n){return arguments.length?(s=!!n,t()):s},i.padding=function(n){return arguments.length?(l=d=Math.max(0,Math.min(1,n)),t()):l},i.paddingInner=function(n){return arguments.length?(l=Math.max(0,Math.min(1,n)),t()):l},i.paddingOuter=function(n){return arguments.length?(d=Math.max(0,Math.min(1,n)),t()):d},i.align=function(n){return arguments.length?(h=Math.max(0,Math.min(1,n)),t()):h},i.copy=function(){return f().domain(o()).range(u).round(s).paddingInner(l).paddingOuter(d).align(h)},t()}function s(t){var n=t.copy;return t.padding=t.paddingOuter,delete t.paddingInner,delete t.paddingOuter,t.copy=function(){return s(n())},t}function l(){return s(f().paddingInner(1))}function d(t,n){return(n-=t=+t)?function(e){return(e-t)/n}:B(n)}function h(t){return function(n,e){var r=t(n=+n,e=+e);return function(t){return t<=n?0:t>=e?1:r(t)}}}function p(t){return function(n,e){var r=t(n=+n,e=+e);return function(t){return t<=0?n:t>=1?e:r(t)}}}function g(t,n,e,r){var i=t[0],o=t[1],a=n[0],u=n[1];return o<i?(i=e(o,i),a=r(u,a)):(i=e(i,o),a=r(a,u)),function(t){return a(i(t))}}function y(t,e,r,i){var o=Math.min(t.length,e.length)-1,a=new Array(o),u=new Array(o),c=-1;for(t[o]<t[0]&&(t=t.slice().reverse(),e=e.slice().reverse());++c<o;)a[c]=r(t[c],t[c+1]),u[c]=i(e[c],e[c+1]);return function(e){var r=n.bisect(t,e,1,o)-1;return u[r](a[r](e))}}function m(t,n){return n.domain(t.domain()).range(t.range()).interpolate(t.interpolate()).clamp(t.clamp())}function v(t,n){function e(){return o=Math.min(c.length,f.length)>2?y:g,a=u=null,i}function i(n){return(a||(a=o(c,f,l?h(t):t,s)))(+n)}var o,a,u,c=W,f=W,s=r.interpolate,l=!1;return i.invert=function(t){return(u||(u=o(f,c,d,l?p(n):n)))(+t)},i.domain=function(t){return arguments.length?(c=I.call(t,R),e()):c.slice()},i.range=function(t){return arguments.length?(f=q.call(t),e()):f.slice()},i.rangeRound=function(t){return f=q.call(t),s=r.interpolateRound,e()},i.clamp=function(t){return arguments.length?(l=!!t,e()):l},i.interpolate=function(t){return arguments.length?(s=t,e()):s},e()}function b(t){var e=t.domain;return t.ticks=function(t){var r=e();return n.ticks(r[0],r[r.length-1],null==t?10:t)},t.tickFormat=function(t,n){return V(e(),t,n)},t.nice=function(r){var i=e(),o=i.length-1,a=null==r?10:r,u=i[0],c=i[o],f=n.tickStep(u,c,a);return f&&(f=n.tickStep(Math.floor(u/f)*f,Math.ceil(c/f)*f,a),i[0]=Math.floor(u/f)*f,i[o]=Math.ceil(c/f)*f,e(i)),t},t}function _(){var t=v(d,r.interpolateNumber);return t.copy=function(){return m(t,_())},b(t)}function w(){function t(t){return+t}var n=[0,1];return t.invert=t,t.domain=t.range=function(e){return arguments.length?(n=I.call(e,R),t):n.slice()},t.copy=function(){return w().domain(n)},b(t)}function x(t,n){return(n=Math.log(n/t))?function(e){return Math.log(e/t)/n}:B(n)}function M(t,n){return t<0?function(e){return-Math.pow(-n,e)*Math.pow(-t,1-e)}:function(e){return Math.pow(n,e)*Math.pow(t,1-e)}}function k(t){return isFinite(t)?+("1e"+t):t<0?0:t}function S(t){return 10===t?k:t===Math.E?Math.exp:function(n){return Math.pow(t,n)}}function T(t){return t===Math.E?Math.log:10===t&&Math.log10||2===t&&Math.log2||(t=Math.log(t),function(n){return Math.log(n)/t})}function C(t){return function(n){return-t(-n)}}function A(){function t(){return a=T(o),u=S(o),r()[0]<0&&(a=C(a),u=C(u)),e}var e=v(x,M).domain([1,10]),r=e.domain,o=10,a=T(10),u=S(10);return e.base=function(n){return arguments.length?(o=+n,t()):o},e.domain=function(n){return arguments.length?(r(n),t()):r()},e.ticks=function(t){var e,i=r(),c=i[0],f=i[i.length-1];(e=f<c)&&(h=c,c=f,f=h);var s,l,d,h=a(c),p=a(f),g=null==t?10:+t,y=[];if(!(o%1)&&p-h<g){if(h=Math.round(h)-1,p=Math.round(p)+1,c>0){for(;h<p;++h)for(l=1,s=u(h);l<o;++l)if(d=s*l,!(d<c)){if(d>f)break;y.push(d)}}else for(;h<p;++h)for(l=o-1,s=u(h);l>=1;--l)if(d=s*l,!(d<c)){if(d>f)break;y.push(d)}}else y=n.ticks(h,p,Math.min(p-h,g)).map(u);return e?y.reverse():y},e.tickFormat=function(t,n){if(null==n&&(n=10===o?".0e":","),"function"!=typeof n&&(n=i.format(n)),t===1/0)return n;null==t&&(t=10);var r=Math.max(1,o*t/e.ticks().length);return function(t){var e=t/u(Math.round(a(t)));return e*o<o-.5&&(e*=o),e<=r?n(t):""}},e.nice=function(){return r($(r(),{floor:function(t){return u(Math.floor(a(t)))},ceil:function(t){return u(Math.ceil(a(t)))}}))},e.copy=function(){return m(e,A().base(o))},e}function N(t,n){return t<0?-Math.pow(-t,n):Math.pow(t,n)}function E(){function t(t,n){return(n=N(n,e)-(t=N(t,e)))?function(r){return(N(r,e)-t)/n}:B(n)}function n(t,n){return n=N(n,e)-(t=N(t,e)),function(r){return N(t+n*r,1/e)}}var e=1,r=v(t,n),i=r.domain;return r.exponent=function(t){return arguments.length?(e=+t,i(i())):e},r.copy=function(){return m(r,E().exponent(e))},b(r)}function L(){return E().exponent(.5)}function z(){function t(){var t=0,a=Math.max(1,i.length);for(o=new Array(a-1);++t<a;)o[t-1]=n.quantile(r,t/a);return e}function e(t){if(!isNaN(t=+t))return i[n.bisect(o,t)]}var r=[],i=[],o=[];return e.invertExtent=function(t){var n=i.indexOf(t);return n<0?[NaN,NaN]:[n>0?o[n-1]:r[0],n<o.length?o[n]:r[r.length-1]]},e.domain=function(e){if(!arguments.length)return r.slice();r=[];for(var i,o=0,a=e.length;o<a;++o)i=e[o],null==i||isNaN(i=+i)||r.push(i);return r.sort(n.ascending),t()},e.range=function(n){return arguments.length?(i=q.call(n),t()):i.slice()},e.quantiles=function(){return o.slice()},e.copy=function(){return z().domain(r).range(i)},e}function D(){function t(t){if(t<=t)return u[n.bisect(a,t,0,o)]}function e(){var n=-1;for(a=new Array(o);++n<o;)a[n]=((n+1)*i-(n-o)*r)/(o+1);return t}var r=0,i=1,o=1,a=[.5],u=[0,1];return t.domain=function(t){return arguments.length?(r=+t[0],i=+t[1],e()):[r,i]},t.range=function(t){return arguments.length?(o=(u=q.call(t)).length-1,e()):u.slice()},t.invertExtent=function(t){var n=u.indexOf(t);return n<0?[NaN,NaN]:n<1?[r,a[0]]:n>=o?[a[o-1],i]:[a[n-1],a[n]]},t.copy=function(){return D().domain([r,i]).range(u)},b(t)}function P(){function t(t){if(t<=t)return r[n.bisect(e,t,0,i)]}var e=[.5],r=[0,1],i=1;return t.domain=function(n){return arguments.length?(e=q.call(n),i=Math.min(e.length,r.length-1),t):e.slice()},t.range=function(n){return arguments.length?(r=q.call(n),i=Math.min(e.length,r.length-1),t):r.slice()},t.invertExtent=function(t){var n=r.indexOf(t);return[e[n-1],e[n]]},t.copy=function(){return P().domain(e).range(r)},t}function F(t){return new Date(t)}function O(t){return t instanceof Date?+t:+new Date(+t)}function U(t,e,i,o,a,u,c,f,s){function l(n){return(c(n)<n?b:u(n)<n?_:a(n)<n?w:o(n)<n?x:e(n)<n?i(n)<n?M:k:t(n)<n?S:T)(n)}function h(e,r,i,o){if(null==e&&(e=10),"number"==typeof e){var a=Math.abs(i-r)/e,u=n.bisector(function(t){return t[2]}).right(C,a);u===C.length?(o=n.tickStep(r/nt,i/nt,e),e=t):u?(u=C[a/C[u-1][2]<C[u][2]/a?u-1:u],o=u[1],e=u[0]):(o=n.tickStep(r,i,e),e=f)}return null==o?e:e.every(o)}var p=v(d,r.interpolateNumber),g=p.invert,y=p.domain,b=s(".%L"),_=s(":%S"),w=s("%I:%M"),x=s("%I %p"),M=s("%a %d"),k=s("%b %d"),S=s("%B"),T=s("%Y"),C=[[c,1,Z],[c,5,5*Z],[c,15,15*Z],[c,30,30*Z],[u,1,G],[u,5,5*G],[u,15,15*G],[u,30,30*G],[a,1,Q],[a,3,3*Q],[a,6,6*Q],[a,12,12*Q],[o,1,J],[o,2,2*J],[i,1,K],[e,1,tt],[e,3,3*tt],[t,1,nt]];return p.invert=function(t){return new Date(g(t))},p.domain=function(t){return arguments.length?y(I.call(t,O)):y().map(F)},p.ticks=function(t,n){var e,r=y(),i=r[0],o=r[r.length-1],a=o<i;return a&&(e=i,i=o,o=e),e=h(t,i,o,n),e=e?e.range(i,o+1):[],a?e.reverse():e},p.tickFormat=function(t,n){return null==n?l:s(n)},p.nice=function(t,n){var e=y();return(t=h(t,e[0],e[e.length-1],n))?y($(e,t)):p},p.copy=function(){return m(p,U(t,e,i,o,a,u,c,f,s))},p}function j(t){var n=t.length;return function(e){return t[Math.max(0,Math.min(n-1,Math.floor(e*n)))]}}function X(t){function n(n){var o=(n-e)/(r-e);return t(i?Math.max(0,Math.min(1,o)):o)}var e=0,r=1,i=!1;return n.domain=function(t){return arguments.length?(e=+t[0],r=+t[1],n):[e,r]},n.clamp=function(t){return arguments.length?(i=!!t,n):i},n.interpolator=function(e){return arguments.length?(t=e,n):t},n.copy=function(){return X(t).domain([e,r]).clamp(i)},b(n)}var Y=Array.prototype,I=Y.map,q=Y.slice,H={name:"implicit"},B=function(t){return function(){return t}},R=function(t){return+t},W=[0,1],V=function(t,e,r){var o,a=t[0],u=t[t.length-1],c=n.tickStep(a,u,null==e?10:e);switch(r=i.formatSpecifier(null==r?",f":r),r.type){case"s":var f=Math.max(Math.abs(a),Math.abs(u));return null!=r.precision||isNaN(o=i.precisionPrefix(c,f))||(r.precision=o),i.formatPrefix(r,f);case"":case"e":case"g":case"p":case"r":null!=r.precision||isNaN(o=i.precisionRound(c,Math.max(Math.abs(a),Math.abs(u))))||(r.precision=o-("e"===r.type));break;case"f":case"%":null!=r.precision||isNaN(o=i.precisionFixed(c))||(r.precision=o-2*("%"===r.type))}return i.format(r)},$=function(t,n){t=t.slice();var e,r=0,i=t.length-1,o=t[r],a=t[i];return a<o&&(e=r,r=i,i=e,e=o,o=a,a=e),t[r]=n.floor(o),t[i]=n.ceil(a),t},Z=1e3,G=60*Z,Q=60*G,J=24*Q,K=7*J,tt=30*J,nt=365*J,et=function(){return U(o.timeYear,o.timeMonth,o.timeWeek,o.timeDay,o.timeHour,o.timeMinute,o.timeSecond,o.timeMillisecond,a.timeFormat).domain([new Date(2e3,0,1),new Date(2e3,0,2)])},rt=function(){return U(o.utcYear,o.utcMonth,o.utcWeek,o.utcDay,o.utcHour,o.utcMinute,o.utcSecond,o.utcMillisecond,a.utcFormat).domain([Date.UTC(2e3,0,1),Date.UTC(2e3,0,2)])},it=function(t){return t.match(/.{6}/g).map(function(t){return"#"+t})},ot=it("1f77b4ff7f0e2ca02cd627289467bd8c564be377c27f7f7fbcbd2217becf"),at=it("393b795254a36b6ecf9c9ede6379398ca252b5cf6bcedb9c8c6d31bd9e39e7ba52e7cb94843c39ad494ad6616be7969c7b4173a55194ce6dbdde9ed6"),ut=it("3182bd6baed69ecae1c6dbefe6550dfd8d3cfdae6bfdd0a231a35474c476a1d99bc7e9c0756bb19e9ac8bcbddcdadaeb636363969696bdbdbdd9d9d9"),ct=it("1f77b4aec7e8ff7f0effbb782ca02c98df8ad62728ff98969467bdc5b0d58c564bc49c94e377c2f7b6d27f7f7fc7c7c7bcbd22dbdb8d17becf9edae5"),ft=r.interpolateCubehelixLong(u.cubehelix(300,.5,0),u.cubehelix(-240,.5,1)),st=r.interpolateCubehelixLong(u.cubehelix(-100,.75,.35),u.cubehelix(80,1.5,.8)),lt=r.interpolateCubehelixLong(u.cubehelix(260,.75,.35),u.cubehelix(80,1.5,.8)),dt=u.cubehelix(),ht=function(t){(t<0||t>1)&&(t-=Math.floor(t));var n=Math.abs(t-.5);return dt.h=360*t-100,dt.s=1.5-1.5*n,dt.l=.8-.9*n,dt+""},pt=j(it("44015444025645045745055946075a46085c460a5d460b5e470d60470e6147106347116447136548146748166848176948186a481a6c481b6d481c6e481d6f481f70482071482173482374482475482576482677482878482979472a7a472c7a472d7b472e7c472f7d46307e46327e46337f463480453581453781453882443983443a83443b84433d84433e85423f854240864241864142874144874045884046883f47883f48893e49893e4a893e4c8a3d4d8a3d4e8a3c4f8a3c508b3b518b3b528b3a538b3a548c39558c39568c38588c38598c375a8c375b8d365c8d365d8d355e8d355f8d34608d34618d33628d33638d32648e32658e31668e31678e31688e30698e306a8e2f6b8e2f6c8e2e6d8e2e6e8e2e6f8e2d708e2d718e2c718e2c728e2c738e2b748e2b758e2a768e2a778e2a788e29798e297a8e297b8e287c8e287d8e277e8e277f8e27808e26818e26828e26828e25838e25848e25858e24868e24878e23888e23898e238a8d228b8d228c8d228d8d218e8d218f8d21908d21918c20928c20928c20938c1f948c1f958b1f968b1f978b1f988b1f998a1f9a8a1e9b8a1e9c891e9d891f9e891f9f881fa0881fa1881fa1871fa28720a38620a48621a58521a68522a78522a88423a98324aa8325ab8225ac8226ad8127ad8128ae8029af7f2ab07f2cb17e2db27d2eb37c2fb47c31b57b32b67a34b67935b77937b87838b9773aba763bbb753dbc743fbc7340bd7242be7144bf7046c06f48c16e4ac16d4cc26c4ec36b50c46a52c56954c56856c66758c7655ac8645cc8635ec96260ca6063cb5f65cb5e67cc5c69cd5b6ccd5a6ece5870cf5773d05675d05477d1537ad1517cd2507fd34e81d34d84d44b86d54989d5488bd6468ed64590d74393d74195d84098d83e9bd93c9dd93ba0da39a2da37a5db36a8db34aadc32addc30b0dd2fb2dd2db5de2bb8de29bade28bddf26c0df25c2df23c5e021c8e020cae11fcde11dd0e11cd2e21bd5e21ad8e219dae319dde318dfe318e2e418e5e419e7e419eae51aece51befe51cf1e51df4e61ef6e620f8e621fbe723fde725")),gt=j(it("00000401000501010601010802010902020b02020d03030f03031204041405041606051806051a07061c08071e0907200a08220b09240c09260d0a290e0b2b100b2d110c2f120d31130d34140e36150e38160f3b180f3d19103f1a10421c10441d11471e114920114b21114e22115024125325125527125829115a2a115c2c115f2d11612f116331116533106734106936106b38106c390f6e3b0f703d0f713f0f72400f74420f75440f764510774710784910784a10794c117a4e117b4f127b51127c52137c54137d56147d57157e59157e5a167e5c167f5d177f5f187f601880621980641a80651a80671b80681c816a1c816b1d816d1d816e1e81701f81721f817320817521817621817822817922827b23827c23827e24828025828125818326818426818627818827818928818b29818c29818e2a81902a81912b81932b80942c80962c80982d80992d809b2e7f9c2e7f9e2f7fa02f7fa1307ea3307ea5317ea6317da8327daa337dab337cad347cae347bb0357bb2357bb3367ab5367ab73779b83779ba3878bc3978bd3977bf3a77c03a76c23b75c43c75c53c74c73d73c83e73ca3e72cc3f71cd4071cf4070d0416fd2426fd3436ed5446dd6456cd8456cd9466bdb476adc4869de4968df4a68e04c67e24d66e34e65e44f64e55064e75263e85362e95462ea5661eb5760ec5860ed5a5fee5b5eef5d5ef05f5ef1605df2625df2645cf3655cf4675cf4695cf56b5cf66c5cf66e5cf7705cf7725cf8745cf8765cf9785df9795df97b5dfa7d5efa7f5efa815ffb835ffb8560fb8761fc8961fc8a62fc8c63fc8e64fc9065fd9266fd9467fd9668fd9869fd9a6afd9b6bfe9d6cfe9f6dfea16efea36ffea571fea772fea973feaa74feac76feae77feb078feb27afeb47bfeb67cfeb77efeb97ffebb81febd82febf84fec185fec287fec488fec68afec88cfeca8dfecc8ffecd90fecf92fed194fed395fed597fed799fed89afdda9cfddc9efddea0fde0a1fde2a3fde3a5fde5a7fde7a9fde9aafdebacfcecaefceeb0fcf0b2fcf2b4fcf4b6fcf6b8fcf7b9fcf9bbfcfbbdfcfdbf")),yt=j(it("00000401000501010601010802010a02020c02020e03021004031204031405041706041907051b08051d09061f0a07220b07240c08260d08290e092b10092d110a30120a32140b34150b37160b39180c3c190c3e1b0c411c0c431e0c451f0c48210c4a230c4c240c4f260c51280b53290b552b0b572d0b592f0a5b310a5c320a5e340a5f3609613809623909633b09643d09653e0966400a67420a68440a68450a69470b6a490b6a4a0c6b4c0c6b4d0d6c4f0d6c510e6c520e6d540f6d550f6d57106e59106e5a116e5c126e5d126e5f136e61136e62146e64156e65156e67166e69166e6a176e6c186e6d186e6f196e71196e721a6e741a6e751b6e771c6d781c6d7a1d6d7c1d6d7d1e6d7f1e6c801f6c82206c84206b85216b87216b88226a8a226a8c23698d23698f24699025689225689326679526679727669827669a28659b29649d29649f2a63a02a63a22b62a32c61a52c60a62d60a82e5fa92e5eab2f5ead305dae305cb0315bb1325ab3325ab43359b63458b73557b93556ba3655bc3754bd3853bf3952c03a51c13a50c33b4fc43c4ec63d4dc73e4cc83f4bca404acb4149cc4248ce4347cf4446d04545d24644d34743d44842d54a41d74b3fd84c3ed94d3dda4e3cdb503bdd513ade5238df5337e05536e15635e25734e35933e45a31e55c30e65d2fe75e2ee8602de9612bea632aeb6429eb6628ec6726ed6925ee6a24ef6c23ef6e21f06f20f1711ff1731df2741cf3761bf37819f47918f57b17f57d15f67e14f68013f78212f78410f8850ff8870ef8890cf98b0bf98c0af98e09fa9008fa9207fa9407fb9606fb9706fb9906fb9b06fb9d07fc9f07fca108fca309fca50afca60cfca80dfcaa0ffcac11fcae12fcb014fcb216fcb418fbb61afbb81dfbba1ffbbc21fbbe23fac026fac228fac42afac62df9c72ff9c932f9cb35f8cd37f8cf3af7d13df7d340f6d543f6d746f5d949f5db4cf4dd4ff4df53f4e156f3e35af3e55df2e661f2e865f2ea69f1ec6df1ed71f1ef75f1f179f2f27df2f482f3f586f3f68af4f88ef5f992f6fa96f8fb9af9fc9dfafda1fcffa4")),mt=j(it("0d088710078813078916078a19068c1b068d1d068e20068f2206902406912605912805922a05932c05942e05952f059631059733059735049837049938049a3a049a3c049b3e049c3f049c41049d43039e44039e46039f48039f4903a04b03a14c02a14e02a25002a25102a35302a35502a45601a45801a45901a55b01a55c01a65e01a66001a66100a76300a76400a76600a76700a86900a86a00a86c00a86e00a86f00a87100a87201a87401a87501a87701a87801a87a02a87b02a87d03a87e03a88004a88104a78305a78405a78606a68707a68808a68a09a58b0aa58d0ba58e0ca48f0da4910ea3920fa39410a29511a19613a19814a099159f9a169f9c179e9d189d9e199da01a9ca11b9ba21d9aa31e9aa51f99a62098a72197a82296aa2395ab2494ac2694ad2793ae2892b02991b12a90b22b8fb32c8eb42e8db52f8cb6308bb7318ab83289ba3388bb3488bc3587bd3786be3885bf3984c03a83c13b82c23c81c33d80c43e7fc5407ec6417dc7427cc8437bc9447aca457acb4679cc4778cc4977cd4a76ce4b75cf4c74d04d73d14e72d24f71d35171d45270d5536fd5546ed6556dd7566cd8576bd9586ada5a6ada5b69db5c68dc5d67dd5e66de5f65de6164df6263e06363e16462e26561e26660e3685fe4695ee56a5de56b5de66c5ce76e5be76f5ae87059e97158e97257ea7457eb7556eb7655ec7754ed7953ed7a52ee7b51ef7c51ef7e50f07f4ff0804ef1814df1834cf2844bf3854bf3874af48849f48948f58b47f58c46f68d45f68f44f79044f79143f79342f89441f89540f9973ff9983ef99a3efa9b3dfa9c3cfa9e3bfb9f3afba139fba238fca338fca537fca636fca835fca934fdab33fdac33fdae32fdaf31fdb130fdb22ffdb42ffdb52efeb72dfeb82cfeba2cfebb2bfebd2afebe2afec029fdc229fdc328fdc527fdc627fdc827fdca26fdcb26fccd25fcce25fcd025fcd225fbd324fbd524fbd724fad824fada24f9dc24f9dd25f8df25f8e125f7e225f7e425f6e626f6e826f5e926f5eb27f4ed27f3ee27f3f027f2f227f1f426f1f525f0f724f0f921"));t.scaleBand=f,t.scalePoint=l,t.scaleIdentity=w,t.scaleLinear=_,t.scaleLog=A,t.scaleOrdinal=c,t.scaleImplicit=H,t.scalePow=E,t.scaleSqrt=L,t.scaleQuantile=z,t.scaleQuantize=D,t.scaleThreshold=P,t.scaleTime=et,t.scaleUtc=rt,t.schemeCategory10=ot,t.schemeCategory20b=at,t.schemeCategory20c=ut,t.schemeCategory20=ct,t.interpolateCubehelixDefault=ft,t.interpolateRainbow=ht,t.interpolateWarm=st,t.interpolateCool=lt,t.interpolateViridis=pt,t.interpolateMagma=gt,t.interpolateInferno=yt,t.interpolatePlasma=mt,t.scaleSequential=X,Object.defineProperty(t,"__esModule",{value:!0})})},{"d3-array":1,"d3-collection":3,"d3-color":4,"d3-format":8,"d3-interpolate":9,"d3-time":13,"d3-time-format":12}],11:[function(t,n,e){!function(t,r){"object"==typeof e&&"undefined"!=typeof n?r(e):"function"==typeof define&&define.amd?define(["exports"],r):r(t.d3=t.d3||{})}(this,function(t){"use strict";function n(t){return function(){var n=this.ownerDocument,e=this.namespaceURI;return e===J&&n.documentElement.namespaceURI===J?n.createElement(t):n.createElementNS(e,t)}}function e(t){return function(){return this.ownerDocument.createElementNS(t.space,t.local)}}function r(){return new i}function i(){this._="@"+(++et).toString(36)}function o(t,n,e){return t=a(t,n,e),function(n){var e=n.relatedTarget;e&&(e===this||8&e.compareDocumentPosition(this))||t.call(this,n)}}function a(n,e,r){return function(i){var o=t.event;t.event=i;try{n.call(this,this.__data__,e,r)}finally{t.event=o}}}function u(t){return t.trim().split(/^|\s+/).map(function(t){var n="",e=t.indexOf(".");return e>=0&&(n=t.slice(e+1),t=t.slice(0,e)),{type:t,name:n}})}function c(t){return function(){var n=this.__on;if(n){for(var e,r=0,i=-1,o=n.length;r<o;++r)e=n[r],t.type&&e.type!==t.type||e.name!==t.name?n[++i]=e:this.removeEventListener(e.type,e.listener,e.capture);++i?n.length=i:delete this.__on}}}function f(t,n,e){var r=ut.hasOwnProperty(t.type)?o:a;return function(i,o,a){var u,c=this.__on,f=r(n,o,a);if(c)for(var s=0,l=c.length;s<l;++s)if((u=c[s]).type===t.type&&u.name===t.name)return this.removeEventListener(u.type,u.listener,u.capture),this.addEventListener(u.type,u.listener=f,u.capture=e),void(u.value=n);this.addEventListener(t.type,f,e),u={type:t.type,name:t.name,value:n,listener:f,capture:e},c?c.push(u):this.__on=[u]}}function s(n,e,r,i){var o=t.event;n.sourceEvent=t.event,t.event=n;try{return e.apply(r,i)}finally{t.event=o}}function l(){}function d(){return[]}function h(t,n){this.ownerDocument=t.ownerDocument,this.namespaceURI=t.namespaceURI,this._next=null,this._parent=t,this.__data__=n}function p(t,n,e,r,i,o){for(var a,u=0,c=n.length,f=o.length;u<f;++u)(a=n[u])?(a.__data__=o[u],r[u]=a):e[u]=new h(t,o[u]);for(;u<c;++u)(a=n[u])&&(i[u]=a)}function g(t,n,e,r,i,o,a){var u,c,f,s={},l=n.length,d=o.length,p=new Array(l);for(u=0;u<l;++u)(c=n[u])&&(p[u]=f=wt+a.call(c,c.__data__,u,n),f in s?i[u]=c:s[f]=c);for(u=0;u<d;++u)f=wt+a.call(t,o[u],u,o),(c=s[f])?(r[u]=c,c.__data__=o[u],s[f]=null):e[u]=new h(t,o[u]);for(u=0;u<l;++u)(c=n[u])&&s[p[u]]===c&&(i[u]=c)}function y(t,n){return t<n?-1:t>n?1:t>=n?0:NaN}function m(t){return function(){this.removeAttribute(t)}}function v(t){return function(){this.removeAttributeNS(t.space,t.local)}}function b(t,n){return function(){this.setAttribute(t,n)}}function _(t,n){return function(){this.setAttributeNS(t.space,t.local,n)}}function w(t,n){return function(){var e=n.apply(this,arguments);null==e?this.removeAttribute(t):this.setAttribute(t,e)}}function x(t,n){return function(){var e=n.apply(this,arguments);null==e?this.removeAttributeNS(t.space,t.local):this.setAttributeNS(t.space,t.local,e)}}function M(t){return function(){this.style.removeProperty(t)}}function k(t,n,e){return function(){this.style.setProperty(t,n,e)}}function S(t,n,e){return function(){var r=n.apply(this,arguments);null==r?this.style.removeProperty(t):this.style.setProperty(t,r,e)}}function T(t){return function(){delete this[t]}}function C(t,n){return function(){this[t]=n}}function A(t,n){return function(){var e=n.apply(this,arguments);null==e?delete this[t]:this[t]=e}}function N(t){return t.trim().split(/^|\s+/)}function E(t){return t.classList||new L(t)}function L(t){this._node=t,this._names=N(t.getAttribute("class")||"")}function z(t,n){for(var e=E(t),r=-1,i=n.length;++r<i;)e.add(n[r])}function D(t,n){for(var e=E(t),r=-1,i=n.length;++r<i;)e.remove(n[r])}function P(t){return function(){z(this,t)}}function F(t){return function(){D(this,t)}}function O(t,n){return function(){(n.apply(this,arguments)?z:D)(this,t)}}function U(){this.textContent=""}function j(t){return function(){this.textContent=t}}function X(t){return function(){var n=t.apply(this,arguments);this.textContent=null==n?"":n}}function Y(){this.innerHTML=""}function I(t){return function(){this.innerHTML=t}}function q(t){return function(){var n=t.apply(this,arguments);this.innerHTML=null==n?"":n}}function H(){this.nextSibling&&this.parentNode.appendChild(this)}function B(){this.previousSibling&&this.parentNode.insertBefore(this,this.parentNode.firstChild)}function R(){return null}function W(){var t=this.parentNode;t&&t.removeChild(this)}function V(t,n,e){var r=Pt(t),i=r.CustomEvent;i?i=new i(n,e):(i=r.document.createEvent("Event"),e?(i.initEvent(n,e.bubbles,e.cancelable),i.detail=e.detail):i.initEvent(n,!1,!1)),t.dispatchEvent(i)}function $(t,n){return function(){return V(this,t,n)}}function Z(t,n){return function(){return V(this,t,n.apply(this,arguments))}}function G(t,n){this._groups=t,this._parents=n}function Q(){return new G([[document.documentElement]],Vt);
-}var J="http://www.w3.org/1999/xhtml",K={svg:"http://www.w3.org/2000/svg",xhtml:J,xlink:"http://www.w3.org/1999/xlink",xml:"http://www.w3.org/XML/1998/namespace",xmlns:"http://www.w3.org/2000/xmlns/"},tt=function(t){var n=t+="",e=n.indexOf(":");return e>=0&&"xmlns"!==(n=t.slice(0,e))&&(t=t.slice(e+1)),K.hasOwnProperty(n)?{space:K[n],local:t}:t},nt=function(t){var r=tt(t);return(r.local?e:n)(r)},et=0;i.prototype=r.prototype={constructor:i,get:function(t){for(var n=this._;!(n in t);)if(!(t=t.parentNode))return;return t[n]},set:function(t,n){return t[this._]=n},remove:function(t){return this._ in t&&delete t[this._]},toString:function(){return this._}};var rt=function(t){return function(){return this.matches(t)}};if("undefined"!=typeof document){var it=document.documentElement;if(!it.matches){var ot=it.webkitMatchesSelector||it.msMatchesSelector||it.mozMatchesSelector||it.oMatchesSelector;rt=function(t){return function(){return ot.call(this,t)}}}}var at=rt,ut={};if(t.event=null,"undefined"!=typeof document){var ct=document.documentElement;"onmouseenter"in ct||(ut={mouseenter:"mouseover",mouseleave:"mouseout"})}var ft=function(t,n,e){var r,i,o=u(t+""),a=o.length;{if(!(arguments.length<2)){for(s=n?f:c,null==e&&(e=!1),r=0;r<a;++r)this.each(s(o[r],n,e));return this}var s=this.node().__on;if(s)for(var l,d=0,h=s.length;d<h;++d)for(r=0,l=s[d];r<a;++r)if((i=o[r]).type===l.type&&i.name===l.name)return l.value}},st=function(){for(var n,e=t.event;n=e.sourceEvent;)e=n;return e},lt=function(t,n){var e=t.ownerSVGElement||t;if(e.createSVGPoint){var r=e.createSVGPoint();return r.x=n.clientX,r.y=n.clientY,r=r.matrixTransform(t.getScreenCTM().inverse()),[r.x,r.y]}var i=t.getBoundingClientRect();return[n.clientX-i.left-t.clientLeft,n.clientY-i.top-t.clientTop]},dt=function(t){var n=st();return n.changedTouches&&(n=n.changedTouches[0]),lt(t,n)},ht=function(t){return null==t?l:function(){return this.querySelector(t)}},pt=function(t){"function"!=typeof t&&(t=ht(t));for(var n=this._groups,e=n.length,r=new Array(e),i=0;i<e;++i)for(var o,a,u=n[i],c=u.length,f=r[i]=new Array(c),s=0;s<c;++s)(o=u[s])&&(a=t.call(o,o.__data__,s,u))&&("__data__"in o&&(a.__data__=o.__data__),f[s]=a);return new G(r,this._parents)},gt=function(t){return null==t?d:function(){return this.querySelectorAll(t)}},yt=function(t){"function"!=typeof t&&(t=gt(t));for(var n=this._groups,e=n.length,r=[],i=[],o=0;o<e;++o)for(var a,u=n[o],c=u.length,f=0;f<c;++f)(a=u[f])&&(r.push(t.call(a,a.__data__,f,u)),i.push(a));return new G(r,i)},mt=function(t){"function"!=typeof t&&(t=at(t));for(var n=this._groups,e=n.length,r=new Array(e),i=0;i<e;++i)for(var o,a=n[i],u=a.length,c=r[i]=[],f=0;f<u;++f)(o=a[f])&&t.call(o,o.__data__,f,a)&&c.push(o);return new G(r,this._parents)},vt=function(t){return new Array(t.length)},bt=function(){return new G(this._enter||this._groups.map(vt),this._parents)};h.prototype={constructor:h,appendChild:function(t){return this._parent.insertBefore(t,this._next)},insertBefore:function(t,n){return this._parent.insertBefore(t,n)},querySelector:function(t){return this._parent.querySelector(t)},querySelectorAll:function(t){return this._parent.querySelectorAll(t)}};var _t=function(t){return function(){return t}},wt="$",xt=function(t,n){if(!t)return h=new Array(this.size()),f=-1,this.each(function(t){h[++f]=t}),h;var e=n?g:p,r=this._parents,i=this._groups;"function"!=typeof t&&(t=_t(t));for(var o=i.length,a=new Array(o),u=new Array(o),c=new Array(o),f=0;f<o;++f){var s=r[f],l=i[f],d=l.length,h=t.call(s,s&&s.__data__,f,r),y=h.length,m=u[f]=new Array(y),v=a[f]=new Array(y),b=c[f]=new Array(d);e(s,l,m,v,b,h,n);for(var _,w,x=0,M=0;x<y;++x)if(_=m[x]){for(x>=M&&(M=x+1);!(w=v[M])&&++M<y;);_._next=w||null}}return a=new G(a,r),a._enter=u,a._exit=c,a},Mt=function(){return new G(this._exit||this._groups.map(vt),this._parents)},kt=function(t){for(var n=this._groups,e=t._groups,r=n.length,i=e.length,o=Math.min(r,i),a=new Array(r),u=0;u<o;++u)for(var c,f=n[u],s=e[u],l=f.length,d=a[u]=new Array(l),h=0;h<l;++h)(c=f[h]||s[h])&&(d[h]=c);for(;u<r;++u)a[u]=n[u];return new G(a,this._parents)},St=function(){for(var t=this._groups,n=-1,e=t.length;++n<e;)for(var r,i=t[n],o=i.length-1,a=i[o];--o>=0;)(r=i[o])&&(a&&a!==r.nextSibling&&a.parentNode.insertBefore(r,a),a=r);return this},Tt=function(t){function n(n,e){return n&&e?t(n.__data__,e.__data__):!n-!e}t||(t=y);for(var e=this._groups,r=e.length,i=new Array(r),o=0;o<r;++o){for(var a,u=e[o],c=u.length,f=i[o]=new Array(c),s=0;s<c;++s)(a=u[s])&&(f[s]=a);f.sort(n)}return new G(i,this._parents).order()},Ct=function(){var t=arguments[0];return arguments[0]=this,t.apply(null,arguments),this},At=function(){var t=new Array(this.size()),n=-1;return this.each(function(){t[++n]=this}),t},Nt=function(){for(var t=this._groups,n=0,e=t.length;n<e;++n)for(var r=t[n],i=0,o=r.length;i<o;++i){var a=r[i];if(a)return a}return null},Et=function(){var t=0;return this.each(function(){++t}),t},Lt=function(){return!this.node()},zt=function(t){for(var n=this._groups,e=0,r=n.length;e<r;++e)for(var i,o=n[e],a=0,u=o.length;a<u;++a)(i=o[a])&&t.call(i,i.__data__,a,o);return this},Dt=function(t,n){var e=tt(t);if(arguments.length<2){var r=this.node();return e.local?r.getAttributeNS(e.space,e.local):r.getAttribute(e)}return this.each((null==n?e.local?v:m:"function"==typeof n?e.local?x:w:e.local?_:b)(e,n))},Pt=function(t){return t.ownerDocument&&t.ownerDocument.defaultView||t.document&&t||t.defaultView},Ft=function(t,n,e){var r;return arguments.length>1?this.each((null==n?M:"function"==typeof n?S:k)(t,n,null==e?"":e)):Pt(r=this.node()).getComputedStyle(r,null).getPropertyValue(t)},Ot=function(t,n){return arguments.length>1?this.each((null==n?T:"function"==typeof n?A:C)(t,n)):this.node()[t]};L.prototype={add:function(t){var n=this._names.indexOf(t);n<0&&(this._names.push(t),this._node.setAttribute("class",this._names.join(" ")))},remove:function(t){var n=this._names.indexOf(t);n>=0&&(this._names.splice(n,1),this._node.setAttribute("class",this._names.join(" ")))},contains:function(t){return this._names.indexOf(t)>=0}};var Ut=function(t,n){var e=N(t+"");if(arguments.length<2){for(var r=E(this.node()),i=-1,o=e.length;++i<o;)if(!r.contains(e[i]))return!1;return!0}return this.each(("function"==typeof n?O:n?P:F)(e,n))},jt=function(t){return arguments.length?this.each(null==t?U:("function"==typeof t?X:j)(t)):this.node().textContent},Xt=function(t){return arguments.length?this.each(null==t?Y:("function"==typeof t?q:I)(t)):this.node().innerHTML},Yt=function(){return this.each(H)},It=function(){return this.each(B)},qt=function(t){var n="function"==typeof t?t:nt(t);return this.select(function(){return this.appendChild(n.apply(this,arguments))})},Ht=function(t,n){var e="function"==typeof t?t:nt(t),r=null==n?R:"function"==typeof n?n:ht(n);return this.select(function(){return this.insertBefore(e.apply(this,arguments),r.apply(this,arguments)||null)})},Bt=function(){return this.each(W)},Rt=function(t){return arguments.length?this.property("__data__",t):this.node().__data__},Wt=function(t,n){return this.each(("function"==typeof n?Z:$)(t,n))},Vt=[null];G.prototype=Q.prototype={constructor:G,select:pt,selectAll:yt,filter:mt,data:xt,enter:bt,exit:Mt,merge:kt,order:St,sort:Tt,call:Ct,nodes:At,node:Nt,size:Et,empty:Lt,each:zt,attr:Dt,style:Ft,property:Ot,classed:Ut,text:jt,html:Xt,raise:Yt,lower:It,append:qt,insert:Ht,remove:Bt,datum:Rt,on:ft,dispatch:Wt};var $t=function(t){return"string"==typeof t?new G([[document.querySelector(t)]],[document.documentElement]):new G([[t]],Vt)},Zt=function(t){return"string"==typeof t?new G([document.querySelectorAll(t)],[document.documentElement]):new G([null==t?[]:t],Vt)},Gt=function(t,n,e){arguments.length<3&&(e=n,n=st().changedTouches);for(var r,i=0,o=n?n.length:0;i<o;++i)if((r=n[i]).identifier===e)return lt(t,r);return null},Qt=function(t,n){null==n&&(n=st().touches);for(var e=0,r=n?n.length:0,i=new Array(r);e<r;++e)i[e]=lt(t,n[e]);return i};t.creator=nt,t.local=r,t.matcher=at,t.mouse=dt,t.namespace=tt,t.namespaces=K,t.select=$t,t.selectAll=Zt,t.selection=Q,t.selector=ht,t.selectorAll=gt,t.touch=Gt,t.touches=Qt,t.window=Pt,t.customEvent=s,Object.defineProperty(t,"__esModule",{value:!0})})},{}],12:[function(t,n,e){!function(r,i){"object"==typeof e&&"undefined"!=typeof n?i(e,t("d3-time")):"function"==typeof define&&define.amd?define(["exports","d3-time"],i):i(r.d3=r.d3||{},r.d3)}(this,function(t,n){"use strict";function e(t){if(0<=t.y&&t.y<100){var n=new Date(-1,t.m,t.d,t.H,t.M,t.S,t.L);return n.setFullYear(t.y),n}return new Date(t.y,t.m,t.d,t.H,t.M,t.S,t.L)}function r(t){if(0<=t.y&&t.y<100){var n=new Date(Date.UTC(-1,t.m,t.d,t.H,t.M,t.S,t.L));return n.setUTCFullYear(t.y),n}return new Date(Date.UTC(t.y,t.m,t.d,t.H,t.M,t.S,t.L))}function i(t){return{y:t,m:0,d:1,H:0,M:0,S:0,L:0}}function o(t){function n(t,n){return function(e){var r,i,o,a=[],u=-1,c=0,f=t.length;for(e instanceof Date||(e=new Date(+e));++u<f;)37===t.charCodeAt(u)&&(a.push(t.slice(c,u)),null!=(i=rt[r=t.charAt(++u)])?r=t.charAt(++u):i="e"===r?" ":"0",(o=n[r])&&(r=o(e,i)),a.push(r),c=u+1);return a.push(t.slice(c,u)),a.join("")}}function o(t,n){return function(e){var o=i(1900),u=a(o,t,e+="",0);if(u!=e.length)return null;if("p"in o&&(o.H=o.H%12+12*o.p),"W"in o||"U"in o){"w"in o||(o.w="W"in o?1:0);var c="Z"in o?r(i(o.y)).getUTCDay():n(i(o.y)).getDay();o.m=0,o.d="W"in o?(o.w+6)%7+7*o.W-(c+5)%7:o.w+7*o.U-(c+6)%7}return"Z"in o?(o.H+=o.Z/100|0,o.M+=o.Z%100,r(o)):n(o)}}function a(t,n,e,r){for(var i,o,a=0,u=n.length,c=e.length;a<u;){if(r>=c)return-1;if(i=n.charCodeAt(a++),37===i){if(i=n.charAt(a++),o=Ut[i in rt?n.charAt(a++):i],!o||(r=o(t,e,r))<0)return-1}else if(i!=e.charCodeAt(r++))return-1}return r}function u(t,n,e){var r=St.exec(n.slice(e));return r?(t.p=Tt[r[0].toLowerCase()],e+r[0].length):-1}function K(t,n,e){var r=Nt.exec(n.slice(e));return r?(t.w=Et[r[0].toLowerCase()],e+r[0].length):-1}function tt(t,n,e){var r=Ct.exec(n.slice(e));return r?(t.w=At[r[0].toLowerCase()],e+r[0].length):-1}function nt(t,n,e){var r=Dt.exec(n.slice(e));return r?(t.m=Pt[r[0].toLowerCase()],e+r[0].length):-1}function et(t,n,e){var r=Lt.exec(n.slice(e));return r?(t.m=zt[r[0].toLowerCase()],e+r[0].length):-1}function it(t,n,e){return a(t,mt,n,e)}function ot(t,n,e){return a(t,vt,n,e)}function at(t,n,e){return a(t,bt,n,e)}function ut(t){return xt[t.getDay()]}function ct(t){return wt[t.getDay()]}function ft(t){return kt[t.getMonth()]}function st(t){return Mt[t.getMonth()]}function lt(t){return _t[+(t.getHours()>=12)]}function dt(t){return xt[t.getUTCDay()]}function ht(t){return wt[t.getUTCDay()]}function pt(t){return kt[t.getUTCMonth()]}function gt(t){return Mt[t.getUTCMonth()]}function yt(t){return _t[+(t.getUTCHours()>=12)]}var mt=t.dateTime,vt=t.date,bt=t.time,_t=t.periods,wt=t.days,xt=t.shortDays,Mt=t.months,kt=t.shortMonths,St=c(_t),Tt=f(_t),Ct=c(wt),At=f(wt),Nt=c(xt),Et=f(xt),Lt=c(Mt),zt=f(Mt),Dt=c(kt),Pt=f(kt),Ft={a:ut,A:ct,b:ft,B:st,c:null,d:k,e:k,H:S,I:T,j:C,L:A,m:N,M:E,p:lt,S:L,U:z,w:D,W:P,x:null,X:null,y:F,Y:O,Z:U,"%":J},Ot={a:dt,A:ht,b:pt,B:gt,c:null,d:j,e:j,H:X,I:Y,j:I,L:q,m:H,M:B,p:yt,S:R,U:W,w:V,W:$,x:null,X:null,y:Z,Y:G,Z:Q,"%":J},Ut={a:K,A:tt,b:nt,B:et,c:it,d:m,e:m,H:b,I:b,j:v,L:x,m:y,M:_,p:u,S:w,U:l,w:s,W:d,x:ot,X:at,y:p,Y:h,Z:g,"%":M};return Ft.x=n(vt,Ft),Ft.X=n(bt,Ft),Ft.c=n(mt,Ft),Ot.x=n(vt,Ot),Ot.X=n(bt,Ot),Ot.c=n(mt,Ot),{format:function(t){var e=n(t+="",Ft);return e.toString=function(){return t},e},parse:function(t){var n=o(t+="",e);return n.toString=function(){return t},n},utcFormat:function(t){var e=n(t+="",Ot);return e.toString=function(){return t},e},utcParse:function(t){var n=o(t,r);return n.toString=function(){return t},n}}}function a(t,n,e){var r=t<0?"-":"",i=(r?-t:t)+"",o=i.length;return r+(o<e?new Array(e-o+1).join(n)+i:i)}function u(t){return t.replace(at,"\\$&")}function c(t){return new RegExp("^(?:"+t.map(u).join("|")+")","i")}function f(t){for(var n={},e=-1,r=t.length;++e<r;)n[t[e].toLowerCase()]=e;return n}function s(t,n,e){var r=it.exec(n.slice(e,e+1));return r?(t.w=+r[0],e+r[0].length):-1}function l(t,n,e){var r=it.exec(n.slice(e));return r?(t.U=+r[0],e+r[0].length):-1}function d(t,n,e){var r=it.exec(n.slice(e));return r?(t.W=+r[0],e+r[0].length):-1}function h(t,n,e){var r=it.exec(n.slice(e,e+4));return r?(t.y=+r[0],e+r[0].length):-1}function p(t,n,e){var r=it.exec(n.slice(e,e+2));return r?(t.y=+r[0]+(+r[0]>68?1900:2e3),e+r[0].length):-1}function g(t,n,e){var r=/^(Z)|([+-]\d\d)(?:\:?(\d\d))?/.exec(n.slice(e,e+6));return r?(t.Z=r[1]?0:-(r[2]+(r[3]||"00")),e+r[0].length):-1}function y(t,n,e){var r=it.exec(n.slice(e,e+2));return r?(t.m=r[0]-1,e+r[0].length):-1}function m(t,n,e){var r=it.exec(n.slice(e,e+2));return r?(t.d=+r[0],e+r[0].length):-1}function v(t,n,e){var r=it.exec(n.slice(e,e+3));return r?(t.m=0,t.d=+r[0],e+r[0].length):-1}function b(t,n,e){var r=it.exec(n.slice(e,e+2));return r?(t.H=+r[0],e+r[0].length):-1}function _(t,n,e){var r=it.exec(n.slice(e,e+2));return r?(t.M=+r[0],e+r[0].length):-1}function w(t,n,e){var r=it.exec(n.slice(e,e+2));return r?(t.S=+r[0],e+r[0].length):-1}function x(t,n,e){var r=it.exec(n.slice(e,e+3));return r?(t.L=+r[0],e+r[0].length):-1}function M(t,n,e){var r=ot.exec(n.slice(e,e+1));return r?e+r[0].length:-1}function k(t,n){return a(t.getDate(),n,2)}function S(t,n){return a(t.getHours(),n,2)}function T(t,n){return a(t.getHours()%12||12,n,2)}function C(t,e){return a(1+n.timeDay.count(n.timeYear(t),t),e,3)}function A(t,n){return a(t.getMilliseconds(),n,3)}function N(t,n){return a(t.getMonth()+1,n,2)}function E(t,n){return a(t.getMinutes(),n,2)}function L(t,n){return a(t.getSeconds(),n,2)}function z(t,e){return a(n.timeSunday.count(n.timeYear(t),t),e,2)}function D(t){return t.getDay()}function P(t,e){return a(n.timeMonday.count(n.timeYear(t),t),e,2)}function F(t,n){return a(t.getFullYear()%100,n,2)}function O(t,n){return a(t.getFullYear()%1e4,n,4)}function U(t){var n=t.getTimezoneOffset();return(n>0?"-":(n*=-1,"+"))+a(n/60|0,"0",2)+a(n%60,"0",2)}function j(t,n){return a(t.getUTCDate(),n,2)}function X(t,n){return a(t.getUTCHours(),n,2)}function Y(t,n){return a(t.getUTCHours()%12||12,n,2)}function I(t,e){return a(1+n.utcDay.count(n.utcYear(t),t),e,3)}function q(t,n){return a(t.getUTCMilliseconds(),n,3)}function H(t,n){return a(t.getUTCMonth()+1,n,2)}function B(t,n){return a(t.getUTCMinutes(),n,2)}function R(t,n){return a(t.getUTCSeconds(),n,2)}function W(t,e){return a(n.utcSunday.count(n.utcYear(t),t),e,2)}function V(t){return t.getUTCDay()}function $(t,e){return a(n.utcMonday.count(n.utcYear(t),t),e,2)}function Z(t,n){return a(t.getUTCFullYear()%100,n,2)}function G(t,n){return a(t.getUTCFullYear()%1e4,n,4)}function Q(){return"+0000"}function J(){return"%"}function K(n){return et=o(n),t.timeFormat=et.format,t.timeParse=et.parse,t.utcFormat=et.utcFormat,t.utcParse=et.utcParse,et}function tt(t){return t.toISOString()}function nt(t){var n=new Date(t);return isNaN(n)?null:n}var et,rt={"-":"",_:" ",0:"0"},it=/^\s*\d+/,ot=/^%/,at=/[\\\^\$\*\+\?\|\[\]\(\)\.\{\}]/g;K({dateTime:"%x, %X",date:"%-m/%-d/%Y",time:"%-I:%M:%S %p",periods:["AM","PM"],days:["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],shortDays:["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],months:["January","February","March","April","May","June","July","August","September","October","November","December"],shortMonths:["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]});var ut="%Y-%m-%dT%H:%M:%S.%LZ",ct=Date.prototype.toISOString?tt:t.utcFormat(ut),ft=+new Date("2000-01-01T00:00:00.000Z")?nt:t.utcParse(ut);t.timeFormatDefaultLocale=K,t.timeFormatLocale=o,t.isoFormat=ct,t.isoParse=ft,Object.defineProperty(t,"__esModule",{value:!0})})},{"d3-time":13}],13:[function(t,n,e){!function(t,r){"object"==typeof e&&"undefined"!=typeof n?r(e):"function"==typeof define&&define.amd?define(["exports"],r):r(t.d3=t.d3||{})}(this,function(t){"use strict";function n(t,e,r,a){function u(n){return t(n=new Date(+n)),n}return u.floor=u,u.ceil=function(n){return t(n=new Date(n-1)),e(n,1),t(n),n},u.round=function(t){var n=u(t),e=u.ceil(t);return t-n<e-t?n:e},u.offset=function(t,n){return e(t=new Date(+t),null==n?1:Math.floor(n)),t},u.range=function(n,r,i){var o=[];if(n=u.ceil(n),i=null==i?1:Math.floor(i),!(n<r&&i>0))return o;do o.push(new Date(+n));while(e(n,i),t(n),n<r);return o},u.filter=function(r){return n(function(n){if(n>=n)for(;t(n),!r(n);)n.setTime(n-1)},function(t,n){if(t>=t)for(;--n>=0;)for(;e(t,1),!r(t););})},r&&(u.count=function(n,e){return i.setTime(+n),o.setTime(+e),t(i),t(o),Math.floor(r(i,o))},u.every=function(t){return t=Math.floor(t),isFinite(t)&&t>0?t>1?u.filter(a?function(n){return a(n)%t===0}:function(n){return u.count(0,n)%t===0}):u:null}),u}function e(t){return n(function(n){n.setDate(n.getDate()-(n.getDay()+7-t)%7),n.setHours(0,0,0,0)},function(t,n){t.setDate(t.getDate()+7*n)},function(t,n){return(n-t-(n.getTimezoneOffset()-t.getTimezoneOffset())*f)/d})}function r(t){return n(function(n){n.setUTCDate(n.getUTCDate()-(n.getUTCDay()+7-t)%7),n.setUTCHours(0,0,0,0)},function(t,n){t.setUTCDate(t.getUTCDate()+7*n)},function(t,n){return(n-t)/d})}var i=new Date,o=new Date,a=n(function(){},function(t,n){t.setTime(+t+n)},function(t,n){return n-t});a.every=function(t){return t=Math.floor(t),isFinite(t)&&t>0?t>1?n(function(n){n.setTime(Math.floor(n/t)*t)},function(n,e){n.setTime(+n+e*t)},function(n,e){return(e-n)/t}):a:null};var u=a.range,c=1e3,f=6e4,s=36e5,l=864e5,d=6048e5,h=n(function(t){t.setTime(Math.floor(t/c)*c)},function(t,n){t.setTime(+t+n*c)},function(t,n){return(n-t)/c},function(t){return t.getUTCSeconds()}),p=h.range,g=n(function(t){t.setTime(Math.floor(t/f)*f)},function(t,n){t.setTime(+t+n*f)},function(t,n){return(n-t)/f},function(t){return t.getMinutes()}),y=g.range,m=n(function(t){var n=t.getTimezoneOffset()*f%s;n<0&&(n+=s),t.setTime(Math.floor((+t-n)/s)*s+n)},function(t,n){t.setTime(+t+n*s)},function(t,n){return(n-t)/s},function(t){return t.getHours()}),v=m.range,b=n(function(t){t.setHours(0,0,0,0)},function(t,n){t.setDate(t.getDate()+n)},function(t,n){return(n-t-(n.getTimezoneOffset()-t.getTimezoneOffset())*f)/l},function(t){return t.getDate()-1}),_=b.range,w=e(0),x=e(1),M=e(2),k=e(3),S=e(4),T=e(5),C=e(6),A=w.range,N=x.range,E=M.range,L=k.range,z=S.range,D=T.range,P=C.range,F=n(function(t){t.setDate(1),t.setHours(0,0,0,0)},function(t,n){t.setMonth(t.getMonth()+n)},function(t,n){return n.getMonth()-t.getMonth()+12*(n.getFullYear()-t.getFullYear())},function(t){return t.getMonth()}),O=F.range,U=n(function(t){t.setMonth(0,1),t.setHours(0,0,0,0)},function(t,n){t.setFullYear(t.getFullYear()+n)},function(t,n){return n.getFullYear()-t.getFullYear()},function(t){return t.getFullYear()});U.every=function(t){return isFinite(t=Math.floor(t))&&t>0?n(function(n){n.setFullYear(Math.floor(n.getFullYear()/t)*t),n.setMonth(0,1),n.setHours(0,0,0,0)},function(n,e){n.setFullYear(n.getFullYear()+e*t)}):null};var j=U.range,X=n(function(t){t.setUTCSeconds(0,0)},function(t,n){t.setTime(+t+n*f)},function(t,n){return(n-t)/f},function(t){return t.getUTCMinutes()}),Y=X.range,I=n(function(t){t.setUTCMinutes(0,0,0)},function(t,n){t.setTime(+t+n*s)},function(t,n){return(n-t)/s},function(t){return t.getUTCHours()}),q=I.range,H=n(function(t){t.setUTCHours(0,0,0,0)},function(t,n){t.setUTCDate(t.getUTCDate()+n)},function(t,n){return(n-t)/l},function(t){return t.getUTCDate()-1}),B=H.range,R=r(0),W=r(1),V=r(2),$=r(3),Z=r(4),G=r(5),Q=r(6),J=R.range,K=W.range,tt=V.range,nt=$.range,et=Z.range,rt=G.range,it=Q.range,ot=n(function(t){t.setUTCDate(1),t.setUTCHours(0,0,0,0)},function(t,n){t.setUTCMonth(t.getUTCMonth()+n)},function(t,n){return n.getUTCMonth()-t.getUTCMonth()+12*(n.getUTCFullYear()-t.getUTCFullYear())},function(t){return t.getUTCMonth()}),at=ot.range,ut=n(function(t){t.setUTCMonth(0,1),t.setUTCHours(0,0,0,0)},function(t,n){t.setUTCFullYear(t.getUTCFullYear()+n)},function(t,n){return n.getUTCFullYear()-t.getUTCFullYear()},function(t){return t.getUTCFullYear()});ut.every=function(t){return isFinite(t=Math.floor(t))&&t>0?n(function(n){n.setUTCFullYear(Math.floor(n.getUTCFullYear()/t)*t),n.setUTCMonth(0,1),n.setUTCHours(0,0,0,0)},function(n,e){n.setUTCFullYear(n.getUTCFullYear()+e*t)}):null};var ct=ut.range;t.timeInterval=n,t.timeMillisecond=a,t.timeMilliseconds=u,t.utcMillisecond=a,t.utcMilliseconds=u,t.timeSecond=h,t.timeSeconds=p,t.utcSecond=h,t.utcSeconds=p,t.timeMinute=g,t.timeMinutes=y,t.timeHour=m,t.timeHours=v,t.timeDay=b,t.timeDays=_,t.timeWeek=w,t.timeWeeks=A,t.timeSunday=w,t.timeSundays=A,t.timeMonday=x,t.timeMondays=N,t.timeTuesday=M,t.timeTuesdays=E,t.timeWednesday=k,t.timeWednesdays=L,t.timeThursday=S,t.timeThursdays=z,t.timeFriday=T,t.timeFridays=D,t.timeSaturday=C,t.timeSaturdays=P,t.timeMonth=F,t.timeMonths=O,t.timeYear=U,t.timeYears=j,t.utcMinute=X,t.utcMinutes=Y,t.utcHour=I,t.utcHours=q,t.utcDay=H,t.utcDays=B,t.utcWeek=R,t.utcWeeks=J,t.utcSunday=R,t.utcSundays=J,t.utcMonday=W,t.utcMondays=K,t.utcTuesday=V,t.utcTuesdays=tt,t.utcWednesday=$,t.utcWednesdays=nt,t.utcThursday=Z,t.utcThursdays=et,t.utcFriday=G,t.utcFridays=rt,t.utcSaturday=Q,t.utcSaturdays=it,t.utcMonth=ot,t.utcMonths=at,t.utcYear=ut,t.utcYears=ct,Object.defineProperty(t,"__esModule",{value:!0})})},{}],14:[function(t,n,e){!function(t,r){"object"==typeof e&&"undefined"!=typeof n?r(e):"function"==typeof define&&define.amd?define(["exports"],r):r(t.d3=t.d3||{})}(this,function(t){"use strict";function n(){return m||(_(e),m=b.now()+v)}function e(){m=0}function r(){this._call=this._time=this._next=null}function i(t,n,e){var i=new r;return i.restart(t,n,e),i}function o(){n(),++d;for(var t,e=s;e;)(t=m-e._time)>=0&&e._call.call(null,t),e=e._next;--d}function a(){m=(y=b.now())+v,d=h=0;try{o()}finally{d=0,c(),m=0}}function u(){var t=b.now(),n=t-y;n>g&&(v-=n,y=t)}function c(){for(var t,n,e=s,r=1/0;e;)e._call?(r>e._time&&(r=e._time),t=e,e=e._next):(n=e._next,e._next=null,e=t?t._next=n:s=n);l=t,f(r)}function f(t){if(!d){h&&(h=clearTimeout(h));var n=t-m;n>24?(t<1/0&&(h=setTimeout(a,n)),p&&(p=clearInterval(p))):(p||(y=m,p=setInterval(u,g)),d=1,_(a))}}var s,l,d=0,h=0,p=0,g=1e3,y=0,m=0,v=0,b="object"==typeof performance&&performance.now?performance:Date,_="function"==typeof requestAnimationFrame?requestAnimationFrame:function(t){setTimeout(t,17)};r.prototype=i.prototype={constructor:r,restart:function(t,e,r){if("function"!=typeof t)throw new TypeError("callback is not a function");r=(null==r?n():+r)+(null==e?0:+e),this._next||l===this||(l?l._next=this:s=this,l=this),this._call=t,this._time=r,f()},stop:function(){this._call&&(this._call=null,this._time=1/0,f())}};var w=function(t,n,e){var i=new r;return n=null==n?0:+n,i.restart(function(e){i.stop(),t(e+n)},n,e),i},x=function(t,e,i){var o=new r,a=e;return null==e?(o.restart(t,e,i),o):(e=+e,i=null==i?n():+i,o.restart(function n(r){r+=a,o.restart(n,a+=e,i),t(r)},e,i),o)};t.now=n,t.timer=i,t.timerFlush=o,t.timeout=w,t.interval=x,Object.defineProperty(t,"__esModule",{value:!0})})},{}],15:[function(t,n,e){!function(r,i){"object"==typeof e&&"undefined"!=typeof n?i(e,t("d3-selection"),t("d3-dispatch"),t("d3-timer"),t("d3-interpolate"),t("d3-color"),t("d3-ease")):"function"==typeof define&&define.amd?define(["exports","d3-selection","d3-dispatch","d3-timer","d3-interpolate","d3-color","d3-ease"],i):i(r.d3=r.d3||{},r.d3,r.d3,r.d3,r.d3,r.d3,r.d3)}(this,function(t,n,e,r,i,o,a){"use strict";function u(t,n){var e=t.__transition;if(!e||!(e=e[n])||e.state>H)throw new Error("too late");return e}function c(t,n){var e=t.__transition;if(!e||!(e=e[n])||e.state>R)throw new Error("too late");return e}function f(t,n){var e=t.__transition;if(!e||!(e=e[n]))throw new Error("too late");return e}function s(t,n,e){function i(t){e.state=B,e.timer.restart(o,e.delay,e.time),e.delay<=t&&o(t-e.delay)}function o(i){var s,l,d,h;if(e.state!==B)return u();for(s in f)if(h=f[s],h.name===e.name){if(h.state===W)return r.timeout(o);h.state===V?(h.state=Z,h.timer.stop(),h.on.call("interrupt",t,t.__data__,h.index,h.group),delete f[s]):+s<n&&(h.state=Z,h.timer.stop(),delete f[s])}if(r.timeout(function(){e.state===W&&(e.state=V,e.timer.restart(a,e.delay,e.time),a(i))}),e.state=R,e.on.call("start",t,t.__data__,e.index,e.group),e.state===R){for(e.state=W,c=new Array(d=e.tween.length),s=0,l=-1;s<d;++s)(h=e.tween[s].value.call(t,t.__data__,e.index,e.group))&&(c[++l]=h);c.length=l+1}}function a(n){for(var r=n<e.duration?e.ease.call(null,n/e.duration):(e.timer.restart(u),e.state=$,1),i=-1,o=c.length;++i<o;)c[i].call(null,r);e.state===$&&(e.on.call("end",t,t.__data__,e.index,e.group),u())}function u(){e.state=Z,e.timer.stop(),delete f[n];for(var r in f)return;delete t.__transition}var c,f=t.__transition;f[n]=e,e.timer=r.timer(i,0,e.time)}function l(t,n){var e,r;return function(){var i=c(this,t),o=i.tween;if(o!==e){r=e=o;for(var a=0,u=r.length;a<u;++a)if(r[a].name===n){r=r.slice(),r.splice(a,1);break}}i.tween=r}}function d(t,n,e){var r,i;if("function"!=typeof e)throw new Error;return function(){var o=c(this,t),a=o.tween;if(a!==r){i=(r=a).slice();for(var u={name:n,value:e},f=0,s=i.length;f<s;++f)if(i[f].name===n){i[f]=u;break}f===s&&i.push(u)}o.tween=i}}function h(t,n,e){var r=t._id;return t.each(function(){var t=c(this,r);(t.value||(t.value={}))[n]=e.apply(this,arguments)}),function(t){return f(t,r).value[n]}}function p(t){return function(){this.removeAttribute(t)}}function g(t){return function(){this.removeAttributeNS(t.space,t.local)}}function y(t,n,e){var r,i;return function(){var o=this.getAttribute(t);return o===e?null:o===r?i:i=n(r=o,e)}}function m(t,n,e){var r,i;return function(){var o=this.getAttributeNS(t.space,t.local);return o===e?null:o===r?i:i=n(r=o,e)}}function v(t,n,e){var r,i,o;return function(){var a,u=e(this);return null==u?void this.removeAttribute(t):(a=this.getAttribute(t),a===u?null:a===r&&u===i?o:o=n(r=a,i=u))}}function b(t,n,e){var r,i,o;return function(){var a,u=e(this);return null==u?void this.removeAttributeNS(t.space,t.local):(a=this.getAttributeNS(t.space,t.local),a===u?null:a===r&&u===i?o:o=n(r=a,i=u))}}function _(t,n){function e(){var e=this,r=n.apply(e,arguments);return r&&function(n){e.setAttributeNS(t.space,t.local,r(n))}}return e._value=n,e}function w(t,n){function e(){var e=this,r=n.apply(e,arguments);return r&&function(n){e.setAttribute(t,r(n))}}return e._value=n,e}function x(t,n){return function(){u(this,t).delay=+n.apply(this,arguments)}}function M(t,n){return n=+n,function(){u(this,t).delay=n}}function k(t,n){return function(){c(this,t).duration=+n.apply(this,arguments)}}function S(t,n){return n=+n,function(){c(this,t).duration=n}}function T(t,n){if("function"!=typeof n)throw new Error;return function(){c(this,t).ease=n}}function C(t){return(t+"").trim().split(/^|\s+/).every(function(t){var n=t.indexOf(".");return n>=0&&(t=t.slice(0,n)),!t||"start"===t})}function A(t,n,e){var r,i,o=C(n)?u:c;return function(){var a=o(this,t),u=a.on;u!==r&&(i=(r=u).copy()).on(n,e),a.on=i}}function N(t){return function(){var n=this.parentNode;for(var e in this.__transition)if(+e!==t)return;n&&n.removeChild(this)}}function E(t,e){var r,i,o;return function(){var a=n.window(this).getComputedStyle(this,null),u=a.getPropertyValue(t),c=(this.style.removeProperty(t),a.getPropertyValue(t));return u===c?null:u===r&&c===i?o:o=e(r=u,i=c)}}function L(t){return function(){this.style.removeProperty(t)}}function z(t,e,r){var i,o;return function(){var a=n.window(this).getComputedStyle(this,null).getPropertyValue(t);return a===r?null:a===i?o:o=e(i=a,r)}}function D(t,e,r){var i,o,a;return function(){var u=n.window(this).getComputedStyle(this,null),c=u.getPropertyValue(t),f=r(this);return null==f&&(this.style.removeProperty(t),f=u.getPropertyValue(t)),c===f?null:c===i&&f===o?a:a=e(i=c,o=f)}}function P(t,n,e){function r(){var r=this,i=n.apply(r,arguments);return i&&function(n){r.style.setProperty(t,i(n),e)}}return r._value=n,r}function F(t){return function(){this.textContent=t}}function O(t){return function(){var n=t(this);this.textContent=null==n?"":n}}function U(t,n,e,r){this._groups=t,this._parents=n,this._name=e,this._id=r}function j(t){return n.selection().transition(t)}function X(){return++vt}function Y(t,n){for(var e;!(e=t.__transition)||!(e=e[n]);)if(!(t=t.parentNode))return _t.time=r.now(),_t;return e}var I=e.dispatch("start","end","interrupt"),q=[],H=0,B=1,R=2,W=3,V=4,$=5,Z=6,G=function(t,n,e,r,i,o){var a=t.__transition;if(a){if(e in a)return}else t.__transition={};s(t,e,{name:n,index:r,group:i,on:I,tween:q,time:o.time,delay:o.delay,duration:o.duration,ease:o.ease,timer:null,state:H})},Q=function(t,n){var e,r,i,o=t.__transition,a=!0;if(o){n=null==n?null:n+"";for(i in o)(e=o[i]).name===n?(r=e.state>R&&e.state<$,e.state=Z,e.timer.stop(),r&&e.on.call("interrupt",t,t.__data__,e.index,e.group),delete o[i]):a=!1;a&&delete t.__transition}},J=function(t){return this.each(function(){Q(this,t)})},K=function(t,n){var e=this._id;if(t+="",arguments.length<2){for(var r,i=f(this.node(),e).tween,o=0,a=i.length;o<a;++o)if((r=i[o]).name===t)return r.value;return null}return this.each((null==n?l:d)(e,t,n))},tt=function(t,n){var e;return("number"==typeof n?i.interpolateNumber:n instanceof o.color?i.interpolateRgb:(e=o.color(n))?(n=e,i.interpolateRgb):i.interpolateString)(t,n)},nt=function(t,e){var r=n.namespace(t),o="transform"===r?i.interpolateTransformSvg:tt;return this.attrTween(t,"function"==typeof e?(r.local?b:v)(r,o,h(this,"attr."+t,e)):null==e?(r.local?g:p)(r):(r.local?m:y)(r,o,e+""))},et=function(t,e){var r="attr."+t;if(arguments.length<2)return(r=this.tween(r))&&r._value;if(null==e)return this.tween(r,null);if("function"!=typeof e)throw new Error;var i=n.namespace(t);return this.tween(r,(i.local?_:w)(i,e))},rt=function(t){var n=this._id;return arguments.length?this.each(("function"==typeof t?x:M)(n,t)):f(this.node(),n).delay},it=function(t){var n=this._id;return arguments.length?this.each(("function"==typeof t?k:S)(n,t)):f(this.node(),n).duration},ot=function(t){var n=this._id;return arguments.length?this.each(T(n,t)):f(this.node(),n).ease},at=function(t){"function"!=typeof t&&(t=n.matcher(t));for(var e=this._groups,r=e.length,i=new Array(r),o=0;o<r;++o)for(var a,u=e[o],c=u.length,f=i[o]=[],s=0;s<c;++s)(a=u[s])&&t.call(a,a.__data__,s,u)&&f.push(a);return new U(i,this._parents,this._name,this._id)},ut=function(t){if(t._id!==this._id)throw new Error;for(var n=this._groups,e=t._groups,r=n.length,i=e.length,o=Math.min(r,i),a=new Array(r),u=0;u<o;++u)for(var c,f=n[u],s=e[u],l=f.length,d=a[u]=new Array(l),h=0;h<l;++h)(c=f[h]||s[h])&&(d[h]=c);for(;u<r;++u)a[u]=n[u];return new U(a,this._parents,this._name,this._id)},ct=function(t,n){var e=this._id;return arguments.length<2?f(this.node(),e).on.on(t):this.each(A(e,t,n))},ft=function(){return this.on("end.remove",N(this._id))},st=function(t){var e=this._name,r=this._id;"function"!=typeof t&&(t=n.selector(t));for(var i=this._groups,o=i.length,a=new Array(o),u=0;u<o;++u)for(var c,s,l=i[u],d=l.length,h=a[u]=new Array(d),p=0;p<d;++p)(c=l[p])&&(s=t.call(c,c.__data__,p,l))&&("__data__"in c&&(s.__data__=c.__data__),h[p]=s,G(h[p],e,r,p,h,f(c,r)));return new U(a,this._parents,e,r)},lt=function(t){var e=this._name,r=this._id;"function"!=typeof t&&(t=n.selectorAll(t));for(var i=this._groups,o=i.length,a=[],u=[],c=0;c<o;++c)for(var s,l=i[c],d=l.length,h=0;h<d;++h)if(s=l[h]){for(var p,g=t.call(s,s.__data__,h,l),y=f(s,r),m=0,v=g.length;m<v;++m)(p=g[m])&&G(p,e,r,m,g,y);a.push(g),u.push(s)}return new U(a,u,e,r)},dt=n.selection.prototype.constructor,ht=function(){return new dt(this._groups,this._parents)},pt=function(t,n,e){var r="transform"==(t+="")?i.interpolateTransformCss:tt;return null==n?this.styleTween(t,E(t,r)).on("end.style."+t,L(t)):this.styleTween(t,"function"==typeof n?D(t,r,h(this,"style."+t,n)):z(t,r,n+""),e)},gt=function(t,n,e){var r="style."+(t+="");if(arguments.length<2)return(r=this.tween(r))&&r._value;if(null==n)return this.tween(r,null);if("function"!=typeof n)throw new Error;return this.tween(r,P(t,n,null==e?"":e))},yt=function(t){return this.tween("text","function"==typeof t?O(h(this,"text",t)):F(null==t?"":t+""));
-},mt=function(){for(var t=this._name,n=this._id,e=X(),r=this._groups,i=r.length,o=0;o<i;++o)for(var a,u=r[o],c=u.length,s=0;s<c;++s)if(a=u[s]){var l=f(a,n);G(a,t,e,s,u,{time:l.time+l.delay+l.duration,delay:0,duration:l.duration,ease:l.ease})}return new U(r,this._parents,t,e)},vt=0,bt=n.selection.prototype;U.prototype=j.prototype={constructor:U,select:st,selectAll:lt,filter:at,merge:ut,selection:ht,transition:mt,call:bt.call,nodes:bt.nodes,node:bt.node,size:bt.size,empty:bt.empty,each:bt.each,on:ct,attr:nt,attrTween:et,style:pt,styleTween:gt,text:yt,remove:ft,tween:K,delay:rt,duration:it,ease:ot};var _t={time:null,delay:0,duration:250,ease:a.easeCubicInOut},wt=function(t){var n,e;t instanceof U?(n=t._id,t=t._name):(n=X(),(e=_t).time=r.now(),t=null==t?null:t+"");for(var i=this._groups,o=i.length,a=0;a<o;++a)for(var u,c=i[a],f=c.length,s=0;s<f;++s)(u=c[s])&&G(u,t,n,s,c,e||Y(u,n));return new U(i,this._parents,t,n)};n.selection.prototype.interrupt=J,n.selection.prototype.transition=wt;var xt=[null],Mt=function(t,n){var e,r,i=t.__transition;if(i){n=null==n?null:n+"";for(r in i)if((e=i[r]).state>B&&e.name===n)return new U([[t]],xt,n,+r)}return null};t.transition=j,t.active=Mt,t.interrupt=Q,Object.defineProperty(t,"__esModule",{value:!0})})},{"d3-color":4,"d3-dispatch":5,"d3-ease":7,"d3-interpolate":16,"d3-selection":11,"d3-timer":14}],16:[function(t,n,e){arguments[4][9][0].apply(e,arguments)},{"d3-color":4,dup:9}],17:[function(t,n,e){!function(r,i){"object"==typeof e&&"undefined"!=typeof n?i(e,t("d3-dispatch"),t("d3-drag"),t("d3-interpolate"),t("d3-selection"),t("d3-transition")):"function"==typeof define&&define.amd?define(["exports","d3-dispatch","d3-drag","d3-interpolate","d3-selection","d3-transition"],i):i(r.d3=r.d3||{},r.d3,r.d3,r.d3,r.d3,r.d3)}(this,function(t,n,e,r,i,o){"use strict";function a(t,n,e){this.target=t,this.type=n,this.transform=e}function u(t,n,e){this.k=t,this.x=n,this.y=e}function c(t){return t.__zoom||p}function f(){i.event.stopImmediatePropagation()}function s(){return!i.event.button}function l(){var t,n,e=this;return e instanceof SVGElement?(e=e.ownerSVGElement||e,t=e.width.baseVal.value,n=e.height.baseVal.value):(t=e.clientWidth,n=e.clientHeight),[[0,0],[t,n]]}function d(){return this.__zoom||p}var h=function(t){return function(){return t}};u.prototype={constructor:u,scale:function(t){return 1===t?this:new u(this.k*t,this.x,this.y)},translate:function(t,n){return 0===t&0===n?this:new u(this.k,this.x+this.k*t,this.y+this.k*n)},apply:function(t){return[t[0]*this.k+this.x,t[1]*this.k+this.y]},applyX:function(t){return t*this.k+this.x},applyY:function(t){return t*this.k+this.y},invert:function(t){return[(t[0]-this.x)/this.k,(t[1]-this.y)/this.k]},invertX:function(t){return(t-this.x)/this.k},invertY:function(t){return(t-this.y)/this.k},rescaleX:function(t){return t.copy().domain(t.range().map(this.invertX,this).map(t.invert,t))},rescaleY:function(t){return t.copy().domain(t.range().map(this.invertY,this).map(t.invert,t))},toString:function(){return"translate("+this.x+","+this.y+") scale("+this.k+")"}};var p=new u(1,0,0);c.prototype=u.prototype;var g=function(){i.event.preventDefault(),i.event.stopImmediatePropagation()},y=function(){function t(t){t.on("wheel.zoom",w).on("mousedown.zoom",x).on("dblclick.zoom",M).on("touchstart.zoom",k).on("touchmove.zoom",S).on("touchend.zoom touchcancel.zoom",T).style("-webkit-tap-highlight-color","rgba(0,0,0,0)").property("__zoom",d)}function c(t,n){return n=Math.max(L,Math.min(z,n)),n===t.k?t:new u(n,t.x,t.y)}function p(t,n,e){var r=n[0]-e[0]*t.k,i=n[1]-e[1]*t.k;return r===t.x&&i===t.y?t:new u(t.k,r,i)}function y(t,n){var e=t.invertX(n[0][0])-D,r=t.invertX(n[1][0])-P,i=t.invertY(n[0][1])-F,o=t.invertY(n[1][1])-O;return t.translate(r>e?(e+r)/2:Math.min(0,e)||Math.max(0,r),o>i?(i+o)/2:Math.min(0,i)||Math.max(0,o))}function m(t){return[(+t[0][0]+ +t[1][0])/2,(+t[0][1]+ +t[1][1])/2]}function v(t,n,e){t.on("start.zoom",function(){b(this,arguments).start()}).on("interrupt.zoom end.zoom",function(){b(this,arguments).end()}).tween("zoom",function(){var t=this,r=arguments,i=b(t,r),o=E.apply(t,r),a=e||m(o),c=Math.max(o[1][0]-o[0][0],o[1][1]-o[0][1]),f=t.__zoom,s="function"==typeof n?n.apply(t,r):n,l=j(f.invert(a).concat(c/f.k),s.invert(a).concat(c/s.k));return function(t){if(1===t)t=s;else{var n=l(t),e=c/n[2];t=new u(e,a[0]-n[0]*e,a[1]-n[1]*e)}i.zoom(null,t)}})}function b(t,n){for(var e,r=0,i=X.length;r<i;++r)if((e=X[r]).that===t)return e;return new _(t,n)}function _(t,n){this.that=t,this.args=n,this.index=-1,this.active=0,this.extent=E.apply(t,n)}function w(){function t(){n.wheel=null,n.end()}if(N.apply(this,arguments)){var n=b(this,arguments),e=this.__zoom,r=Math.max(L,Math.min(z,e.k*Math.pow(2,-i.event.deltaY*(i.event.deltaMode?120:1)/500))),a=i.mouse(this);if(n.wheel)n.mouse[0][0]===a[0]&&n.mouse[0][1]===a[1]||(n.mouse[1]=e.invert(n.mouse[0]=a)),clearTimeout(n.wheel);else{if(e.k===r)return;n.mouse=[a,e.invert(a)],o.interrupt(this),n.start()}g(),n.wheel=setTimeout(t,q),n.zoom("mouse",y(p(c(e,r),n.mouse[0],n.mouse[1]),n.extent))}}function x(){function t(){g(),r.moved=!0,r.zoom("mouse",y(p(r.that.__zoom,r.mouse[0]=i.mouse(r.that),r.mouse[1]),r.extent))}function n(){a.on("mousemove.zoom mouseup.zoom",null),e.dragEnable(i.event.view,r.moved),g(),r.end()}if(!A&&N.apply(this,arguments)){var r=b(this,arguments),a=i.select(i.event.view).on("mousemove.zoom",t,!0).on("mouseup.zoom",n,!0),u=i.mouse(this);e.dragDisable(i.event.view),f(),r.mouse=[u,this.__zoom.invert(u)],o.interrupt(this),r.start()}}function M(){if(N.apply(this,arguments)){var n=this.__zoom,e=i.mouse(this),r=n.invert(e),o=n.k*(i.event.shiftKey?.5:2),a=y(p(c(n,o),e,r),E.apply(this,arguments));g(),U>0?i.select(this).transition().duration(U).call(v,a,e):i.select(this).call(t.transform,a)}}function k(){if(N.apply(this,arguments)){var t,n,e,r,a=b(this,arguments),u=i.event.changedTouches,c=u.length;for(f(),n=0;n<c;++n)e=u[n],r=i.touch(this,u,e.identifier),r=[r,this.__zoom.invert(r),e.identifier],a.touch0?a.touch1||(a.touch1=r):(a.touch0=r,t=!0);return C&&(C=clearTimeout(C),!a.touch1)?(a.end(),r=i.select(this).on("dblclick.zoom"),void(r&&r.apply(this,arguments))):void(t&&(C=setTimeout(function(){C=null},I),o.interrupt(this),a.start()))}}function S(){var t,n,e,r,o=b(this,arguments),a=i.event.changedTouches,u=a.length;for(g(),C&&(C=clearTimeout(C)),t=0;t<u;++t)n=a[t],e=i.touch(this,a,n.identifier),o.touch0&&o.touch0[2]===n.identifier?o.touch0[0]=e:o.touch1&&o.touch1[2]===n.identifier&&(o.touch1[0]=e);if(n=o.that.__zoom,o.touch1){var f=o.touch0[0],s=o.touch0[1],l=o.touch1[0],d=o.touch1[1],h=(h=l[0]-f[0])*h+(h=l[1]-f[1])*h,m=(m=d[0]-s[0])*m+(m=d[1]-s[1])*m;n=c(n,Math.sqrt(h/m)),e=[(f[0]+l[0])/2,(f[1]+l[1])/2],r=[(s[0]+d[0])/2,(s[1]+d[1])/2]}else{if(!o.touch0)return;e=o.touch0[0],r=o.touch0[1]}o.zoom("touch",y(p(n,e,r),o.extent))}function T(){var t,n,e=b(this,arguments),r=i.event.changedTouches,o=r.length;for(f(),A&&clearTimeout(A),A=setTimeout(function(){A=null},I),t=0;t<o;++t)n=r[t],e.touch0&&e.touch0[2]===n.identifier?delete e.touch0:e.touch1&&e.touch1[2]===n.identifier&&delete e.touch1;e.touch1&&!e.touch0&&(e.touch0=e.touch1,delete e.touch1),e.touch0?e.touch0[1]=this.__zoom.invert(e.touch0[0]):e.end()}var C,A,N=s,E=l,L=0,z=1/0,D=-z,P=z,F=D,O=P,U=250,j=r.interpolateZoom,X=[],Y=n.dispatch("start","zoom","end"),I=500,q=150;return t.transform=function(t,n){var e=t.selection?t.selection():t;e.property("__zoom",d),t!==e?v(t,n):e.interrupt().each(function(){b(this,arguments).start().zoom(null,"function"==typeof n?n.apply(this,arguments):n).end()})},t.scaleBy=function(n,e){t.scaleTo(n,function(){var t=this.__zoom.k,n="function"==typeof e?e.apply(this,arguments):e;return t*n})},t.scaleTo=function(n,e){t.transform(n,function(){var t=E.apply(this,arguments),n=this.__zoom,r=m(t),i=n.invert(r),o="function"==typeof e?e.apply(this,arguments):e;return y(p(c(n,o),r,i),t)})},t.translateBy=function(n,e,r){t.transform(n,function(){return y(this.__zoom.translate("function"==typeof e?e.apply(this,arguments):e,"function"==typeof r?r.apply(this,arguments):r),E.apply(this,arguments))})},_.prototype={start:function(){return 1===++this.active&&(this.index=X.push(this)-1,this.emit("start")),this},zoom:function(t,n){return this.mouse&&"mouse"!==t&&(this.mouse[1]=n.invert(this.mouse[0])),this.touch0&&"touch"!==t&&(this.touch0[1]=n.invert(this.touch0[0])),this.touch1&&"touch"!==t&&(this.touch1[1]=n.invert(this.touch1[0])),this.that.__zoom=n,this.emit("zoom"),this},end:function(){return 0===--this.active&&(X.splice(this.index,1),this.index=-1,this.emit("end")),this},emit:function(n){i.customEvent(new a(t,n,this.that.__zoom),Y.apply,Y,[n,this.that,this.args])}},t.filter=function(n){return arguments.length?(N="function"==typeof n?n:h(!!n),t):N},t.extent=function(n){return arguments.length?(E="function"==typeof n?n:h([[+n[0][0],+n[0][1]],[+n[1][0],+n[1][1]]]),t):E},t.scaleExtent=function(n){return arguments.length?(L=+n[0],z=+n[1],t):[L,z]},t.translateExtent=function(n){return arguments.length?(D=+n[0][0],P=+n[1][0],F=+n[0][1],O=+n[1][1],t):[[D,F],[P,O]]},t.duration=function(n){return arguments.length?(U=+n,t):U},t.interpolate=function(n){return arguments.length?(j=n,t):j},t.on=function(){var n=Y.on.apply(Y,arguments);return n===Y?t:n},t};t.zoom=y,t.zoomTransform=c,t.zoomIdentity=p,Object.defineProperty(t,"__esModule",{value:!0})})},{"d3-dispatch":5,"d3-drag":6,"d3-interpolate":18,"d3-selection":11,"d3-transition":15}],18:[function(t,n,e){arguments[4][9][0].apply(e,arguments)},{"d3-color":4,dup:9}],19:[function(require,module,exports){!function(t,n){"object"==typeof exports&&"undefined"!=typeof module?n(require("d3-format"),require("d3-selection"),require("d3-array"),require("d3-scale"),require("d3-color"),require("d3-drag"),require("d3-zoom"),require("d3-collection"),require("d3-axis"),require("d3-interpolate")):"function"==typeof define&&define.amd?define(["d3-format","d3-selection","d3-array","d3-scale","d3-color","d3-drag","d3-zoom","d3-collection","d3-axis","d3-interpolate"],n):n(t.d3,t.d3,t.d3,t.d3,t.d3,t.d3,t.d3,t.d3,t.d3,t.d3)}(this,function(d3Format,d3Selection,d3Array,d3Scale,d3Color,d3Drag,d3Zoom,d3Collection,d3Axis,d3Interpolate){"use strict";function sankey(){function t(){x.forEach(function(t){t.sourceLinks=[],t.targetLinks=[],t.inactive=!1}),M.forEach(function(t){var n=t.source,e=t.target;t.inactive=!1,"number"==typeof n&&(n=t.source=x[t.source]),"number"==typeof e&&(e=t.target=x[t.target]),n.sourceLinks.push(t),e.targetLinks.push(t)})}function n(){"undefined"==typeof x[0].value&&x.forEach(function(t){t.value=Math.max(d3Array.sum(t.sourceLinks,s),d3Array.sum(t.targetLinks,s))})}function e(){var t="right"===g;if("undefined"==typeof x[0].posX)for(var n,u=x,c=0;u.length&&c<x.length;){if(n=[],u.forEach(function(e){e.x=c,e.posX=c,e.dx=d,e[t?"targetLinks":"sourceLinks"].forEach(function(e){var r=e[t?"source":"target"];n.indexOf(r)<0&&n.push(r)})}),n.length==u.length)return r(n),e();u=n,++c}else x.forEach(function(t){t.x=t.posX,t.dx=d});k=d3Array.max(x,function(t){return t.posX})+1;var f=new Array(k);x.forEach(function(t){if(("undefined"==typeof f[t.x]||t.name.length>f[t.x])&&(f[t.x]=t.name.length),m)for(t.path=t.name,nn=t;nn.targetLinks.length;)nn.targetLinks.length>1&&console.log("Error - orderByPath not useful when there is more than one parent for a node."),nn=nn.targetLinks[0].source,t.path=nn.name+";"+t.path});for(var s=1;s<k;++s)T[s]=T[s-1]+6*f[s-1]+d+h;t&&x.forEach(function(t){t.x*=-1,t.x+=c-1}),"center"===g?i():"justify"===g&&o(k),a("none"==g?(p[0]-d)/k:(p[0]-d)/(k-1))}function r(t){function n(t,e){for(var r,i,o=t.sourceLinks.length-1;o>=0;o--)if(i=t.sourceLinks[o],!i.cycleBreaker){r=i.target;for(var a=0;a<e.length;a++)if(e[a].source==r){for(var u=i;a<e.length;a++)e[a].value<u.value&&(u=e[a]);return u.cycleBreaker=!0,u}if(e.push(i),i=n(r,e),e.pop(),i)return i}}for(var e,r=t.length-1;r>=0;r--)if(e=n(t[r],[]))return e}function i(){x.slice().sort(function(t,n){return n.x-t.x}).forEach(function(t){t.targetLinks.length||(t.x=d3Array.min(t.sourceLinks,function(t){return t.target.x})-1)})}function o(t){x.forEach(function(n){if(n.sourceLinks.length){var e=0;n.sourceLinks.forEach(function(t){e=Math.max(e,t.target.sourceLinks.length)}),0==e&&(n.x=t-2)}else n.x=t-1})}function a(t){x.forEach(function(n){v?n.x=T[n.x]:n.x*=t})}function u(t){function n(){var t=d3Array.min(a,function(t){return(p[1]-(t.length-1)*h)/d3Array.sum(t,s)});a.forEach(function(n){n.forEach(function(n,e){n.y=e,n.dy=n.value*t})}),M.forEach(function(n){n.dy=n.value*t})}function e(t){function n(t){return f(t.source)*t.value}a.forEach(function(e){e.forEach(function(e){if(e.targetLinks.length){var r=d3Array.sum(e.targetLinks,n)/d3Array.sum(e.targetLinks,s);e.y+=(r-f(e))*t}})})}function r(t){function n(t){return f(t.target)*t.value}a.slice().reverse().forEach(function(e){e.forEach(function(e){if(e.sourceLinks.length){var r=d3Array.sum(e.sourceLinks,n)/d3Array.sum(e.sourceLinks,s);e.y+=(r-f(e))*t}})})}function i(){a.forEach(function(t){var n,e,r,i=0,a=t.length;t.sort(o);for(var r=0;r<a;++r)n=t[r],e=i-n.y,e>0&&(n.y+=e),i=n.y+n.dy+h;if(e=i-h-p[1],e>0){i=n.y-=e;for(var r=a-2;r>=0;--r)n=t[r],e=n.y+n.dy+h-i,e>0&&(n.y-=e),i=n.y}})}function o(t,n){return m?t.path<n.path?-1:t.path>n.path?1:0:t.y-n.y}var a;if(m){a=new Array(k);for(var u=0;u<a.length;++u)a[u]=[];for(posX=0;posX<k;++posX)for(j=0;j<x.length;++j)if(x[j].posX==posX&&(node=x[j],a[posX].push(node),no_intermediary_nodes=node.sourceLinks.length&&node.sourceLinks[0].target.posX>node.posX+1,no_end_nodes=!node.sourceLinks.length&&node.posX<k,no_intermediary_nodes||no_end_nodes))for(end_node=no_intermediary_nodes?node.sourceLinks[0].target.posX:k,new_node_posX=node.posX+1;new_node_posX<end_node;++new_node_posX){var l=node.constructor();l.posX=new_node_posX,l.dy=node.dy,l.y=node.y,l.value=node.value,l.path=node.path,l.sourceLinks=node.sourceLinks,l.targetLinks=node.targetLinks,a[new_node_posX].push(l)}}else a=d3Collection.nest().key(function(t){return t.x}).sortKeys(function(t,n){return t-n}).entries(x).map(function(t){return t.values});n(),i(),c();for(var d=1;t>0;--t)r(d*=.99),i(),c(),e(d),i(),c()}function c(){function t(t,n){function e(t){return(t.target.y-(t.source.y+t.sy))/(t.target.x-t.source.x)}return e(n)-e(t)}function n(t,n){return t.target.y-n.target.y}x.forEach(function(t){t.sourceLinks.sort(n)}),x.forEach(function(t){var n=0;t.sourceLinks.forEach(function(t){t.sy=n,n+=t.dy})}),x.forEach(function(n){n.targetLinks.sort(t)}),x.forEach(function(t){var n=0;t.targetLinks.forEach(function(t){t.ty=n,n+=t.dy})})}function f(t){return t.y+t.dy/2}function s(t){return t.value}var l={},d=24,h=8,p=[1,1],g="justify",y="bezier",m=!1,v=!1,b=.5,_=!1,w=0,x=[],M=[];l.nodeWidth=function(t){return arguments.length?(d=+t,l):d},l.nodePadding=function(t){return arguments.length?(h=+t,l):h},l.nodes=function(t){return arguments.length?(x=t,l):x},l.links=function(t){return arguments.length?(M=t,l):M},l.orderByPath=function(t){return arguments.length?(m=t,l):m},l.curvature=function(t){return arguments.length?(b=t,l):b},l.showNodeValues=function(t){return arguments.length?(_=t,l):_},l.linkType=function(t){return arguments.length?(y=t.toLowerCase(),l):y},l.size=function(t){return arguments.length?(p=t,l):p},l.align=function(t){return arguments.length?(g=t.toLowerCase(),l):g},l.nodeCornerRadius=function(t){return arguments.length?(w=t,l):w},l.scaleNodeBreadthsByString=function(t){return arguments.length?(v=t,l):v},l.layout=function(r){return t(),n(),e(),u(r),l},l.relayout=function(){return c(),l},l.link=function(){function t(t,n){return t+","+n}function n(n,e){return"M"+t(n,e)}function e(n,e,r,i,o,a){return"C"+t(n,e)+" "+t(r,i)+" "+t(o,a)}function e(n,e,r,i,o,a){return"C"+t(n,e)+" "+t(r,i)+" "+t(o,a)}function r(n,e){return"L"+t(n,e)}function i(){return"Z"}function o(t){return"v"+t}function a(t){return"H"+t}function u(t){var u,c=t.source.x+t.source.dx-w,f=t.target.x+w,s=d3Interpolate.interpolateNumber(c,f),l=s(b),d=s(1-b),h=t.source.y+t.sy,g=t.target.y+t.ty,m=g+t.dy,v=h+t.dy;if(t.cycleBreaker){var _=1.5*t.dy+.05*Math.abs(xs-xt);xsc=xs+_,xtc=xt-_;var x=s(.5),M=d3Interpolate.interpolateNumber(ys,yt)(.5),k=(2*t.dy+.1*Math.abs(xs-xt)+.1*Math.abs(ys-yt))*(M<p[1]/2?-1:1);u=n(xs,ys)+e(xsc,ys,xsc,ys+k,x,M+k)+S(xtc,yt,xt,yt)}else switch(y){case"trapez":u=n(c,h)+r(c,v)+r(f,m)+r(f,g)+i();break;case"path1":u=n(c,h)+e(l,h,d,g,f,g)+r(f,m)+e(d,m,l,v,c,v)+i();break;case"path2":var T=d+(t.dy<15?t.source.y<t.target.y?-1*t.dy:t.dy:0),C=l+(t.dy<15?t.source.y<t.target.y?-1*t.dy:t.dy:0);u=n(c,h)+e(l,h,d,g,f,g)+o(t.dy)+e(T,m,C,v,c,v)+i();break;case"l-bezier":h=t.source.y+t.sy+t.dy/2,g=t.target.y+t.ty+t.dy/2,T=c+t.source.dx/4,C=f-t.target.dx/4,l=Math.max(s(b),T+t.dy),d=Math.min(s(b),C-t.dy),u=n(c,h)+a(T)+e(l,h,d,g,C,g)+a(f);break;case"bezier":default:h=t.source.y+t.sy+t.dy/2,g=t.target.y+t.ty+t.dy/2,u=n(c,h)+e(l,h,d,g,f,g)}return u}return u.curvature=function(t){return arguments.length?(b=+t,u):b},u};var k,T=[0];return l}HTMLWidgets.widget({name:"sankeyNetwork",type:"output",initialize:function(t,n,e){return d3Selection.select(t).append("svg").style("width","100%").style("height","100%"),{sankey:sankey(),x:null}},resize:function(t,n,e,r){d3Array.min(r.sankey.size())<=0&&this.renderValue(t,r.x,r)},renderValue:function(el,x,instance){function dragstart(t){d3Selection.event.sourceEvent.preventDefault(),d3Selection.event.sourceEvent.stopPropagation()}function dragmove(t){(options.dragX||options.dragY)&&(d3Selection.select(this).attr("transform","translate("+(options.dragX?t.x=Math.max(0,d3Selection.event.x):t.x)+","+(options.dragY?t.y=Math.max(0,d3Selection.event.y):t.y)+")"),sankey.relayout(),link.attr("d",draw_link))}function redraw(){d3Selection.select(el).select(".zoom-layer").attr("transform","translate("+d3Selection.event.transform.x+","+d3Selection.event.transform.y+") scale("+d3Selection.event.transform.k+")")}function min1_or_dy(t){return Math.max(1,t.dy)}function is_child(t,n){for(var e=0;e<t.sourceLinks.length;e++)if(t.sourceLinks[e]==n||is_child(t.sourceLinks[e].target,n))return!0;return!1}function is_child_node(t,n){for(var e=0;e<t.sourceLinks.length;e++)if(t.sourceLinks[e].target==n||is_child_node(t.sourceLinks[e].target,n))return!0;return!1}instance.x=x;var sankey=instance.sankey,options=x.options,links=HTMLWidgets.dataframeToD3(x.links),nodes=HTMLWidgets.dataframeToD3(x.nodes),margin={top:20,right:20,bottom:20,left:20};Object.keys(x.options.margin).map(function(t){null!==x.options.margin[t]&&(margin[t]=x.options.margin[t])});var width=el.getBoundingClientRect().width-margin.right-margin.left,height=el.getBoundingClientRect().height-margin.top-margin.bottom,d3Zoom$$=d3Zoom.zoom().scaleExtent([.75,3]),color=eval(options.colourScale),color_node=function(t){return t.group?color(t.group):options.linkColor},color_link=function(t){return t.group?color(t.group):options.linkGradient?"url(#linearLinkGradient)":"#CCCCCC"},animation_duration=50,opacity_node=1,opacity_link_plus=.45,opacity_link=function(t){return t.inactive?0:t.group?options.linkOpacity:options.linkOpacity},format_use=function(t){if("pavian"==options.numberFormat){var n;n=t>1e3?d3Format.format(".3s")(t):t>.001?d3Format.format(".3r")(t):d3Format.format(".3g")(t),n.indexOf(".")>=0&&(n.search(!1)?(n=n.replace(/0+$/,""),n=n.replace(/\.$/,"")):(n=n.replace(/0+(.)/,"$1"),n=n.replace(/\.(.)/,"$1")))}else n=d3Format.format(options.numberFormat)(t);return n};sankey.nodes(d3Collection.values(nodes)).align(options.align).links(links).size([width,height-20]).linkType(options.linkType).nodeWidth(options.nodeWidth).nodePadding(options.nodePadding).scaleNodeBreadthsByString(options.scaleNodeBreadthsByString).curvature(options.curvature).orderByPath(options.orderByPath).showNodeValues(options.showNodeValues).nodeCornerRadius(options.nodeCornerRadius).layout(options.iterations);var max_posX=d3Array.max(sankey.nodes(),function(t){return t.posX});sankey.nodes().forEach(function(t){t.x=t.x*options.xScalingFactor});var svg=d3Selection.select(el).select("svg");svg.selectAll("*").remove(),svg.attr("viewBox",null),svg=svg.append("g").attr("class","zoom-layer").append("g").attr("transform","translate("+margin.left+","+margin.top+")");var defs=svg.append("defs");if(options.linkGradient){var lg=defs.append("linearGradient").attr("id","linearLinkGradient").attr("x1","0%").attr("x2","100%").attr("y1","0%").attr("y2","0%");lg.append("stop").attr("offset","0%").style("stop-color","#A0A0A0").style("stop-opacity",1),lg.append("stop").attr("offset","100%").style("stop-color","#D0D0D0").style("stop-opacity",1)}if(options.nodeShadow){var filter=defs.append("filter").attr("id","drop-shadow").attr("height","130%").attr("width","130%");filter.append("feGaussianBlur").attr("in","SourceAlpha").attr("stdDeviation",.5).attr("result","blur"),filter.append("feOffset").attr("in","blur").attr("dx",.5).attr("dy",.5).attr("rx",options.nodeCornerRadius).attr("ry",options.nodeCornerRadius).attr("result","offsetBlur");var feMerge=filter.append("feMerge");feMerge.append("feMergeNode").attr("in","offsetBlur"),feMerge.append("feMergeNode").attr("in","SourceGraphic")}options.zoom?(d3Zoom$$.on("zoom",redraw),d3Selection.select(el).select("svg").attr("pointer-events","all").call(d3Zoom$$),d3Selection.select(el).select("svg").on("dblclick.zoom",null)):d3Zoom$$.on("zoom",null),"undefined"!=typeof options.title&&svg.append("text").attr("dy",".5em").attr("render-order",-1).text(options.title).style("cursor","move").style("fill","black").style("font-size","28px").style("font-family",options.fontFamily?options.fontFamily:"inherit");var draw_link=sankey.link(),link=svg.selectAll(".link").data(sankey.links()),newLink=link.enter().append("path").attr("class","link");link=newLink.merge(link),"bezier"==options.linkType||"l-bezier"==options.linkType?link.attr("d",draw_link).style("stroke",color_link).style("stroke-width",min1_or_dy).style("stroke-opacity",opacity_link).style("fill","none"):link.attr("d",draw_link).style("fill",color_link).style("fill-opacity",opacity_link);var path_filter=function(t,n){return 0===n.lastIndexOf(t,0)};link.sort(function(t,n){return n.dy-t.dy}).on("mouseover",function(t){if(!t.inactive){var n=d3Selection.select(this);options.highlightChildLinks&&(n=link.filter(function(n,e){return t==n||is_child(t.target,n)})),n.style("stroke-opacity",function(t){return opacity_link(t)+opacity_link_plus}).style("fill-opacity",function(t){return opacity_link(t)+opacity_link_plus})}}).on("mouseout",function(t){if(!t.inactive){var n=d3Selection.select(this);options.highlightChildLinks&&(n=link.filter(function(n,e){return t==n||is_child(t.target,n)})),n.style("stroke-opacity",opacity_link).style("fill-opacity",opacity_link)}}),link.classed("backwards",function(t){return t.target.x<t.source.x}),svg.selectAll(".link.backwards").style("stroke-dasharray","9,1").style("stroke","#402");var node=svg.selectAll(".node").data(sankey.nodes()),newNode=node.enter().append("g").attr("class","node").attr("transform",function(t){return"translate("+t.x+","+t.y+")"}).call(d3Drag.drag().subject(function(t){return t}).on("start",function(){dragstart(this),this.parentNode.appendChild(this)}).on("drag",dragmove)).on("mouseover",function(t,n){if(!t.inactive){options.highlightChildLinks&&link.filter(function(n,e){return is_child(t,n)}).style("stroke-opacity",function(t){return opacity_link(t)+opacity_link_plus}).style("fill-opacity",function(t){return opacity_link(t)+opacity_link_plus});var e=setTimeout(function(){Shiny.onInputChange(el.id+"_hover",t.name)},1e3);$(this).data("timeout",e)}}).on("mouseout",function(t,n){clearTimeout($(this).data("timeout")),t.inactive||options.highlightChildLinks&&link.filter(function(n,e){return is_child(t,n)}).style("stroke-opacity",opacity_link).style("fill-opacity",opacity_link)}).on("click",function(t){Shiny.onInputChange(el.id+"_clicked",t.name)}).on("dblclick",function(t){if(Shiny.onInputChange(el.id+"_clicked",t.name),options.doubleclickTogglesChildren){t.inactive=!t.inactive,t.inactive?(d3Selection.select(this).selectAll("rect").style("stroke-width",options.nodeStrokeWidth+2),d3Selection.select(this).selectAll("text").style("font-weight","bold")):(d3Selection.select(this).selectAll("rect").style("stroke-width",options.nodeStrokeWidth),d3Selection.select(this).selectAll("text").style("font-weight","normal"));var n=(max_posX-t.posX)*animation_duration;link.filter(function(n,e){return!!is_child(t,n)&&(n.inactive=t.inactive,!0)}).transition().duration(n).delay(function(e){var r=(e.source.posX-t.posX+.5)*animation_duration;return t.inactive&&(r=n-r),r}).style("stroke-opacity",opacity_link).style("fill-opacity",opacity_link);var e=t.inactive?0:opacity_node;node.filter(function(n,e){return!!is_child_node(t,n)&&(n.inactive=t.inactive,!0)}).transition().duration(n).delay(function(e){var r=(e.posX-t.posX+.5)*animation_duration;return t.inactive&&(r=n-r),r}).style("opacity",e)}});if(node=newNode.merge(node),link.append("title").text(function(t){return t.source.name+" → "+t.target.name+" \r\n"+format_use(t.value)+" "+options.units}),node.append("rect").attr("height",function(t){return t.dy}).attr("width",sankey.nodeWidth()).style("fill",function(t){return t.targetLinks[0]?t.color=color_node(t):t.color=color_node(t)}).style("stroke",function(t){return d3Color.rgb(t.color).darker(2)}).style("stroke-width",options.nodeStrokeWidth).style("opacity",opacity_node).style("cursor","move").attr("rx",options.nodeCornerRadius).attr("ry",options.nodeCornerRadius).style("filter",function(t){if(options.nodeShadow)return"url(#drop-shadow)"}).append("title").attr("class","tooltip").attr("title",function(t){return format_use(t.value)}).text(function(t){return t.name+" \r\n"+format_use(t.value)+" "+options.units}),node.append("text").attr("x",-options.nodeLabelMargin).attr("y",function(t){return t.dy/2}).attr("class","node-text").attr("dy",".35em").attr("text-anchor","end").attr("transform",null).text(function(t){return t.name}).style("cursor","move").style("font-size",options.fontSize+"px").style("font-family",options.fontFamily?options.fontFamily:"inherit").filter(function(t){return t.x<width/2||"none"==options.align}).attr("x",options.nodeLabelMargin+sankey.nodeWidth()).attr("text-anchor","start"),options.showNodeValues&&node.append("text").attr("x",sankey.nodeWidth()/2).attr("text-anchor","middle").attr("dy","-"+(options.nodeStrokeWidth+.1)+"em").attr("transform",null).attr("class","node-number").text(function(t){return format_use(t.value)}).style("cursor","move").style("font-size",options.fontSize-2+"px").style("font-family",options.fontFamily?options.fontFamily:"inherit"),options.xAxisDomain){var axisXPos=new Array(options.xAxisDomain.length);sankey.nodes().forEach(function(t){axisXPos[t.posX]=t.x+options.nodeWidth/2});var x=d3Scale.scaleOrdinal().domain(options.xAxisDomain).range(axisXPos);svg.append("g").attr("class","x axis").attr("transform","translate(0,"+height+")").call(d3Axis.axisBottom(x))}}})})},{"d3-array":1,"d3-axis":2,"d3-collection":3,"d3-color":4,"d3-drag":6,"d3-format":8,"d3-interpolate":9,"d3-scale":10,"d3-selection":11,"d3-zoom":17}]},{},[19]);
+(function(){function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s}return e})()({1:[function(require,module,exports){
+// https://d3js.org/d3-array/ Version 1.2.1. Copyright 2017 Mike Bostock.
+(function (global, factory) {
+	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
+	typeof define === 'function' && define.amd ? define(['exports'], factory) :
+	(factory((global.d3 = global.d3 || {})));
+}(this, (function (exports) { 'use strict';
+
+var ascending = function(a, b) {
+  return a < b ? -1 : a > b ? 1 : a >= b ? 0 : NaN;
+};
+
+var bisector = function(compare) {
+  if (compare.length === 1) compare = ascendingComparator(compare);
+  return {
+    left: function(a, x, lo, hi) {
+      if (lo == null) lo = 0;
+      if (hi == null) hi = a.length;
+      while (lo < hi) {
+        var mid = lo + hi >>> 1;
+        if (compare(a[mid], x) < 0) lo = mid + 1;
+        else hi = mid;
+      }
+      return lo;
+    },
+    right: function(a, x, lo, hi) {
+      if (lo == null) lo = 0;
+      if (hi == null) hi = a.length;
+      while (lo < hi) {
+        var mid = lo + hi >>> 1;
+        if (compare(a[mid], x) > 0) hi = mid;
+        else lo = mid + 1;
+      }
+      return lo;
+    }
+  };
+};
+
+function ascendingComparator(f) {
+  return function(d, x) {
+    return ascending(f(d), x);
+  };
+}
+
+var ascendingBisect = bisector(ascending);
+var bisectRight = ascendingBisect.right;
+var bisectLeft = ascendingBisect.left;
+
+var pairs = function(array, f) {
+  if (f == null) f = pair;
+  var i = 0, n = array.length - 1, p = array[0], pairs = new Array(n < 0 ? 0 : n);
+  while (i < n) pairs[i] = f(p, p = array[++i]);
+  return pairs;
+};
+
+function pair(a, b) {
+  return [a, b];
+}
+
+var cross = function(values0, values1, reduce) {
+  var n0 = values0.length,
+      n1 = values1.length,
+      values = new Array(n0 * n1),
+      i0,
+      i1,
+      i,
+      value0;
+
+  if (reduce == null) reduce = pair;
+
+  for (i0 = i = 0; i0 < n0; ++i0) {
+    for (value0 = values0[i0], i1 = 0; i1 < n1; ++i1, ++i) {
+      values[i] = reduce(value0, values1[i1]);
+    }
+  }
+
+  return values;
+};
+
+var descending = function(a, b) {
+  return b < a ? -1 : b > a ? 1 : b >= a ? 0 : NaN;
+};
+
+var number = function(x) {
+  return x === null ? NaN : +x;
+};
+
+var variance = function(values, valueof) {
+  var n = values.length,
+      m = 0,
+      i = -1,
+      mean = 0,
+      value,
+      delta,
+      sum = 0;
+
+  if (valueof == null) {
+    while (++i < n) {
+      if (!isNaN(value = number(values[i]))) {
+        delta = value - mean;
+        mean += delta / ++m;
+        sum += delta * (value - mean);
+      }
+    }
+  }
+
+  else {
+    while (++i < n) {
+      if (!isNaN(value = number(valueof(values[i], i, values)))) {
+        delta = value - mean;
+        mean += delta / ++m;
+        sum += delta * (value - mean);
+      }
+    }
+  }
+
+  if (m > 1) return sum / (m - 1);
+};
+
+var deviation = function(array, f) {
+  var v = variance(array, f);
+  return v ? Math.sqrt(v) : v;
+};
+
+var extent = function(values, valueof) {
+  var n = values.length,
+      i = -1,
+      value,
+      min,
+      max;
+
+  if (valueof == null) {
+    while (++i < n) { // Find the first comparable value.
+      if ((value = values[i]) != null && value >= value) {
+        min = max = value;
+        while (++i < n) { // Compare the remaining values.
+          if ((value = values[i]) != null) {
+            if (min > value) min = value;
+            if (max < value) max = value;
+          }
+        }
+      }
+    }
+  }
+
+  else {
+    while (++i < n) { // Find the first comparable value.
+      if ((value = valueof(values[i], i, values)) != null && value >= value) {
+        min = max = value;
+        while (++i < n) { // Compare the remaining values.
+          if ((value = valueof(values[i], i, values)) != null) {
+            if (min > value) min = value;
+            if (max < value) max = value;
+          }
+        }
+      }
+    }
+  }
+
+  return [min, max];
+};
+
+var array = Array.prototype;
+
+var slice = array.slice;
+var map = array.map;
+
+var constant = function(x) {
+  return function() {
+    return x;
+  };
+};
+
+var identity = function(x) {
+  return x;
+};
+
+var range = function(start, stop, step) {
+  start = +start, stop = +stop, step = (n = arguments.length) < 2 ? (stop = start, start = 0, 1) : n < 3 ? 1 : +step;
+
+  var i = -1,
+      n = Math.max(0, Math.ceil((stop - start) / step)) | 0,
+      range = new Array(n);
+
+  while (++i < n) {
+    range[i] = start + i * step;
+  }
+
+  return range;
+};
+
+var e10 = Math.sqrt(50);
+var e5 = Math.sqrt(10);
+var e2 = Math.sqrt(2);
+
+var ticks = function(start, stop, count) {
+  var reverse,
+      i = -1,
+      n,
+      ticks,
+      step;
+
+  stop = +stop, start = +start, count = +count;
+  if (start === stop && count > 0) return [start];
+  if (reverse = stop < start) n = start, start = stop, stop = n;
+  if ((step = tickIncrement(start, stop, count)) === 0 || !isFinite(step)) return [];
+
+  if (step > 0) {
+    start = Math.ceil(start / step);
+    stop = Math.floor(stop / step);
+    ticks = new Array(n = Math.ceil(stop - start + 1));
+    while (++i < n) ticks[i] = (start + i) * step;
+  } else {
+    start = Math.floor(start * step);
+    stop = Math.ceil(stop * step);
+    ticks = new Array(n = Math.ceil(start - stop + 1));
+    while (++i < n) ticks[i] = (start - i) / step;
+  }
+
+  if (reverse) ticks.reverse();
+
+  return ticks;
+};
+
+function tickIncrement(start, stop, count) {
+  var step = (stop - start) / Math.max(0, count),
+      power = Math.floor(Math.log(step) / Math.LN10),
+      error = step / Math.pow(10, power);
+  return power >= 0
+      ? (error >= e10 ? 10 : error >= e5 ? 5 : error >= e2 ? 2 : 1) * Math.pow(10, power)
+      : -Math.pow(10, -power) / (error >= e10 ? 10 : error >= e5 ? 5 : error >= e2 ? 2 : 1);
+}
+
+function tickStep(start, stop, count) {
+  var step0 = Math.abs(stop - start) / Math.max(0, count),
+      step1 = Math.pow(10, Math.floor(Math.log(step0) / Math.LN10)),
+      error = step0 / step1;
+  if (error >= e10) step1 *= 10;
+  else if (error >= e5) step1 *= 5;
+  else if (error >= e2) step1 *= 2;
+  return stop < start ? -step1 : step1;
+}
+
+var sturges = function(values) {
+  return Math.ceil(Math.log(values.length) / Math.LN2) + 1;
+};
+
+var histogram = function() {
+  var value = identity,
+      domain = extent,
+      threshold = sturges;
+
+  function histogram(data) {
+    var i,
+        n = data.length,
+        x,
+        values = new Array(n);
+
+    for (i = 0; i < n; ++i) {
+      values[i] = value(data[i], i, data);
+    }
+
+    var xz = domain(values),
+        x0 = xz[0],
+        x1 = xz[1],
+        tz = threshold(values, x0, x1);
+
+    // Convert number of thresholds into uniform thresholds.
+    if (!Array.isArray(tz)) {
+      tz = tickStep(x0, x1, tz);
+      tz = range(Math.ceil(x0 / tz) * tz, Math.floor(x1 / tz) * tz, tz); // exclusive
+    }
+
+    // Remove any thresholds outside the domain.
+    var m = tz.length;
+    while (tz[0] <= x0) tz.shift(), --m;
+    while (tz[m - 1] > x1) tz.pop(), --m;
+
+    var bins = new Array(m + 1),
+        bin;
+
+    // Initialize bins.
+    for (i = 0; i <= m; ++i) {
+      bin = bins[i] = [];
+      bin.x0 = i > 0 ? tz[i - 1] : x0;
+      bin.x1 = i < m ? tz[i] : x1;
+    }
+
+    // Assign data to bins by value, ignoring any outside the domain.
+    for (i = 0; i < n; ++i) {
+      x = values[i];
+      if (x0 <= x && x <= x1) {
+        bins[bisectRight(tz, x, 0, m)].push(data[i]);
+      }
+    }
+
+    return bins;
+  }
+
+  histogram.value = function(_) {
+    return arguments.length ? (value = typeof _ === "function" ? _ : constant(_), histogram) : value;
+  };
+
+  histogram.domain = function(_) {
+    return arguments.length ? (domain = typeof _ === "function" ? _ : constant([_[0], _[1]]), histogram) : domain;
+  };
+
+  histogram.thresholds = function(_) {
+    return arguments.length ? (threshold = typeof _ === "function" ? _ : Array.isArray(_) ? constant(slice.call(_)) : constant(_), histogram) : threshold;
+  };
+
+  return histogram;
+};
+
+var quantile = function(values, p, valueof) {
+  if (valueof == null) valueof = number;
+  if (!(n = values.length)) return;
+  if ((p = +p) <= 0 || n < 2) return +valueof(values[0], 0, values);
+  if (p >= 1) return +valueof(values[n - 1], n - 1, values);
+  var n,
+      i = (n - 1) * p,
+      i0 = Math.floor(i),
+      value0 = +valueof(values[i0], i0, values),
+      value1 = +valueof(values[i0 + 1], i0 + 1, values);
+  return value0 + (value1 - value0) * (i - i0);
+};
+
+var freedmanDiaconis = function(values, min, max) {
+  values = map.call(values, number).sort(ascending);
+  return Math.ceil((max - min) / (2 * (quantile(values, 0.75) - quantile(values, 0.25)) * Math.pow(values.length, -1 / 3)));
+};
+
+var scott = function(values, min, max) {
+  return Math.ceil((max - min) / (3.5 * deviation(values) * Math.pow(values.length, -1 / 3)));
+};
+
+var max = function(values, valueof) {
+  var n = values.length,
+      i = -1,
+      value,
+      max;
+
+  if (valueof == null) {
+    while (++i < n) { // Find the first comparable value.
+      if ((value = values[i]) != null && value >= value) {
+        max = value;
+        while (++i < n) { // Compare the remaining values.
+          if ((value = values[i]) != null && value > max) {
+            max = value;
+          }
+        }
+      }
+    }
+  }
+
+  else {
+    while (++i < n) { // Find the first comparable value.
+      if ((value = valueof(values[i], i, values)) != null && value >= value) {
+        max = value;
+        while (++i < n) { // Compare the remaining values.
+          if ((value = valueof(values[i], i, values)) != null && value > max) {
+            max = value;
+          }
+        }
+      }
+    }
+  }
+
+  return max;
+};
+
+var mean = function(values, valueof) {
+  var n = values.length,
+      m = n,
+      i = -1,
+      value,
+      sum = 0;
+
+  if (valueof == null) {
+    while (++i < n) {
+      if (!isNaN(value = number(values[i]))) sum += value;
+      else --m;
+    }
+  }
+
+  else {
+    while (++i < n) {
+      if (!isNaN(value = number(valueof(values[i], i, values)))) sum += value;
+      else --m;
+    }
+  }
+
+  if (m) return sum / m;
+};
+
+var median = function(values, valueof) {
+  var n = values.length,
+      i = -1,
+      value,
+      numbers = [];
+
+  if (valueof == null) {
+    while (++i < n) {
+      if (!isNaN(value = number(values[i]))) {
+        numbers.push(value);
+      }
+    }
+  }
+
+  else {
+    while (++i < n) {
+      if (!isNaN(value = number(valueof(values[i], i, values)))) {
+        numbers.push(value);
+      }
+    }
+  }
+
+  return quantile(numbers.sort(ascending), 0.5);
+};
+
+var merge = function(arrays) {
+  var n = arrays.length,
+      m,
+      i = -1,
+      j = 0,
+      merged,
+      array;
+
+  while (++i < n) j += arrays[i].length;
+  merged = new Array(j);
+
+  while (--n >= 0) {
+    array = arrays[n];
+    m = array.length;
+    while (--m >= 0) {
+      merged[--j] = array[m];
+    }
+  }
+
+  return merged;
+};
+
+var min = function(values, valueof) {
+  var n = values.length,
+      i = -1,
+      value,
+      min;
+
+  if (valueof == null) {
+    while (++i < n) { // Find the first comparable value.
+      if ((value = values[i]) != null && value >= value) {
+        min = value;
+        while (++i < n) { // Compare the remaining values.
+          if ((value = values[i]) != null && min > value) {
+            min = value;
+          }
+        }
+      }
+    }
+  }
+
+  else {
+    while (++i < n) { // Find the first comparable value.
+      if ((value = valueof(values[i], i, values)) != null && value >= value) {
+        min = value;
+        while (++i < n) { // Compare the remaining values.
+          if ((value = valueof(values[i], i, values)) != null && min > value) {
+            min = value;
+          }
+        }
+      }
+    }
+  }
+
+  return min;
+};
+
+var permute = function(array, indexes) {
+  var i = indexes.length, permutes = new Array(i);
+  while (i--) permutes[i] = array[indexes[i]];
+  return permutes;
+};
+
+var scan = function(values, compare) {
+  if (!(n = values.length)) return;
+  var n,
+      i = 0,
+      j = 0,
+      xi,
+      xj = values[j];
+
+  if (compare == null) compare = ascending;
+
+  while (++i < n) {
+    if (compare(xi = values[i], xj) < 0 || compare(xj, xj) !== 0) {
+      xj = xi, j = i;
+    }
+  }
+
+  if (compare(xj, xj) === 0) return j;
+};
+
+var shuffle = function(array, i0, i1) {
+  var m = (i1 == null ? array.length : i1) - (i0 = i0 == null ? 0 : +i0),
+      t,
+      i;
+
+  while (m) {
+    i = Math.random() * m-- | 0;
+    t = array[m + i0];
+    array[m + i0] = array[i + i0];
+    array[i + i0] = t;
+  }
+
+  return array;
+};
+
+var sum = function(values, valueof) {
+  var n = values.length,
+      i = -1,
+      value,
+      sum = 0;
+
+  if (valueof == null) {
+    while (++i < n) {
+      if (value = +values[i]) sum += value; // Note: zero and null are equivalent.
+    }
+  }
+
+  else {
+    while (++i < n) {
+      if (value = +valueof(values[i], i, values)) sum += value;
+    }
+  }
+
+  return sum;
+};
+
+var transpose = function(matrix) {
+  if (!(n = matrix.length)) return [];
+  for (var i = -1, m = min(matrix, length), transpose = new Array(m); ++i < m;) {
+    for (var j = -1, n, row = transpose[i] = new Array(n); ++j < n;) {
+      row[j] = matrix[j][i];
+    }
+  }
+  return transpose;
+};
+
+function length(d) {
+  return d.length;
+}
+
+var zip = function() {
+  return transpose(arguments);
+};
+
+exports.bisect = bisectRight;
+exports.bisectRight = bisectRight;
+exports.bisectLeft = bisectLeft;
+exports.ascending = ascending;
+exports.bisector = bisector;
+exports.cross = cross;
+exports.descending = descending;
+exports.deviation = deviation;
+exports.extent = extent;
+exports.histogram = histogram;
+exports.thresholdFreedmanDiaconis = freedmanDiaconis;
+exports.thresholdScott = scott;
+exports.thresholdSturges = sturges;
+exports.max = max;
+exports.mean = mean;
+exports.median = median;
+exports.merge = merge;
+exports.min = min;
+exports.pairs = pairs;
+exports.permute = permute;
+exports.quantile = quantile;
+exports.range = range;
+exports.scan = scan;
+exports.shuffle = shuffle;
+exports.sum = sum;
+exports.ticks = ticks;
+exports.tickIncrement = tickIncrement;
+exports.tickStep = tickStep;
+exports.transpose = transpose;
+exports.variance = variance;
+exports.zip = zip;
+
+Object.defineProperty(exports, '__esModule', { value: true });
+
+})));
+
+},{}],2:[function(require,module,exports){
+// https://d3js.org/d3-axis/ Version 1.0.8. Copyright 2017 Mike Bostock.
+(function (global, factory) {
+	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
+	typeof define === 'function' && define.amd ? define(['exports'], factory) :
+	(factory((global.d3 = global.d3 || {})));
+}(this, (function (exports) { 'use strict';
+
+var slice = Array.prototype.slice;
+
+var identity = function(x) {
+  return x;
+};
+
+var top = 1;
+var right = 2;
+var bottom = 3;
+var left = 4;
+var epsilon = 1e-6;
+
+function translateX(x) {
+  return "translate(" + (x + 0.5) + ",0)";
+}
+
+function translateY(y) {
+  return "translate(0," + (y + 0.5) + ")";
+}
+
+function number(scale) {
+  return function(d) {
+    return +scale(d);
+  };
+}
+
+function center(scale) {
+  var offset = Math.max(0, scale.bandwidth() - 1) / 2; // Adjust for 0.5px offset.
+  if (scale.round()) offset = Math.round(offset);
+  return function(d) {
+    return +scale(d) + offset;
+  };
+}
+
+function entering() {
+  return !this.__axis;
+}
+
+function axis(orient, scale) {
+  var tickArguments = [],
+      tickValues = null,
+      tickFormat = null,
+      tickSizeInner = 6,
+      tickSizeOuter = 6,
+      tickPadding = 3,
+      k = orient === top || orient === left ? -1 : 1,
+      x = orient === left || orient === right ? "x" : "y",
+      transform = orient === top || orient === bottom ? translateX : translateY;
+
+  function axis(context) {
+    var values = tickValues == null ? (scale.ticks ? scale.ticks.apply(scale, tickArguments) : scale.domain()) : tickValues,
+        format = tickFormat == null ? (scale.tickFormat ? scale.tickFormat.apply(scale, tickArguments) : identity) : tickFormat,
+        spacing = Math.max(tickSizeInner, 0) + tickPadding,
+        range = scale.range(),
+        range0 = +range[0] + 0.5,
+        range1 = +range[range.length - 1] + 0.5,
+        position = (scale.bandwidth ? center : number)(scale.copy()),
+        selection = context.selection ? context.selection() : context,
+        path = selection.selectAll(".domain").data([null]),
+        tick = selection.selectAll(".tick").data(values, scale).order(),
+        tickExit = tick.exit(),
+        tickEnter = tick.enter().append("g").attr("class", "tick"),
+        line = tick.select("line"),
+        text = tick.select("text");
+
+    path = path.merge(path.enter().insert("path", ".tick")
+        .attr("class", "domain")
+        .attr("stroke", "#000"));
+
+    tick = tick.merge(tickEnter);
+
+    line = line.merge(tickEnter.append("line")
+        .attr("stroke", "#000")
+        .attr(x + "2", k * tickSizeInner));
+
+    text = text.merge(tickEnter.append("text")
+        .attr("fill", "#000")
+        .attr(x, k * spacing)
+        .attr("dy", orient === top ? "0em" : orient === bottom ? "0.71em" : "0.32em"));
+
+    if (context !== selection) {
+      path = path.transition(context);
+      tick = tick.transition(context);
+      line = line.transition(context);
+      text = text.transition(context);
+
+      tickExit = tickExit.transition(context)
+          .attr("opacity", epsilon)
+          .attr("transform", function(d) { return isFinite(d = position(d)) ? transform(d) : this.getAttribute("transform"); });
+
+      tickEnter
+          .attr("opacity", epsilon)
+          .attr("transform", function(d) { var p = this.parentNode.__axis; return transform(p && isFinite(p = p(d)) ? p : position(d)); });
+    }
+
+    tickExit.remove();
+
+    path
+        .attr("d", orient === left || orient == right
+            ? "M" + k * tickSizeOuter + "," + range0 + "H0.5V" + range1 + "H" + k * tickSizeOuter
+            : "M" + range0 + "," + k * tickSizeOuter + "V0.5H" + range1 + "V" + k * tickSizeOuter);
+
+    tick
+        .attr("opacity", 1)
+        .attr("transform", function(d) { return transform(position(d)); });
+
+    line
+        .attr(x + "2", k * tickSizeInner);
+
+    text
+        .attr(x, k * spacing)
+        .text(format);
+
+    selection.filter(entering)
+        .attr("fill", "none")
+        .attr("font-size", 10)
+        .attr("font-family", "sans-serif")
+        .attr("text-anchor", orient === right ? "start" : orient === left ? "end" : "middle");
+
+    selection
+        .each(function() { this.__axis = position; });
+  }
+
+  axis.scale = function(_) {
+    return arguments.length ? (scale = _, axis) : scale;
+  };
+
+  axis.ticks = function() {
+    return tickArguments = slice.call(arguments), axis;
+  };
+
+  axis.tickArguments = function(_) {
+    return arguments.length ? (tickArguments = _ == null ? [] : slice.call(_), axis) : tickArguments.slice();
+  };
+
+  axis.tickValues = function(_) {
+    return arguments.length ? (tickValues = _ == null ? null : slice.call(_), axis) : tickValues && tickValues.slice();
+  };
+
+  axis.tickFormat = function(_) {
+    return arguments.length ? (tickFormat = _, axis) : tickFormat;
+  };
+
+  axis.tickSize = function(_) {
+    return arguments.length ? (tickSizeInner = tickSizeOuter = +_, axis) : tickSizeInner;
+  };
+
+  axis.tickSizeInner = function(_) {
+    return arguments.length ? (tickSizeInner = +_, axis) : tickSizeInner;
+  };
+
+  axis.tickSizeOuter = function(_) {
+    return arguments.length ? (tickSizeOuter = +_, axis) : tickSizeOuter;
+  };
+
+  axis.tickPadding = function(_) {
+    return arguments.length ? (tickPadding = +_, axis) : tickPadding;
+  };
+
+  return axis;
+}
+
+function axisTop(scale) {
+  return axis(top, scale);
+}
+
+function axisRight(scale) {
+  return axis(right, scale);
+}
+
+function axisBottom(scale) {
+  return axis(bottom, scale);
+}
+
+function axisLeft(scale) {
+  return axis(left, scale);
+}
+
+exports.axisTop = axisTop;
+exports.axisRight = axisRight;
+exports.axisBottom = axisBottom;
+exports.axisLeft = axisLeft;
+
+Object.defineProperty(exports, '__esModule', { value: true });
+
+})));
+
+},{}],3:[function(require,module,exports){
+// https://d3js.org/d3-collection/ Version 1.0.4. Copyright 2017 Mike Bostock.
+(function (global, factory) {
+	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
+	typeof define === 'function' && define.amd ? define(['exports'], factory) :
+	(factory((global.d3 = global.d3 || {})));
+}(this, (function (exports) { 'use strict';
+
+var prefix = "$";
+
+function Map() {}
+
+Map.prototype = map.prototype = {
+  constructor: Map,
+  has: function(key) {
+    return (prefix + key) in this;
+  },
+  get: function(key) {
+    return this[prefix + key];
+  },
+  set: function(key, value) {
+    this[prefix + key] = value;
+    return this;
+  },
+  remove: function(key) {
+    var property = prefix + key;
+    return property in this && delete this[property];
+  },
+  clear: function() {
+    for (var property in this) if (property[0] === prefix) delete this[property];
+  },
+  keys: function() {
+    var keys = [];
+    for (var property in this) if (property[0] === prefix) keys.push(property.slice(1));
+    return keys;
+  },
+  values: function() {
+    var values = [];
+    for (var property in this) if (property[0] === prefix) values.push(this[property]);
+    return values;
+  },
+  entries: function() {
+    var entries = [];
+    for (var property in this) if (property[0] === prefix) entries.push({key: property.slice(1), value: this[property]});
+    return entries;
+  },
+  size: function() {
+    var size = 0;
+    for (var property in this) if (property[0] === prefix) ++size;
+    return size;
+  },
+  empty: function() {
+    for (var property in this) if (property[0] === prefix) return false;
+    return true;
+  },
+  each: function(f) {
+    for (var property in this) if (property[0] === prefix) f(this[property], property.slice(1), this);
+  }
+};
+
+function map(object, f) {
+  var map = new Map;
+
+  // Copy constructor.
+  if (object instanceof Map) object.each(function(value, key) { map.set(key, value); });
+
+  // Index array by numeric index or specified key function.
+  else if (Array.isArray(object)) {
+    var i = -1,
+        n = object.length,
+        o;
+
+    if (f == null) while (++i < n) map.set(i, object[i]);
+    else while (++i < n) map.set(f(o = object[i], i, object), o);
+  }
+
+  // Convert object to map.
+  else if (object) for (var key in object) map.set(key, object[key]);
+
+  return map;
+}
+
+var nest = function() {
+  var keys = [],
+      sortKeys = [],
+      sortValues,
+      rollup,
+      nest;
+
+  function apply(array, depth, createResult, setResult) {
+    if (depth >= keys.length) {
+      if (sortValues != null) array.sort(sortValues);
+      return rollup != null ? rollup(array) : array;
+    }
+
+    var i = -1,
+        n = array.length,
+        key = keys[depth++],
+        keyValue,
+        value,
+        valuesByKey = map(),
+        values,
+        result = createResult();
+
+    while (++i < n) {
+      if (values = valuesByKey.get(keyValue = key(value = array[i]) + "")) {
+        values.push(value);
+      } else {
+        valuesByKey.set(keyValue, [value]);
+      }
+    }
+
+    valuesByKey.each(function(values, key) {
+      setResult(result, key, apply(values, depth, createResult, setResult));
+    });
+
+    return result;
+  }
+
+  function entries(map$$1, depth) {
+    if (++depth > keys.length) return map$$1;
+    var array, sortKey = sortKeys[depth - 1];
+    if (rollup != null && depth >= keys.length) array = map$$1.entries();
+    else array = [], map$$1.each(function(v, k) { array.push({key: k, values: entries(v, depth)}); });
+    return sortKey != null ? array.sort(function(a, b) { return sortKey(a.key, b.key); }) : array;
+  }
+
+  return nest = {
+    object: function(array) { return apply(array, 0, createObject, setObject); },
+    map: function(array) { return apply(array, 0, createMap, setMap); },
+    entries: function(array) { return entries(apply(array, 0, createMap, setMap), 0); },
+    key: function(d) { keys.push(d); return nest; },
+    sortKeys: function(order) { sortKeys[keys.length - 1] = order; return nest; },
+    sortValues: function(order) { sortValues = order; return nest; },
+    rollup: function(f) { rollup = f; return nest; }
+  };
+};
+
+function createObject() {
+  return {};
+}
+
+function setObject(object, key, value) {
+  object[key] = value;
+}
+
+function createMap() {
+  return map();
+}
+
+function setMap(map$$1, key, value) {
+  map$$1.set(key, value);
+}
+
+function Set() {}
+
+var proto = map.prototype;
+
+Set.prototype = set.prototype = {
+  constructor: Set,
+  has: proto.has,
+  add: function(value) {
+    value += "";
+    this[prefix + value] = value;
+    return this;
+  },
+  remove: proto.remove,
+  clear: proto.clear,
+  values: proto.keys,
+  size: proto.size,
+  empty: proto.empty,
+  each: proto.each
+};
+
+function set(object, f) {
+  var set = new Set;
+
+  // Copy constructor.
+  if (object instanceof Set) object.each(function(value) { set.add(value); });
+
+  // Otherwise, assume it’s an array.
+  else if (object) {
+    var i = -1, n = object.length;
+    if (f == null) while (++i < n) set.add(object[i]);
+    else while (++i < n) set.add(f(object[i], i, object));
+  }
+
+  return set;
+}
+
+var keys = function(map) {
+  var keys = [];
+  for (var key in map) keys.push(key);
+  return keys;
+};
+
+var values = function(map) {
+  var values = [];
+  for (var key in map) values.push(map[key]);
+  return values;
+};
+
+var entries = function(map) {
+  var entries = [];
+  for (var key in map) entries.push({key: key, value: map[key]});
+  return entries;
+};
+
+exports.nest = nest;
+exports.set = set;
+exports.map = map;
+exports.keys = keys;
+exports.values = values;
+exports.entries = entries;
+
+Object.defineProperty(exports, '__esModule', { value: true });
+
+})));
+
+},{}],4:[function(require,module,exports){
+// https://d3js.org/d3-color/ Version 1.0.3. Copyright 2017 Mike Bostock.
+(function (global, factory) {
+	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
+	typeof define === 'function' && define.amd ? define(['exports'], factory) :
+	(factory((global.d3 = global.d3 || {})));
+}(this, (function (exports) { 'use strict';
+
+var define = function(constructor, factory, prototype) {
+  constructor.prototype = factory.prototype = prototype;
+  prototype.constructor = constructor;
+};
+
+function extend(parent, definition) {
+  var prototype = Object.create(parent.prototype);
+  for (var key in definition) prototype[key] = definition[key];
+  return prototype;
+}
+
+function Color() {}
+
+var darker = 0.7;
+var brighter = 1 / darker;
+
+var reI = "\\s*([+-]?\\d+)\\s*";
+var reN = "\\s*([+-]?\\d*\\.?\\d+(?:[eE][+-]?\\d+)?)\\s*";
+var reP = "\\s*([+-]?\\d*\\.?\\d+(?:[eE][+-]?\\d+)?)%\\s*";
+var reHex3 = /^#([0-9a-f]{3})$/;
+var reHex6 = /^#([0-9a-f]{6})$/;
+var reRgbInteger = new RegExp("^rgb\\(" + [reI, reI, reI] + "\\)$");
+var reRgbPercent = new RegExp("^rgb\\(" + [reP, reP, reP] + "\\)$");
+var reRgbaInteger = new RegExp("^rgba\\(" + [reI, reI, reI, reN] + "\\)$");
+var reRgbaPercent = new RegExp("^rgba\\(" + [reP, reP, reP, reN] + "\\)$");
+var reHslPercent = new RegExp("^hsl\\(" + [reN, reP, reP] + "\\)$");
+var reHslaPercent = new RegExp("^hsla\\(" + [reN, reP, reP, reN] + "\\)$");
+
+var named = {
+  aliceblue: 0xf0f8ff,
+  antiquewhite: 0xfaebd7,
+  aqua: 0x00ffff,
+  aquamarine: 0x7fffd4,
+  azure: 0xf0ffff,
+  beige: 0xf5f5dc,
+  bisque: 0xffe4c4,
+  black: 0x000000,
+  blanchedalmond: 0xffebcd,
+  blue: 0x0000ff,
+  blueviolet: 0x8a2be2,
+  brown: 0xa52a2a,
+  burlywood: 0xdeb887,
+  cadetblue: 0x5f9ea0,
+  chartreuse: 0x7fff00,
+  chocolate: 0xd2691e,
+  coral: 0xff7f50,
+  cornflowerblue: 0x6495ed,
+  cornsilk: 0xfff8dc,
+  crimson: 0xdc143c,
+  cyan: 0x00ffff,
+  darkblue: 0x00008b,
+  darkcyan: 0x008b8b,
+  darkgoldenrod: 0xb8860b,
+  darkgray: 0xa9a9a9,
+  darkgreen: 0x006400,
+  darkgrey: 0xa9a9a9,
+  darkkhaki: 0xbdb76b,
+  darkmagenta: 0x8b008b,
+  darkolivegreen: 0x556b2f,
+  darkorange: 0xff8c00,
+  darkorchid: 0x9932cc,
+  darkred: 0x8b0000,
+  darksalmon: 0xe9967a,
+  darkseagreen: 0x8fbc8f,
+  darkslateblue: 0x483d8b,
+  darkslategray: 0x2f4f4f,
+  darkslategrey: 0x2f4f4f,
+  darkturquoise: 0x00ced1,
+  darkviolet: 0x9400d3,
+  deeppink: 0xff1493,
+  deepskyblue: 0x00bfff,
+  dimgray: 0x696969,
+  dimgrey: 0x696969,
+  dodgerblue: 0x1e90ff,
+  firebrick: 0xb22222,
+  floralwhite: 0xfffaf0,
+  forestgreen: 0x228b22,
+  fuchsia: 0xff00ff,
+  gainsboro: 0xdcdcdc,
+  ghostwhite: 0xf8f8ff,
+  gold: 0xffd700,
+  goldenrod: 0xdaa520,
+  gray: 0x808080,
+  green: 0x008000,
+  greenyellow: 0xadff2f,
+  grey: 0x808080,
+  honeydew: 0xf0fff0,
+  hotpink: 0xff69b4,
+  indianred: 0xcd5c5c,
+  indigo: 0x4b0082,
+  ivory: 0xfffff0,
+  khaki: 0xf0e68c,
+  lavender: 0xe6e6fa,
+  lavenderblush: 0xfff0f5,
+  lawngreen: 0x7cfc00,
+  lemonchiffon: 0xfffacd,
+  lightblue: 0xadd8e6,
+  lightcoral: 0xf08080,
+  lightcyan: 0xe0ffff,
+  lightgoldenrodyellow: 0xfafad2,
+  lightgray: 0xd3d3d3,
+  lightgreen: 0x90ee90,
+  lightgrey: 0xd3d3d3,
+  lightpink: 0xffb6c1,
+  lightsalmon: 0xffa07a,
+  lightseagreen: 0x20b2aa,
+  lightskyblue: 0x87cefa,
+  lightslategray: 0x778899,
+  lightslategrey: 0x778899,
+  lightsteelblue: 0xb0c4de,
+  lightyellow: 0xffffe0,
+  lime: 0x00ff00,
+  limegreen: 0x32cd32,
+  linen: 0xfaf0e6,
+  magenta: 0xff00ff,
+  maroon: 0x800000,
+  mediumaquamarine: 0x66cdaa,
+  mediumblue: 0x0000cd,
+  mediumorchid: 0xba55d3,
+  mediumpurple: 0x9370db,
+  mediumseagreen: 0x3cb371,
+  mediumslateblue: 0x7b68ee,
+  mediumspringgreen: 0x00fa9a,
+  mediumturquoise: 0x48d1cc,
+  mediumvioletred: 0xc71585,
+  midnightblue: 0x191970,
+  mintcream: 0xf5fffa,
+  mistyrose: 0xffe4e1,
+  moccasin: 0xffe4b5,
+  navajowhite: 0xffdead,
+  navy: 0x000080,
+  oldlace: 0xfdf5e6,
+  olive: 0x808000,
+  olivedrab: 0x6b8e23,
+  orange: 0xffa500,
+  orangered: 0xff4500,
+  orchid: 0xda70d6,
+  palegoldenrod: 0xeee8aa,
+  palegreen: 0x98fb98,
+  paleturquoise: 0xafeeee,
+  palevioletred: 0xdb7093,
+  papayawhip: 0xffefd5,
+  peachpuff: 0xffdab9,
+  peru: 0xcd853f,
+  pink: 0xffc0cb,
+  plum: 0xdda0dd,
+  powderblue: 0xb0e0e6,
+  purple: 0x800080,
+  rebeccapurple: 0x663399,
+  red: 0xff0000,
+  rosybrown: 0xbc8f8f,
+  royalblue: 0x4169e1,
+  saddlebrown: 0x8b4513,
+  salmon: 0xfa8072,
+  sandybrown: 0xf4a460,
+  seagreen: 0x2e8b57,
+  seashell: 0xfff5ee,
+  sienna: 0xa0522d,
+  silver: 0xc0c0c0,
+  skyblue: 0x87ceeb,
+  slateblue: 0x6a5acd,
+  slategray: 0x708090,
+  slategrey: 0x708090,
+  snow: 0xfffafa,
+  springgreen: 0x00ff7f,
+  steelblue: 0x4682b4,
+  tan: 0xd2b48c,
+  teal: 0x008080,
+  thistle: 0xd8bfd8,
+  tomato: 0xff6347,
+  turquoise: 0x40e0d0,
+  violet: 0xee82ee,
+  wheat: 0xf5deb3,
+  white: 0xffffff,
+  whitesmoke: 0xf5f5f5,
+  yellow: 0xffff00,
+  yellowgreen: 0x9acd32
+};
+
+define(Color, color, {
+  displayable: function() {
+    return this.rgb().displayable();
+  },
+  toString: function() {
+    return this.rgb() + "";
+  }
+});
+
+function color(format) {
+  var m;
+  format = (format + "").trim().toLowerCase();
+  return (m = reHex3.exec(format)) ? (m = parseInt(m[1], 16), new Rgb((m >> 8 & 0xf) | (m >> 4 & 0x0f0), (m >> 4 & 0xf) | (m & 0xf0), ((m & 0xf) << 4) | (m & 0xf), 1)) // #f00
+      : (m = reHex6.exec(format)) ? rgbn(parseInt(m[1], 16)) // #ff0000
+      : (m = reRgbInteger.exec(format)) ? new Rgb(m[1], m[2], m[3], 1) // rgb(255, 0, 0)
+      : (m = reRgbPercent.exec(format)) ? new Rgb(m[1] * 255 / 100, m[2] * 255 / 100, m[3] * 255 / 100, 1) // rgb(100%, 0%, 0%)
+      : (m = reRgbaInteger.exec(format)) ? rgba(m[1], m[2], m[3], m[4]) // rgba(255, 0, 0, 1)
+      : (m = reRgbaPercent.exec(format)) ? rgba(m[1] * 255 / 100, m[2] * 255 / 100, m[3] * 255 / 100, m[4]) // rgb(100%, 0%, 0%, 1)
+      : (m = reHslPercent.exec(format)) ? hsla(m[1], m[2] / 100, m[3] / 100, 1) // hsl(120, 50%, 50%)
+      : (m = reHslaPercent.exec(format)) ? hsla(m[1], m[2] / 100, m[3] / 100, m[4]) // hsla(120, 50%, 50%, 1)
+      : named.hasOwnProperty(format) ? rgbn(named[format])
+      : format === "transparent" ? new Rgb(NaN, NaN, NaN, 0)
+      : null;
+}
+
+function rgbn(n) {
+  return new Rgb(n >> 16 & 0xff, n >> 8 & 0xff, n & 0xff, 1);
+}
+
+function rgba(r, g, b, a) {
+  if (a <= 0) r = g = b = NaN;
+  return new Rgb(r, g, b, a);
+}
+
+function rgbConvert(o) {
+  if (!(o instanceof Color)) o = color(o);
+  if (!o) return new Rgb;
+  o = o.rgb();
+  return new Rgb(o.r, o.g, o.b, o.opacity);
+}
+
+function rgb(r, g, b, opacity) {
+  return arguments.length === 1 ? rgbConvert(r) : new Rgb(r, g, b, opacity == null ? 1 : opacity);
+}
+
+function Rgb(r, g, b, opacity) {
+  this.r = +r;
+  this.g = +g;
+  this.b = +b;
+  this.opacity = +opacity;
+}
+
+define(Rgb, rgb, extend(Color, {
+  brighter: function(k) {
+    k = k == null ? brighter : Math.pow(brighter, k);
+    return new Rgb(this.r * k, this.g * k, this.b * k, this.opacity);
+  },
+  darker: function(k) {
+    k = k == null ? darker : Math.pow(darker, k);
+    return new Rgb(this.r * k, this.g * k, this.b * k, this.opacity);
+  },
+  rgb: function() {
+    return this;
+  },
+  displayable: function() {
+    return (0 <= this.r && this.r <= 255)
+        && (0 <= this.g && this.g <= 255)
+        && (0 <= this.b && this.b <= 255)
+        && (0 <= this.opacity && this.opacity <= 1);
+  },
+  toString: function() {
+    var a = this.opacity; a = isNaN(a) ? 1 : Math.max(0, Math.min(1, a));
+    return (a === 1 ? "rgb(" : "rgba(")
+        + Math.max(0, Math.min(255, Math.round(this.r) || 0)) + ", "
+        + Math.max(0, Math.min(255, Math.round(this.g) || 0)) + ", "
+        + Math.max(0, Math.min(255, Math.round(this.b) || 0))
+        + (a === 1 ? ")" : ", " + a + ")");
+  }
+}));
+
+function hsla(h, s, l, a) {
+  if (a <= 0) h = s = l = NaN;
+  else if (l <= 0 || l >= 1) h = s = NaN;
+  else if (s <= 0) h = NaN;
+  return new Hsl(h, s, l, a);
+}
+
+function hslConvert(o) {
+  if (o instanceof Hsl) return new Hsl(o.h, o.s, o.l, o.opacity);
+  if (!(o instanceof Color)) o = color(o);
+  if (!o) return new Hsl;
+  if (o instanceof Hsl) return o;
+  o = o.rgb();
+  var r = o.r / 255,
+      g = o.g / 255,
+      b = o.b / 255,
+      min = Math.min(r, g, b),
+      max = Math.max(r, g, b),
+      h = NaN,
+      s = max - min,
+      l = (max + min) / 2;
+  if (s) {
+    if (r === max) h = (g - b) / s + (g < b) * 6;
+    else if (g === max) h = (b - r) / s + 2;
+    else h = (r - g) / s + 4;
+    s /= l < 0.5 ? max + min : 2 - max - min;
+    h *= 60;
+  } else {
+    s = l > 0 && l < 1 ? 0 : h;
+  }
+  return new Hsl(h, s, l, o.opacity);
+}
+
+function hsl(h, s, l, opacity) {
+  return arguments.length === 1 ? hslConvert(h) : new Hsl(h, s, l, opacity == null ? 1 : opacity);
+}
+
+function Hsl(h, s, l, opacity) {
+  this.h = +h;
+  this.s = +s;
+  this.l = +l;
+  this.opacity = +opacity;
+}
+
+define(Hsl, hsl, extend(Color, {
+  brighter: function(k) {
+    k = k == null ? brighter : Math.pow(brighter, k);
+    return new Hsl(this.h, this.s, this.l * k, this.opacity);
+  },
+  darker: function(k) {
+    k = k == null ? darker : Math.pow(darker, k);
+    return new Hsl(this.h, this.s, this.l * k, this.opacity);
+  },
+  rgb: function() {
+    var h = this.h % 360 + (this.h < 0) * 360,
+        s = isNaN(h) || isNaN(this.s) ? 0 : this.s,
+        l = this.l,
+        m2 = l + (l < 0.5 ? l : 1 - l) * s,
+        m1 = 2 * l - m2;
+    return new Rgb(
+      hsl2rgb(h >= 240 ? h - 240 : h + 120, m1, m2),
+      hsl2rgb(h, m1, m2),
+      hsl2rgb(h < 120 ? h + 240 : h - 120, m1, m2),
+      this.opacity
+    );
+  },
+  displayable: function() {
+    return (0 <= this.s && this.s <= 1 || isNaN(this.s))
+        && (0 <= this.l && this.l <= 1)
+        && (0 <= this.opacity && this.opacity <= 1);
+  }
+}));
+
+/* From FvD 13.37, CSS Color Module Level 3 */
+function hsl2rgb(h, m1, m2) {
+  return (h < 60 ? m1 + (m2 - m1) * h / 60
+      : h < 180 ? m2
+      : h < 240 ? m1 + (m2 - m1) * (240 - h) / 60
+      : m1) * 255;
+}
+
+var deg2rad = Math.PI / 180;
+var rad2deg = 180 / Math.PI;
+
+var Kn = 18;
+var Xn = 0.950470;
+var Yn = 1;
+var Zn = 1.088830;
+var t0 = 4 / 29;
+var t1 = 6 / 29;
+var t2 = 3 * t1 * t1;
+var t3 = t1 * t1 * t1;
+
+function labConvert(o) {
+  if (o instanceof Lab) return new Lab(o.l, o.a, o.b, o.opacity);
+  if (o instanceof Hcl) {
+    var h = o.h * deg2rad;
+    return new Lab(o.l, Math.cos(h) * o.c, Math.sin(h) * o.c, o.opacity);
+  }
+  if (!(o instanceof Rgb)) o = rgbConvert(o);
+  var b = rgb2xyz(o.r),
+      a = rgb2xyz(o.g),
+      l = rgb2xyz(o.b),
+      x = xyz2lab((0.4124564 * b + 0.3575761 * a + 0.1804375 * l) / Xn),
+      y = xyz2lab((0.2126729 * b + 0.7151522 * a + 0.0721750 * l) / Yn),
+      z = xyz2lab((0.0193339 * b + 0.1191920 * a + 0.9503041 * l) / Zn);
+  return new Lab(116 * y - 16, 500 * (x - y), 200 * (y - z), o.opacity);
+}
+
+function lab(l, a, b, opacity) {
+  return arguments.length === 1 ? labConvert(l) : new Lab(l, a, b, opacity == null ? 1 : opacity);
+}
+
+function Lab(l, a, b, opacity) {
+  this.l = +l;
+  this.a = +a;
+  this.b = +b;
+  this.opacity = +opacity;
+}
+
+define(Lab, lab, extend(Color, {
+  brighter: function(k) {
+    return new Lab(this.l + Kn * (k == null ? 1 : k), this.a, this.b, this.opacity);
+  },
+  darker: function(k) {
+    return new Lab(this.l - Kn * (k == null ? 1 : k), this.a, this.b, this.opacity);
+  },
+  rgb: function() {
+    var y = (this.l + 16) / 116,
+        x = isNaN(this.a) ? y : y + this.a / 500,
+        z = isNaN(this.b) ? y : y - this.b / 200;
+    y = Yn * lab2xyz(y);
+    x = Xn * lab2xyz(x);
+    z = Zn * lab2xyz(z);
+    return new Rgb(
+      xyz2rgb( 3.2404542 * x - 1.5371385 * y - 0.4985314 * z), // D65 -> sRGB
+      xyz2rgb(-0.9692660 * x + 1.8760108 * y + 0.0415560 * z),
+      xyz2rgb( 0.0556434 * x - 0.2040259 * y + 1.0572252 * z),
+      this.opacity
+    );
+  }
+}));
+
+function xyz2lab(t) {
+  return t > t3 ? Math.pow(t, 1 / 3) : t / t2 + t0;
+}
+
+function lab2xyz(t) {
+  return t > t1 ? t * t * t : t2 * (t - t0);
+}
+
+function xyz2rgb(x) {
+  return 255 * (x <= 0.0031308 ? 12.92 * x : 1.055 * Math.pow(x, 1 / 2.4) - 0.055);
+}
+
+function rgb2xyz(x) {
+  return (x /= 255) <= 0.04045 ? x / 12.92 : Math.pow((x + 0.055) / 1.055, 2.4);
+}
+
+function hclConvert(o) {
+  if (o instanceof Hcl) return new Hcl(o.h, o.c, o.l, o.opacity);
+  if (!(o instanceof Lab)) o = labConvert(o);
+  var h = Math.atan2(o.b, o.a) * rad2deg;
+  return new Hcl(h < 0 ? h + 360 : h, Math.sqrt(o.a * o.a + o.b * o.b), o.l, o.opacity);
+}
+
+function hcl(h, c, l, opacity) {
+  return arguments.length === 1 ? hclConvert(h) : new Hcl(h, c, l, opacity == null ? 1 : opacity);
+}
+
+function Hcl(h, c, l, opacity) {
+  this.h = +h;
+  this.c = +c;
+  this.l = +l;
+  this.opacity = +opacity;
+}
+
+define(Hcl, hcl, extend(Color, {
+  brighter: function(k) {
+    return new Hcl(this.h, this.c, this.l + Kn * (k == null ? 1 : k), this.opacity);
+  },
+  darker: function(k) {
+    return new Hcl(this.h, this.c, this.l - Kn * (k == null ? 1 : k), this.opacity);
+  },
+  rgb: function() {
+    return labConvert(this).rgb();
+  }
+}));
+
+var A = -0.14861;
+var B = +1.78277;
+var C = -0.29227;
+var D = -0.90649;
+var E = +1.97294;
+var ED = E * D;
+var EB = E * B;
+var BC_DA = B * C - D * A;
+
+function cubehelixConvert(o) {
+  if (o instanceof Cubehelix) return new Cubehelix(o.h, o.s, o.l, o.opacity);
+  if (!(o instanceof Rgb)) o = rgbConvert(o);
+  var r = o.r / 255,
+      g = o.g / 255,
+      b = o.b / 255,
+      l = (BC_DA * b + ED * r - EB * g) / (BC_DA + ED - EB),
+      bl = b - l,
+      k = (E * (g - l) - C * bl) / D,
+      s = Math.sqrt(k * k + bl * bl) / (E * l * (1 - l)), // NaN if l=0 or l=1
+      h = s ? Math.atan2(k, bl) * rad2deg - 120 : NaN;
+  return new Cubehelix(h < 0 ? h + 360 : h, s, l, o.opacity);
+}
+
+function cubehelix(h, s, l, opacity) {
+  return arguments.length === 1 ? cubehelixConvert(h) : new Cubehelix(h, s, l, opacity == null ? 1 : opacity);
+}
+
+function Cubehelix(h, s, l, opacity) {
+  this.h = +h;
+  this.s = +s;
+  this.l = +l;
+  this.opacity = +opacity;
+}
+
+define(Cubehelix, cubehelix, extend(Color, {
+  brighter: function(k) {
+    k = k == null ? brighter : Math.pow(brighter, k);
+    return new Cubehelix(this.h, this.s, this.l * k, this.opacity);
+  },
+  darker: function(k) {
+    k = k == null ? darker : Math.pow(darker, k);
+    return new Cubehelix(this.h, this.s, this.l * k, this.opacity);
+  },
+  rgb: function() {
+    var h = isNaN(this.h) ? 0 : (this.h + 120) * deg2rad,
+        l = +this.l,
+        a = isNaN(this.s) ? 0 : this.s * l * (1 - l),
+        cosh = Math.cos(h),
+        sinh = Math.sin(h);
+    return new Rgb(
+      255 * (l + a * (A * cosh + B * sinh)),
+      255 * (l + a * (C * cosh + D * sinh)),
+      255 * (l + a * (E * cosh)),
+      this.opacity
+    );
+  }
+}));
+
+exports.color = color;
+exports.rgb = rgb;
+exports.hsl = hsl;
+exports.lab = lab;
+exports.hcl = hcl;
+exports.cubehelix = cubehelix;
+
+Object.defineProperty(exports, '__esModule', { value: true });
+
+})));
+
+},{}],5:[function(require,module,exports){
+// https://d3js.org/d3-dispatch/ Version 1.0.3. Copyright 2017 Mike Bostock.
+(function (global, factory) {
+	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
+	typeof define === 'function' && define.amd ? define(['exports'], factory) :
+	(factory((global.d3 = global.d3 || {})));
+}(this, (function (exports) { 'use strict';
+
+var noop = {value: function() {}};
+
+function dispatch() {
+  for (var i = 0, n = arguments.length, _ = {}, t; i < n; ++i) {
+    if (!(t = arguments[i] + "") || (t in _)) throw new Error("illegal type: " + t);
+    _[t] = [];
+  }
+  return new Dispatch(_);
+}
+
+function Dispatch(_) {
+  this._ = _;
+}
+
+function parseTypenames(typenames, types) {
+  return typenames.trim().split(/^|\s+/).map(function(t) {
+    var name = "", i = t.indexOf(".");
+    if (i >= 0) name = t.slice(i + 1), t = t.slice(0, i);
+    if (t && !types.hasOwnProperty(t)) throw new Error("unknown type: " + t);
+    return {type: t, name: name};
+  });
+}
+
+Dispatch.prototype = dispatch.prototype = {
+  constructor: Dispatch,
+  on: function(typename, callback) {
+    var _ = this._,
+        T = parseTypenames(typename + "", _),
+        t,
+        i = -1,
+        n = T.length;
+
+    // If no callback was specified, return the callback of the given type and name.
+    if (arguments.length < 2) {
+      while (++i < n) if ((t = (typename = T[i]).type) && (t = get(_[t], typename.name))) return t;
+      return;
+    }
+
+    // If a type was specified, set the callback for the given type and name.
+    // Otherwise, if a null callback was specified, remove callbacks of the given name.
+    if (callback != null && typeof callback !== "function") throw new Error("invalid callback: " + callback);
+    while (++i < n) {
+      if (t = (typename = T[i]).type) _[t] = set(_[t], typename.name, callback);
+      else if (callback == null) for (t in _) _[t] = set(_[t], typename.name, null);
+    }
+
+    return this;
+  },
+  copy: function() {
+    var copy = {}, _ = this._;
+    for (var t in _) copy[t] = _[t].slice();
+    return new Dispatch(copy);
+  },
+  call: function(type, that) {
+    if ((n = arguments.length - 2) > 0) for (var args = new Array(n), i = 0, n, t; i < n; ++i) args[i] = arguments[i + 2];
+    if (!this._.hasOwnProperty(type)) throw new Error("unknown type: " + type);
+    for (t = this._[type], i = 0, n = t.length; i < n; ++i) t[i].value.apply(that, args);
+  },
+  apply: function(type, that, args) {
+    if (!this._.hasOwnProperty(type)) throw new Error("unknown type: " + type);
+    for (var t = this._[type], i = 0, n = t.length; i < n; ++i) t[i].value.apply(that, args);
+  }
+};
+
+function get(type, name) {
+  for (var i = 0, n = type.length, c; i < n; ++i) {
+    if ((c = type[i]).name === name) {
+      return c.value;
+    }
+  }
+}
+
+function set(type, name, callback) {
+  for (var i = 0, n = type.length; i < n; ++i) {
+    if (type[i].name === name) {
+      type[i] = noop, type = type.slice(0, i).concat(type.slice(i + 1));
+      break;
+    }
+  }
+  if (callback != null) type.push({name: name, value: callback});
+  return type;
+}
+
+exports.dispatch = dispatch;
+
+Object.defineProperty(exports, '__esModule', { value: true });
+
+})));
+
+},{}],6:[function(require,module,exports){
+// https://d3js.org/d3-drag/ Version 1.2.1. Copyright 2017 Mike Bostock.
+(function (global, factory) {
+	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('d3-dispatch'), require('d3-selection')) :
+	typeof define === 'function' && define.amd ? define(['exports', 'd3-dispatch', 'd3-selection'], factory) :
+	(factory((global.d3 = global.d3 || {}),global.d3,global.d3));
+}(this, (function (exports,d3Dispatch,d3Selection) { 'use strict';
+
+function nopropagation() {
+  d3Selection.event.stopImmediatePropagation();
+}
+
+var noevent = function() {
+  d3Selection.event.preventDefault();
+  d3Selection.event.stopImmediatePropagation();
+};
+
+var nodrag = function(view) {
+  var root = view.document.documentElement,
+      selection = d3Selection.select(view).on("dragstart.drag", noevent, true);
+  if ("onselectstart" in root) {
+    selection.on("selectstart.drag", noevent, true);
+  } else {
+    root.__noselect = root.style.MozUserSelect;
+    root.style.MozUserSelect = "none";
+  }
+};
+
+function yesdrag(view, noclick) {
+  var root = view.document.documentElement,
+      selection = d3Selection.select(view).on("dragstart.drag", null);
+  if (noclick) {
+    selection.on("click.drag", noevent, true);
+    setTimeout(function() { selection.on("click.drag", null); }, 0);
+  }
+  if ("onselectstart" in root) {
+    selection.on("selectstart.drag", null);
+  } else {
+    root.style.MozUserSelect = root.__noselect;
+    delete root.__noselect;
+  }
+}
+
+var constant = function(x) {
+  return function() {
+    return x;
+  };
+};
+
+function DragEvent(target, type, subject, id, active, x, y, dx, dy, dispatch$$1) {
+  this.target = target;
+  this.type = type;
+  this.subject = subject;
+  this.identifier = id;
+  this.active = active;
+  this.x = x;
+  this.y = y;
+  this.dx = dx;
+  this.dy = dy;
+  this._ = dispatch$$1;
+}
+
+DragEvent.prototype.on = function() {
+  var value = this._.on.apply(this._, arguments);
+  return value === this._ ? this : value;
+};
+
+// Ignore right-click, since that should open the context menu.
+function defaultFilter() {
+  return !d3Selection.event.button;
+}
+
+function defaultContainer() {
+  return this.parentNode;
+}
+
+function defaultSubject(d) {
+  return d == null ? {x: d3Selection.event.x, y: d3Selection.event.y} : d;
+}
+
+function defaultTouchable() {
+  return "ontouchstart" in this;
+}
+
+var drag = function() {
+  var filter = defaultFilter,
+      container = defaultContainer,
+      subject = defaultSubject,
+      touchable = defaultTouchable,
+      gestures = {},
+      listeners = d3Dispatch.dispatch("start", "drag", "end"),
+      active = 0,
+      mousedownx,
+      mousedowny,
+      mousemoving,
+      touchending,
+      clickDistance2 = 0;
+
+  function drag(selection) {
+    selection
+        .on("mousedown.drag", mousedowned)
+      .filter(touchable)
+        .on("touchstart.drag", touchstarted)
+        .on("touchmove.drag", touchmoved)
+        .on("touchend.drag touchcancel.drag", touchended)
+        .style("touch-action", "none")
+        .style("-webkit-tap-highlight-color", "rgba(0,0,0,0)");
+  }
+
+  function mousedowned() {
+    if (touchending || !filter.apply(this, arguments)) return;
+    var gesture = beforestart("mouse", container.apply(this, arguments), d3Selection.mouse, this, arguments);
+    if (!gesture) return;
+    d3Selection.select(d3Selection.event.view).on("mousemove.drag", mousemoved, true).on("mouseup.drag", mouseupped, true);
+    nodrag(d3Selection.event.view);
+    nopropagation();
+    mousemoving = false;
+    mousedownx = d3Selection.event.clientX;
+    mousedowny = d3Selection.event.clientY;
+    gesture("start");
+  }
+
+  function mousemoved() {
+    noevent();
+    if (!mousemoving) {
+      var dx = d3Selection.event.clientX - mousedownx, dy = d3Selection.event.clientY - mousedowny;
+      mousemoving = dx * dx + dy * dy > clickDistance2;
+    }
+    gestures.mouse("drag");
+  }
+
+  function mouseupped() {
+    d3Selection.select(d3Selection.event.view).on("mousemove.drag mouseup.drag", null);
+    yesdrag(d3Selection.event.view, mousemoving);
+    noevent();
+    gestures.mouse("end");
+  }
+
+  function touchstarted() {
+    if (!filter.apply(this, arguments)) return;
+    var touches = d3Selection.event.changedTouches,
+        c = container.apply(this, arguments),
+        n = touches.length, i, gesture;
+
+    for (i = 0; i < n; ++i) {
+      if (gesture = beforestart(touches[i].identifier, c, d3Selection.touch, this, arguments)) {
+        nopropagation();
+        gesture("start");
+      }
+    }
+  }
+
+  function touchmoved() {
+    var touches = d3Selection.event.changedTouches,
+        n = touches.length, i, gesture;
+
+    for (i = 0; i < n; ++i) {
+      if (gesture = gestures[touches[i].identifier]) {
+        noevent();
+        gesture("drag");
+      }
+    }
+  }
+
+  function touchended() {
+    var touches = d3Selection.event.changedTouches,
+        n = touches.length, i, gesture;
+
+    if (touchending) clearTimeout(touchending);
+    touchending = setTimeout(function() { touchending = null; }, 500); // Ghost clicks are delayed!
+    for (i = 0; i < n; ++i) {
+      if (gesture = gestures[touches[i].identifier]) {
+        nopropagation();
+        gesture("end");
+      }
+    }
+  }
+
+  function beforestart(id, container, point, that, args) {
+    var p = point(container, id), s, dx, dy,
+        sublisteners = listeners.copy();
+
+    if (!d3Selection.customEvent(new DragEvent(drag, "beforestart", s, id, active, p[0], p[1], 0, 0, sublisteners), function() {
+      if ((d3Selection.event.subject = s = subject.apply(that, args)) == null) return false;
+      dx = s.x - p[0] || 0;
+      dy = s.y - p[1] || 0;
+      return true;
+    })) return;
+
+    return function gesture(type) {
+      var p0 = p, n;
+      switch (type) {
+        case "start": gestures[id] = gesture, n = active++; break;
+        case "end": delete gestures[id], --active; // nobreak
+        case "drag": p = point(container, id), n = active; break;
+      }
+      d3Selection.customEvent(new DragEvent(drag, type, s, id, n, p[0] + dx, p[1] + dy, p[0] - p0[0], p[1] - p0[1], sublisteners), sublisteners.apply, sublisteners, [type, that, args]);
+    };
+  }
+
+  drag.filter = function(_) {
+    return arguments.length ? (filter = typeof _ === "function" ? _ : constant(!!_), drag) : filter;
+  };
+
+  drag.container = function(_) {
+    return arguments.length ? (container = typeof _ === "function" ? _ : constant(_), drag) : container;
+  };
+
+  drag.subject = function(_) {
+    return arguments.length ? (subject = typeof _ === "function" ? _ : constant(_), drag) : subject;
+  };
+
+  drag.touchable = function(_) {
+    return arguments.length ? (touchable = typeof _ === "function" ? _ : constant(!!_), drag) : touchable;
+  };
+
+  drag.on = function() {
+    var value = listeners.on.apply(listeners, arguments);
+    return value === listeners ? drag : value;
+  };
+
+  drag.clickDistance = function(_) {
+    return arguments.length ? (clickDistance2 = (_ = +_) * _, drag) : Math.sqrt(clickDistance2);
+  };
+
+  return drag;
+};
+
+exports.drag = drag;
+exports.dragDisable = nodrag;
+exports.dragEnable = yesdrag;
+
+Object.defineProperty(exports, '__esModule', { value: true });
+
+})));
+
+},{"d3-dispatch":5,"d3-selection":11}],7:[function(require,module,exports){
+// https://d3js.org/d3-ease/ Version 1.0.3. Copyright 2017 Mike Bostock.
+(function (global, factory) {
+	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
+	typeof define === 'function' && define.amd ? define(['exports'], factory) :
+	(factory((global.d3 = global.d3 || {})));
+}(this, (function (exports) { 'use strict';
+
+function linear(t) {
+  return +t;
+}
+
+function quadIn(t) {
+  return t * t;
+}
+
+function quadOut(t) {
+  return t * (2 - t);
+}
+
+function quadInOut(t) {
+  return ((t *= 2) <= 1 ? t * t : --t * (2 - t) + 1) / 2;
+}
+
+function cubicIn(t) {
+  return t * t * t;
+}
+
+function cubicOut(t) {
+  return --t * t * t + 1;
+}
+
+function cubicInOut(t) {
+  return ((t *= 2) <= 1 ? t * t * t : (t -= 2) * t * t + 2) / 2;
+}
+
+var exponent = 3;
+
+var polyIn = (function custom(e) {
+  e = +e;
+
+  function polyIn(t) {
+    return Math.pow(t, e);
+  }
+
+  polyIn.exponent = custom;
+
+  return polyIn;
+})(exponent);
+
+var polyOut = (function custom(e) {
+  e = +e;
+
+  function polyOut(t) {
+    return 1 - Math.pow(1 - t, e);
+  }
+
+  polyOut.exponent = custom;
+
+  return polyOut;
+})(exponent);
+
+var polyInOut = (function custom(e) {
+  e = +e;
+
+  function polyInOut(t) {
+    return ((t *= 2) <= 1 ? Math.pow(t, e) : 2 - Math.pow(2 - t, e)) / 2;
+  }
+
+  polyInOut.exponent = custom;
+
+  return polyInOut;
+})(exponent);
+
+var pi = Math.PI;
+var halfPi = pi / 2;
+
+function sinIn(t) {
+  return 1 - Math.cos(t * halfPi);
+}
+
+function sinOut(t) {
+  return Math.sin(t * halfPi);
+}
+
+function sinInOut(t) {
+  return (1 - Math.cos(pi * t)) / 2;
+}
+
+function expIn(t) {
+  return Math.pow(2, 10 * t - 10);
+}
+
+function expOut(t) {
+  return 1 - Math.pow(2, -10 * t);
+}
+
+function expInOut(t) {
+  return ((t *= 2) <= 1 ? Math.pow(2, 10 * t - 10) : 2 - Math.pow(2, 10 - 10 * t)) / 2;
+}
+
+function circleIn(t) {
+  return 1 - Math.sqrt(1 - t * t);
+}
+
+function circleOut(t) {
+  return Math.sqrt(1 - --t * t);
+}
+
+function circleInOut(t) {
+  return ((t *= 2) <= 1 ? 1 - Math.sqrt(1 - t * t) : Math.sqrt(1 - (t -= 2) * t) + 1) / 2;
+}
+
+var b1 = 4 / 11;
+var b2 = 6 / 11;
+var b3 = 8 / 11;
+var b4 = 3 / 4;
+var b5 = 9 / 11;
+var b6 = 10 / 11;
+var b7 = 15 / 16;
+var b8 = 21 / 22;
+var b9 = 63 / 64;
+var b0 = 1 / b1 / b1;
+
+function bounceIn(t) {
+  return 1 - bounceOut(1 - t);
+}
+
+function bounceOut(t) {
+  return (t = +t) < b1 ? b0 * t * t : t < b3 ? b0 * (t -= b2) * t + b4 : t < b6 ? b0 * (t -= b5) * t + b7 : b0 * (t -= b8) * t + b9;
+}
+
+function bounceInOut(t) {
+  return ((t *= 2) <= 1 ? 1 - bounceOut(1 - t) : bounceOut(t - 1) + 1) / 2;
+}
+
+var overshoot = 1.70158;
+
+var backIn = (function custom(s) {
+  s = +s;
+
+  function backIn(t) {
+    return t * t * ((s + 1) * t - s);
+  }
+
+  backIn.overshoot = custom;
+
+  return backIn;
+})(overshoot);
+
+var backOut = (function custom(s) {
+  s = +s;
+
+  function backOut(t) {
+    return --t * t * ((s + 1) * t + s) + 1;
+  }
+
+  backOut.overshoot = custom;
+
+  return backOut;
+})(overshoot);
+
+var backInOut = (function custom(s) {
+  s = +s;
+
+  function backInOut(t) {
+    return ((t *= 2) < 1 ? t * t * ((s + 1) * t - s) : (t -= 2) * t * ((s + 1) * t + s) + 2) / 2;
+  }
+
+  backInOut.overshoot = custom;
+
+  return backInOut;
+})(overshoot);
+
+var tau = 2 * Math.PI;
+var amplitude = 1;
+var period = 0.3;
+
+var elasticIn = (function custom(a, p) {
+  var s = Math.asin(1 / (a = Math.max(1, a))) * (p /= tau);
+
+  function elasticIn(t) {
+    return a * Math.pow(2, 10 * --t) * Math.sin((s - t) / p);
+  }
+
+  elasticIn.amplitude = function(a) { return custom(a, p * tau); };
+  elasticIn.period = function(p) { return custom(a, p); };
+
+  return elasticIn;
+})(amplitude, period);
+
+var elasticOut = (function custom(a, p) {
+  var s = Math.asin(1 / (a = Math.max(1, a))) * (p /= tau);
+
+  function elasticOut(t) {
+    return 1 - a * Math.pow(2, -10 * (t = +t)) * Math.sin((t + s) / p);
+  }
+
+  elasticOut.amplitude = function(a) { return custom(a, p * tau); };
+  elasticOut.period = function(p) { return custom(a, p); };
+
+  return elasticOut;
+})(amplitude, period);
+
+var elasticInOut = (function custom(a, p) {
+  var s = Math.asin(1 / (a = Math.max(1, a))) * (p /= tau);
+
+  function elasticInOut(t) {
+    return ((t = t * 2 - 1) < 0
+        ? a * Math.pow(2, 10 * t) * Math.sin((s - t) / p)
+        : 2 - a * Math.pow(2, -10 * t) * Math.sin((s + t) / p)) / 2;
+  }
+
+  elasticInOut.amplitude = function(a) { return custom(a, p * tau); };
+  elasticInOut.period = function(p) { return custom(a, p); };
+
+  return elasticInOut;
+})(amplitude, period);
+
+exports.easeLinear = linear;
+exports.easeQuad = quadInOut;
+exports.easeQuadIn = quadIn;
+exports.easeQuadOut = quadOut;
+exports.easeQuadInOut = quadInOut;
+exports.easeCubic = cubicInOut;
+exports.easeCubicIn = cubicIn;
+exports.easeCubicOut = cubicOut;
+exports.easeCubicInOut = cubicInOut;
+exports.easePoly = polyInOut;
+exports.easePolyIn = polyIn;
+exports.easePolyOut = polyOut;
+exports.easePolyInOut = polyInOut;
+exports.easeSin = sinInOut;
+exports.easeSinIn = sinIn;
+exports.easeSinOut = sinOut;
+exports.easeSinInOut = sinInOut;
+exports.easeExp = expInOut;
+exports.easeExpIn = expIn;
+exports.easeExpOut = expOut;
+exports.easeExpInOut = expInOut;
+exports.easeCircle = circleInOut;
+exports.easeCircleIn = circleIn;
+exports.easeCircleOut = circleOut;
+exports.easeCircleInOut = circleInOut;
+exports.easeBounce = bounceOut;
+exports.easeBounceIn = bounceIn;
+exports.easeBounceOut = bounceOut;
+exports.easeBounceInOut = bounceInOut;
+exports.easeBack = backInOut;
+exports.easeBackIn = backIn;
+exports.easeBackOut = backOut;
+exports.easeBackInOut = backInOut;
+exports.easeElastic = elasticOut;
+exports.easeElasticIn = elasticIn;
+exports.easeElasticOut = elasticOut;
+exports.easeElasticInOut = elasticInOut;
+
+Object.defineProperty(exports, '__esModule', { value: true });
+
+})));
+
+},{}],8:[function(require,module,exports){
+// https://d3js.org/d3-format/ Version 1.2.2. Copyright 2018 Mike Bostock.
+(function (global, factory) {
+	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
+	typeof define === 'function' && define.amd ? define(['exports'], factory) :
+	(factory((global.d3 = global.d3 || {})));
+}(this, (function (exports) { 'use strict';
+
+// Computes the decimal coefficient and exponent of the specified number x with
+// significant digits p, where x is positive and p is in [1, 21] or undefined.
+// For example, formatDecimal(1.23) returns ["123", 0].
+var formatDecimal = function(x, p) {
+  if ((i = (x = p ? x.toExponential(p - 1) : x.toExponential()).indexOf("e")) < 0) return null; // NaN, ±Infinity
+  var i, coefficient = x.slice(0, i);
+
+  // The string returned by toExponential either has the form \d\.\d+e[-+]\d+
+  // (e.g., 1.2e+3) or the form \de[-+]\d+ (e.g., 1e+3).
+  return [
+    coefficient.length > 1 ? coefficient[0] + coefficient.slice(2) : coefficient,
+    +x.slice(i + 1)
+  ];
+};
+
+var exponent = function(x) {
+  return x = formatDecimal(Math.abs(x)), x ? x[1] : NaN;
+};
+
+var formatGroup = function(grouping, thousands) {
+  return function(value, width) {
+    var i = value.length,
+        t = [],
+        j = 0,
+        g = grouping[0],
+        length = 0;
+
+    while (i > 0 && g > 0) {
+      if (length + g + 1 > width) g = Math.max(1, width - length);
+      t.push(value.substring(i -= g, i + g));
+      if ((length += g + 1) > width) break;
+      g = grouping[j = (j + 1) % grouping.length];
+    }
+
+    return t.reverse().join(thousands);
+  };
+};
+
+var formatNumerals = function(numerals) {
+  return function(value) {
+    return value.replace(/[0-9]/g, function(i) {
+      return numerals[+i];
+    });
+  };
+};
+
+var formatDefault = function(x, p) {
+  x = x.toPrecision(p);
+
+  out: for (var n = x.length, i = 1, i0 = -1, i1; i < n; ++i) {
+    switch (x[i]) {
+      case ".": i0 = i1 = i; break;
+      case "0": if (i0 === 0) i0 = i; i1 = i; break;
+      case "e": break out;
+      default: if (i0 > 0) i0 = 0; break;
+    }
+  }
+
+  return i0 > 0 ? x.slice(0, i0) + x.slice(i1 + 1) : x;
+};
+
+var prefixExponent;
+
+var formatPrefixAuto = function(x, p) {
+  var d = formatDecimal(x, p);
+  if (!d) return x + "";
+  var coefficient = d[0],
+      exponent = d[1],
+      i = exponent - (prefixExponent = Math.max(-8, Math.min(8, Math.floor(exponent / 3))) * 3) + 1,
+      n = coefficient.length;
+  return i === n ? coefficient
+      : i > n ? coefficient + new Array(i - n + 1).join("0")
+      : i > 0 ? coefficient.slice(0, i) + "." + coefficient.slice(i)
+      : "0." + new Array(1 - i).join("0") + formatDecimal(x, Math.max(0, p + i - 1))[0]; // less than 1y!
+};
+
+var formatRounded = function(x, p) {
+  var d = formatDecimal(x, p);
+  if (!d) return x + "";
+  var coefficient = d[0],
+      exponent = d[1];
+  return exponent < 0 ? "0." + new Array(-exponent).join("0") + coefficient
+      : coefficient.length > exponent + 1 ? coefficient.slice(0, exponent + 1) + "." + coefficient.slice(exponent + 1)
+      : coefficient + new Array(exponent - coefficient.length + 2).join("0");
+};
+
+var formatTypes = {
+  "": formatDefault,
+  "%": function(x, p) { return (x * 100).toFixed(p); },
+  "b": function(x) { return Math.round(x).toString(2); },
+  "c": function(x) { return x + ""; },
+  "d": function(x) { return Math.round(x).toString(10); },
+  "e": function(x, p) { return x.toExponential(p); },
+  "f": function(x, p) { return x.toFixed(p); },
+  "g": function(x, p) { return x.toPrecision(p); },
+  "o": function(x) { return Math.round(x).toString(8); },
+  "p": function(x, p) { return formatRounded(x * 100, p); },
+  "r": formatRounded,
+  "s": formatPrefixAuto,
+  "X": function(x) { return Math.round(x).toString(16).toUpperCase(); },
+  "x": function(x) { return Math.round(x).toString(16); }
+};
+
+// [[fill]align][sign][symbol][0][width][,][.precision][type]
+var re = /^(?:(.)?([<>=^]))?([+\-\( ])?([$#])?(0)?(\d+)?(,)?(\.\d+)?([a-z%])?$/i;
+
+function formatSpecifier(specifier) {
+  return new FormatSpecifier(specifier);
+}
+
+formatSpecifier.prototype = FormatSpecifier.prototype; // instanceof
+
+function FormatSpecifier(specifier) {
+  if (!(match = re.exec(specifier))) throw new Error("invalid format: " + specifier);
+
+  var match,
+      fill = match[1] || " ",
+      align = match[2] || ">",
+      sign = match[3] || "-",
+      symbol = match[4] || "",
+      zero = !!match[5],
+      width = match[6] && +match[6],
+      comma = !!match[7],
+      precision = match[8] && +match[8].slice(1),
+      type = match[9] || "";
+
+  // The "n" type is an alias for ",g".
+  if (type === "n") comma = true, type = "g";
+
+  // Map invalid types to the default format.
+  else if (!formatTypes[type]) type = "";
+
+  // If zero fill is specified, padding goes after sign and before digits.
+  if (zero || (fill === "0" && align === "=")) zero = true, fill = "0", align = "=";
+
+  this.fill = fill;
+  this.align = align;
+  this.sign = sign;
+  this.symbol = symbol;
+  this.zero = zero;
+  this.width = width;
+  this.comma = comma;
+  this.precision = precision;
+  this.type = type;
+}
+
+FormatSpecifier.prototype.toString = function() {
+  return this.fill
+      + this.align
+      + this.sign
+      + this.symbol
+      + (this.zero ? "0" : "")
+      + (this.width == null ? "" : Math.max(1, this.width | 0))
+      + (this.comma ? "," : "")
+      + (this.precision == null ? "" : "." + Math.max(0, this.precision | 0))
+      + this.type;
+};
+
+var identity = function(x) {
+  return x;
+};
+
+var prefixes = ["y","z","a","f","p","n","µ","m","","k","M","G","T","P","E","Z","Y"];
+
+var formatLocale = function(locale) {
+  var group = locale.grouping && locale.thousands ? formatGroup(locale.grouping, locale.thousands) : identity,
+      currency = locale.currency,
+      decimal = locale.decimal,
+      numerals = locale.numerals ? formatNumerals(locale.numerals) : identity,
+      percent = locale.percent || "%";
+
+  function newFormat(specifier) {
+    specifier = formatSpecifier(specifier);
+
+    var fill = specifier.fill,
+        align = specifier.align,
+        sign = specifier.sign,
+        symbol = specifier.symbol,
+        zero = specifier.zero,
+        width = specifier.width,
+        comma = specifier.comma,
+        precision = specifier.precision,
+        type = specifier.type;
+
+    // Compute the prefix and suffix.
+    // For SI-prefix, the suffix is lazily computed.
+    var prefix = symbol === "$" ? currency[0] : symbol === "#" && /[boxX]/.test(type) ? "0" + type.toLowerCase() : "",
+        suffix = symbol === "$" ? currency[1] : /[%p]/.test(type) ? percent : "";
+
+    // What format function should we use?
+    // Is this an integer type?
+    // Can this type generate exponential notation?
+    var formatType = formatTypes[type],
+        maybeSuffix = !type || /[defgprs%]/.test(type);
+
+    // Set the default precision if not specified,
+    // or clamp the specified precision to the supported range.
+    // For significant precision, it must be in [1, 21].
+    // For fixed precision, it must be in [0, 20].
+    precision = precision == null ? (type ? 6 : 12)
+        : /[gprs]/.test(type) ? Math.max(1, Math.min(21, precision))
+        : Math.max(0, Math.min(20, precision));
+
+    function format(value) {
+      var valuePrefix = prefix,
+          valueSuffix = suffix,
+          i, n, c;
+
+      if (type === "c") {
+        valueSuffix = formatType(value) + valueSuffix;
+        value = "";
+      } else {
+        value = +value;
+
+        // Perform the initial formatting.
+        var valueNegative = value < 0;
+        value = formatType(Math.abs(value), precision);
+
+        // If a negative value rounds to zero during formatting, treat as positive.
+        if (valueNegative && +value === 0) valueNegative = false;
+
+        // Compute the prefix and suffix.
+        valuePrefix = (valueNegative ? (sign === "(" ? sign : "-") : sign === "-" || sign === "(" ? "" : sign) + valuePrefix;
+        valueSuffix = (type === "s" ? prefixes[8 + prefixExponent / 3] : "") + valueSuffix + (valueNegative && sign === "(" ? ")" : "");
+
+        // Break the formatted value into the integer “value” part that can be
+        // grouped, and fractional or exponential “suffix” part that is not.
+        if (maybeSuffix) {
+          i = -1, n = value.length;
+          while (++i < n) {
+            if (c = value.charCodeAt(i), 48 > c || c > 57) {
+              valueSuffix = (c === 46 ? decimal + value.slice(i + 1) : value.slice(i)) + valueSuffix;
+              value = value.slice(0, i);
+              break;
+            }
+          }
+        }
+      }
+
+      // If the fill character is not "0", grouping is applied before padding.
+      if (comma && !zero) value = group(value, Infinity);
+
+      // Compute the padding.
+      var length = valuePrefix.length + value.length + valueSuffix.length,
+          padding = length < width ? new Array(width - length + 1).join(fill) : "";
+
+      // If the fill character is "0", grouping is applied after padding.
+      if (comma && zero) value = group(padding + value, padding.length ? width - valueSuffix.length : Infinity), padding = "";
+
+      // Reconstruct the final output based on the desired alignment.
+      switch (align) {
+        case "<": value = valuePrefix + value + valueSuffix + padding; break;
+        case "=": value = valuePrefix + padding + value + valueSuffix; break;
+        case "^": value = padding.slice(0, length = padding.length >> 1) + valuePrefix + value + valueSuffix + padding.slice(length); break;
+        default: value = padding + valuePrefix + value + valueSuffix; break;
+      }
+
+      return numerals(value);
+    }
+
+    format.toString = function() {
+      return specifier + "";
+    };
+
+    return format;
+  }
+
+  function formatPrefix(specifier, value) {
+    var f = newFormat((specifier = formatSpecifier(specifier), specifier.type = "f", specifier)),
+        e = Math.max(-8, Math.min(8, Math.floor(exponent(value) / 3))) * 3,
+        k = Math.pow(10, -e),
+        prefix = prefixes[8 + e / 3];
+    return function(value) {
+      return f(k * value) + prefix;
+    };
+  }
+
+  return {
+    format: newFormat,
+    formatPrefix: formatPrefix
+  };
+};
+
+var locale;
+
+
+
+defaultLocale({
+  decimal: ".",
+  thousands: ",",
+  grouping: [3],
+  currency: ["$", ""]
+});
+
+function defaultLocale(definition) {
+  locale = formatLocale(definition);
+  exports.format = locale.format;
+  exports.formatPrefix = locale.formatPrefix;
+  return locale;
+}
+
+var precisionFixed = function(step) {
+  return Math.max(0, -exponent(Math.abs(step)));
+};
+
+var precisionPrefix = function(step, value) {
+  return Math.max(0, Math.max(-8, Math.min(8, Math.floor(exponent(value) / 3))) * 3 - exponent(Math.abs(step)));
+};
+
+var precisionRound = function(step, max) {
+  step = Math.abs(step), max = Math.abs(max) - step;
+  return Math.max(0, exponent(max) - exponent(step)) + 1;
+};
+
+exports.formatDefaultLocale = defaultLocale;
+exports.formatLocale = formatLocale;
+exports.formatSpecifier = formatSpecifier;
+exports.precisionFixed = precisionFixed;
+exports.precisionPrefix = precisionPrefix;
+exports.precisionRound = precisionRound;
+
+Object.defineProperty(exports, '__esModule', { value: true });
+
+})));
+
+},{}],9:[function(require,module,exports){
+// https://d3js.org/d3-interpolate/ Version 1.1.6. Copyright 2017 Mike Bostock.
+(function (global, factory) {
+	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('d3-color')) :
+	typeof define === 'function' && define.amd ? define(['exports', 'd3-color'], factory) :
+	(factory((global.d3 = global.d3 || {}),global.d3));
+}(this, (function (exports,d3Color) { 'use strict';
+
+function basis(t1, v0, v1, v2, v3) {
+  var t2 = t1 * t1, t3 = t2 * t1;
+  return ((1 - 3 * t1 + 3 * t2 - t3) * v0
+      + (4 - 6 * t2 + 3 * t3) * v1
+      + (1 + 3 * t1 + 3 * t2 - 3 * t3) * v2
+      + t3 * v3) / 6;
+}
+
+var basis$1 = function(values) {
+  var n = values.length - 1;
+  return function(t) {
+    var i = t <= 0 ? (t = 0) : t >= 1 ? (t = 1, n - 1) : Math.floor(t * n),
+        v1 = values[i],
+        v2 = values[i + 1],
+        v0 = i > 0 ? values[i - 1] : 2 * v1 - v2,
+        v3 = i < n - 1 ? values[i + 2] : 2 * v2 - v1;
+    return basis((t - i / n) * n, v0, v1, v2, v3);
+  };
+};
+
+var basisClosed = function(values) {
+  var n = values.length;
+  return function(t) {
+    var i = Math.floor(((t %= 1) < 0 ? ++t : t) * n),
+        v0 = values[(i + n - 1) % n],
+        v1 = values[i % n],
+        v2 = values[(i + 1) % n],
+        v3 = values[(i + 2) % n];
+    return basis((t - i / n) * n, v0, v1, v2, v3);
+  };
+};
+
+var constant = function(x) {
+  return function() {
+    return x;
+  };
+};
+
+function linear(a, d) {
+  return function(t) {
+    return a + t * d;
+  };
+}
+
+function exponential(a, b, y) {
+  return a = Math.pow(a, y), b = Math.pow(b, y) - a, y = 1 / y, function(t) {
+    return Math.pow(a + t * b, y);
+  };
+}
+
+function hue(a, b) {
+  var d = b - a;
+  return d ? linear(a, d > 180 || d < -180 ? d - 360 * Math.round(d / 360) : d) : constant(isNaN(a) ? b : a);
+}
+
+function gamma(y) {
+  return (y = +y) === 1 ? nogamma : function(a, b) {
+    return b - a ? exponential(a, b, y) : constant(isNaN(a) ? b : a);
+  };
+}
+
+function nogamma(a, b) {
+  var d = b - a;
+  return d ? linear(a, d) : constant(isNaN(a) ? b : a);
+}
+
+var rgb$1 = ((function rgbGamma(y) {
+  var color$$1 = gamma(y);
+
+  function rgb$$1(start, end) {
+    var r = color$$1((start = d3Color.rgb(start)).r, (end = d3Color.rgb(end)).r),
+        g = color$$1(start.g, end.g),
+        b = color$$1(start.b, end.b),
+        opacity = nogamma(start.opacity, end.opacity);
+    return function(t) {
+      start.r = r(t);
+      start.g = g(t);
+      start.b = b(t);
+      start.opacity = opacity(t);
+      return start + "";
+    };
+  }
+
+  rgb$$1.gamma = rgbGamma;
+
+  return rgb$$1;
+}))(1);
+
+function rgbSpline(spline) {
+  return function(colors) {
+    var n = colors.length,
+        r = new Array(n),
+        g = new Array(n),
+        b = new Array(n),
+        i, color$$1;
+    for (i = 0; i < n; ++i) {
+      color$$1 = d3Color.rgb(colors[i]);
+      r[i] = color$$1.r || 0;
+      g[i] = color$$1.g || 0;
+      b[i] = color$$1.b || 0;
+    }
+    r = spline(r);
+    g = spline(g);
+    b = spline(b);
+    color$$1.opacity = 1;
+    return function(t) {
+      color$$1.r = r(t);
+      color$$1.g = g(t);
+      color$$1.b = b(t);
+      return color$$1 + "";
+    };
+  };
+}
+
+var rgbBasis = rgbSpline(basis$1);
+var rgbBasisClosed = rgbSpline(basisClosed);
+
+var array = function(a, b) {
+  var nb = b ? b.length : 0,
+      na = a ? Math.min(nb, a.length) : 0,
+      x = new Array(na),
+      c = new Array(nb),
+      i;
+
+  for (i = 0; i < na; ++i) x[i] = value(a[i], b[i]);
+  for (; i < nb; ++i) c[i] = b[i];
+
+  return function(t) {
+    for (i = 0; i < na; ++i) c[i] = x[i](t);
+    return c;
+  };
+};
+
+var date = function(a, b) {
+  var d = new Date;
+  return a = +a, b -= a, function(t) {
+    return d.setTime(a + b * t), d;
+  };
+};
+
+var number = function(a, b) {
+  return a = +a, b -= a, function(t) {
+    return a + b * t;
+  };
+};
+
+var object = function(a, b) {
+  var i = {},
+      c = {},
+      k;
+
+  if (a === null || typeof a !== "object") a = {};
+  if (b === null || typeof b !== "object") b = {};
+
+  for (k in b) {
+    if (k in a) {
+      i[k] = value(a[k], b[k]);
+    } else {
+      c[k] = b[k];
+    }
+  }
+
+  return function(t) {
+    for (k in i) c[k] = i[k](t);
+    return c;
+  };
+};
+
+var reA = /[-+]?(?:\d+\.?\d*|\.?\d+)(?:[eE][-+]?\d+)?/g;
+var reB = new RegExp(reA.source, "g");
+
+function zero(b) {
+  return function() {
+    return b;
+  };
+}
+
+function one(b) {
+  return function(t) {
+    return b(t) + "";
+  };
+}
+
+var string = function(a, b) {
+  var bi = reA.lastIndex = reB.lastIndex = 0, // scan index for next number in b
+      am, // current match in a
+      bm, // current match in b
+      bs, // string preceding current number in b, if any
+      i = -1, // index in s
+      s = [], // string constants and placeholders
+      q = []; // number interpolators
+
+  // Coerce inputs to strings.
+  a = a + "", b = b + "";
+
+  // Interpolate pairs of numbers in a & b.
+  while ((am = reA.exec(a))
+      && (bm = reB.exec(b))) {
+    if ((bs = bm.index) > bi) { // a string precedes the next number in b
+      bs = b.slice(bi, bs);
+      if (s[i]) s[i] += bs; // coalesce with previous string
+      else s[++i] = bs;
+    }
+    if ((am = am[0]) === (bm = bm[0])) { // numbers in a & b match
+      if (s[i]) s[i] += bm; // coalesce with previous string
+      else s[++i] = bm;
+    } else { // interpolate non-matching numbers
+      s[++i] = null;
+      q.push({i: i, x: number(am, bm)});
+    }
+    bi = reB.lastIndex;
+  }
+
+  // Add remains of b.
+  if (bi < b.length) {
+    bs = b.slice(bi);
+    if (s[i]) s[i] += bs; // coalesce with previous string
+    else s[++i] = bs;
+  }
+
+  // Special optimization for only a single match.
+  // Otherwise, interpolate each of the numbers and rejoin the string.
+  return s.length < 2 ? (q[0]
+      ? one(q[0].x)
+      : zero(b))
+      : (b = q.length, function(t) {
+          for (var i = 0, o; i < b; ++i) s[(o = q[i]).i] = o.x(t);
+          return s.join("");
+        });
+};
+
+var value = function(a, b) {
+  var t = typeof b, c;
+  return b == null || t === "boolean" ? constant(b)
+      : (t === "number" ? number
+      : t === "string" ? ((c = d3Color.color(b)) ? (b = c, rgb$1) : string)
+      : b instanceof d3Color.color ? rgb$1
+      : b instanceof Date ? date
+      : Array.isArray(b) ? array
+      : typeof b.valueOf !== "function" && typeof b.toString !== "function" || isNaN(b) ? object
+      : number)(a, b);
+};
+
+var round = function(a, b) {
+  return a = +a, b -= a, function(t) {
+    return Math.round(a + b * t);
+  };
+};
+
+var degrees = 180 / Math.PI;
+
+var identity = {
+  translateX: 0,
+  translateY: 0,
+  rotate: 0,
+  skewX: 0,
+  scaleX: 1,
+  scaleY: 1
+};
+
+var decompose = function(a, b, c, d, e, f) {
+  var scaleX, scaleY, skewX;
+  if (scaleX = Math.sqrt(a * a + b * b)) a /= scaleX, b /= scaleX;
+  if (skewX = a * c + b * d) c -= a * skewX, d -= b * skewX;
+  if (scaleY = Math.sqrt(c * c + d * d)) c /= scaleY, d /= scaleY, skewX /= scaleY;
+  if (a * d < b * c) a = -a, b = -b, skewX = -skewX, scaleX = -scaleX;
+  return {
+    translateX: e,
+    translateY: f,
+    rotate: Math.atan2(b, a) * degrees,
+    skewX: Math.atan(skewX) * degrees,
+    scaleX: scaleX,
+    scaleY: scaleY
+  };
+};
+
+var cssNode;
+var cssRoot;
+var cssView;
+var svgNode;
+
+function parseCss(value) {
+  if (value === "none") return identity;
+  if (!cssNode) cssNode = document.createElement("DIV"), cssRoot = document.documentElement, cssView = document.defaultView;
+  cssNode.style.transform = value;
+  value = cssView.getComputedStyle(cssRoot.appendChild(cssNode), null).getPropertyValue("transform");
+  cssRoot.removeChild(cssNode);
+  value = value.slice(7, -1).split(",");
+  return decompose(+value[0], +value[1], +value[2], +value[3], +value[4], +value[5]);
+}
+
+function parseSvg(value) {
+  if (value == null) return identity;
+  if (!svgNode) svgNode = document.createElementNS("http://www.w3.org/2000/svg", "g");
+  svgNode.setAttribute("transform", value);
+  if (!(value = svgNode.transform.baseVal.consolidate())) return identity;
+  value = value.matrix;
+  return decompose(value.a, value.b, value.c, value.d, value.e, value.f);
+}
+
+function interpolateTransform(parse, pxComma, pxParen, degParen) {
+
+  function pop(s) {
+    return s.length ? s.pop() + " " : "";
+  }
+
+  function translate(xa, ya, xb, yb, s, q) {
+    if (xa !== xb || ya !== yb) {
+      var i = s.push("translate(", null, pxComma, null, pxParen);
+      q.push({i: i - 4, x: number(xa, xb)}, {i: i - 2, x: number(ya, yb)});
+    } else if (xb || yb) {
+      s.push("translate(" + xb + pxComma + yb + pxParen);
+    }
+  }
+
+  function rotate(a, b, s, q) {
+    if (a !== b) {
+      if (a - b > 180) b += 360; else if (b - a > 180) a += 360; // shortest path
+      q.push({i: s.push(pop(s) + "rotate(", null, degParen) - 2, x: number(a, b)});
+    } else if (b) {
+      s.push(pop(s) + "rotate(" + b + degParen);
+    }
+  }
+
+  function skewX(a, b, s, q) {
+    if (a !== b) {
+      q.push({i: s.push(pop(s) + "skewX(", null, degParen) - 2, x: number(a, b)});
+    } else if (b) {
+      s.push(pop(s) + "skewX(" + b + degParen);
+    }
+  }
+
+  function scale(xa, ya, xb, yb, s, q) {
+    if (xa !== xb || ya !== yb) {
+      var i = s.push(pop(s) + "scale(", null, ",", null, ")");
+      q.push({i: i - 4, x: number(xa, xb)}, {i: i - 2, x: number(ya, yb)});
+    } else if (xb !== 1 || yb !== 1) {
+      s.push(pop(s) + "scale(" + xb + "," + yb + ")");
+    }
+  }
+
+  return function(a, b) {
+    var s = [], // string constants and placeholders
+        q = []; // number interpolators
+    a = parse(a), b = parse(b);
+    translate(a.translateX, a.translateY, b.translateX, b.translateY, s, q);
+    rotate(a.rotate, b.rotate, s, q);
+    skewX(a.skewX, b.skewX, s, q);
+    scale(a.scaleX, a.scaleY, b.scaleX, b.scaleY, s, q);
+    a = b = null; // gc
+    return function(t) {
+      var i = -1, n = q.length, o;
+      while (++i < n) s[(o = q[i]).i] = o.x(t);
+      return s.join("");
+    };
+  };
+}
+
+var interpolateTransformCss = interpolateTransform(parseCss, "px, ", "px)", "deg)");
+var interpolateTransformSvg = interpolateTransform(parseSvg, ", ", ")", ")");
+
+var rho = Math.SQRT2;
+var rho2 = 2;
+var rho4 = 4;
+var epsilon2 = 1e-12;
+
+function cosh(x) {
+  return ((x = Math.exp(x)) + 1 / x) / 2;
+}
+
+function sinh(x) {
+  return ((x = Math.exp(x)) - 1 / x) / 2;
+}
+
+function tanh(x) {
+  return ((x = Math.exp(2 * x)) - 1) / (x + 1);
+}
+
+// p0 = [ux0, uy0, w0]
+// p1 = [ux1, uy1, w1]
+var zoom = function(p0, p1) {
+  var ux0 = p0[0], uy0 = p0[1], w0 = p0[2],
+      ux1 = p1[0], uy1 = p1[1], w1 = p1[2],
+      dx = ux1 - ux0,
+      dy = uy1 - uy0,
+      d2 = dx * dx + dy * dy,
+      i,
+      S;
+
+  // Special case for u0 ≅ u1.
+  if (d2 < epsilon2) {
+    S = Math.log(w1 / w0) / rho;
+    i = function(t) {
+      return [
+        ux0 + t * dx,
+        uy0 + t * dy,
+        w0 * Math.exp(rho * t * S)
+      ];
+    };
+  }
+
+  // General case.
+  else {
+    var d1 = Math.sqrt(d2),
+        b0 = (w1 * w1 - w0 * w0 + rho4 * d2) / (2 * w0 * rho2 * d1),
+        b1 = (w1 * w1 - w0 * w0 - rho4 * d2) / (2 * w1 * rho2 * d1),
+        r0 = Math.log(Math.sqrt(b0 * b0 + 1) - b0),
+        r1 = Math.log(Math.sqrt(b1 * b1 + 1) - b1);
+    S = (r1 - r0) / rho;
+    i = function(t) {
+      var s = t * S,
+          coshr0 = cosh(r0),
+          u = w0 / (rho2 * d1) * (coshr0 * tanh(rho * s + r0) - sinh(r0));
+      return [
+        ux0 + u * dx,
+        uy0 + u * dy,
+        w0 * coshr0 / cosh(rho * s + r0)
+      ];
+    };
+  }
+
+  i.duration = S * 1000;
+
+  return i;
+};
+
+function hsl$1(hue$$1) {
+  return function(start, end) {
+    var h = hue$$1((start = d3Color.hsl(start)).h, (end = d3Color.hsl(end)).h),
+        s = nogamma(start.s, end.s),
+        l = nogamma(start.l, end.l),
+        opacity = nogamma(start.opacity, end.opacity);
+    return function(t) {
+      start.h = h(t);
+      start.s = s(t);
+      start.l = l(t);
+      start.opacity = opacity(t);
+      return start + "";
+    };
+  }
+}
+
+var hsl$2 = hsl$1(hue);
+var hslLong = hsl$1(nogamma);
+
+function lab$1(start, end) {
+  var l = nogamma((start = d3Color.lab(start)).l, (end = d3Color.lab(end)).l),
+      a = nogamma(start.a, end.a),
+      b = nogamma(start.b, end.b),
+      opacity = nogamma(start.opacity, end.opacity);
+  return function(t) {
+    start.l = l(t);
+    start.a = a(t);
+    start.b = b(t);
+    start.opacity = opacity(t);
+    return start + "";
+  };
+}
+
+function hcl$1(hue$$1) {
+  return function(start, end) {
+    var h = hue$$1((start = d3Color.hcl(start)).h, (end = d3Color.hcl(end)).h),
+        c = nogamma(start.c, end.c),
+        l = nogamma(start.l, end.l),
+        opacity = nogamma(start.opacity, end.opacity);
+    return function(t) {
+      start.h = h(t);
+      start.c = c(t);
+      start.l = l(t);
+      start.opacity = opacity(t);
+      return start + "";
+    };
+  }
+}
+
+var hcl$2 = hcl$1(hue);
+var hclLong = hcl$1(nogamma);
+
+function cubehelix$1(hue$$1) {
+  return (function cubehelixGamma(y) {
+    y = +y;
+
+    function cubehelix$$1(start, end) {
+      var h = hue$$1((start = d3Color.cubehelix(start)).h, (end = d3Color.cubehelix(end)).h),
+          s = nogamma(start.s, end.s),
+          l = nogamma(start.l, end.l),
+          opacity = nogamma(start.opacity, end.opacity);
+      return function(t) {
+        start.h = h(t);
+        start.s = s(t);
+        start.l = l(Math.pow(t, y));
+        start.opacity = opacity(t);
+        return start + "";
+      };
+    }
+
+    cubehelix$$1.gamma = cubehelixGamma;
+
+    return cubehelix$$1;
+  })(1);
+}
+
+var cubehelix$2 = cubehelix$1(hue);
+var cubehelixLong = cubehelix$1(nogamma);
+
+var quantize = function(interpolator, n) {
+  var samples = new Array(n);
+  for (var i = 0; i < n; ++i) samples[i] = interpolator(i / (n - 1));
+  return samples;
+};
+
+exports.interpolate = value;
+exports.interpolateArray = array;
+exports.interpolateBasis = basis$1;
+exports.interpolateBasisClosed = basisClosed;
+exports.interpolateDate = date;
+exports.interpolateNumber = number;
+exports.interpolateObject = object;
+exports.interpolateRound = round;
+exports.interpolateString = string;
+exports.interpolateTransformCss = interpolateTransformCss;
+exports.interpolateTransformSvg = interpolateTransformSvg;
+exports.interpolateZoom = zoom;
+exports.interpolateRgb = rgb$1;
+exports.interpolateRgbBasis = rgbBasis;
+exports.interpolateRgbBasisClosed = rgbBasisClosed;
+exports.interpolateHsl = hsl$2;
+exports.interpolateHslLong = hslLong;
+exports.interpolateLab = lab$1;
+exports.interpolateHcl = hcl$2;
+exports.interpolateHclLong = hclLong;
+exports.interpolateCubehelix = cubehelix$2;
+exports.interpolateCubehelixLong = cubehelixLong;
+exports.quantize = quantize;
+
+Object.defineProperty(exports, '__esModule', { value: true });
+
+})));
+
+},{"d3-color":4}],10:[function(require,module,exports){
+// https://d3js.org/d3-scale/ Version 1.0.7. Copyright 2017 Mike Bostock.
+(function (global, factory) {
+	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('d3-array'), require('d3-collection'), require('d3-interpolate'), require('d3-format'), require('d3-time'), require('d3-time-format'), require('d3-color')) :
+	typeof define === 'function' && define.amd ? define(['exports', 'd3-array', 'd3-collection', 'd3-interpolate', 'd3-format', 'd3-time', 'd3-time-format', 'd3-color'], factory) :
+	(factory((global.d3 = global.d3 || {}),global.d3,global.d3,global.d3,global.d3,global.d3,global.d3,global.d3));
+}(this, (function (exports,d3Array,d3Collection,d3Interpolate,d3Format,d3Time,d3TimeFormat,d3Color) { 'use strict';
+
+var array = Array.prototype;
+
+var map$1 = array.map;
+var slice = array.slice;
+
+var implicit = {name: "implicit"};
+
+function ordinal(range$$1) {
+  var index = d3Collection.map(),
+      domain = [],
+      unknown = implicit;
+
+  range$$1 = range$$1 == null ? [] : slice.call(range$$1);
+
+  function scale(d) {
+    var key = d + "", i = index.get(key);
+    if (!i) {
+      if (unknown !== implicit) return unknown;
+      index.set(key, i = domain.push(d));
+    }
+    return range$$1[(i - 1) % range$$1.length];
+  }
+
+  scale.domain = function(_) {
+    if (!arguments.length) return domain.slice();
+    domain = [], index = d3Collection.map();
+    var i = -1, n = _.length, d, key;
+    while (++i < n) if (!index.has(key = (d = _[i]) + "")) index.set(key, domain.push(d));
+    return scale;
+  };
+
+  scale.range = function(_) {
+    return arguments.length ? (range$$1 = slice.call(_), scale) : range$$1.slice();
+  };
+
+  scale.unknown = function(_) {
+    return arguments.length ? (unknown = _, scale) : unknown;
+  };
+
+  scale.copy = function() {
+    return ordinal()
+        .domain(domain)
+        .range(range$$1)
+        .unknown(unknown);
+  };
+
+  return scale;
+}
+
+function band() {
+  var scale = ordinal().unknown(undefined),
+      domain = scale.domain,
+      ordinalRange = scale.range,
+      range$$1 = [0, 1],
+      step,
+      bandwidth,
+      round = false,
+      paddingInner = 0,
+      paddingOuter = 0,
+      align = 0.5;
+
+  delete scale.unknown;
+
+  function rescale() {
+    var n = domain().length,
+        reverse = range$$1[1] < range$$1[0],
+        start = range$$1[reverse - 0],
+        stop = range$$1[1 - reverse];
+    step = (stop - start) / Math.max(1, n - paddingInner + paddingOuter * 2);
+    if (round) step = Math.floor(step);
+    start += (stop - start - step * (n - paddingInner)) * align;
+    bandwidth = step * (1 - paddingInner);
+    if (round) start = Math.round(start), bandwidth = Math.round(bandwidth);
+    var values = d3Array.range(n).map(function(i) { return start + step * i; });
+    return ordinalRange(reverse ? values.reverse() : values);
+  }
+
+  scale.domain = function(_) {
+    return arguments.length ? (domain(_), rescale()) : domain();
+  };
+
+  scale.range = function(_) {
+    return arguments.length ? (range$$1 = [+_[0], +_[1]], rescale()) : range$$1.slice();
+  };
+
+  scale.rangeRound = function(_) {
+    return range$$1 = [+_[0], +_[1]], round = true, rescale();
+  };
+
+  scale.bandwidth = function() {
+    return bandwidth;
+  };
+
+  scale.step = function() {
+    return step;
+  };
+
+  scale.round = function(_) {
+    return arguments.length ? (round = !!_, rescale()) : round;
+  };
+
+  scale.padding = function(_) {
+    return arguments.length ? (paddingInner = paddingOuter = Math.max(0, Math.min(1, _)), rescale()) : paddingInner;
+  };
+
+  scale.paddingInner = function(_) {
+    return arguments.length ? (paddingInner = Math.max(0, Math.min(1, _)), rescale()) : paddingInner;
+  };
+
+  scale.paddingOuter = function(_) {
+    return arguments.length ? (paddingOuter = Math.max(0, Math.min(1, _)), rescale()) : paddingOuter;
+  };
+
+  scale.align = function(_) {
+    return arguments.length ? (align = Math.max(0, Math.min(1, _)), rescale()) : align;
+  };
+
+  scale.copy = function() {
+    return band()
+        .domain(domain())
+        .range(range$$1)
+        .round(round)
+        .paddingInner(paddingInner)
+        .paddingOuter(paddingOuter)
+        .align(align);
+  };
+
+  return rescale();
+}
+
+function pointish(scale) {
+  var copy = scale.copy;
+
+  scale.padding = scale.paddingOuter;
+  delete scale.paddingInner;
+  delete scale.paddingOuter;
+
+  scale.copy = function() {
+    return pointish(copy());
+  };
+
+  return scale;
+}
+
+function point() {
+  return pointish(band().paddingInner(1));
+}
+
+var constant = function(x) {
+  return function() {
+    return x;
+  };
+};
+
+var number = function(x) {
+  return +x;
+};
+
+var unit = [0, 1];
+
+function deinterpolateLinear(a, b) {
+  return (b -= (a = +a))
+      ? function(x) { return (x - a) / b; }
+      : constant(b);
+}
+
+function deinterpolateClamp(deinterpolate) {
+  return function(a, b) {
+    var d = deinterpolate(a = +a, b = +b);
+    return function(x) { return x <= a ? 0 : x >= b ? 1 : d(x); };
+  };
+}
+
+function reinterpolateClamp(reinterpolate) {
+  return function(a, b) {
+    var r = reinterpolate(a = +a, b = +b);
+    return function(t) { return t <= 0 ? a : t >= 1 ? b : r(t); };
+  };
+}
+
+function bimap(domain, range$$1, deinterpolate, reinterpolate) {
+  var d0 = domain[0], d1 = domain[1], r0 = range$$1[0], r1 = range$$1[1];
+  if (d1 < d0) d0 = deinterpolate(d1, d0), r0 = reinterpolate(r1, r0);
+  else d0 = deinterpolate(d0, d1), r0 = reinterpolate(r0, r1);
+  return function(x) { return r0(d0(x)); };
+}
+
+function polymap(domain, range$$1, deinterpolate, reinterpolate) {
+  var j = Math.min(domain.length, range$$1.length) - 1,
+      d = new Array(j),
+      r = new Array(j),
+      i = -1;
+
+  // Reverse descending domains.
+  if (domain[j] < domain[0]) {
+    domain = domain.slice().reverse();
+    range$$1 = range$$1.slice().reverse();
+  }
+
+  while (++i < j) {
+    d[i] = deinterpolate(domain[i], domain[i + 1]);
+    r[i] = reinterpolate(range$$1[i], range$$1[i + 1]);
+  }
+
+  return function(x) {
+    var i = d3Array.bisect(domain, x, 1, j) - 1;
+    return r[i](d[i](x));
+  };
+}
+
+function copy(source, target) {
+  return target
+      .domain(source.domain())
+      .range(source.range())
+      .interpolate(source.interpolate())
+      .clamp(source.clamp());
+}
+
+// deinterpolate(a, b)(x) takes a domain value x in [a,b] and returns the corresponding parameter t in [0,1].
+// reinterpolate(a, b)(t) takes a parameter t in [0,1] and returns the corresponding domain value x in [a,b].
+function continuous(deinterpolate, reinterpolate) {
+  var domain = unit,
+      range$$1 = unit,
+      interpolate$$1 = d3Interpolate.interpolate,
+      clamp = false,
+      piecewise,
+      output,
+      input;
+
+  function rescale() {
+    piecewise = Math.min(domain.length, range$$1.length) > 2 ? polymap : bimap;
+    output = input = null;
+    return scale;
+  }
+
+  function scale(x) {
+    return (output || (output = piecewise(domain, range$$1, clamp ? deinterpolateClamp(deinterpolate) : deinterpolate, interpolate$$1)))(+x);
+  }
+
+  scale.invert = function(y) {
+    return (input || (input = piecewise(range$$1, domain, deinterpolateLinear, clamp ? reinterpolateClamp(reinterpolate) : reinterpolate)))(+y);
+  };
+
+  scale.domain = function(_) {
+    return arguments.length ? (domain = map$1.call(_, number), rescale()) : domain.slice();
+  };
+
+  scale.range = function(_) {
+    return arguments.length ? (range$$1 = slice.call(_), rescale()) : range$$1.slice();
+  };
+
+  scale.rangeRound = function(_) {
+    return range$$1 = slice.call(_), interpolate$$1 = d3Interpolate.interpolateRound, rescale();
+  };
+
+  scale.clamp = function(_) {
+    return arguments.length ? (clamp = !!_, rescale()) : clamp;
+  };
+
+  scale.interpolate = function(_) {
+    return arguments.length ? (interpolate$$1 = _, rescale()) : interpolate$$1;
+  };
+
+  return rescale();
+}
+
+var tickFormat = function(domain, count, specifier) {
+  var start = domain[0],
+      stop = domain[domain.length - 1],
+      step = d3Array.tickStep(start, stop, count == null ? 10 : count),
+      precision;
+  specifier = d3Format.formatSpecifier(specifier == null ? ",f" : specifier);
+  switch (specifier.type) {
+    case "s": {
+      var value = Math.max(Math.abs(start), Math.abs(stop));
+      if (specifier.precision == null && !isNaN(precision = d3Format.precisionPrefix(step, value))) specifier.precision = precision;
+      return d3Format.formatPrefix(specifier, value);
+    }
+    case "":
+    case "e":
+    case "g":
+    case "p":
+    case "r": {
+      if (specifier.precision == null && !isNaN(precision = d3Format.precisionRound(step, Math.max(Math.abs(start), Math.abs(stop))))) specifier.precision = precision - (specifier.type === "e");
+      break;
+    }
+    case "f":
+    case "%": {
+      if (specifier.precision == null && !isNaN(precision = d3Format.precisionFixed(step))) specifier.precision = precision - (specifier.type === "%") * 2;
+      break;
+    }
+  }
+  return d3Format.format(specifier);
+};
+
+function linearish(scale) {
+  var domain = scale.domain;
+
+  scale.ticks = function(count) {
+    var d = domain();
+    return d3Array.ticks(d[0], d[d.length - 1], count == null ? 10 : count);
+  };
+
+  scale.tickFormat = function(count, specifier) {
+    return tickFormat(domain(), count, specifier);
+  };
+
+  scale.nice = function(count) {
+    if (count == null) count = 10;
+
+    var d = domain(),
+        i0 = 0,
+        i1 = d.length - 1,
+        start = d[i0],
+        stop = d[i1],
+        step;
+
+    if (stop < start) {
+      step = start, start = stop, stop = step;
+      step = i0, i0 = i1, i1 = step;
+    }
+
+    step = d3Array.tickIncrement(start, stop, count);
+
+    if (step > 0) {
+      start = Math.floor(start / step) * step;
+      stop = Math.ceil(stop / step) * step;
+      step = d3Array.tickIncrement(start, stop, count);
+    } else if (step < 0) {
+      start = Math.ceil(start * step) / step;
+      stop = Math.floor(stop * step) / step;
+      step = d3Array.tickIncrement(start, stop, count);
+    }
+
+    if (step > 0) {
+      d[i0] = Math.floor(start / step) * step;
+      d[i1] = Math.ceil(stop / step) * step;
+      domain(d);
+    } else if (step < 0) {
+      d[i0] = Math.ceil(start * step) / step;
+      d[i1] = Math.floor(stop * step) / step;
+      domain(d);
+    }
+
+    return scale;
+  };
+
+  return scale;
+}
+
+function linear() {
+  var scale = continuous(deinterpolateLinear, d3Interpolate.interpolateNumber);
+
+  scale.copy = function() {
+    return copy(scale, linear());
+  };
+
+  return linearish(scale);
+}
+
+function identity() {
+  var domain = [0, 1];
+
+  function scale(x) {
+    return +x;
+  }
+
+  scale.invert = scale;
+
+  scale.domain = scale.range = function(_) {
+    return arguments.length ? (domain = map$1.call(_, number), scale) : domain.slice();
+  };
+
+  scale.copy = function() {
+    return identity().domain(domain);
+  };
+
+  return linearish(scale);
+}
+
+var nice = function(domain, interval) {
+  domain = domain.slice();
+
+  var i0 = 0,
+      i1 = domain.length - 1,
+      x0 = domain[i0],
+      x1 = domain[i1],
+      t;
+
+  if (x1 < x0) {
+    t = i0, i0 = i1, i1 = t;
+    t = x0, x0 = x1, x1 = t;
+  }
+
+  domain[i0] = interval.floor(x0);
+  domain[i1] = interval.ceil(x1);
+  return domain;
+};
+
+function deinterpolate(a, b) {
+  return (b = Math.log(b / a))
+      ? function(x) { return Math.log(x / a) / b; }
+      : constant(b);
+}
+
+function reinterpolate(a, b) {
+  return a < 0
+      ? function(t) { return -Math.pow(-b, t) * Math.pow(-a, 1 - t); }
+      : function(t) { return Math.pow(b, t) * Math.pow(a, 1 - t); };
+}
+
+function pow10(x) {
+  return isFinite(x) ? +("1e" + x) : x < 0 ? 0 : x;
+}
+
+function powp(base) {
+  return base === 10 ? pow10
+      : base === Math.E ? Math.exp
+      : function(x) { return Math.pow(base, x); };
+}
+
+function logp(base) {
+  return base === Math.E ? Math.log
+      : base === 10 && Math.log10
+      || base === 2 && Math.log2
+      || (base = Math.log(base), function(x) { return Math.log(x) / base; });
+}
+
+function reflect(f) {
+  return function(x) {
+    return -f(-x);
+  };
+}
+
+function log() {
+  var scale = continuous(deinterpolate, reinterpolate).domain([1, 10]),
+      domain = scale.domain,
+      base = 10,
+      logs = logp(10),
+      pows = powp(10);
+
+  function rescale() {
+    logs = logp(base), pows = powp(base);
+    if (domain()[0] < 0) logs = reflect(logs), pows = reflect(pows);
+    return scale;
+  }
+
+  scale.base = function(_) {
+    return arguments.length ? (base = +_, rescale()) : base;
+  };
+
+  scale.domain = function(_) {
+    return arguments.length ? (domain(_), rescale()) : domain();
+  };
+
+  scale.ticks = function(count) {
+    var d = domain(),
+        u = d[0],
+        v = d[d.length - 1],
+        r;
+
+    if (r = v < u) i = u, u = v, v = i;
+
+    var i = logs(u),
+        j = logs(v),
+        p,
+        k,
+        t,
+        n = count == null ? 10 : +count,
+        z = [];
+
+    if (!(base % 1) && j - i < n) {
+      i = Math.round(i) - 1, j = Math.round(j) + 1;
+      if (u > 0) for (; i < j; ++i) {
+        for (k = 1, p = pows(i); k < base; ++k) {
+          t = p * k;
+          if (t < u) continue;
+          if (t > v) break;
+          z.push(t);
+        }
+      } else for (; i < j; ++i) {
+        for (k = base - 1, p = pows(i); k >= 1; --k) {
+          t = p * k;
+          if (t < u) continue;
+          if (t > v) break;
+          z.push(t);
+        }
+      }
+    } else {
+      z = d3Array.ticks(i, j, Math.min(j - i, n)).map(pows);
+    }
+
+    return r ? z.reverse() : z;
+  };
+
+  scale.tickFormat = function(count, specifier) {
+    if (specifier == null) specifier = base === 10 ? ".0e" : ",";
+    if (typeof specifier !== "function") specifier = d3Format.format(specifier);
+    if (count === Infinity) return specifier;
+    if (count == null) count = 10;
+    var k = Math.max(1, base * count / scale.ticks().length); // TODO fast estimate?
+    return function(d) {
+      var i = d / pows(Math.round(logs(d)));
+      if (i * base < base - 0.5) i *= base;
+      return i <= k ? specifier(d) : "";
+    };
+  };
+
+  scale.nice = function() {
+    return domain(nice(domain(), {
+      floor: function(x) { return pows(Math.floor(logs(x))); },
+      ceil: function(x) { return pows(Math.ceil(logs(x))); }
+    }));
+  };
+
+  scale.copy = function() {
+    return copy(scale, log().base(base));
+  };
+
+  return scale;
+}
+
+function raise(x, exponent) {
+  return x < 0 ? -Math.pow(-x, exponent) : Math.pow(x, exponent);
+}
+
+function pow() {
+  var exponent = 1,
+      scale = continuous(deinterpolate, reinterpolate),
+      domain = scale.domain;
+
+  function deinterpolate(a, b) {
+    return (b = raise(b, exponent) - (a = raise(a, exponent)))
+        ? function(x) { return (raise(x, exponent) - a) / b; }
+        : constant(b);
+  }
+
+  function reinterpolate(a, b) {
+    b = raise(b, exponent) - (a = raise(a, exponent));
+    return function(t) { return raise(a + b * t, 1 / exponent); };
+  }
+
+  scale.exponent = function(_) {
+    return arguments.length ? (exponent = +_, domain(domain())) : exponent;
+  };
+
+  scale.copy = function() {
+    return copy(scale, pow().exponent(exponent));
+  };
+
+  return linearish(scale);
+}
+
+function sqrt() {
+  return pow().exponent(0.5);
+}
+
+function quantile$1() {
+  var domain = [],
+      range$$1 = [],
+      thresholds = [];
+
+  function rescale() {
+    var i = 0, n = Math.max(1, range$$1.length);
+    thresholds = new Array(n - 1);
+    while (++i < n) thresholds[i - 1] = d3Array.quantile(domain, i / n);
+    return scale;
+  }
+
+  function scale(x) {
+    if (!isNaN(x = +x)) return range$$1[d3Array.bisect(thresholds, x)];
+  }
+
+  scale.invertExtent = function(y) {
+    var i = range$$1.indexOf(y);
+    return i < 0 ? [NaN, NaN] : [
+      i > 0 ? thresholds[i - 1] : domain[0],
+      i < thresholds.length ? thresholds[i] : domain[domain.length - 1]
+    ];
+  };
+
+  scale.domain = function(_) {
+    if (!arguments.length) return domain.slice();
+    domain = [];
+    for (var i = 0, n = _.length, d; i < n; ++i) if (d = _[i], d != null && !isNaN(d = +d)) domain.push(d);
+    domain.sort(d3Array.ascending);
+    return rescale();
+  };
+
+  scale.range = function(_) {
+    return arguments.length ? (range$$1 = slice.call(_), rescale()) : range$$1.slice();
+  };
+
+  scale.quantiles = function() {
+    return thresholds.slice();
+  };
+
+  scale.copy = function() {
+    return quantile$1()
+        .domain(domain)
+        .range(range$$1);
+  };
+
+  return scale;
+}
+
+function quantize() {
+  var x0 = 0,
+      x1 = 1,
+      n = 1,
+      domain = [0.5],
+      range$$1 = [0, 1];
+
+  function scale(x) {
+    if (x <= x) return range$$1[d3Array.bisect(domain, x, 0, n)];
+  }
+
+  function rescale() {
+    var i = -1;
+    domain = new Array(n);
+    while (++i < n) domain[i] = ((i + 1) * x1 - (i - n) * x0) / (n + 1);
+    return scale;
+  }
+
+  scale.domain = function(_) {
+    return arguments.length ? (x0 = +_[0], x1 = +_[1], rescale()) : [x0, x1];
+  };
+
+  scale.range = function(_) {
+    return arguments.length ? (n = (range$$1 = slice.call(_)).length - 1, rescale()) : range$$1.slice();
+  };
+
+  scale.invertExtent = function(y) {
+    var i = range$$1.indexOf(y);
+    return i < 0 ? [NaN, NaN]
+        : i < 1 ? [x0, domain[0]]
+        : i >= n ? [domain[n - 1], x1]
+        : [domain[i - 1], domain[i]];
+  };
+
+  scale.copy = function() {
+    return quantize()
+        .domain([x0, x1])
+        .range(range$$1);
+  };
+
+  return linearish(scale);
+}
+
+function threshold() {
+  var domain = [0.5],
+      range$$1 = [0, 1],
+      n = 1;
+
+  function scale(x) {
+    if (x <= x) return range$$1[d3Array.bisect(domain, x, 0, n)];
+  }
+
+  scale.domain = function(_) {
+    return arguments.length ? (domain = slice.call(_), n = Math.min(domain.length, range$$1.length - 1), scale) : domain.slice();
+  };
+
+  scale.range = function(_) {
+    return arguments.length ? (range$$1 = slice.call(_), n = Math.min(domain.length, range$$1.length - 1), scale) : range$$1.slice();
+  };
+
+  scale.invertExtent = function(y) {
+    var i = range$$1.indexOf(y);
+    return [domain[i - 1], domain[i]];
+  };
+
+  scale.copy = function() {
+    return threshold()
+        .domain(domain)
+        .range(range$$1);
+  };
+
+  return scale;
+}
+
+var durationSecond = 1000;
+var durationMinute = durationSecond * 60;
+var durationHour = durationMinute * 60;
+var durationDay = durationHour * 24;
+var durationWeek = durationDay * 7;
+var durationMonth = durationDay * 30;
+var durationYear = durationDay * 365;
+
+function date(t) {
+  return new Date(t);
+}
+
+function number$1(t) {
+  return t instanceof Date ? +t : +new Date(+t);
+}
+
+function calendar(year, month, week, day, hour, minute, second, millisecond, format$$1) {
+  var scale = continuous(deinterpolateLinear, d3Interpolate.interpolateNumber),
+      invert = scale.invert,
+      domain = scale.domain;
+
+  var formatMillisecond = format$$1(".%L"),
+      formatSecond = format$$1(":%S"),
+      formatMinute = format$$1("%I:%M"),
+      formatHour = format$$1("%I %p"),
+      formatDay = format$$1("%a %d"),
+      formatWeek = format$$1("%b %d"),
+      formatMonth = format$$1("%B"),
+      formatYear = format$$1("%Y");
+
+  var tickIntervals = [
+    [second,  1,      durationSecond],
+    [second,  5,  5 * durationSecond],
+    [second, 15, 15 * durationSecond],
+    [second, 30, 30 * durationSecond],
+    [minute,  1,      durationMinute],
+    [minute,  5,  5 * durationMinute],
+    [minute, 15, 15 * durationMinute],
+    [minute, 30, 30 * durationMinute],
+    [  hour,  1,      durationHour  ],
+    [  hour,  3,  3 * durationHour  ],
+    [  hour,  6,  6 * durationHour  ],
+    [  hour, 12, 12 * durationHour  ],
+    [   day,  1,      durationDay   ],
+    [   day,  2,  2 * durationDay   ],
+    [  week,  1,      durationWeek  ],
+    [ month,  1,      durationMonth ],
+    [ month,  3,  3 * durationMonth ],
+    [  year,  1,      durationYear  ]
+  ];
+
+  function tickFormat(date) {
+    return (second(date) < date ? formatMillisecond
+        : minute(date) < date ? formatSecond
+        : hour(date) < date ? formatMinute
+        : day(date) < date ? formatHour
+        : month(date) < date ? (week(date) < date ? formatDay : formatWeek)
+        : year(date) < date ? formatMonth
+        : formatYear)(date);
+  }
+
+  function tickInterval(interval, start, stop, step) {
+    if (interval == null) interval = 10;
+
+    // If a desired tick count is specified, pick a reasonable tick interval
+    // based on the extent of the domain and a rough estimate of tick size.
+    // Otherwise, assume interval is already a time interval and use it.
+    if (typeof interval === "number") {
+      var target = Math.abs(stop - start) / interval,
+          i = d3Array.bisector(function(i) { return i[2]; }).right(tickIntervals, target);
+      if (i === tickIntervals.length) {
+        step = d3Array.tickStep(start / durationYear, stop / durationYear, interval);
+        interval = year;
+      } else if (i) {
+        i = tickIntervals[target / tickIntervals[i - 1][2] < tickIntervals[i][2] / target ? i - 1 : i];
+        step = i[1];
+        interval = i[0];
+      } else {
+        step = Math.max(d3Array.tickStep(start, stop, interval), 1);
+        interval = millisecond;
+      }
+    }
+
+    return step == null ? interval : interval.every(step);
+  }
+
+  scale.invert = function(y) {
+    return new Date(invert(y));
+  };
+
+  scale.domain = function(_) {
+    return arguments.length ? domain(map$1.call(_, number$1)) : domain().map(date);
+  };
+
+  scale.ticks = function(interval, step) {
+    var d = domain(),
+        t0 = d[0],
+        t1 = d[d.length - 1],
+        r = t1 < t0,
+        t;
+    if (r) t = t0, t0 = t1, t1 = t;
+    t = tickInterval(interval, t0, t1, step);
+    t = t ? t.range(t0, t1 + 1) : []; // inclusive stop
+    return r ? t.reverse() : t;
+  };
+
+  scale.tickFormat = function(count, specifier) {
+    return specifier == null ? tickFormat : format$$1(specifier);
+  };
+
+  scale.nice = function(interval, step) {
+    var d = domain();
+    return (interval = tickInterval(interval, d[0], d[d.length - 1], step))
+        ? domain(nice(d, interval))
+        : scale;
+  };
+
+  scale.copy = function() {
+    return copy(scale, calendar(year, month, week, day, hour, minute, second, millisecond, format$$1));
+  };
+
+  return scale;
+}
+
+var time = function() {
+  return calendar(d3Time.timeYear, d3Time.timeMonth, d3Time.timeWeek, d3Time.timeDay, d3Time.timeHour, d3Time.timeMinute, d3Time.timeSecond, d3Time.timeMillisecond, d3TimeFormat.timeFormat).domain([new Date(2000, 0, 1), new Date(2000, 0, 2)]);
+};
+
+var utcTime = function() {
+  return calendar(d3Time.utcYear, d3Time.utcMonth, d3Time.utcWeek, d3Time.utcDay, d3Time.utcHour, d3Time.utcMinute, d3Time.utcSecond, d3Time.utcMillisecond, d3TimeFormat.utcFormat).domain([Date.UTC(2000, 0, 1), Date.UTC(2000, 0, 2)]);
+};
+
+var colors = function(s) {
+  return s.match(/.{6}/g).map(function(x) {
+    return "#" + x;
+  });
+};
+
+var category10 = colors("1f77b4ff7f0e2ca02cd627289467bd8c564be377c27f7f7fbcbd2217becf");
+
+var category20b = colors("393b795254a36b6ecf9c9ede6379398ca252b5cf6bcedb9c8c6d31bd9e39e7ba52e7cb94843c39ad494ad6616be7969c7b4173a55194ce6dbdde9ed6");
+
+var category20c = colors("3182bd6baed69ecae1c6dbefe6550dfd8d3cfdae6bfdd0a231a35474c476a1d99bc7e9c0756bb19e9ac8bcbddcdadaeb636363969696bdbdbdd9d9d9");
+
+var category20 = colors("1f77b4aec7e8ff7f0effbb782ca02c98df8ad62728ff98969467bdc5b0d58c564bc49c94e377c2f7b6d27f7f7fc7c7c7bcbd22dbdb8d17becf9edae5");
+
+var cubehelix$1 = d3Interpolate.interpolateCubehelixLong(d3Color.cubehelix(300, 0.5, 0.0), d3Color.cubehelix(-240, 0.5, 1.0));
+
+var warm = d3Interpolate.interpolateCubehelixLong(d3Color.cubehelix(-100, 0.75, 0.35), d3Color.cubehelix(80, 1.50, 0.8));
+
+var cool = d3Interpolate.interpolateCubehelixLong(d3Color.cubehelix(260, 0.75, 0.35), d3Color.cubehelix(80, 1.50, 0.8));
+
+var rainbow = d3Color.cubehelix();
+
+var rainbow$1 = function(t) {
+  if (t < 0 || t > 1) t -= Math.floor(t);
+  var ts = Math.abs(t - 0.5);
+  rainbow.h = 360 * t - 100;
+  rainbow.s = 1.5 - 1.5 * ts;
+  rainbow.l = 0.8 - 0.9 * ts;
+  return rainbow + "";
+};
+
+function ramp(range$$1) {
+  var n = range$$1.length;
+  return function(t) {
+    return range$$1[Math.max(0, Math.min(n - 1, Math.floor(t * n)))];
+  };
+}
+
+var viridis = ramp(colors("44015444025645045745055946075a46085c460a5d460b5e470d60470e6147106347116447136548146748166848176948186a481a6c481b6d481c6e481d6f481f70482071482173482374482475482576482677482878482979472a7a472c7a472d7b472e7c472f7d46307e46327e46337f463480453581453781453882443983443a83443b84433d84433e85423f854240864241864142874144874045884046883f47883f48893e49893e4a893e4c8a3d4d8a3d4e8a3c4f8a3c508b3b518b3b528b3a538b3a548c39558c39568c38588c38598c375a8c375b8d365c8d365d8d355e8d355f8d34608d34618d33628d33638d32648e32658e31668e31678e31688e30698e306a8e2f6b8e2f6c8e2e6d8e2e6e8e2e6f8e2d708e2d718e2c718e2c728e2c738e2b748e2b758e2a768e2a778e2a788e29798e297a8e297b8e287c8e287d8e277e8e277f8e27808e26818e26828e26828e25838e25848e25858e24868e24878e23888e23898e238a8d228b8d228c8d228d8d218e8d218f8d21908d21918c20928c20928c20938c1f948c1f958b1f968b1f978b1f988b1f998a1f9a8a1e9b8a1e9c891e9d891f9e891f9f881fa0881fa1881fa1871fa28720a38620a48621a58521a68522a78522a88423a98324aa8325ab8225ac8226ad8127ad8128ae8029af7f2ab07f2cb17e2db27d2eb37c2fb47c31b57b32b67a34b67935b77937b87838b9773aba763bbb753dbc743fbc7340bd7242be7144bf7046c06f48c16e4ac16d4cc26c4ec36b50c46a52c56954c56856c66758c7655ac8645cc8635ec96260ca6063cb5f65cb5e67cc5c69cd5b6ccd5a6ece5870cf5773d05675d05477d1537ad1517cd2507fd34e81d34d84d44b86d54989d5488bd6468ed64590d74393d74195d84098d83e9bd93c9dd93ba0da39a2da37a5db36a8db34aadc32addc30b0dd2fb2dd2db5de2bb8de29bade28bddf26c0df25c2df23c5e021c8e020cae11fcde11dd0e11cd2e21bd5e21ad8e219dae319dde318dfe318e2e418e5e419e7e419eae51aece51befe51cf1e51df4e61ef6e620f8e621fbe723fde725"));
+
+var magma = ramp(colors("00000401000501010601010802010902020b02020d03030f03031204041405041606051806051a07061c08071e0907200a08220b09240c09260d0a290e0b2b100b2d110c2f120d31130d34140e36150e38160f3b180f3d19103f1a10421c10441d11471e114920114b21114e22115024125325125527125829115a2a115c2c115f2d11612f116331116533106734106936106b38106c390f6e3b0f703d0f713f0f72400f74420f75440f764510774710784910784a10794c117a4e117b4f127b51127c52137c54137d56147d57157e59157e5a167e5c167f5d177f5f187f601880621980641a80651a80671b80681c816a1c816b1d816d1d816e1e81701f81721f817320817521817621817822817922827b23827c23827e24828025828125818326818426818627818827818928818b29818c29818e2a81902a81912b81932b80942c80962c80982d80992d809b2e7f9c2e7f9e2f7fa02f7fa1307ea3307ea5317ea6317da8327daa337dab337cad347cae347bb0357bb2357bb3367ab5367ab73779b83779ba3878bc3978bd3977bf3a77c03a76c23b75c43c75c53c74c73d73c83e73ca3e72cc3f71cd4071cf4070d0416fd2426fd3436ed5446dd6456cd8456cd9466bdb476adc4869de4968df4a68e04c67e24d66e34e65e44f64e55064e75263e85362e95462ea5661eb5760ec5860ed5a5fee5b5eef5d5ef05f5ef1605df2625df2645cf3655cf4675cf4695cf56b5cf66c5cf66e5cf7705cf7725cf8745cf8765cf9785df9795df97b5dfa7d5efa7f5efa815ffb835ffb8560fb8761fc8961fc8a62fc8c63fc8e64fc9065fd9266fd9467fd9668fd9869fd9a6afd9b6bfe9d6cfe9f6dfea16efea36ffea571fea772fea973feaa74feac76feae77feb078feb27afeb47bfeb67cfeb77efeb97ffebb81febd82febf84fec185fec287fec488fec68afec88cfeca8dfecc8ffecd90fecf92fed194fed395fed597fed799fed89afdda9cfddc9efddea0fde0a1fde2a3fde3a5fde5a7fde7a9fde9aafdebacfcecaefceeb0fcf0b2fcf2b4fcf4b6fcf6b8fcf7b9fcf9bbfcfbbdfcfdbf"));
+
+var inferno = ramp(colors("00000401000501010601010802010a02020c02020e03021004031204031405041706041907051b08051d09061f0a07220b07240c08260d08290e092b10092d110a30120a32140b34150b37160b39180c3c190c3e1b0c411c0c431e0c451f0c48210c4a230c4c240c4f260c51280b53290b552b0b572d0b592f0a5b310a5c320a5e340a5f3609613809623909633b09643d09653e0966400a67420a68440a68450a69470b6a490b6a4a0c6b4c0c6b4d0d6c4f0d6c510e6c520e6d540f6d550f6d57106e59106e5a116e5c126e5d126e5f136e61136e62146e64156e65156e67166e69166e6a176e6c186e6d186e6f196e71196e721a6e741a6e751b6e771c6d781c6d7a1d6d7c1d6d7d1e6d7f1e6c801f6c82206c84206b85216b87216b88226a8a226a8c23698d23698f24699025689225689326679526679727669827669a28659b29649d29649f2a63a02a63a22b62a32c61a52c60a62d60a82e5fa92e5eab2f5ead305dae305cb0315bb1325ab3325ab43359b63458b73557b93556ba3655bc3754bd3853bf3952c03a51c13a50c33b4fc43c4ec63d4dc73e4cc83f4bca404acb4149cc4248ce4347cf4446d04545d24644d34743d44842d54a41d74b3fd84c3ed94d3dda4e3cdb503bdd513ade5238df5337e05536e15635e25734e35933e45a31e55c30e65d2fe75e2ee8602de9612bea632aeb6429eb6628ec6726ed6925ee6a24ef6c23ef6e21f06f20f1711ff1731df2741cf3761bf37819f47918f57b17f57d15f67e14f68013f78212f78410f8850ff8870ef8890cf98b0bf98c0af98e09fa9008fa9207fa9407fb9606fb9706fb9906fb9b06fb9d07fc9f07fca108fca309fca50afca60cfca80dfcaa0ffcac11fcae12fcb014fcb216fcb418fbb61afbb81dfbba1ffbbc21fbbe23fac026fac228fac42afac62df9c72ff9c932f9cb35f8cd37f8cf3af7d13df7d340f6d543f6d746f5d949f5db4cf4dd4ff4df53f4e156f3e35af3e55df2e661f2e865f2ea69f1ec6df1ed71f1ef75f1f179f2f27df2f482f3f586f3f68af4f88ef5f992f6fa96f8fb9af9fc9dfafda1fcffa4"));
+
+var plasma = ramp(colors("0d088710078813078916078a19068c1b068d1d068e20068f2206902406912605912805922a05932c05942e05952f059631059733059735049837049938049a3a049a3c049b3e049c3f049c41049d43039e44039e46039f48039f4903a04b03a14c02a14e02a25002a25102a35302a35502a45601a45801a45901a55b01a55c01a65e01a66001a66100a76300a76400a76600a76700a86900a86a00a86c00a86e00a86f00a87100a87201a87401a87501a87701a87801a87a02a87b02a87d03a87e03a88004a88104a78305a78405a78606a68707a68808a68a09a58b0aa58d0ba58e0ca48f0da4910ea3920fa39410a29511a19613a19814a099159f9a169f9c179e9d189d9e199da01a9ca11b9ba21d9aa31e9aa51f99a62098a72197a82296aa2395ab2494ac2694ad2793ae2892b02991b12a90b22b8fb32c8eb42e8db52f8cb6308bb7318ab83289ba3388bb3488bc3587bd3786be3885bf3984c03a83c13b82c23c81c33d80c43e7fc5407ec6417dc7427cc8437bc9447aca457acb4679cc4778cc4977cd4a76ce4b75cf4c74d04d73d14e72d24f71d35171d45270d5536fd5546ed6556dd7566cd8576bd9586ada5a6ada5b69db5c68dc5d67dd5e66de5f65de6164df6263e06363e16462e26561e26660e3685fe4695ee56a5de56b5de66c5ce76e5be76f5ae87059e97158e97257ea7457eb7556eb7655ec7754ed7953ed7a52ee7b51ef7c51ef7e50f07f4ff0804ef1814df1834cf2844bf3854bf3874af48849f48948f58b47f58c46f68d45f68f44f79044f79143f79342f89441f89540f9973ff9983ef99a3efa9b3dfa9c3cfa9e3bfb9f3afba139fba238fca338fca537fca636fca835fca934fdab33fdac33fdae32fdaf31fdb130fdb22ffdb42ffdb52efeb72dfeb82cfeba2cfebb2bfebd2afebe2afec029fdc229fdc328fdc527fdc627fdc827fdca26fdcb26fccd25fcce25fcd025fcd225fbd324fbd524fbd724fad824fada24f9dc24f9dd25f8df25f8e125f7e225f7e425f6e626f6e826f5e926f5eb27f4ed27f3ee27f3f027f2f227f1f426f1f525f0f724f0f921"));
+
+function sequential(interpolator) {
+  var x0 = 0,
+      x1 = 1,
+      clamp = false;
+
+  function scale(x) {
+    var t = (x - x0) / (x1 - x0);
+    return interpolator(clamp ? Math.max(0, Math.min(1, t)) : t);
+  }
+
+  scale.domain = function(_) {
+    return arguments.length ? (x0 = +_[0], x1 = +_[1], scale) : [x0, x1];
+  };
+
+  scale.clamp = function(_) {
+    return arguments.length ? (clamp = !!_, scale) : clamp;
+  };
+
+  scale.interpolator = function(_) {
+    return arguments.length ? (interpolator = _, scale) : interpolator;
+  };
+
+  scale.copy = function() {
+    return sequential(interpolator).domain([x0, x1]).clamp(clamp);
+  };
+
+  return linearish(scale);
+}
+
+exports.scaleBand = band;
+exports.scalePoint = point;
+exports.scaleIdentity = identity;
+exports.scaleLinear = linear;
+exports.scaleLog = log;
+exports.scaleOrdinal = ordinal;
+exports.scaleImplicit = implicit;
+exports.scalePow = pow;
+exports.scaleSqrt = sqrt;
+exports.scaleQuantile = quantile$1;
+exports.scaleQuantize = quantize;
+exports.scaleThreshold = threshold;
+exports.scaleTime = time;
+exports.scaleUtc = utcTime;
+exports.schemeCategory10 = category10;
+exports.schemeCategory20b = category20b;
+exports.schemeCategory20c = category20c;
+exports.schemeCategory20 = category20;
+exports.interpolateCubehelixDefault = cubehelix$1;
+exports.interpolateRainbow = rainbow$1;
+exports.interpolateWarm = warm;
+exports.interpolateCool = cool;
+exports.interpolateViridis = viridis;
+exports.interpolateMagma = magma;
+exports.interpolateInferno = inferno;
+exports.interpolatePlasma = plasma;
+exports.scaleSequential = sequential;
+
+Object.defineProperty(exports, '__esModule', { value: true });
+
+})));
+
+},{"d3-array":1,"d3-collection":3,"d3-color":4,"d3-format":8,"d3-interpolate":9,"d3-time":13,"d3-time-format":12}],11:[function(require,module,exports){
+// https://d3js.org/d3-selection/ Version 1.3.0. Copyright 2018 Mike Bostock.
+(function (global, factory) {
+	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
+	typeof define === 'function' && define.amd ? define(['exports'], factory) :
+	(factory((global.d3 = global.d3 || {})));
+}(this, (function (exports) { 'use strict';
+
+var xhtml = "http://www.w3.org/1999/xhtml";
+
+var namespaces = {
+  svg: "http://www.w3.org/2000/svg",
+  xhtml: xhtml,
+  xlink: "http://www.w3.org/1999/xlink",
+  xml: "http://www.w3.org/XML/1998/namespace",
+  xmlns: "http://www.w3.org/2000/xmlns/"
+};
+
+function namespace(name) {
+  var prefix = name += "", i = prefix.indexOf(":");
+  if (i >= 0 && (prefix = name.slice(0, i)) !== "xmlns") name = name.slice(i + 1);
+  return namespaces.hasOwnProperty(prefix) ? {space: namespaces[prefix], local: name} : name;
+}
+
+function creatorInherit(name) {
+  return function() {
+    var document = this.ownerDocument,
+        uri = this.namespaceURI;
+    return uri === xhtml && document.documentElement.namespaceURI === xhtml
+        ? document.createElement(name)
+        : document.createElementNS(uri, name);
+  };
+}
+
+function creatorFixed(fullname) {
+  return function() {
+    return this.ownerDocument.createElementNS(fullname.space, fullname.local);
+  };
+}
+
+function creator(name) {
+  var fullname = namespace(name);
+  return (fullname.local
+      ? creatorFixed
+      : creatorInherit)(fullname);
+}
+
+function none() {}
+
+function selector(selector) {
+  return selector == null ? none : function() {
+    return this.querySelector(selector);
+  };
+}
+
+function selection_select(select) {
+  if (typeof select !== "function") select = selector(select);
+
+  for (var groups = this._groups, m = groups.length, subgroups = new Array(m), j = 0; j < m; ++j) {
+    for (var group = groups[j], n = group.length, subgroup = subgroups[j] = new Array(n), node, subnode, i = 0; i < n; ++i) {
+      if ((node = group[i]) && (subnode = select.call(node, node.__data__, i, group))) {
+        if ("__data__" in node) subnode.__data__ = node.__data__;
+        subgroup[i] = subnode;
+      }
+    }
+  }
+
+  return new Selection(subgroups, this._parents);
+}
+
+function empty() {
+  return [];
+}
+
+function selectorAll(selector) {
+  return selector == null ? empty : function() {
+    return this.querySelectorAll(selector);
+  };
+}
+
+function selection_selectAll(select) {
+  if (typeof select !== "function") select = selectorAll(select);
+
+  for (var groups = this._groups, m = groups.length, subgroups = [], parents = [], j = 0; j < m; ++j) {
+    for (var group = groups[j], n = group.length, node, i = 0; i < n; ++i) {
+      if (node = group[i]) {
+        subgroups.push(select.call(node, node.__data__, i, group));
+        parents.push(node);
+      }
+    }
+  }
+
+  return new Selection(subgroups, parents);
+}
+
+var matcher = function(selector) {
+  return function() {
+    return this.matches(selector);
+  };
+};
+
+if (typeof document !== "undefined") {
+  var element = document.documentElement;
+  if (!element.matches) {
+    var vendorMatches = element.webkitMatchesSelector
+        || element.msMatchesSelector
+        || element.mozMatchesSelector
+        || element.oMatchesSelector;
+    matcher = function(selector) {
+      return function() {
+        return vendorMatches.call(this, selector);
+      };
+    };
+  }
+}
+
+var matcher$1 = matcher;
+
+function selection_filter(match) {
+  if (typeof match !== "function") match = matcher$1(match);
+
+  for (var groups = this._groups, m = groups.length, subgroups = new Array(m), j = 0; j < m; ++j) {
+    for (var group = groups[j], n = group.length, subgroup = subgroups[j] = [], node, i = 0; i < n; ++i) {
+      if ((node = group[i]) && match.call(node, node.__data__, i, group)) {
+        subgroup.push(node);
+      }
+    }
+  }
+
+  return new Selection(subgroups, this._parents);
+}
+
+function sparse(update) {
+  return new Array(update.length);
+}
+
+function selection_enter() {
+  return new Selection(this._enter || this._groups.map(sparse), this._parents);
+}
+
+function EnterNode(parent, datum) {
+  this.ownerDocument = parent.ownerDocument;
+  this.namespaceURI = parent.namespaceURI;
+  this._next = null;
+  this._parent = parent;
+  this.__data__ = datum;
+}
+
+EnterNode.prototype = {
+  constructor: EnterNode,
+  appendChild: function(child) { return this._parent.insertBefore(child, this._next); },
+  insertBefore: function(child, next) { return this._parent.insertBefore(child, next); },
+  querySelector: function(selector) { return this._parent.querySelector(selector); },
+  querySelectorAll: function(selector) { return this._parent.querySelectorAll(selector); }
+};
+
+function constant(x) {
+  return function() {
+    return x;
+  };
+}
+
+var keyPrefix = "$"; // Protect against keys like “__proto__”.
+
+function bindIndex(parent, group, enter, update, exit, data) {
+  var i = 0,
+      node,
+      groupLength = group.length,
+      dataLength = data.length;
+
+  // Put any non-null nodes that fit into update.
+  // Put any null nodes into enter.
+  // Put any remaining data into enter.
+  for (; i < dataLength; ++i) {
+    if (node = group[i]) {
+      node.__data__ = data[i];
+      update[i] = node;
+    } else {
+      enter[i] = new EnterNode(parent, data[i]);
+    }
+  }
+
+  // Put any non-null nodes that don’t fit into exit.
+  for (; i < groupLength; ++i) {
+    if (node = group[i]) {
+      exit[i] = node;
+    }
+  }
+}
+
+function bindKey(parent, group, enter, update, exit, data, key) {
+  var i,
+      node,
+      nodeByKeyValue = {},
+      groupLength = group.length,
+      dataLength = data.length,
+      keyValues = new Array(groupLength),
+      keyValue;
+
+  // Compute the key for each node.
+  // If multiple nodes have the same key, the duplicates are added to exit.
+  for (i = 0; i < groupLength; ++i) {
+    if (node = group[i]) {
+      keyValues[i] = keyValue = keyPrefix + key.call(node, node.__data__, i, group);
+      if (keyValue in nodeByKeyValue) {
+        exit[i] = node;
+      } else {
+        nodeByKeyValue[keyValue] = node;
+      }
+    }
+  }
+
+  // Compute the key for each datum.
+  // If there a node associated with this key, join and add it to update.
+  // If there is not (or the key is a duplicate), add it to enter.
+  for (i = 0; i < dataLength; ++i) {
+    keyValue = keyPrefix + key.call(parent, data[i], i, data);
+    if (node = nodeByKeyValue[keyValue]) {
+      update[i] = node;
+      node.__data__ = data[i];
+      nodeByKeyValue[keyValue] = null;
+    } else {
+      enter[i] = new EnterNode(parent, data[i]);
+    }
+  }
+
+  // Add any remaining nodes that were not bound to data to exit.
+  for (i = 0; i < groupLength; ++i) {
+    if ((node = group[i]) && (nodeByKeyValue[keyValues[i]] === node)) {
+      exit[i] = node;
+    }
+  }
+}
+
+function selection_data(value, key) {
+  if (!value) {
+    data = new Array(this.size()), j = -1;
+    this.each(function(d) { data[++j] = d; });
+    return data;
+  }
+
+  var bind = key ? bindKey : bindIndex,
+      parents = this._parents,
+      groups = this._groups;
+
+  if (typeof value !== "function") value = constant(value);
+
+  for (var m = groups.length, update = new Array(m), enter = new Array(m), exit = new Array(m), j = 0; j < m; ++j) {
+    var parent = parents[j],
+        group = groups[j],
+        groupLength = group.length,
+        data = value.call(parent, parent && parent.__data__, j, parents),
+        dataLength = data.length,
+        enterGroup = enter[j] = new Array(dataLength),
+        updateGroup = update[j] = new Array(dataLength),
+        exitGroup = exit[j] = new Array(groupLength);
+
+    bind(parent, group, enterGroup, updateGroup, exitGroup, data, key);
+
+    // Now connect the enter nodes to their following update node, such that
+    // appendChild can insert the materialized enter node before this node,
+    // rather than at the end of the parent node.
+    for (var i0 = 0, i1 = 0, previous, next; i0 < dataLength; ++i0) {
+      if (previous = enterGroup[i0]) {
+        if (i0 >= i1) i1 = i0 + 1;
+        while (!(next = updateGroup[i1]) && ++i1 < dataLength);
+        previous._next = next || null;
+      }
+    }
+  }
+
+  update = new Selection(update, parents);
+  update._enter = enter;
+  update._exit = exit;
+  return update;
+}
+
+function selection_exit() {
+  return new Selection(this._exit || this._groups.map(sparse), this._parents);
+}
+
+function selection_merge(selection$$1) {
+
+  for (var groups0 = this._groups, groups1 = selection$$1._groups, m0 = groups0.length, m1 = groups1.length, m = Math.min(m0, m1), merges = new Array(m0), j = 0; j < m; ++j) {
+    for (var group0 = groups0[j], group1 = groups1[j], n = group0.length, merge = merges[j] = new Array(n), node, i = 0; i < n; ++i) {
+      if (node = group0[i] || group1[i]) {
+        merge[i] = node;
+      }
+    }
+  }
+
+  for (; j < m0; ++j) {
+    merges[j] = groups0[j];
+  }
+
+  return new Selection(merges, this._parents);
+}
+
+function selection_order() {
+
+  for (var groups = this._groups, j = -1, m = groups.length; ++j < m;) {
+    for (var group = groups[j], i = group.length - 1, next = group[i], node; --i >= 0;) {
+      if (node = group[i]) {
+        if (next && next !== node.nextSibling) next.parentNode.insertBefore(node, next);
+        next = node;
+      }
+    }
+  }
+
+  return this;
+}
+
+function selection_sort(compare) {
+  if (!compare) compare = ascending;
+
+  function compareNode(a, b) {
+    return a && b ? compare(a.__data__, b.__data__) : !a - !b;
+  }
+
+  for (var groups = this._groups, m = groups.length, sortgroups = new Array(m), j = 0; j < m; ++j) {
+    for (var group = groups[j], n = group.length, sortgroup = sortgroups[j] = new Array(n), node, i = 0; i < n; ++i) {
+      if (node = group[i]) {
+        sortgroup[i] = node;
+      }
+    }
+    sortgroup.sort(compareNode);
+  }
+
+  return new Selection(sortgroups, this._parents).order();
+}
+
+function ascending(a, b) {
+  return a < b ? -1 : a > b ? 1 : a >= b ? 0 : NaN;
+}
+
+function selection_call() {
+  var callback = arguments[0];
+  arguments[0] = this;
+  callback.apply(null, arguments);
+  return this;
+}
+
+function selection_nodes() {
+  var nodes = new Array(this.size()), i = -1;
+  this.each(function() { nodes[++i] = this; });
+  return nodes;
+}
+
+function selection_node() {
+
+  for (var groups = this._groups, j = 0, m = groups.length; j < m; ++j) {
+    for (var group = groups[j], i = 0, n = group.length; i < n; ++i) {
+      var node = group[i];
+      if (node) return node;
+    }
+  }
+
+  return null;
+}
+
+function selection_size() {
+  var size = 0;
+  this.each(function() { ++size; });
+  return size;
+}
+
+function selection_empty() {
+  return !this.node();
+}
+
+function selection_each(callback) {
+
+  for (var groups = this._groups, j = 0, m = groups.length; j < m; ++j) {
+    for (var group = groups[j], i = 0, n = group.length, node; i < n; ++i) {
+      if (node = group[i]) callback.call(node, node.__data__, i, group);
+    }
+  }
+
+  return this;
+}
+
+function attrRemove(name) {
+  return function() {
+    this.removeAttribute(name);
+  };
+}
+
+function attrRemoveNS(fullname) {
+  return function() {
+    this.removeAttributeNS(fullname.space, fullname.local);
+  };
+}
+
+function attrConstant(name, value) {
+  return function() {
+    this.setAttribute(name, value);
+  };
+}
+
+function attrConstantNS(fullname, value) {
+  return function() {
+    this.setAttributeNS(fullname.space, fullname.local, value);
+  };
+}
+
+function attrFunction(name, value) {
+  return function() {
+    var v = value.apply(this, arguments);
+    if (v == null) this.removeAttribute(name);
+    else this.setAttribute(name, v);
+  };
+}
+
+function attrFunctionNS(fullname, value) {
+  return function() {
+    var v = value.apply(this, arguments);
+    if (v == null) this.removeAttributeNS(fullname.space, fullname.local);
+    else this.setAttributeNS(fullname.space, fullname.local, v);
+  };
+}
+
+function selection_attr(name, value) {
+  var fullname = namespace(name);
+
+  if (arguments.length < 2) {
+    var node = this.node();
+    return fullname.local
+        ? node.getAttributeNS(fullname.space, fullname.local)
+        : node.getAttribute(fullname);
+  }
+
+  return this.each((value == null
+      ? (fullname.local ? attrRemoveNS : attrRemove) : (typeof value === "function"
+      ? (fullname.local ? attrFunctionNS : attrFunction)
+      : (fullname.local ? attrConstantNS : attrConstant)))(fullname, value));
+}
+
+function defaultView(node) {
+  return (node.ownerDocument && node.ownerDocument.defaultView) // node is a Node
+      || (node.document && node) // node is a Window
+      || node.defaultView; // node is a Document
+}
+
+function styleRemove(name) {
+  return function() {
+    this.style.removeProperty(name);
+  };
+}
+
+function styleConstant(name, value, priority) {
+  return function() {
+    this.style.setProperty(name, value, priority);
+  };
+}
+
+function styleFunction(name, value, priority) {
+  return function() {
+    var v = value.apply(this, arguments);
+    if (v == null) this.style.removeProperty(name);
+    else this.style.setProperty(name, v, priority);
+  };
+}
+
+function selection_style(name, value, priority) {
+  return arguments.length > 1
+      ? this.each((value == null
+            ? styleRemove : typeof value === "function"
+            ? styleFunction
+            : styleConstant)(name, value, priority == null ? "" : priority))
+      : styleValue(this.node(), name);
+}
+
+function styleValue(node, name) {
+  return node.style.getPropertyValue(name)
+      || defaultView(node).getComputedStyle(node, null).getPropertyValue(name);
+}
+
+function propertyRemove(name) {
+  return function() {
+    delete this[name];
+  };
+}
+
+function propertyConstant(name, value) {
+  return function() {
+    this[name] = value;
+  };
+}
+
+function propertyFunction(name, value) {
+  return function() {
+    var v = value.apply(this, arguments);
+    if (v == null) delete this[name];
+    else this[name] = v;
+  };
+}
+
+function selection_property(name, value) {
+  return arguments.length > 1
+      ? this.each((value == null
+          ? propertyRemove : typeof value === "function"
+          ? propertyFunction
+          : propertyConstant)(name, value))
+      : this.node()[name];
+}
+
+function classArray(string) {
+  return string.trim().split(/^|\s+/);
+}
+
+function classList(node) {
+  return node.classList || new ClassList(node);
+}
+
+function ClassList(node) {
+  this._node = node;
+  this._names = classArray(node.getAttribute("class") || "");
+}
+
+ClassList.prototype = {
+  add: function(name) {
+    var i = this._names.indexOf(name);
+    if (i < 0) {
+      this._names.push(name);
+      this._node.setAttribute("class", this._names.join(" "));
+    }
+  },
+  remove: function(name) {
+    var i = this._names.indexOf(name);
+    if (i >= 0) {
+      this._names.splice(i, 1);
+      this._node.setAttribute("class", this._names.join(" "));
+    }
+  },
+  contains: function(name) {
+    return this._names.indexOf(name) >= 0;
+  }
+};
+
+function classedAdd(node, names) {
+  var list = classList(node), i = -1, n = names.length;
+  while (++i < n) list.add(names[i]);
+}
+
+function classedRemove(node, names) {
+  var list = classList(node), i = -1, n = names.length;
+  while (++i < n) list.remove(names[i]);
+}
+
+function classedTrue(names) {
+  return function() {
+    classedAdd(this, names);
+  };
+}
+
+function classedFalse(names) {
+  return function() {
+    classedRemove(this, names);
+  };
+}
+
+function classedFunction(names, value) {
+  return function() {
+    (value.apply(this, arguments) ? classedAdd : classedRemove)(this, names);
+  };
+}
+
+function selection_classed(name, value) {
+  var names = classArray(name + "");
+
+  if (arguments.length < 2) {
+    var list = classList(this.node()), i = -1, n = names.length;
+    while (++i < n) if (!list.contains(names[i])) return false;
+    return true;
+  }
+
+  return this.each((typeof value === "function"
+      ? classedFunction : value
+      ? classedTrue
+      : classedFalse)(names, value));
+}
+
+function textRemove() {
+  this.textContent = "";
+}
+
+function textConstant(value) {
+  return function() {
+    this.textContent = value;
+  };
+}
+
+function textFunction(value) {
+  return function() {
+    var v = value.apply(this, arguments);
+    this.textContent = v == null ? "" : v;
+  };
+}
+
+function selection_text(value) {
+  return arguments.length
+      ? this.each(value == null
+          ? textRemove : (typeof value === "function"
+          ? textFunction
+          : textConstant)(value))
+      : this.node().textContent;
+}
+
+function htmlRemove() {
+  this.innerHTML = "";
+}
+
+function htmlConstant(value) {
+  return function() {
+    this.innerHTML = value;
+  };
+}
+
+function htmlFunction(value) {
+  return function() {
+    var v = value.apply(this, arguments);
+    this.innerHTML = v == null ? "" : v;
+  };
+}
+
+function selection_html(value) {
+  return arguments.length
+      ? this.each(value == null
+          ? htmlRemove : (typeof value === "function"
+          ? htmlFunction
+          : htmlConstant)(value))
+      : this.node().innerHTML;
+}
+
+function raise() {
+  if (this.nextSibling) this.parentNode.appendChild(this);
+}
+
+function selection_raise() {
+  return this.each(raise);
+}
+
+function lower() {
+  if (this.previousSibling) this.parentNode.insertBefore(this, this.parentNode.firstChild);
+}
+
+function selection_lower() {
+  return this.each(lower);
+}
+
+function selection_append(name) {
+  var create = typeof name === "function" ? name : creator(name);
+  return this.select(function() {
+    return this.appendChild(create.apply(this, arguments));
+  });
+}
+
+function constantNull() {
+  return null;
+}
+
+function selection_insert(name, before) {
+  var create = typeof name === "function" ? name : creator(name),
+      select = before == null ? constantNull : typeof before === "function" ? before : selector(before);
+  return this.select(function() {
+    return this.insertBefore(create.apply(this, arguments), select.apply(this, arguments) || null);
+  });
+}
+
+function remove() {
+  var parent = this.parentNode;
+  if (parent) parent.removeChild(this);
+}
+
+function selection_remove() {
+  return this.each(remove);
+}
+
+function selection_cloneShallow() {
+  return this.parentNode.insertBefore(this.cloneNode(false), this.nextSibling);
+}
+
+function selection_cloneDeep() {
+  return this.parentNode.insertBefore(this.cloneNode(true), this.nextSibling);
+}
+
+function selection_clone(deep) {
+  return this.select(deep ? selection_cloneDeep : selection_cloneShallow);
+}
+
+function selection_datum(value) {
+  return arguments.length
+      ? this.property("__data__", value)
+      : this.node().__data__;
+}
+
+var filterEvents = {};
+
+exports.event = null;
+
+if (typeof document !== "undefined") {
+  var element$1 = document.documentElement;
+  if (!("onmouseenter" in element$1)) {
+    filterEvents = {mouseenter: "mouseover", mouseleave: "mouseout"};
+  }
+}
+
+function filterContextListener(listener, index, group) {
+  listener = contextListener(listener, index, group);
+  return function(event) {
+    var related = event.relatedTarget;
+    if (!related || (related !== this && !(related.compareDocumentPosition(this) & 8))) {
+      listener.call(this, event);
+    }
+  };
+}
+
+function contextListener(listener, index, group) {
+  return function(event1) {
+    var event0 = exports.event; // Events can be reentrant (e.g., focus).
+    exports.event = event1;
+    try {
+      listener.call(this, this.__data__, index, group);
+    } finally {
+      exports.event = event0;
+    }
+  };
+}
+
+function parseTypenames(typenames) {
+  return typenames.trim().split(/^|\s+/).map(function(t) {
+    var name = "", i = t.indexOf(".");
+    if (i >= 0) name = t.slice(i + 1), t = t.slice(0, i);
+    return {type: t, name: name};
+  });
+}
+
+function onRemove(typename) {
+  return function() {
+    var on = this.__on;
+    if (!on) return;
+    for (var j = 0, i = -1, m = on.length, o; j < m; ++j) {
+      if (o = on[j], (!typename.type || o.type === typename.type) && o.name === typename.name) {
+        this.removeEventListener(o.type, o.listener, o.capture);
+      } else {
+        on[++i] = o;
+      }
+    }
+    if (++i) on.length = i;
+    else delete this.__on;
+  };
+}
+
+function onAdd(typename, value, capture) {
+  var wrap = filterEvents.hasOwnProperty(typename.type) ? filterContextListener : contextListener;
+  return function(d, i, group) {
+    var on = this.__on, o, listener = wrap(value, i, group);
+    if (on) for (var j = 0, m = on.length; j < m; ++j) {
+      if ((o = on[j]).type === typename.type && o.name === typename.name) {
+        this.removeEventListener(o.type, o.listener, o.capture);
+        this.addEventListener(o.type, o.listener = listener, o.capture = capture);
+        o.value = value;
+        return;
+      }
+    }
+    this.addEventListener(typename.type, listener, capture);
+    o = {type: typename.type, name: typename.name, value: value, listener: listener, capture: capture};
+    if (!on) this.__on = [o];
+    else on.push(o);
+  };
+}
+
+function selection_on(typename, value, capture) {
+  var typenames = parseTypenames(typename + ""), i, n = typenames.length, t;
+
+  if (arguments.length < 2) {
+    var on = this.node().__on;
+    if (on) for (var j = 0, m = on.length, o; j < m; ++j) {
+      for (i = 0, o = on[j]; i < n; ++i) {
+        if ((t = typenames[i]).type === o.type && t.name === o.name) {
+          return o.value;
+        }
+      }
+    }
+    return;
+  }
+
+  on = value ? onAdd : onRemove;
+  if (capture == null) capture = false;
+  for (i = 0; i < n; ++i) this.each(on(typenames[i], value, capture));
+  return this;
+}
+
+function customEvent(event1, listener, that, args) {
+  var event0 = exports.event;
+  event1.sourceEvent = exports.event;
+  exports.event = event1;
+  try {
+    return listener.apply(that, args);
+  } finally {
+    exports.event = event0;
+  }
+}
+
+function dispatchEvent(node, type, params) {
+  var window = defaultView(node),
+      event = window.CustomEvent;
+
+  if (typeof event === "function") {
+    event = new event(type, params);
+  } else {
+    event = window.document.createEvent("Event");
+    if (params) event.initEvent(type, params.bubbles, params.cancelable), event.detail = params.detail;
+    else event.initEvent(type, false, false);
+  }
+
+  node.dispatchEvent(event);
+}
+
+function dispatchConstant(type, params) {
+  return function() {
+    return dispatchEvent(this, type, params);
+  };
+}
+
+function dispatchFunction(type, params) {
+  return function() {
+    return dispatchEvent(this, type, params.apply(this, arguments));
+  };
+}
+
+function selection_dispatch(type, params) {
+  return this.each((typeof params === "function"
+      ? dispatchFunction
+      : dispatchConstant)(type, params));
+}
+
+var root = [null];
+
+function Selection(groups, parents) {
+  this._groups = groups;
+  this._parents = parents;
+}
+
+function selection() {
+  return new Selection([[document.documentElement]], root);
+}
+
+Selection.prototype = selection.prototype = {
+  constructor: Selection,
+  select: selection_select,
+  selectAll: selection_selectAll,
+  filter: selection_filter,
+  data: selection_data,
+  enter: selection_enter,
+  exit: selection_exit,
+  merge: selection_merge,
+  order: selection_order,
+  sort: selection_sort,
+  call: selection_call,
+  nodes: selection_nodes,
+  node: selection_node,
+  size: selection_size,
+  empty: selection_empty,
+  each: selection_each,
+  attr: selection_attr,
+  style: selection_style,
+  property: selection_property,
+  classed: selection_classed,
+  text: selection_text,
+  html: selection_html,
+  raise: selection_raise,
+  lower: selection_lower,
+  append: selection_append,
+  insert: selection_insert,
+  remove: selection_remove,
+  clone: selection_clone,
+  datum: selection_datum,
+  on: selection_on,
+  dispatch: selection_dispatch
+};
+
+function select(selector) {
+  return typeof selector === "string"
+      ? new Selection([[document.querySelector(selector)]], [document.documentElement])
+      : new Selection([[selector]], root);
+}
+
+function create(name) {
+  return select(creator(name).call(document.documentElement));
+}
+
+var nextId = 0;
+
+function local() {
+  return new Local;
+}
+
+function Local() {
+  this._ = "@" + (++nextId).toString(36);
+}
+
+Local.prototype = local.prototype = {
+  constructor: Local,
+  get: function(node) {
+    var id = this._;
+    while (!(id in node)) if (!(node = node.parentNode)) return;
+    return node[id];
+  },
+  set: function(node, value) {
+    return node[this._] = value;
+  },
+  remove: function(node) {
+    return this._ in node && delete node[this._];
+  },
+  toString: function() {
+    return this._;
+  }
+};
+
+function sourceEvent() {
+  var current = exports.event, source;
+  while (source = current.sourceEvent) current = source;
+  return current;
+}
+
+function point(node, event) {
+  var svg = node.ownerSVGElement || node;
+
+  if (svg.createSVGPoint) {
+    var point = svg.createSVGPoint();
+    point.x = event.clientX, point.y = event.clientY;
+    point = point.matrixTransform(node.getScreenCTM().inverse());
+    return [point.x, point.y];
+  }
+
+  var rect = node.getBoundingClientRect();
+  return [event.clientX - rect.left - node.clientLeft, event.clientY - rect.top - node.clientTop];
+}
+
+function mouse(node) {
+  var event = sourceEvent();
+  if (event.changedTouches) event = event.changedTouches[0];
+  return point(node, event);
+}
+
+function selectAll(selector) {
+  return typeof selector === "string"
+      ? new Selection([document.querySelectorAll(selector)], [document.documentElement])
+      : new Selection([selector == null ? [] : selector], root);
+}
+
+function touch(node, touches, identifier) {
+  if (arguments.length < 3) identifier = touches, touches = sourceEvent().changedTouches;
+
+  for (var i = 0, n = touches ? touches.length : 0, touch; i < n; ++i) {
+    if ((touch = touches[i]).identifier === identifier) {
+      return point(node, touch);
+    }
+  }
+
+  return null;
+}
+
+function touches(node, touches) {
+  if (touches == null) touches = sourceEvent().touches;
+
+  for (var i = 0, n = touches ? touches.length : 0, points = new Array(n); i < n; ++i) {
+    points[i] = point(node, touches[i]);
+  }
+
+  return points;
+}
+
+exports.create = create;
+exports.creator = creator;
+exports.local = local;
+exports.matcher = matcher$1;
+exports.mouse = mouse;
+exports.namespace = namespace;
+exports.namespaces = namespaces;
+exports.clientPoint = point;
+exports.select = select;
+exports.selectAll = selectAll;
+exports.selection = selection;
+exports.selector = selector;
+exports.selectorAll = selectorAll;
+exports.style = styleValue;
+exports.touch = touch;
+exports.touches = touches;
+exports.window = defaultView;
+exports.customEvent = customEvent;
+
+Object.defineProperty(exports, '__esModule', { value: true });
+
+})));
+
+},{}],12:[function(require,module,exports){
+// https://d3js.org/d3-time-format/ Version 2.1.1. Copyright 2017 Mike Bostock.
+(function (global, factory) {
+	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('d3-time')) :
+	typeof define === 'function' && define.amd ? define(['exports', 'd3-time'], factory) :
+	(factory((global.d3 = global.d3 || {}),global.d3));
+}(this, (function (exports,d3Time) { 'use strict';
+
+function localDate(d) {
+  if (0 <= d.y && d.y < 100) {
+    var date = new Date(-1, d.m, d.d, d.H, d.M, d.S, d.L);
+    date.setFullYear(d.y);
+    return date;
+  }
+  return new Date(d.y, d.m, d.d, d.H, d.M, d.S, d.L);
+}
+
+function utcDate(d) {
+  if (0 <= d.y && d.y < 100) {
+    var date = new Date(Date.UTC(-1, d.m, d.d, d.H, d.M, d.S, d.L));
+    date.setUTCFullYear(d.y);
+    return date;
+  }
+  return new Date(Date.UTC(d.y, d.m, d.d, d.H, d.M, d.S, d.L));
+}
+
+function newYear(y) {
+  return {y: y, m: 0, d: 1, H: 0, M: 0, S: 0, L: 0};
+}
+
+function formatLocale(locale) {
+  var locale_dateTime = locale.dateTime,
+      locale_date = locale.date,
+      locale_time = locale.time,
+      locale_periods = locale.periods,
+      locale_weekdays = locale.days,
+      locale_shortWeekdays = locale.shortDays,
+      locale_months = locale.months,
+      locale_shortMonths = locale.shortMonths;
+
+  var periodRe = formatRe(locale_periods),
+      periodLookup = formatLookup(locale_periods),
+      weekdayRe = formatRe(locale_weekdays),
+      weekdayLookup = formatLookup(locale_weekdays),
+      shortWeekdayRe = formatRe(locale_shortWeekdays),
+      shortWeekdayLookup = formatLookup(locale_shortWeekdays),
+      monthRe = formatRe(locale_months),
+      monthLookup = formatLookup(locale_months),
+      shortMonthRe = formatRe(locale_shortMonths),
+      shortMonthLookup = formatLookup(locale_shortMonths);
+
+  var formats = {
+    "a": formatShortWeekday,
+    "A": formatWeekday,
+    "b": formatShortMonth,
+    "B": formatMonth,
+    "c": null,
+    "d": formatDayOfMonth,
+    "e": formatDayOfMonth,
+    "f": formatMicroseconds,
+    "H": formatHour24,
+    "I": formatHour12,
+    "j": formatDayOfYear,
+    "L": formatMilliseconds,
+    "m": formatMonthNumber,
+    "M": formatMinutes,
+    "p": formatPeriod,
+    "Q": formatUnixTimestamp,
+    "s": formatUnixTimestampSeconds,
+    "S": formatSeconds,
+    "u": formatWeekdayNumberMonday,
+    "U": formatWeekNumberSunday,
+    "V": formatWeekNumberISO,
+    "w": formatWeekdayNumberSunday,
+    "W": formatWeekNumberMonday,
+    "x": null,
+    "X": null,
+    "y": formatYear,
+    "Y": formatFullYear,
+    "Z": formatZone,
+    "%": formatLiteralPercent
+  };
+
+  var utcFormats = {
+    "a": formatUTCShortWeekday,
+    "A": formatUTCWeekday,
+    "b": formatUTCShortMonth,
+    "B": formatUTCMonth,
+    "c": null,
+    "d": formatUTCDayOfMonth,
+    "e": formatUTCDayOfMonth,
+    "f": formatUTCMicroseconds,
+    "H": formatUTCHour24,
+    "I": formatUTCHour12,
+    "j": formatUTCDayOfYear,
+    "L": formatUTCMilliseconds,
+    "m": formatUTCMonthNumber,
+    "M": formatUTCMinutes,
+    "p": formatUTCPeriod,
+    "Q": formatUnixTimestamp,
+    "s": formatUnixTimestampSeconds,
+    "S": formatUTCSeconds,
+    "u": formatUTCWeekdayNumberMonday,
+    "U": formatUTCWeekNumberSunday,
+    "V": formatUTCWeekNumberISO,
+    "w": formatUTCWeekdayNumberSunday,
+    "W": formatUTCWeekNumberMonday,
+    "x": null,
+    "X": null,
+    "y": formatUTCYear,
+    "Y": formatUTCFullYear,
+    "Z": formatUTCZone,
+    "%": formatLiteralPercent
+  };
+
+  var parses = {
+    "a": parseShortWeekday,
+    "A": parseWeekday,
+    "b": parseShortMonth,
+    "B": parseMonth,
+    "c": parseLocaleDateTime,
+    "d": parseDayOfMonth,
+    "e": parseDayOfMonth,
+    "f": parseMicroseconds,
+    "H": parseHour24,
+    "I": parseHour24,
+    "j": parseDayOfYear,
+    "L": parseMilliseconds,
+    "m": parseMonthNumber,
+    "M": parseMinutes,
+    "p": parsePeriod,
+    "Q": parseUnixTimestamp,
+    "s": parseUnixTimestampSeconds,
+    "S": parseSeconds,
+    "u": parseWeekdayNumberMonday,
+    "U": parseWeekNumberSunday,
+    "V": parseWeekNumberISO,
+    "w": parseWeekdayNumberSunday,
+    "W": parseWeekNumberMonday,
+    "x": parseLocaleDate,
+    "X": parseLocaleTime,
+    "y": parseYear,
+    "Y": parseFullYear,
+    "Z": parseZone,
+    "%": parseLiteralPercent
+  };
+
+  // These recursive directive definitions must be deferred.
+  formats.x = newFormat(locale_date, formats);
+  formats.X = newFormat(locale_time, formats);
+  formats.c = newFormat(locale_dateTime, formats);
+  utcFormats.x = newFormat(locale_date, utcFormats);
+  utcFormats.X = newFormat(locale_time, utcFormats);
+  utcFormats.c = newFormat(locale_dateTime, utcFormats);
+
+  function newFormat(specifier, formats) {
+    return function(date) {
+      var string = [],
+          i = -1,
+          j = 0,
+          n = specifier.length,
+          c,
+          pad,
+          format;
+
+      if (!(date instanceof Date)) date = new Date(+date);
+
+      while (++i < n) {
+        if (specifier.charCodeAt(i) === 37) {
+          string.push(specifier.slice(j, i));
+          if ((pad = pads[c = specifier.charAt(++i)]) != null) c = specifier.charAt(++i);
+          else pad = c === "e" ? " " : "0";
+          if (format = formats[c]) c = format(date, pad);
+          string.push(c);
+          j = i + 1;
+        }
+      }
+
+      string.push(specifier.slice(j, i));
+      return string.join("");
+    };
+  }
+
+  function newParse(specifier, newDate) {
+    return function(string) {
+      var d = newYear(1900),
+          i = parseSpecifier(d, specifier, string += "", 0),
+          week, day;
+      if (i != string.length) return null;
+
+      // If a UNIX timestamp is specified, return it.
+      if ("Q" in d) return new Date(d.Q);
+
+      // The am-pm flag is 0 for AM, and 1 for PM.
+      if ("p" in d) d.H = d.H % 12 + d.p * 12;
+
+      // Convert day-of-week and week-of-year to day-of-year.
+      if ("V" in d) {
+        if (d.V < 1 || d.V > 53) return null;
+        if (!("w" in d)) d.w = 1;
+        if ("Z" in d) {
+          week = utcDate(newYear(d.y)), day = week.getUTCDay();
+          week = day > 4 || day === 0 ? d3Time.utcMonday.ceil(week) : d3Time.utcMonday(week);
+          week = d3Time.utcDay.offset(week, (d.V - 1) * 7);
+          d.y = week.getUTCFullYear();
+          d.m = week.getUTCMonth();
+          d.d = week.getUTCDate() + (d.w + 6) % 7;
+        } else {
+          week = newDate(newYear(d.y)), day = week.getDay();
+          week = day > 4 || day === 0 ? d3Time.timeMonday.ceil(week) : d3Time.timeMonday(week);
+          week = d3Time.timeDay.offset(week, (d.V - 1) * 7);
+          d.y = week.getFullYear();
+          d.m = week.getMonth();
+          d.d = week.getDate() + (d.w + 6) % 7;
+        }
+      } else if ("W" in d || "U" in d) {
+        if (!("w" in d)) d.w = "u" in d ? d.u % 7 : "W" in d ? 1 : 0;
+        day = "Z" in d ? utcDate(newYear(d.y)).getUTCDay() : newDate(newYear(d.y)).getDay();
+        d.m = 0;
+        d.d = "W" in d ? (d.w + 6) % 7 + d.W * 7 - (day + 5) % 7 : d.w + d.U * 7 - (day + 6) % 7;
+      }
+
+      // If a time zone is specified, all fields are interpreted as UTC and then
+      // offset according to the specified time zone.
+      if ("Z" in d) {
+        d.H += d.Z / 100 | 0;
+        d.M += d.Z % 100;
+        return utcDate(d);
+      }
+
+      // Otherwise, all fields are in local time.
+      return newDate(d);
+    };
+  }
+
+  function parseSpecifier(d, specifier, string, j) {
+    var i = 0,
+        n = specifier.length,
+        m = string.length,
+        c,
+        parse;
+
+    while (i < n) {
+      if (j >= m) return -1;
+      c = specifier.charCodeAt(i++);
+      if (c === 37) {
+        c = specifier.charAt(i++);
+        parse = parses[c in pads ? specifier.charAt(i++) : c];
+        if (!parse || ((j = parse(d, string, j)) < 0)) return -1;
+      } else if (c != string.charCodeAt(j++)) {
+        return -1;
+      }
+    }
+
+    return j;
+  }
+
+  function parsePeriod(d, string, i) {
+    var n = periodRe.exec(string.slice(i));
+    return n ? (d.p = periodLookup[n[0].toLowerCase()], i + n[0].length) : -1;
+  }
+
+  function parseShortWeekday(d, string, i) {
+    var n = shortWeekdayRe.exec(string.slice(i));
+    return n ? (d.w = shortWeekdayLookup[n[0].toLowerCase()], i + n[0].length) : -1;
+  }
+
+  function parseWeekday(d, string, i) {
+    var n = weekdayRe.exec(string.slice(i));
+    return n ? (d.w = weekdayLookup[n[0].toLowerCase()], i + n[0].length) : -1;
+  }
+
+  function parseShortMonth(d, string, i) {
+    var n = shortMonthRe.exec(string.slice(i));
+    return n ? (d.m = shortMonthLookup[n[0].toLowerCase()], i + n[0].length) : -1;
+  }
+
+  function parseMonth(d, string, i) {
+    var n = monthRe.exec(string.slice(i));
+    return n ? (d.m = monthLookup[n[0].toLowerCase()], i + n[0].length) : -1;
+  }
+
+  function parseLocaleDateTime(d, string, i) {
+    return parseSpecifier(d, locale_dateTime, string, i);
+  }
+
+  function parseLocaleDate(d, string, i) {
+    return parseSpecifier(d, locale_date, string, i);
+  }
+
+  function parseLocaleTime(d, string, i) {
+    return parseSpecifier(d, locale_time, string, i);
+  }
+
+  function formatShortWeekday(d) {
+    return locale_shortWeekdays[d.getDay()];
+  }
+
+  function formatWeekday(d) {
+    return locale_weekdays[d.getDay()];
+  }
+
+  function formatShortMonth(d) {
+    return locale_shortMonths[d.getMonth()];
+  }
+
+  function formatMonth(d) {
+    return locale_months[d.getMonth()];
+  }
+
+  function formatPeriod(d) {
+    return locale_periods[+(d.getHours() >= 12)];
+  }
+
+  function formatUTCShortWeekday(d) {
+    return locale_shortWeekdays[d.getUTCDay()];
+  }
+
+  function formatUTCWeekday(d) {
+    return locale_weekdays[d.getUTCDay()];
+  }
+
+  function formatUTCShortMonth(d) {
+    return locale_shortMonths[d.getUTCMonth()];
+  }
+
+  function formatUTCMonth(d) {
+    return locale_months[d.getUTCMonth()];
+  }
+
+  function formatUTCPeriod(d) {
+    return locale_periods[+(d.getUTCHours() >= 12)];
+  }
+
+  return {
+    format: function(specifier) {
+      var f = newFormat(specifier += "", formats);
+      f.toString = function() { return specifier; };
+      return f;
+    },
+    parse: function(specifier) {
+      var p = newParse(specifier += "", localDate);
+      p.toString = function() { return specifier; };
+      return p;
+    },
+    utcFormat: function(specifier) {
+      var f = newFormat(specifier += "", utcFormats);
+      f.toString = function() { return specifier; };
+      return f;
+    },
+    utcParse: function(specifier) {
+      var p = newParse(specifier, utcDate);
+      p.toString = function() { return specifier; };
+      return p;
+    }
+  };
+}
+
+var pads = {"-": "", "_": " ", "0": "0"};
+var numberRe = /^\s*\d+/;
+var percentRe = /^%/;
+var requoteRe = /[\\^$*+?|[\]().{}]/g;
+
+function pad(value, fill, width) {
+  var sign = value < 0 ? "-" : "",
+      string = (sign ? -value : value) + "",
+      length = string.length;
+  return sign + (length < width ? new Array(width - length + 1).join(fill) + string : string);
+}
+
+function requote(s) {
+  return s.replace(requoteRe, "\\$&");
+}
+
+function formatRe(names) {
+  return new RegExp("^(?:" + names.map(requote).join("|") + ")", "i");
+}
+
+function formatLookup(names) {
+  var map = {}, i = -1, n = names.length;
+  while (++i < n) map[names[i].toLowerCase()] = i;
+  return map;
+}
+
+function parseWeekdayNumberSunday(d, string, i) {
+  var n = numberRe.exec(string.slice(i, i + 1));
+  return n ? (d.w = +n[0], i + n[0].length) : -1;
+}
+
+function parseWeekdayNumberMonday(d, string, i) {
+  var n = numberRe.exec(string.slice(i, i + 1));
+  return n ? (d.u = +n[0], i + n[0].length) : -1;
+}
+
+function parseWeekNumberSunday(d, string, i) {
+  var n = numberRe.exec(string.slice(i, i + 2));
+  return n ? (d.U = +n[0], i + n[0].length) : -1;
+}
+
+function parseWeekNumberISO(d, string, i) {
+  var n = numberRe.exec(string.slice(i, i + 2));
+  return n ? (d.V = +n[0], i + n[0].length) : -1;
+}
+
+function parseWeekNumberMonday(d, string, i) {
+  var n = numberRe.exec(string.slice(i, i + 2));
+  return n ? (d.W = +n[0], i + n[0].length) : -1;
+}
+
+function parseFullYear(d, string, i) {
+  var n = numberRe.exec(string.slice(i, i + 4));
+  return n ? (d.y = +n[0], i + n[0].length) : -1;
+}
+
+function parseYear(d, string, i) {
+  var n = numberRe.exec(string.slice(i, i + 2));
+  return n ? (d.y = +n[0] + (+n[0] > 68 ? 1900 : 2000), i + n[0].length) : -1;
+}
+
+function parseZone(d, string, i) {
+  var n = /^(Z)|([+-]\d\d)(?::?(\d\d))?/.exec(string.slice(i, i + 6));
+  return n ? (d.Z = n[1] ? 0 : -(n[2] + (n[3] || "00")), i + n[0].length) : -1;
+}
+
+function parseMonthNumber(d, string, i) {
+  var n = numberRe.exec(string.slice(i, i + 2));
+  return n ? (d.m = n[0] - 1, i + n[0].length) : -1;
+}
+
+function parseDayOfMonth(d, string, i) {
+  var n = numberRe.exec(string.slice(i, i + 2));
+  return n ? (d.d = +n[0], i + n[0].length) : -1;
+}
+
+function parseDayOfYear(d, string, i) {
+  var n = numberRe.exec(string.slice(i, i + 3));
+  return n ? (d.m = 0, d.d = +n[0], i + n[0].length) : -1;
+}
+
+function parseHour24(d, string, i) {
+  var n = numberRe.exec(string.slice(i, i + 2));
+  return n ? (d.H = +n[0], i + n[0].length) : -1;
+}
+
+function parseMinutes(d, string, i) {
+  var n = numberRe.exec(string.slice(i, i + 2));
+  return n ? (d.M = +n[0], i + n[0].length) : -1;
+}
+
+function parseSeconds(d, string, i) {
+  var n = numberRe.exec(string.slice(i, i + 2));
+  return n ? (d.S = +n[0], i + n[0].length) : -1;
+}
+
+function parseMilliseconds(d, string, i) {
+  var n = numberRe.exec(string.slice(i, i + 3));
+  return n ? (d.L = +n[0], i + n[0].length) : -1;
+}
+
+function parseMicroseconds(d, string, i) {
+  var n = numberRe.exec(string.slice(i, i + 6));
+  return n ? (d.L = Math.floor(n[0] / 1000), i + n[0].length) : -1;
+}
+
+function parseLiteralPercent(d, string, i) {
+  var n = percentRe.exec(string.slice(i, i + 1));
+  return n ? i + n[0].length : -1;
+}
+
+function parseUnixTimestamp(d, string, i) {
+  var n = numberRe.exec(string.slice(i));
+  return n ? (d.Q = +n[0], i + n[0].length) : -1;
+}
+
+function parseUnixTimestampSeconds(d, string, i) {
+  var n = numberRe.exec(string.slice(i));
+  return n ? (d.Q = (+n[0]) * 1000, i + n[0].length) : -1;
+}
+
+function formatDayOfMonth(d, p) {
+  return pad(d.getDate(), p, 2);
+}
+
+function formatHour24(d, p) {
+  return pad(d.getHours(), p, 2);
+}
+
+function formatHour12(d, p) {
+  return pad(d.getHours() % 12 || 12, p, 2);
+}
+
+function formatDayOfYear(d, p) {
+  return pad(1 + d3Time.timeDay.count(d3Time.timeYear(d), d), p, 3);
+}
+
+function formatMilliseconds(d, p) {
+  return pad(d.getMilliseconds(), p, 3);
+}
+
+function formatMicroseconds(d, p) {
+  return formatMilliseconds(d, p) + "000";
+}
+
+function formatMonthNumber(d, p) {
+  return pad(d.getMonth() + 1, p, 2);
+}
+
+function formatMinutes(d, p) {
+  return pad(d.getMinutes(), p, 2);
+}
+
+function formatSeconds(d, p) {
+  return pad(d.getSeconds(), p, 2);
+}
+
+function formatWeekdayNumberMonday(d) {
+  var day = d.getDay();
+  return day === 0 ? 7 : day;
+}
+
+function formatWeekNumberSunday(d, p) {
+  return pad(d3Time.timeSunday.count(d3Time.timeYear(d), d), p, 2);
+}
+
+function formatWeekNumberISO(d, p) {
+  var day = d.getDay();
+  d = (day >= 4 || day === 0) ? d3Time.timeThursday(d) : d3Time.timeThursday.ceil(d);
+  return pad(d3Time.timeThursday.count(d3Time.timeYear(d), d) + (d3Time.timeYear(d).getDay() === 4), p, 2);
+}
+
+function formatWeekdayNumberSunday(d) {
+  return d.getDay();
+}
+
+function formatWeekNumberMonday(d, p) {
+  return pad(d3Time.timeMonday.count(d3Time.timeYear(d), d), p, 2);
+}
+
+function formatYear(d, p) {
+  return pad(d.getFullYear() % 100, p, 2);
+}
+
+function formatFullYear(d, p) {
+  return pad(d.getFullYear() % 10000, p, 4);
+}
+
+function formatZone(d) {
+  var z = d.getTimezoneOffset();
+  return (z > 0 ? "-" : (z *= -1, "+"))
+      + pad(z / 60 | 0, "0", 2)
+      + pad(z % 60, "0", 2);
+}
+
+function formatUTCDayOfMonth(d, p) {
+  return pad(d.getUTCDate(), p, 2);
+}
+
+function formatUTCHour24(d, p) {
+  return pad(d.getUTCHours(), p, 2);
+}
+
+function formatUTCHour12(d, p) {
+  return pad(d.getUTCHours() % 12 || 12, p, 2);
+}
+
+function formatUTCDayOfYear(d, p) {
+  return pad(1 + d3Time.utcDay.count(d3Time.utcYear(d), d), p, 3);
+}
+
+function formatUTCMilliseconds(d, p) {
+  return pad(d.getUTCMilliseconds(), p, 3);
+}
+
+function formatUTCMicroseconds(d, p) {
+  return formatUTCMilliseconds(d, p) + "000";
+}
+
+function formatUTCMonthNumber(d, p) {
+  return pad(d.getUTCMonth() + 1, p, 2);
+}
+
+function formatUTCMinutes(d, p) {
+  return pad(d.getUTCMinutes(), p, 2);
+}
+
+function formatUTCSeconds(d, p) {
+  return pad(d.getUTCSeconds(), p, 2);
+}
+
+function formatUTCWeekdayNumberMonday(d) {
+  var dow = d.getUTCDay();
+  return dow === 0 ? 7 : dow;
+}
+
+function formatUTCWeekNumberSunday(d, p) {
+  return pad(d3Time.utcSunday.count(d3Time.utcYear(d), d), p, 2);
+}
+
+function formatUTCWeekNumberISO(d, p) {
+  var day = d.getUTCDay();
+  d = (day >= 4 || day === 0) ? d3Time.utcThursday(d) : d3Time.utcThursday.ceil(d);
+  return pad(d3Time.utcThursday.count(d3Time.utcYear(d), d) + (d3Time.utcYear(d).getUTCDay() === 4), p, 2);
+}
+
+function formatUTCWeekdayNumberSunday(d) {
+  return d.getUTCDay();
+}
+
+function formatUTCWeekNumberMonday(d, p) {
+  return pad(d3Time.utcMonday.count(d3Time.utcYear(d), d), p, 2);
+}
+
+function formatUTCYear(d, p) {
+  return pad(d.getUTCFullYear() % 100, p, 2);
+}
+
+function formatUTCFullYear(d, p) {
+  return pad(d.getUTCFullYear() % 10000, p, 4);
+}
+
+function formatUTCZone() {
+  return "+0000";
+}
+
+function formatLiteralPercent() {
+  return "%";
+}
+
+function formatUnixTimestamp(d) {
+  return +d;
+}
+
+function formatUnixTimestampSeconds(d) {
+  return Math.floor(+d / 1000);
+}
+
+var locale;
+
+
+
+
+
+defaultLocale({
+  dateTime: "%x, %X",
+  date: "%-m/%-d/%Y",
+  time: "%-I:%M:%S %p",
+  periods: ["AM", "PM"],
+  days: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+  shortDays: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+  months: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+  shortMonths: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+});
+
+function defaultLocale(definition) {
+  locale = formatLocale(definition);
+  exports.timeFormat = locale.format;
+  exports.timeParse = locale.parse;
+  exports.utcFormat = locale.utcFormat;
+  exports.utcParse = locale.utcParse;
+  return locale;
+}
+
+var isoSpecifier = "%Y-%m-%dT%H:%M:%S.%LZ";
+
+function formatIsoNative(date) {
+  return date.toISOString();
+}
+
+var formatIso = Date.prototype.toISOString
+    ? formatIsoNative
+    : exports.utcFormat(isoSpecifier);
+
+function parseIsoNative(string) {
+  var date = new Date(string);
+  return isNaN(date) ? null : date;
+}
+
+var parseIso = +new Date("2000-01-01T00:00:00.000Z")
+    ? parseIsoNative
+    : exports.utcParse(isoSpecifier);
+
+exports.timeFormatDefaultLocale = defaultLocale;
+exports.timeFormatLocale = formatLocale;
+exports.isoFormat = formatIso;
+exports.isoParse = parseIso;
+
+Object.defineProperty(exports, '__esModule', { value: true });
+
+})));
+
+},{"d3-time":13}],13:[function(require,module,exports){
+// https://d3js.org/d3-time/ Version 1.0.8. Copyright 2017 Mike Bostock.
+(function (global, factory) {
+	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
+	typeof define === 'function' && define.amd ? define(['exports'], factory) :
+	(factory((global.d3 = global.d3 || {})));
+}(this, (function (exports) { 'use strict';
+
+var t0 = new Date;
+var t1 = new Date;
+
+function newInterval(floori, offseti, count, field) {
+
+  function interval(date) {
+    return floori(date = new Date(+date)), date;
+  }
+
+  interval.floor = interval;
+
+  interval.ceil = function(date) {
+    return floori(date = new Date(date - 1)), offseti(date, 1), floori(date), date;
+  };
+
+  interval.round = function(date) {
+    var d0 = interval(date),
+        d1 = interval.ceil(date);
+    return date - d0 < d1 - date ? d0 : d1;
+  };
+
+  interval.offset = function(date, step) {
+    return offseti(date = new Date(+date), step == null ? 1 : Math.floor(step)), date;
+  };
+
+  interval.range = function(start, stop, step) {
+    var range = [], previous;
+    start = interval.ceil(start);
+    step = step == null ? 1 : Math.floor(step);
+    if (!(start < stop) || !(step > 0)) return range; // also handles Invalid Date
+    do range.push(previous = new Date(+start)), offseti(start, step), floori(start);
+    while (previous < start && start < stop);
+    return range;
+  };
+
+  interval.filter = function(test) {
+    return newInterval(function(date) {
+      if (date >= date) while (floori(date), !test(date)) date.setTime(date - 1);
+    }, function(date, step) {
+      if (date >= date) {
+        if (step < 0) while (++step <= 0) {
+          while (offseti(date, -1), !test(date)) {} // eslint-disable-line no-empty
+        } else while (--step >= 0) {
+          while (offseti(date, +1), !test(date)) {} // eslint-disable-line no-empty
+        }
+      }
+    });
+  };
+
+  if (count) {
+    interval.count = function(start, end) {
+      t0.setTime(+start), t1.setTime(+end);
+      floori(t0), floori(t1);
+      return Math.floor(count(t0, t1));
+    };
+
+    interval.every = function(step) {
+      step = Math.floor(step);
+      return !isFinite(step) || !(step > 0) ? null
+          : !(step > 1) ? interval
+          : interval.filter(field
+              ? function(d) { return field(d) % step === 0; }
+              : function(d) { return interval.count(0, d) % step === 0; });
+    };
+  }
+
+  return interval;
+}
+
+var millisecond = newInterval(function() {
+  // noop
+}, function(date, step) {
+  date.setTime(+date + step);
+}, function(start, end) {
+  return end - start;
+});
+
+// An optimized implementation for this simple case.
+millisecond.every = function(k) {
+  k = Math.floor(k);
+  if (!isFinite(k) || !(k > 0)) return null;
+  if (!(k > 1)) return millisecond;
+  return newInterval(function(date) {
+    date.setTime(Math.floor(date / k) * k);
+  }, function(date, step) {
+    date.setTime(+date + step * k);
+  }, function(start, end) {
+    return (end - start) / k;
+  });
+};
+
+var milliseconds = millisecond.range;
+
+var durationSecond = 1e3;
+var durationMinute = 6e4;
+var durationHour = 36e5;
+var durationDay = 864e5;
+var durationWeek = 6048e5;
+
+var second = newInterval(function(date) {
+  date.setTime(Math.floor(date / durationSecond) * durationSecond);
+}, function(date, step) {
+  date.setTime(+date + step * durationSecond);
+}, function(start, end) {
+  return (end - start) / durationSecond;
+}, function(date) {
+  return date.getUTCSeconds();
+});
+
+var seconds = second.range;
+
+var minute = newInterval(function(date) {
+  date.setTime(Math.floor(date / durationMinute) * durationMinute);
+}, function(date, step) {
+  date.setTime(+date + step * durationMinute);
+}, function(start, end) {
+  return (end - start) / durationMinute;
+}, function(date) {
+  return date.getMinutes();
+});
+
+var minutes = minute.range;
+
+var hour = newInterval(function(date) {
+  var offset = date.getTimezoneOffset() * durationMinute % durationHour;
+  if (offset < 0) offset += durationHour;
+  date.setTime(Math.floor((+date - offset) / durationHour) * durationHour + offset);
+}, function(date, step) {
+  date.setTime(+date + step * durationHour);
+}, function(start, end) {
+  return (end - start) / durationHour;
+}, function(date) {
+  return date.getHours();
+});
+
+var hours = hour.range;
+
+var day = newInterval(function(date) {
+  date.setHours(0, 0, 0, 0);
+}, function(date, step) {
+  date.setDate(date.getDate() + step);
+}, function(start, end) {
+  return (end - start - (end.getTimezoneOffset() - start.getTimezoneOffset()) * durationMinute) / durationDay;
+}, function(date) {
+  return date.getDate() - 1;
+});
+
+var days = day.range;
+
+function weekday(i) {
+  return newInterval(function(date) {
+    date.setDate(date.getDate() - (date.getDay() + 7 - i) % 7);
+    date.setHours(0, 0, 0, 0);
+  }, function(date, step) {
+    date.setDate(date.getDate() + step * 7);
+  }, function(start, end) {
+    return (end - start - (end.getTimezoneOffset() - start.getTimezoneOffset()) * durationMinute) / durationWeek;
+  });
+}
+
+var sunday = weekday(0);
+var monday = weekday(1);
+var tuesday = weekday(2);
+var wednesday = weekday(3);
+var thursday = weekday(4);
+var friday = weekday(5);
+var saturday = weekday(6);
+
+var sundays = sunday.range;
+var mondays = monday.range;
+var tuesdays = tuesday.range;
+var wednesdays = wednesday.range;
+var thursdays = thursday.range;
+var fridays = friday.range;
+var saturdays = saturday.range;
+
+var month = newInterval(function(date) {
+  date.setDate(1);
+  date.setHours(0, 0, 0, 0);
+}, function(date, step) {
+  date.setMonth(date.getMonth() + step);
+}, function(start, end) {
+  return end.getMonth() - start.getMonth() + (end.getFullYear() - start.getFullYear()) * 12;
+}, function(date) {
+  return date.getMonth();
+});
+
+var months = month.range;
+
+var year = newInterval(function(date) {
+  date.setMonth(0, 1);
+  date.setHours(0, 0, 0, 0);
+}, function(date, step) {
+  date.setFullYear(date.getFullYear() + step);
+}, function(start, end) {
+  return end.getFullYear() - start.getFullYear();
+}, function(date) {
+  return date.getFullYear();
+});
+
+// An optimized implementation for this simple case.
+year.every = function(k) {
+  return !isFinite(k = Math.floor(k)) || !(k > 0) ? null : newInterval(function(date) {
+    date.setFullYear(Math.floor(date.getFullYear() / k) * k);
+    date.setMonth(0, 1);
+    date.setHours(0, 0, 0, 0);
+  }, function(date, step) {
+    date.setFullYear(date.getFullYear() + step * k);
+  });
+};
+
+var years = year.range;
+
+var utcMinute = newInterval(function(date) {
+  date.setUTCSeconds(0, 0);
+}, function(date, step) {
+  date.setTime(+date + step * durationMinute);
+}, function(start, end) {
+  return (end - start) / durationMinute;
+}, function(date) {
+  return date.getUTCMinutes();
+});
+
+var utcMinutes = utcMinute.range;
+
+var utcHour = newInterval(function(date) {
+  date.setUTCMinutes(0, 0, 0);
+}, function(date, step) {
+  date.setTime(+date + step * durationHour);
+}, function(start, end) {
+  return (end - start) / durationHour;
+}, function(date) {
+  return date.getUTCHours();
+});
+
+var utcHours = utcHour.range;
+
+var utcDay = newInterval(function(date) {
+  date.setUTCHours(0, 0, 0, 0);
+}, function(date, step) {
+  date.setUTCDate(date.getUTCDate() + step);
+}, function(start, end) {
+  return (end - start) / durationDay;
+}, function(date) {
+  return date.getUTCDate() - 1;
+});
+
+var utcDays = utcDay.range;
+
+function utcWeekday(i) {
+  return newInterval(function(date) {
+    date.setUTCDate(date.getUTCDate() - (date.getUTCDay() + 7 - i) % 7);
+    date.setUTCHours(0, 0, 0, 0);
+  }, function(date, step) {
+    date.setUTCDate(date.getUTCDate() + step * 7);
+  }, function(start, end) {
+    return (end - start) / durationWeek;
+  });
+}
+
+var utcSunday = utcWeekday(0);
+var utcMonday = utcWeekday(1);
+var utcTuesday = utcWeekday(2);
+var utcWednesday = utcWeekday(3);
+var utcThursday = utcWeekday(4);
+var utcFriday = utcWeekday(5);
+var utcSaturday = utcWeekday(6);
+
+var utcSundays = utcSunday.range;
+var utcMondays = utcMonday.range;
+var utcTuesdays = utcTuesday.range;
+var utcWednesdays = utcWednesday.range;
+var utcThursdays = utcThursday.range;
+var utcFridays = utcFriday.range;
+var utcSaturdays = utcSaturday.range;
+
+var utcMonth = newInterval(function(date) {
+  date.setUTCDate(1);
+  date.setUTCHours(0, 0, 0, 0);
+}, function(date, step) {
+  date.setUTCMonth(date.getUTCMonth() + step);
+}, function(start, end) {
+  return end.getUTCMonth() - start.getUTCMonth() + (end.getUTCFullYear() - start.getUTCFullYear()) * 12;
+}, function(date) {
+  return date.getUTCMonth();
+});
+
+var utcMonths = utcMonth.range;
+
+var utcYear = newInterval(function(date) {
+  date.setUTCMonth(0, 1);
+  date.setUTCHours(0, 0, 0, 0);
+}, function(date, step) {
+  date.setUTCFullYear(date.getUTCFullYear() + step);
+}, function(start, end) {
+  return end.getUTCFullYear() - start.getUTCFullYear();
+}, function(date) {
+  return date.getUTCFullYear();
+});
+
+// An optimized implementation for this simple case.
+utcYear.every = function(k) {
+  return !isFinite(k = Math.floor(k)) || !(k > 0) ? null : newInterval(function(date) {
+    date.setUTCFullYear(Math.floor(date.getUTCFullYear() / k) * k);
+    date.setUTCMonth(0, 1);
+    date.setUTCHours(0, 0, 0, 0);
+  }, function(date, step) {
+    date.setUTCFullYear(date.getUTCFullYear() + step * k);
+  });
+};
+
+var utcYears = utcYear.range;
+
+exports.timeInterval = newInterval;
+exports.timeMillisecond = millisecond;
+exports.timeMilliseconds = milliseconds;
+exports.utcMillisecond = millisecond;
+exports.utcMilliseconds = milliseconds;
+exports.timeSecond = second;
+exports.timeSeconds = seconds;
+exports.utcSecond = second;
+exports.utcSeconds = seconds;
+exports.timeMinute = minute;
+exports.timeMinutes = minutes;
+exports.timeHour = hour;
+exports.timeHours = hours;
+exports.timeDay = day;
+exports.timeDays = days;
+exports.timeWeek = sunday;
+exports.timeWeeks = sundays;
+exports.timeSunday = sunday;
+exports.timeSundays = sundays;
+exports.timeMonday = monday;
+exports.timeMondays = mondays;
+exports.timeTuesday = tuesday;
+exports.timeTuesdays = tuesdays;
+exports.timeWednesday = wednesday;
+exports.timeWednesdays = wednesdays;
+exports.timeThursday = thursday;
+exports.timeThursdays = thursdays;
+exports.timeFriday = friday;
+exports.timeFridays = fridays;
+exports.timeSaturday = saturday;
+exports.timeSaturdays = saturdays;
+exports.timeMonth = month;
+exports.timeMonths = months;
+exports.timeYear = year;
+exports.timeYears = years;
+exports.utcMinute = utcMinute;
+exports.utcMinutes = utcMinutes;
+exports.utcHour = utcHour;
+exports.utcHours = utcHours;
+exports.utcDay = utcDay;
+exports.utcDays = utcDays;
+exports.utcWeek = utcSunday;
+exports.utcWeeks = utcSundays;
+exports.utcSunday = utcSunday;
+exports.utcSundays = utcSundays;
+exports.utcMonday = utcMonday;
+exports.utcMondays = utcMondays;
+exports.utcTuesday = utcTuesday;
+exports.utcTuesdays = utcTuesdays;
+exports.utcWednesday = utcWednesday;
+exports.utcWednesdays = utcWednesdays;
+exports.utcThursday = utcThursday;
+exports.utcThursdays = utcThursdays;
+exports.utcFriday = utcFriday;
+exports.utcFridays = utcFridays;
+exports.utcSaturday = utcSaturday;
+exports.utcSaturdays = utcSaturdays;
+exports.utcMonth = utcMonth;
+exports.utcMonths = utcMonths;
+exports.utcYear = utcYear;
+exports.utcYears = utcYears;
+
+Object.defineProperty(exports, '__esModule', { value: true });
+
+})));
+
+},{}],14:[function(require,module,exports){
+// https://d3js.org/d3-timer/ Version 1.0.7. Copyright 2017 Mike Bostock.
+(function (global, factory) {
+	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
+	typeof define === 'function' && define.amd ? define(['exports'], factory) :
+	(factory((global.d3 = global.d3 || {})));
+}(this, (function (exports) { 'use strict';
+
+var frame = 0;
+var timeout = 0;
+var interval = 0;
+var pokeDelay = 1000;
+var taskHead;
+var taskTail;
+var clockLast = 0;
+var clockNow = 0;
+var clockSkew = 0;
+var clock = typeof performance === "object" && performance.now ? performance : Date;
+var setFrame = typeof window === "object" && window.requestAnimationFrame ? window.requestAnimationFrame.bind(window) : function(f) { setTimeout(f, 17); };
+
+function now() {
+  return clockNow || (setFrame(clearNow), clockNow = clock.now() + clockSkew);
+}
+
+function clearNow() {
+  clockNow = 0;
+}
+
+function Timer() {
+  this._call =
+  this._time =
+  this._next = null;
+}
+
+Timer.prototype = timer.prototype = {
+  constructor: Timer,
+  restart: function(callback, delay, time) {
+    if (typeof callback !== "function") throw new TypeError("callback is not a function");
+    time = (time == null ? now() : +time) + (delay == null ? 0 : +delay);
+    if (!this._next && taskTail !== this) {
+      if (taskTail) taskTail._next = this;
+      else taskHead = this;
+      taskTail = this;
+    }
+    this._call = callback;
+    this._time = time;
+    sleep();
+  },
+  stop: function() {
+    if (this._call) {
+      this._call = null;
+      this._time = Infinity;
+      sleep();
+    }
+  }
+};
+
+function timer(callback, delay, time) {
+  var t = new Timer;
+  t.restart(callback, delay, time);
+  return t;
+}
+
+function timerFlush() {
+  now(); // Get the current time, if not already set.
+  ++frame; // Pretend we’ve set an alarm, if we haven’t already.
+  var t = taskHead, e;
+  while (t) {
+    if ((e = clockNow - t._time) >= 0) t._call.call(null, e);
+    t = t._next;
+  }
+  --frame;
+}
+
+function wake() {
+  clockNow = (clockLast = clock.now()) + clockSkew;
+  frame = timeout = 0;
+  try {
+    timerFlush();
+  } finally {
+    frame = 0;
+    nap();
+    clockNow = 0;
+  }
+}
+
+function poke() {
+  var now = clock.now(), delay = now - clockLast;
+  if (delay > pokeDelay) clockSkew -= delay, clockLast = now;
+}
+
+function nap() {
+  var t0, t1 = taskHead, t2, time = Infinity;
+  while (t1) {
+    if (t1._call) {
+      if (time > t1._time) time = t1._time;
+      t0 = t1, t1 = t1._next;
+    } else {
+      t2 = t1._next, t1._next = null;
+      t1 = t0 ? t0._next = t2 : taskHead = t2;
+    }
+  }
+  taskTail = t0;
+  sleep(time);
+}
+
+function sleep(time) {
+  if (frame) return; // Soonest alarm already set, or will be.
+  if (timeout) timeout = clearTimeout(timeout);
+  var delay = time - clockNow; // Strictly less than if we recomputed clockNow.
+  if (delay > 24) {
+    if (time < Infinity) timeout = setTimeout(wake, time - clock.now() - clockSkew);
+    if (interval) interval = clearInterval(interval);
+  } else {
+    if (!interval) clockLast = clock.now(), interval = setInterval(poke, pokeDelay);
+    frame = 1, setFrame(wake);
+  }
+}
+
+var timeout$1 = function(callback, delay, time) {
+  var t = new Timer;
+  delay = delay == null ? 0 : +delay;
+  t.restart(function(elapsed) {
+    t.stop();
+    callback(elapsed + delay);
+  }, delay, time);
+  return t;
+};
+
+var interval$1 = function(callback, delay, time) {
+  var t = new Timer, total = delay;
+  if (delay == null) return t.restart(callback, delay, time), t;
+  delay = +delay, time = time == null ? now() : +time;
+  t.restart(function tick(elapsed) {
+    elapsed += total;
+    t.restart(tick, total += delay, time);
+    callback(elapsed);
+  }, delay, time);
+  return t;
+};
+
+exports.now = now;
+exports.timer = timer;
+exports.timerFlush = timerFlush;
+exports.timeout = timeout$1;
+exports.interval = interval$1;
+
+Object.defineProperty(exports, '__esModule', { value: true });
+
+})));
+
+},{}],15:[function(require,module,exports){
+// https://d3js.org/d3-transition/ Version 1.1.1. Copyright 2017 Mike Bostock.
+(function (global, factory) {
+	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('d3-selection'), require('d3-dispatch'), require('d3-timer'), require('d3-interpolate'), require('d3-color'), require('d3-ease')) :
+	typeof define === 'function' && define.amd ? define(['exports', 'd3-selection', 'd3-dispatch', 'd3-timer', 'd3-interpolate', 'd3-color', 'd3-ease'], factory) :
+	(factory((global.d3 = global.d3 || {}),global.d3,global.d3,global.d3,global.d3,global.d3,global.d3));
+}(this, (function (exports,d3Selection,d3Dispatch,d3Timer,d3Interpolate,d3Color,d3Ease) { 'use strict';
+
+var emptyOn = d3Dispatch.dispatch("start", "end", "interrupt");
+var emptyTween = [];
+
+var CREATED = 0;
+var SCHEDULED = 1;
+var STARTING = 2;
+var STARTED = 3;
+var RUNNING = 4;
+var ENDING = 5;
+var ENDED = 6;
+
+var schedule = function(node, name, id, index, group, timing) {
+  var schedules = node.__transition;
+  if (!schedules) node.__transition = {};
+  else if (id in schedules) return;
+  create(node, id, {
+    name: name,
+    index: index, // For context during callback.
+    group: group, // For context during callback.
+    on: emptyOn,
+    tween: emptyTween,
+    time: timing.time,
+    delay: timing.delay,
+    duration: timing.duration,
+    ease: timing.ease,
+    timer: null,
+    state: CREATED
+  });
+};
+
+function init(node, id) {
+  var schedule = get(node, id);
+  if (schedule.state > CREATED) throw new Error("too late; already scheduled");
+  return schedule;
+}
+
+function set(node, id) {
+  var schedule = get(node, id);
+  if (schedule.state > STARTING) throw new Error("too late; already started");
+  return schedule;
+}
+
+function get(node, id) {
+  var schedule = node.__transition;
+  if (!schedule || !(schedule = schedule[id])) throw new Error("transition not found");
+  return schedule;
+}
+
+function create(node, id, self) {
+  var schedules = node.__transition,
+      tween;
+
+  // Initialize the self timer when the transition is created.
+  // Note the actual delay is not known until the first callback!
+  schedules[id] = self;
+  self.timer = d3Timer.timer(schedule, 0, self.time);
+
+  function schedule(elapsed) {
+    self.state = SCHEDULED;
+    self.timer.restart(start, self.delay, self.time);
+
+    // If the elapsed delay is less than our first sleep, start immediately.
+    if (self.delay <= elapsed) start(elapsed - self.delay);
+  }
+
+  function start(elapsed) {
+    var i, j, n, o;
+
+    // If the state is not SCHEDULED, then we previously errored on start.
+    if (self.state !== SCHEDULED) return stop();
+
+    for (i in schedules) {
+      o = schedules[i];
+      if (o.name !== self.name) continue;
+
+      // While this element already has a starting transition during this frame,
+      // defer starting an interrupting transition until that transition has a
+      // chance to tick (and possibly end); see d3/d3-transition#54!
+      if (o.state === STARTED) return d3Timer.timeout(start);
+
+      // Interrupt the active transition, if any.
+      // Dispatch the interrupt event.
+      if (o.state === RUNNING) {
+        o.state = ENDED;
+        o.timer.stop();
+        o.on.call("interrupt", node, node.__data__, o.index, o.group);
+        delete schedules[i];
+      }
+
+      // Cancel any pre-empted transitions. No interrupt event is dispatched
+      // because the cancelled transitions never started. Note that this also
+      // removes this transition from the pending list!
+      else if (+i < id) {
+        o.state = ENDED;
+        o.timer.stop();
+        delete schedules[i];
+      }
+    }
+
+    // Defer the first tick to end of the current frame; see d3/d3#1576.
+    // Note the transition may be canceled after start and before the first tick!
+    // Note this must be scheduled before the start event; see d3/d3-transition#16!
+    // Assuming this is successful, subsequent callbacks go straight to tick.
+    d3Timer.timeout(function() {
+      if (self.state === STARTED) {
+        self.state = RUNNING;
+        self.timer.restart(tick, self.delay, self.time);
+        tick(elapsed);
+      }
+    });
+
+    // Dispatch the start event.
+    // Note this must be done before the tween are initialized.
+    self.state = STARTING;
+    self.on.call("start", node, node.__data__, self.index, self.group);
+    if (self.state !== STARTING) return; // interrupted
+    self.state = STARTED;
+
+    // Initialize the tween, deleting null tween.
+    tween = new Array(n = self.tween.length);
+    for (i = 0, j = -1; i < n; ++i) {
+      if (o = self.tween[i].value.call(node, node.__data__, self.index, self.group)) {
+        tween[++j] = o;
+      }
+    }
+    tween.length = j + 1;
+  }
+
+  function tick(elapsed) {
+    var t = elapsed < self.duration ? self.ease.call(null, elapsed / self.duration) : (self.timer.restart(stop), self.state = ENDING, 1),
+        i = -1,
+        n = tween.length;
+
+    while (++i < n) {
+      tween[i].call(null, t);
+    }
+
+    // Dispatch the end event.
+    if (self.state === ENDING) {
+      self.on.call("end", node, node.__data__, self.index, self.group);
+      stop();
+    }
+  }
+
+  function stop() {
+    self.state = ENDED;
+    self.timer.stop();
+    delete schedules[id];
+    for (var i in schedules) return; // eslint-disable-line no-unused-vars
+    delete node.__transition;
+  }
+}
+
+var interrupt = function(node, name) {
+  var schedules = node.__transition,
+      schedule,
+      active,
+      empty = true,
+      i;
+
+  if (!schedules) return;
+
+  name = name == null ? null : name + "";
+
+  for (i in schedules) {
+    if ((schedule = schedules[i]).name !== name) { empty = false; continue; }
+    active = schedule.state > STARTING && schedule.state < ENDING;
+    schedule.state = ENDED;
+    schedule.timer.stop();
+    if (active) schedule.on.call("interrupt", node, node.__data__, schedule.index, schedule.group);
+    delete schedules[i];
+  }
+
+  if (empty) delete node.__transition;
+};
+
+var selection_interrupt = function(name) {
+  return this.each(function() {
+    interrupt(this, name);
+  });
+};
+
+function tweenRemove(id, name) {
+  var tween0, tween1;
+  return function() {
+    var schedule = set(this, id),
+        tween = schedule.tween;
+
+    // If this node shared tween with the previous node,
+    // just assign the updated shared tween and we’re done!
+    // Otherwise, copy-on-write.
+    if (tween !== tween0) {
+      tween1 = tween0 = tween;
+      for (var i = 0, n = tween1.length; i < n; ++i) {
+        if (tween1[i].name === name) {
+          tween1 = tween1.slice();
+          tween1.splice(i, 1);
+          break;
+        }
+      }
+    }
+
+    schedule.tween = tween1;
+  };
+}
+
+function tweenFunction(id, name, value) {
+  var tween0, tween1;
+  if (typeof value !== "function") throw new Error;
+  return function() {
+    var schedule = set(this, id),
+        tween = schedule.tween;
+
+    // If this node shared tween with the previous node,
+    // just assign the updated shared tween and we’re done!
+    // Otherwise, copy-on-write.
+    if (tween !== tween0) {
+      tween1 = (tween0 = tween).slice();
+      for (var t = {name: name, value: value}, i = 0, n = tween1.length; i < n; ++i) {
+        if (tween1[i].name === name) {
+          tween1[i] = t;
+          break;
+        }
+      }
+      if (i === n) tween1.push(t);
+    }
+
+    schedule.tween = tween1;
+  };
+}
+
+var transition_tween = function(name, value) {
+  var id = this._id;
+
+  name += "";
+
+  if (arguments.length < 2) {
+    var tween = get(this.node(), id).tween;
+    for (var i = 0, n = tween.length, t; i < n; ++i) {
+      if ((t = tween[i]).name === name) {
+        return t.value;
+      }
+    }
+    return null;
+  }
+
+  return this.each((value == null ? tweenRemove : tweenFunction)(id, name, value));
+};
+
+function tweenValue(transition, name, value) {
+  var id = transition._id;
+
+  transition.each(function() {
+    var schedule = set(this, id);
+    (schedule.value || (schedule.value = {}))[name] = value.apply(this, arguments);
+  });
+
+  return function(node) {
+    return get(node, id).value[name];
+  };
+}
+
+var interpolate = function(a, b) {
+  var c;
+  return (typeof b === "number" ? d3Interpolate.interpolateNumber
+      : b instanceof d3Color.color ? d3Interpolate.interpolateRgb
+      : (c = d3Color.color(b)) ? (b = c, d3Interpolate.interpolateRgb)
+      : d3Interpolate.interpolateString)(a, b);
+};
+
+function attrRemove(name) {
+  return function() {
+    this.removeAttribute(name);
+  };
+}
+
+function attrRemoveNS(fullname) {
+  return function() {
+    this.removeAttributeNS(fullname.space, fullname.local);
+  };
+}
+
+function attrConstant(name, interpolate$$1, value1) {
+  var value00,
+      interpolate0;
+  return function() {
+    var value0 = this.getAttribute(name);
+    return value0 === value1 ? null
+        : value0 === value00 ? interpolate0
+        : interpolate0 = interpolate$$1(value00 = value0, value1);
+  };
+}
+
+function attrConstantNS(fullname, interpolate$$1, value1) {
+  var value00,
+      interpolate0;
+  return function() {
+    var value0 = this.getAttributeNS(fullname.space, fullname.local);
+    return value0 === value1 ? null
+        : value0 === value00 ? interpolate0
+        : interpolate0 = interpolate$$1(value00 = value0, value1);
+  };
+}
+
+function attrFunction(name, interpolate$$1, value) {
+  var value00,
+      value10,
+      interpolate0;
+  return function() {
+    var value0, value1 = value(this);
+    if (value1 == null) return void this.removeAttribute(name);
+    value0 = this.getAttribute(name);
+    return value0 === value1 ? null
+        : value0 === value00 && value1 === value10 ? interpolate0
+        : interpolate0 = interpolate$$1(value00 = value0, value10 = value1);
+  };
+}
+
+function attrFunctionNS(fullname, interpolate$$1, value) {
+  var value00,
+      value10,
+      interpolate0;
+  return function() {
+    var value0, value1 = value(this);
+    if (value1 == null) return void this.removeAttributeNS(fullname.space, fullname.local);
+    value0 = this.getAttributeNS(fullname.space, fullname.local);
+    return value0 === value1 ? null
+        : value0 === value00 && value1 === value10 ? interpolate0
+        : interpolate0 = interpolate$$1(value00 = value0, value10 = value1);
+  };
+}
+
+var transition_attr = function(name, value) {
+  var fullname = d3Selection.namespace(name), i = fullname === "transform" ? d3Interpolate.interpolateTransformSvg : interpolate;
+  return this.attrTween(name, typeof value === "function"
+      ? (fullname.local ? attrFunctionNS : attrFunction)(fullname, i, tweenValue(this, "attr." + name, value))
+      : value == null ? (fullname.local ? attrRemoveNS : attrRemove)(fullname)
+      : (fullname.local ? attrConstantNS : attrConstant)(fullname, i, value + ""));
+};
+
+function attrTweenNS(fullname, value) {
+  function tween() {
+    var node = this, i = value.apply(node, arguments);
+    return i && function(t) {
+      node.setAttributeNS(fullname.space, fullname.local, i(t));
+    };
+  }
+  tween._value = value;
+  return tween;
+}
+
+function attrTween(name, value) {
+  function tween() {
+    var node = this, i = value.apply(node, arguments);
+    return i && function(t) {
+      node.setAttribute(name, i(t));
+    };
+  }
+  tween._value = value;
+  return tween;
+}
+
+var transition_attrTween = function(name, value) {
+  var key = "attr." + name;
+  if (arguments.length < 2) return (key = this.tween(key)) && key._value;
+  if (value == null) return this.tween(key, null);
+  if (typeof value !== "function") throw new Error;
+  var fullname = d3Selection.namespace(name);
+  return this.tween(key, (fullname.local ? attrTweenNS : attrTween)(fullname, value));
+};
+
+function delayFunction(id, value) {
+  return function() {
+    init(this, id).delay = +value.apply(this, arguments);
+  };
+}
+
+function delayConstant(id, value) {
+  return value = +value, function() {
+    init(this, id).delay = value;
+  };
+}
+
+var transition_delay = function(value) {
+  var id = this._id;
+
+  return arguments.length
+      ? this.each((typeof value === "function"
+          ? delayFunction
+          : delayConstant)(id, value))
+      : get(this.node(), id).delay;
+};
+
+function durationFunction(id, value) {
+  return function() {
+    set(this, id).duration = +value.apply(this, arguments);
+  };
+}
+
+function durationConstant(id, value) {
+  return value = +value, function() {
+    set(this, id).duration = value;
+  };
+}
+
+var transition_duration = function(value) {
+  var id = this._id;
+
+  return arguments.length
+      ? this.each((typeof value === "function"
+          ? durationFunction
+          : durationConstant)(id, value))
+      : get(this.node(), id).duration;
+};
+
+function easeConstant(id, value) {
+  if (typeof value !== "function") throw new Error;
+  return function() {
+    set(this, id).ease = value;
+  };
+}
+
+var transition_ease = function(value) {
+  var id = this._id;
+
+  return arguments.length
+      ? this.each(easeConstant(id, value))
+      : get(this.node(), id).ease;
+};
+
+var transition_filter = function(match) {
+  if (typeof match !== "function") match = d3Selection.matcher(match);
+
+  for (var groups = this._groups, m = groups.length, subgroups = new Array(m), j = 0; j < m; ++j) {
+    for (var group = groups[j], n = group.length, subgroup = subgroups[j] = [], node, i = 0; i < n; ++i) {
+      if ((node = group[i]) && match.call(node, node.__data__, i, group)) {
+        subgroup.push(node);
+      }
+    }
+  }
+
+  return new Transition(subgroups, this._parents, this._name, this._id);
+};
+
+var transition_merge = function(transition) {
+  if (transition._id !== this._id) throw new Error;
+
+  for (var groups0 = this._groups, groups1 = transition._groups, m0 = groups0.length, m1 = groups1.length, m = Math.min(m0, m1), merges = new Array(m0), j = 0; j < m; ++j) {
+    for (var group0 = groups0[j], group1 = groups1[j], n = group0.length, merge = merges[j] = new Array(n), node, i = 0; i < n; ++i) {
+      if (node = group0[i] || group1[i]) {
+        merge[i] = node;
+      }
+    }
+  }
+
+  for (; j < m0; ++j) {
+    merges[j] = groups0[j];
+  }
+
+  return new Transition(merges, this._parents, this._name, this._id);
+};
+
+function start(name) {
+  return (name + "").trim().split(/^|\s+/).every(function(t) {
+    var i = t.indexOf(".");
+    if (i >= 0) t = t.slice(0, i);
+    return !t || t === "start";
+  });
+}
+
+function onFunction(id, name, listener) {
+  var on0, on1, sit = start(name) ? init : set;
+  return function() {
+    var schedule = sit(this, id),
+        on = schedule.on;
+
+    // If this node shared a dispatch with the previous node,
+    // just assign the updated shared dispatch and we’re done!
+    // Otherwise, copy-on-write.
+    if (on !== on0) (on1 = (on0 = on).copy()).on(name, listener);
+
+    schedule.on = on1;
+  };
+}
+
+var transition_on = function(name, listener) {
+  var id = this._id;
+
+  return arguments.length < 2
+      ? get(this.node(), id).on.on(name)
+      : this.each(onFunction(id, name, listener));
+};
+
+function removeFunction(id) {
+  return function() {
+    var parent = this.parentNode;
+    for (var i in this.__transition) if (+i !== id) return;
+    if (parent) parent.removeChild(this);
+  };
+}
+
+var transition_remove = function() {
+  return this.on("end.remove", removeFunction(this._id));
+};
+
+var transition_select = function(select) {
+  var name = this._name,
+      id = this._id;
+
+  if (typeof select !== "function") select = d3Selection.selector(select);
+
+  for (var groups = this._groups, m = groups.length, subgroups = new Array(m), j = 0; j < m; ++j) {
+    for (var group = groups[j], n = group.length, subgroup = subgroups[j] = new Array(n), node, subnode, i = 0; i < n; ++i) {
+      if ((node = group[i]) && (subnode = select.call(node, node.__data__, i, group))) {
+        if ("__data__" in node) subnode.__data__ = node.__data__;
+        subgroup[i] = subnode;
+        schedule(subgroup[i], name, id, i, subgroup, get(node, id));
+      }
+    }
+  }
+
+  return new Transition(subgroups, this._parents, name, id);
+};
+
+var transition_selectAll = function(select) {
+  var name = this._name,
+      id = this._id;
+
+  if (typeof select !== "function") select = d3Selection.selectorAll(select);
+
+  for (var groups = this._groups, m = groups.length, subgroups = [], parents = [], j = 0; j < m; ++j) {
+    for (var group = groups[j], n = group.length, node, i = 0; i < n; ++i) {
+      if (node = group[i]) {
+        for (var children = select.call(node, node.__data__, i, group), child, inherit = get(node, id), k = 0, l = children.length; k < l; ++k) {
+          if (child = children[k]) {
+            schedule(child, name, id, k, children, inherit);
+          }
+        }
+        subgroups.push(children);
+        parents.push(node);
+      }
+    }
+  }
+
+  return new Transition(subgroups, parents, name, id);
+};
+
+var Selection = d3Selection.selection.prototype.constructor;
+
+var transition_selection = function() {
+  return new Selection(this._groups, this._parents);
+};
+
+function styleRemove(name, interpolate$$1) {
+  var value00,
+      value10,
+      interpolate0;
+  return function() {
+    var value0 = d3Selection.style(this, name),
+        value1 = (this.style.removeProperty(name), d3Selection.style(this, name));
+    return value0 === value1 ? null
+        : value0 === value00 && value1 === value10 ? interpolate0
+        : interpolate0 = interpolate$$1(value00 = value0, value10 = value1);
+  };
+}
+
+function styleRemoveEnd(name) {
+  return function() {
+    this.style.removeProperty(name);
+  };
+}
+
+function styleConstant(name, interpolate$$1, value1) {
+  var value00,
+      interpolate0;
+  return function() {
+    var value0 = d3Selection.style(this, name);
+    return value0 === value1 ? null
+        : value0 === value00 ? interpolate0
+        : interpolate0 = interpolate$$1(value00 = value0, value1);
+  };
+}
+
+function styleFunction(name, interpolate$$1, value) {
+  var value00,
+      value10,
+      interpolate0;
+  return function() {
+    var value0 = d3Selection.style(this, name),
+        value1 = value(this);
+    if (value1 == null) value1 = (this.style.removeProperty(name), d3Selection.style(this, name));
+    return value0 === value1 ? null
+        : value0 === value00 && value1 === value10 ? interpolate0
+        : interpolate0 = interpolate$$1(value00 = value0, value10 = value1);
+  };
+}
+
+var transition_style = function(name, value, priority) {
+  var i = (name += "") === "transform" ? d3Interpolate.interpolateTransformCss : interpolate;
+  return value == null ? this
+          .styleTween(name, styleRemove(name, i))
+          .on("end.style." + name, styleRemoveEnd(name))
+      : this.styleTween(name, typeof value === "function"
+          ? styleFunction(name, i, tweenValue(this, "style." + name, value))
+          : styleConstant(name, i, value + ""), priority);
+};
+
+function styleTween(name, value, priority) {
+  function tween() {
+    var node = this, i = value.apply(node, arguments);
+    return i && function(t) {
+      node.style.setProperty(name, i(t), priority);
+    };
+  }
+  tween._value = value;
+  return tween;
+}
+
+var transition_styleTween = function(name, value, priority) {
+  var key = "style." + (name += "");
+  if (arguments.length < 2) return (key = this.tween(key)) && key._value;
+  if (value == null) return this.tween(key, null);
+  if (typeof value !== "function") throw new Error;
+  return this.tween(key, styleTween(name, value, priority == null ? "" : priority));
+};
+
+function textConstant(value) {
+  return function() {
+    this.textContent = value;
+  };
+}
+
+function textFunction(value) {
+  return function() {
+    var value1 = value(this);
+    this.textContent = value1 == null ? "" : value1;
+  };
+}
+
+var transition_text = function(value) {
+  return this.tween("text", typeof value === "function"
+      ? textFunction(tweenValue(this, "text", value))
+      : textConstant(value == null ? "" : value + ""));
+};
+
+var transition_transition = function() {
+  var name = this._name,
+      id0 = this._id,
+      id1 = newId();
+
+  for (var groups = this._groups, m = groups.length, j = 0; j < m; ++j) {
+    for (var group = groups[j], n = group.length, node, i = 0; i < n; ++i) {
+      if (node = group[i]) {
+        var inherit = get(node, id0);
+        schedule(node, name, id1, i, group, {
+          time: inherit.time + inherit.delay + inherit.duration,
+          delay: 0,
+          duration: inherit.duration,
+          ease: inherit.ease
+        });
+      }
+    }
+  }
+
+  return new Transition(groups, this._parents, name, id1);
+};
+
+var id = 0;
+
+function Transition(groups, parents, name, id) {
+  this._groups = groups;
+  this._parents = parents;
+  this._name = name;
+  this._id = id;
+}
+
+function transition(name) {
+  return d3Selection.selection().transition(name);
+}
+
+function newId() {
+  return ++id;
+}
+
+var selection_prototype = d3Selection.selection.prototype;
+
+Transition.prototype = transition.prototype = {
+  constructor: Transition,
+  select: transition_select,
+  selectAll: transition_selectAll,
+  filter: transition_filter,
+  merge: transition_merge,
+  selection: transition_selection,
+  transition: transition_transition,
+  call: selection_prototype.call,
+  nodes: selection_prototype.nodes,
+  node: selection_prototype.node,
+  size: selection_prototype.size,
+  empty: selection_prototype.empty,
+  each: selection_prototype.each,
+  on: transition_on,
+  attr: transition_attr,
+  attrTween: transition_attrTween,
+  style: transition_style,
+  styleTween: transition_styleTween,
+  text: transition_text,
+  remove: transition_remove,
+  tween: transition_tween,
+  delay: transition_delay,
+  duration: transition_duration,
+  ease: transition_ease
+};
+
+var defaultTiming = {
+  time: null, // Set on use.
+  delay: 0,
+  duration: 250,
+  ease: d3Ease.easeCubicInOut
+};
+
+function inherit(node, id) {
+  var timing;
+  while (!(timing = node.__transition) || !(timing = timing[id])) {
+    if (!(node = node.parentNode)) {
+      return defaultTiming.time = d3Timer.now(), defaultTiming;
+    }
+  }
+  return timing;
+}
+
+var selection_transition = function(name) {
+  var id,
+      timing;
+
+  if (name instanceof Transition) {
+    id = name._id, name = name._name;
+  } else {
+    id = newId(), (timing = defaultTiming).time = d3Timer.now(), name = name == null ? null : name + "";
+  }
+
+  for (var groups = this._groups, m = groups.length, j = 0; j < m; ++j) {
+    for (var group = groups[j], n = group.length, node, i = 0; i < n; ++i) {
+      if (node = group[i]) {
+        schedule(node, name, id, i, group, timing || inherit(node, id));
+      }
+    }
+  }
+
+  return new Transition(groups, this._parents, name, id);
+};
+
+d3Selection.selection.prototype.interrupt = selection_interrupt;
+d3Selection.selection.prototype.transition = selection_transition;
+
+var root = [null];
+
+var active = function(node, name) {
+  var schedules = node.__transition,
+      schedule,
+      i;
+
+  if (schedules) {
+    name = name == null ? null : name + "";
+    for (i in schedules) {
+      if ((schedule = schedules[i]).state > SCHEDULED && schedule.name === name) {
+        return new Transition([[node]], root, name, +i);
+      }
+    }
+  }
+
+  return null;
+};
+
+exports.transition = transition;
+exports.active = active;
+exports.interrupt = interrupt;
+
+Object.defineProperty(exports, '__esModule', { value: true });
+
+})));
+
+},{"d3-color":4,"d3-dispatch":5,"d3-ease":7,"d3-interpolate":9,"d3-selection":11,"d3-timer":14}],16:[function(require,module,exports){
+// https://d3js.org/d3-zoom/ Version 1.7.1. Copyright 2017 Mike Bostock.
+(function (global, factory) {
+	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('d3-dispatch'), require('d3-drag'), require('d3-interpolate'), require('d3-selection'), require('d3-transition')) :
+	typeof define === 'function' && define.amd ? define(['exports', 'd3-dispatch', 'd3-drag', 'd3-interpolate', 'd3-selection', 'd3-transition'], factory) :
+	(factory((global.d3 = global.d3 || {}),global.d3,global.d3,global.d3,global.d3,global.d3));
+}(this, (function (exports,d3Dispatch,d3Drag,d3Interpolate,d3Selection,d3Transition) { 'use strict';
+
+var constant = function(x) {
+  return function() {
+    return x;
+  };
+};
+
+function ZoomEvent(target, type, transform) {
+  this.target = target;
+  this.type = type;
+  this.transform = transform;
+}
+
+function Transform(k, x, y) {
+  this.k = k;
+  this.x = x;
+  this.y = y;
+}
+
+Transform.prototype = {
+  constructor: Transform,
+  scale: function(k) {
+    return k === 1 ? this : new Transform(this.k * k, this.x, this.y);
+  },
+  translate: function(x, y) {
+    return x === 0 & y === 0 ? this : new Transform(this.k, this.x + this.k * x, this.y + this.k * y);
+  },
+  apply: function(point) {
+    return [point[0] * this.k + this.x, point[1] * this.k + this.y];
+  },
+  applyX: function(x) {
+    return x * this.k + this.x;
+  },
+  applyY: function(y) {
+    return y * this.k + this.y;
+  },
+  invert: function(location) {
+    return [(location[0] - this.x) / this.k, (location[1] - this.y) / this.k];
+  },
+  invertX: function(x) {
+    return (x - this.x) / this.k;
+  },
+  invertY: function(y) {
+    return (y - this.y) / this.k;
+  },
+  rescaleX: function(x) {
+    return x.copy().domain(x.range().map(this.invertX, this).map(x.invert, x));
+  },
+  rescaleY: function(y) {
+    return y.copy().domain(y.range().map(this.invertY, this).map(y.invert, y));
+  },
+  toString: function() {
+    return "translate(" + this.x + "," + this.y + ") scale(" + this.k + ")";
+  }
+};
+
+var identity = new Transform(1, 0, 0);
+
+transform.prototype = Transform.prototype;
+
+function transform(node) {
+  return node.__zoom || identity;
+}
+
+function nopropagation() {
+  d3Selection.event.stopImmediatePropagation();
+}
+
+var noevent = function() {
+  d3Selection.event.preventDefault();
+  d3Selection.event.stopImmediatePropagation();
+};
+
+// Ignore right-click, since that should open the context menu.
+function defaultFilter() {
+  return !d3Selection.event.button;
+}
+
+function defaultExtent() {
+  var e = this, w, h;
+  if (e instanceof SVGElement) {
+    e = e.ownerSVGElement || e;
+    w = e.width.baseVal.value;
+    h = e.height.baseVal.value;
+  } else {
+    w = e.clientWidth;
+    h = e.clientHeight;
+  }
+  return [[0, 0], [w, h]];
+}
+
+function defaultTransform() {
+  return this.__zoom || identity;
+}
+
+function defaultWheelDelta() {
+  return -d3Selection.event.deltaY * (d3Selection.event.deltaMode ? 120 : 1) / 500;
+}
+
+function defaultTouchable() {
+  return "ontouchstart" in this;
+}
+
+function defaultConstrain(transform$$1, extent, translateExtent) {
+  var dx0 = transform$$1.invertX(extent[0][0]) - translateExtent[0][0],
+      dx1 = transform$$1.invertX(extent[1][0]) - translateExtent[1][0],
+      dy0 = transform$$1.invertY(extent[0][1]) - translateExtent[0][1],
+      dy1 = transform$$1.invertY(extent[1][1]) - translateExtent[1][1];
+  return transform$$1.translate(
+    dx1 > dx0 ? (dx0 + dx1) / 2 : Math.min(0, dx0) || Math.max(0, dx1),
+    dy1 > dy0 ? (dy0 + dy1) / 2 : Math.min(0, dy0) || Math.max(0, dy1)
+  );
+}
+
+var zoom = function() {
+  var filter = defaultFilter,
+      extent = defaultExtent,
+      constrain = defaultConstrain,
+      wheelDelta = defaultWheelDelta,
+      touchable = defaultTouchable,
+      scaleExtent = [0, Infinity],
+      translateExtent = [[-Infinity, -Infinity], [Infinity, Infinity]],
+      duration = 250,
+      interpolate = d3Interpolate.interpolateZoom,
+      gestures = [],
+      listeners = d3Dispatch.dispatch("start", "zoom", "end"),
+      touchstarting,
+      touchending,
+      touchDelay = 500,
+      wheelDelay = 150,
+      clickDistance2 = 0;
+
+  function zoom(selection) {
+    selection
+        .property("__zoom", defaultTransform)
+        .on("wheel.zoom", wheeled)
+        .on("mousedown.zoom", mousedowned)
+        .on("dblclick.zoom", dblclicked)
+      .filter(touchable)
+        .on("touchstart.zoom", touchstarted)
+        .on("touchmove.zoom", touchmoved)
+        .on("touchend.zoom touchcancel.zoom", touchended)
+        .style("touch-action", "none")
+        .style("-webkit-tap-highlight-color", "rgba(0,0,0,0)");
+  }
+
+  zoom.transform = function(collection, transform$$1) {
+    var selection = collection.selection ? collection.selection() : collection;
+    selection.property("__zoom", defaultTransform);
+    if (collection !== selection) {
+      schedule(collection, transform$$1);
+    } else {
+      selection.interrupt().each(function() {
+        gesture(this, arguments)
+            .start()
+            .zoom(null, typeof transform$$1 === "function" ? transform$$1.apply(this, arguments) : transform$$1)
+            .end();
+      });
+    }
+  };
+
+  zoom.scaleBy = function(selection, k) {
+    zoom.scaleTo(selection, function() {
+      var k0 = this.__zoom.k,
+          k1 = typeof k === "function" ? k.apply(this, arguments) : k;
+      return k0 * k1;
+    });
+  };
+
+  zoom.scaleTo = function(selection, k) {
+    zoom.transform(selection, function() {
+      var e = extent.apply(this, arguments),
+          t0 = this.__zoom,
+          p0 = centroid(e),
+          p1 = t0.invert(p0),
+          k1 = typeof k === "function" ? k.apply(this, arguments) : k;
+      return constrain(translate(scale(t0, k1), p0, p1), e, translateExtent);
+    });
+  };
+
+  zoom.translateBy = function(selection, x, y) {
+    zoom.transform(selection, function() {
+      return constrain(this.__zoom.translate(
+        typeof x === "function" ? x.apply(this, arguments) : x,
+        typeof y === "function" ? y.apply(this, arguments) : y
+      ), extent.apply(this, arguments), translateExtent);
+    });
+  };
+
+  zoom.translateTo = function(selection, x, y) {
+    zoom.transform(selection, function() {
+      var e = extent.apply(this, arguments),
+          t = this.__zoom,
+          p = centroid(e);
+      return constrain(identity.translate(p[0], p[1]).scale(t.k).translate(
+        typeof x === "function" ? -x.apply(this, arguments) : -x,
+        typeof y === "function" ? -y.apply(this, arguments) : -y
+      ), e, translateExtent);
+    });
+  };
+
+  function scale(transform$$1, k) {
+    k = Math.max(scaleExtent[0], Math.min(scaleExtent[1], k));
+    return k === transform$$1.k ? transform$$1 : new Transform(k, transform$$1.x, transform$$1.y);
+  }
+
+  function translate(transform$$1, p0, p1) {
+    var x = p0[0] - p1[0] * transform$$1.k, y = p0[1] - p1[1] * transform$$1.k;
+    return x === transform$$1.x && y === transform$$1.y ? transform$$1 : new Transform(transform$$1.k, x, y);
+  }
+
+  function centroid(extent) {
+    return [(+extent[0][0] + +extent[1][0]) / 2, (+extent[0][1] + +extent[1][1]) / 2];
+  }
+
+  function schedule(transition, transform$$1, center) {
+    transition
+        .on("start.zoom", function() { gesture(this, arguments).start(); })
+        .on("interrupt.zoom end.zoom", function() { gesture(this, arguments).end(); })
+        .tween("zoom", function() {
+          var that = this,
+              args = arguments,
+              g = gesture(that, args),
+              e = extent.apply(that, args),
+              p = center || centroid(e),
+              w = Math.max(e[1][0] - e[0][0], e[1][1] - e[0][1]),
+              a = that.__zoom,
+              b = typeof transform$$1 === "function" ? transform$$1.apply(that, args) : transform$$1,
+              i = interpolate(a.invert(p).concat(w / a.k), b.invert(p).concat(w / b.k));
+          return function(t) {
+            if (t === 1) t = b; // Avoid rounding error on end.
+            else { var l = i(t), k = w / l[2]; t = new Transform(k, p[0] - l[0] * k, p[1] - l[1] * k); }
+            g.zoom(null, t);
+          };
+        });
+  }
+
+  function gesture(that, args) {
+    for (var i = 0, n = gestures.length, g; i < n; ++i) {
+      if ((g = gestures[i]).that === that) {
+        return g;
+      }
+    }
+    return new Gesture(that, args);
+  }
+
+  function Gesture(that, args) {
+    this.that = that;
+    this.args = args;
+    this.index = -1;
+    this.active = 0;
+    this.extent = extent.apply(that, args);
+  }
+
+  Gesture.prototype = {
+    start: function() {
+      if (++this.active === 1) {
+        this.index = gestures.push(this) - 1;
+        this.emit("start");
+      }
+      return this;
+    },
+    zoom: function(key, transform$$1) {
+      if (this.mouse && key !== "mouse") this.mouse[1] = transform$$1.invert(this.mouse[0]);
+      if (this.touch0 && key !== "touch") this.touch0[1] = transform$$1.invert(this.touch0[0]);
+      if (this.touch1 && key !== "touch") this.touch1[1] = transform$$1.invert(this.touch1[0]);
+      this.that.__zoom = transform$$1;
+      this.emit("zoom");
+      return this;
+    },
+    end: function() {
+      if (--this.active === 0) {
+        gestures.splice(this.index, 1);
+        this.index = -1;
+        this.emit("end");
+      }
+      return this;
+    },
+    emit: function(type) {
+      d3Selection.customEvent(new ZoomEvent(zoom, type, this.that.__zoom), listeners.apply, listeners, [type, this.that, this.args]);
+    }
+  };
+
+  function wheeled() {
+    if (!filter.apply(this, arguments)) return;
+    var g = gesture(this, arguments),
+        t = this.__zoom,
+        k = Math.max(scaleExtent[0], Math.min(scaleExtent[1], t.k * Math.pow(2, wheelDelta.apply(this, arguments)))),
+        p = d3Selection.mouse(this);
+
+    // If the mouse is in the same location as before, reuse it.
+    // If there were recent wheel events, reset the wheel idle timeout.
+    if (g.wheel) {
+      if (g.mouse[0][0] !== p[0] || g.mouse[0][1] !== p[1]) {
+        g.mouse[1] = t.invert(g.mouse[0] = p);
+      }
+      clearTimeout(g.wheel);
+    }
+
+    // If this wheel event won’t trigger a transform change, ignore it.
+    else if (t.k === k) return;
+
+    // Otherwise, capture the mouse point and location at the start.
+    else {
+      g.mouse = [p, t.invert(p)];
+      d3Transition.interrupt(this);
+      g.start();
+    }
+
+    noevent();
+    g.wheel = setTimeout(wheelidled, wheelDelay);
+    g.zoom("mouse", constrain(translate(scale(t, k), g.mouse[0], g.mouse[1]), g.extent, translateExtent));
+
+    function wheelidled() {
+      g.wheel = null;
+      g.end();
+    }
+  }
+
+  function mousedowned() {
+    if (touchending || !filter.apply(this, arguments)) return;
+    var g = gesture(this, arguments),
+        v = d3Selection.select(d3Selection.event.view).on("mousemove.zoom", mousemoved, true).on("mouseup.zoom", mouseupped, true),
+        p = d3Selection.mouse(this),
+        x0 = d3Selection.event.clientX,
+        y0 = d3Selection.event.clientY;
+
+    d3Drag.dragDisable(d3Selection.event.view);
+    nopropagation();
+    g.mouse = [p, this.__zoom.invert(p)];
+    d3Transition.interrupt(this);
+    g.start();
+
+    function mousemoved() {
+      noevent();
+      if (!g.moved) {
+        var dx = d3Selection.event.clientX - x0, dy = d3Selection.event.clientY - y0;
+        g.moved = dx * dx + dy * dy > clickDistance2;
+      }
+      g.zoom("mouse", constrain(translate(g.that.__zoom, g.mouse[0] = d3Selection.mouse(g.that), g.mouse[1]), g.extent, translateExtent));
+    }
+
+    function mouseupped() {
+      v.on("mousemove.zoom mouseup.zoom", null);
+      d3Drag.dragEnable(d3Selection.event.view, g.moved);
+      noevent();
+      g.end();
+    }
+  }
+
+  function dblclicked() {
+    if (!filter.apply(this, arguments)) return;
+    var t0 = this.__zoom,
+        p0 = d3Selection.mouse(this),
+        p1 = t0.invert(p0),
+        k1 = t0.k * (d3Selection.event.shiftKey ? 0.5 : 2),
+        t1 = constrain(translate(scale(t0, k1), p0, p1), extent.apply(this, arguments), translateExtent);
+
+    noevent();
+    if (duration > 0) d3Selection.select(this).transition().duration(duration).call(schedule, t1, p0);
+    else d3Selection.select(this).call(zoom.transform, t1);
+  }
+
+  function touchstarted() {
+    if (!filter.apply(this, arguments)) return;
+    var g = gesture(this, arguments),
+        touches = d3Selection.event.changedTouches,
+        started,
+        n = touches.length, i, t, p;
+
+    nopropagation();
+    for (i = 0; i < n; ++i) {
+      t = touches[i], p = d3Selection.touch(this, touches, t.identifier);
+      p = [p, this.__zoom.invert(p), t.identifier];
+      if (!g.touch0) g.touch0 = p, started = true;
+      else if (!g.touch1) g.touch1 = p;
+    }
+
+    // If this is a dbltap, reroute to the (optional) dblclick.zoom handler.
+    if (touchstarting) {
+      touchstarting = clearTimeout(touchstarting);
+      if (!g.touch1) {
+        g.end();
+        p = d3Selection.select(this).on("dblclick.zoom");
+        if (p) p.apply(this, arguments);
+        return;
+      }
+    }
+
+    if (started) {
+      touchstarting = setTimeout(function() { touchstarting = null; }, touchDelay);
+      d3Transition.interrupt(this);
+      g.start();
+    }
+  }
+
+  function touchmoved() {
+    var g = gesture(this, arguments),
+        touches = d3Selection.event.changedTouches,
+        n = touches.length, i, t, p, l;
+
+    noevent();
+    if (touchstarting) touchstarting = clearTimeout(touchstarting);
+    for (i = 0; i < n; ++i) {
+      t = touches[i], p = d3Selection.touch(this, touches, t.identifier);
+      if (g.touch0 && g.touch0[2] === t.identifier) g.touch0[0] = p;
+      else if (g.touch1 && g.touch1[2] === t.identifier) g.touch1[0] = p;
+    }
+    t = g.that.__zoom;
+    if (g.touch1) {
+      var p0 = g.touch0[0], l0 = g.touch0[1],
+          p1 = g.touch1[0], l1 = g.touch1[1],
+          dp = (dp = p1[0] - p0[0]) * dp + (dp = p1[1] - p0[1]) * dp,
+          dl = (dl = l1[0] - l0[0]) * dl + (dl = l1[1] - l0[1]) * dl;
+      t = scale(t, Math.sqrt(dp / dl));
+      p = [(p0[0] + p1[0]) / 2, (p0[1] + p1[1]) / 2];
+      l = [(l0[0] + l1[0]) / 2, (l0[1] + l1[1]) / 2];
+    }
+    else if (g.touch0) p = g.touch0[0], l = g.touch0[1];
+    else return;
+    g.zoom("touch", constrain(translate(t, p, l), g.extent, translateExtent));
+  }
+
+  function touchended() {
+    var g = gesture(this, arguments),
+        touches = d3Selection.event.changedTouches,
+        n = touches.length, i, t;
+
+    nopropagation();
+    if (touchending) clearTimeout(touchending);
+    touchending = setTimeout(function() { touchending = null; }, touchDelay);
+    for (i = 0; i < n; ++i) {
+      t = touches[i];
+      if (g.touch0 && g.touch0[2] === t.identifier) delete g.touch0;
+      else if (g.touch1 && g.touch1[2] === t.identifier) delete g.touch1;
+    }
+    if (g.touch1 && !g.touch0) g.touch0 = g.touch1, delete g.touch1;
+    if (g.touch0) g.touch0[1] = this.__zoom.invert(g.touch0[0]);
+    else g.end();
+  }
+
+  zoom.wheelDelta = function(_) {
+    return arguments.length ? (wheelDelta = typeof _ === "function" ? _ : constant(+_), zoom) : wheelDelta;
+  };
+
+  zoom.filter = function(_) {
+    return arguments.length ? (filter = typeof _ === "function" ? _ : constant(!!_), zoom) : filter;
+  };
+
+  zoom.touchable = function(_) {
+    return arguments.length ? (touchable = typeof _ === "function" ? _ : constant(!!_), zoom) : touchable;
+  };
+
+  zoom.extent = function(_) {
+    return arguments.length ? (extent = typeof _ === "function" ? _ : constant([[+_[0][0], +_[0][1]], [+_[1][0], +_[1][1]]]), zoom) : extent;
+  };
+
+  zoom.scaleExtent = function(_) {
+    return arguments.length ? (scaleExtent[0] = +_[0], scaleExtent[1] = +_[1], zoom) : [scaleExtent[0], scaleExtent[1]];
+  };
+
+  zoom.translateExtent = function(_) {
+    return arguments.length ? (translateExtent[0][0] = +_[0][0], translateExtent[1][0] = +_[1][0], translateExtent[0][1] = +_[0][1], translateExtent[1][1] = +_[1][1], zoom) : [[translateExtent[0][0], translateExtent[0][1]], [translateExtent[1][0], translateExtent[1][1]]];
+  };
+
+  zoom.constrain = function(_) {
+    return arguments.length ? (constrain = _, zoom) : constrain;
+  };
+
+  zoom.duration = function(_) {
+    return arguments.length ? (duration = +_, zoom) : duration;
+  };
+
+  zoom.interpolate = function(_) {
+    return arguments.length ? (interpolate = _, zoom) : interpolate;
+  };
+
+  zoom.on = function() {
+    var value = listeners.on.apply(listeners, arguments);
+    return value === listeners ? zoom : value;
+  };
+
+  zoom.clickDistance = function(_) {
+    return arguments.length ? (clickDistance2 = (_ = +_) * _, zoom) : Math.sqrt(clickDistance2);
+  };
+
+  return zoom;
+};
+
+exports.zoom = zoom;
+exports.zoomTransform = transform;
+exports.zoomIdentity = identity;
+
+Object.defineProperty(exports, '__esModule', { value: true });
+
+})));
+
+},{"d3-dispatch":5,"d3-drag":6,"d3-interpolate":9,"d3-selection":11,"d3-transition":15}],17:[function(require,module,exports){
+(function (global, factory) {
+	typeof exports === 'object' && typeof module !== 'undefined' ? factory(require('d3-array'), require('d3-collection'), require('d3-interpolate'), require('d3-format'), require('d3-selection'), require('d3-scale'), require('d3-color'), require('d3-drag'), require('d3-zoom'), require('d3-axis')) :
+	typeof define === 'function' && define.amd ? define(['d3-array', 'd3-collection', 'd3-interpolate', 'd3-format', 'd3-selection', 'd3-scale', 'd3-color', 'd3-drag', 'd3-zoom', 'd3-axis'], factory) :
+	(factory(global.d3,global.d3,global.d3,global.d3Format,global.d3,global.d3,global.d3,global.d3,global.d3,global.d3));
+}(this, (function (d3Array,d3Collection,d3Interpolate,d3Format,d3Selection,d3Scale,d3Color,d3Drag,d3Zoom,d3Axis) { 'use strict';
+
+function sankey() {
+  var sankey = {},
+      nodeWidth = 24,
+      nodePadding = 8,
+      size = [1, 1],
+      align = 'justify', // left, right, center, justify or none
+      linkType = 'bezier',
+      orderByPath = false,
+      scaleNodeBreadthsByString = false,
+      curvature = .5,
+      showNodeValues = false,
+      nodeCornerRadius = 0,
+      nodes = [],
+      links = [];
+
+  sankey.nodeWidth = function(_) {
+    if (!arguments.length) return nodeWidth;
+    nodeWidth = +_;
+    return sankey;
+  };
+
+  sankey.nodePadding = function(_) {
+    if (!arguments.length) return nodePadding;
+    nodePadding = +_;
+    return sankey;
+  };
+
+  sankey.nodes = function(_) {
+    if (!arguments.length) return nodes;
+    nodes = _;
+    return sankey;
+  };
+
+  sankey.links = function(_) {
+    if (!arguments.length) return links;
+    links = _;
+    return sankey;
+  };
+
+  sankey.orderByPath = function(_) {
+    if (!arguments.length) return orderByPath;
+    orderByPath = _;
+    return sankey;
+  };
+
+  sankey.curvature = function(_) {
+    if (!arguments.length) return curvature;
+    curvature = _;
+    return sankey;
+  };
+  
+  sankey.showNodeValues = function(_) {
+    if (!arguments.length) return showNodeValues;
+    showNodeValues = _;
+    return sankey;
+  };
+
+  sankey.linkType = function(_) {
+    if (!arguments.length) return linkType;
+    linkType = _.toLowerCase();
+    return sankey;
+  };
+
+  sankey.size = function(_) {
+    if (!arguments.length) return size;
+    size = _;
+    return sankey;
+  };
+
+  sankey.align = function(_) {
+    if (!arguments.length) return align;
+    align = _.toLowerCase();
+    return sankey;
+  };
+  
+  sankey.nodeCornerRadius= function(_) {
+    if (!arguments.length) return nodeCornerRadius;
+    nodeCornerRadius = _;
+    return sankey;
+  };
+
+  sankey.scaleNodeBreadthsByString = function(_) {
+    if (!arguments.length) return scaleNodeBreadthsByString;
+    scaleNodeBreadthsByString = _;
+    return sankey;
+  };
+
+
+  sankey.layout = function(iterations) {
+    computeNodeLinks();
+    computeNodeValues();
+    computeNodeBreadths();
+    computeNodeDepths(iterations);
+    return sankey;
+  };
+
+  sankey.relayout = function() {
+    computeLinkDepths();
+    return sankey;
+  };
+
+  // SVG path data generator, to be used as "d" attribute on "path" element selection.
+  sankey.link = function() {
+    function xy(x,y) { return x + "," + y; }
+    
+    // M(x,y) moveto function - moves pen to new location; doesn't draw
+    function M(x,y)  { return "M" + xy(x,y); }
+    
+    // C(x1,y1,x2,y2,x,y) curveto function 
+    //   draws a cubic bezier curve from the current point to (x,y)
+    //   using (x1,y1) and (x2,y2) as control points
+    function C(x1,y1,x2,y2,x,y)  { return "C" + xy(x1,y1) + " " + xy(x2,y2) + " " + xy(x,y); }
+    
+    // S(x2,y2,x,y) smooth curveto function 
+    //   draws a cubic bezier curve from the current point to (x,y)
+    //   with the first control point being a reflection of (x2,y2)
+    function C(x1,y1,x2,y2,x,y)  { return "C" + xy(x1,y1) + " " + xy(x2,y2) + " " + xy(x,y); }
+    
+    // L(x,y) lineto function - moves pen to new location; doesn't draw
+    function L(x,y)  { return "L" + xy(x,y); }
+    
+    // Z() closepath function - line is drawn from last point to first
+    function Z()  { return "Z"; }
+    
+    // v(dy) vertical lineto function - draws a horizontal line from the current point for dy px
+    function v(dy)  { return "v" + dy; }
+    
+    // H(y) horizontal lineto function - draw a horizontal line from the current point to x
+    function H(x)  { return "H" + x; }
+    
+    
+    function link(d) {
+      
+      var x0 = d.source.x + d.source.dx - nodeCornerRadius,  // x source point
+          x1 = d.target.x  + nodeCornerRadius,               // x target point
+          xi = d3Interpolate.interpolateNumber(x0, x1),
+          x2 = xi(curvature),
+          x3 = xi(1 - curvature);
+
+
+      var y0 = d.source.y + d.sy,
+          y1 = d.target.y + d.ty,
+          y2 = y1 + d.dy,
+          y3 = y0 + d.dy;
+
+      var ld;
+      if (d.cycleBreaker) {
+        // TODO: Fix notation (xs = x0, etc)
+        var xdelta = (1.5 * d.dy + 0.05 * Math.abs(xs - xt));
+        xsc = xs + xdelta;
+        xtc = xt - xdelta;
+        var xm = xi(0.5);
+        var ym = d3Interpolate.interpolateNumber(ys, yt)(0.5);
+        var ydelta = (2 * d.dy + 0.1 * Math.abs(xs - xt) + 0.1 * Math.abs(ys - yt)) * (ym < (size[1] / 2) ? -1 : 1);
+        
+        ld = M(xs,ys) + C(xsc,ys, xsc,(ys + ydelta), xm,(ym + ydelta)) + S(xtc,yt, xt,yt);
+      } else {
+        switch (linkType) {
+          case "trapez":
+            ld = M(x0,y0) + L(x0,y3) + L(x1,y2) + L(x1,y1) + Z(); 
+            break;
+          case "path1":    // from @ghedamat https://github.com/d3/d3-plugins/pull/36 
+            ld = M(x0,y0) + C(x2,y0, x3,y1, x1,y1) + L(x1,y2) + C(x3,y2, x2,y3, x0,y3) + Z(); 
+            break;
+          case "path2":   // from @cmorse https://github.com/d3/d3-plugins/pull/40 
+            var x4 = x3 + ((d.dy < 15) ? ((d.source.y < d.target.y) ? -1 * d.dy : d.dy) : 0),
+                x5 = x2 + ((d.dy < 15) ? ((d.source.y < d.target.y) ? -1 * d.dy : d.dy) : 0);
+            ld = M(x0,y0) + C(x2,y0, x3,y1, x1,y1) + v(d.dy) + C(x4,y2, x5,y3, x0,y3) + Z();
+            break;
+          case "l-bezier": // from @michealgasser pull request #120 to d3/d3-plugins
+            y0 = d.source.y + d.sy + d.dy / 2;
+            y1 = d.target.y + d.ty + d.dy / 2;
+            x4 = x0 + d.source.dx/4;
+            x5 = x1 - d.target.dx/4;
+            x2 = Math.max(xi(curvature), x4+d.dy);
+            x3 = Math.min(xi(curvature), x5-d.dy);
+            ld = M(x0,y0) + H(x4) + C(x2,y0, x3,y1, x5,y1) + H(x1);
+            break;
+          case "bezier":
+          default:
+            y0 = d.source.y + d.sy + d.dy / 2;
+            y1 = d.target.y + d.ty + d.dy / 2;
+            ld = M(x0,y0) + C(x2,y0, x3,y1, x1,y1);
+            break;
+        }
+      }
+      return ld;
+    }
+
+    link.curvature = function(_) {
+      if (!arguments.length) return curvature;
+      curvature = +_;
+      return link;
+    };
+
+    return link;
+  };
+
+  // Populate the sourceLinks and targetLinks for each node.
+  // Also, if the source and target are not objects, assume they are indices.
+  function computeNodeLinks() {
+    nodes.forEach(function(node) {
+      // Links that have this node as source.
+      node.sourceLinks = [];
+      // Links that have this node as target.
+      node.targetLinks = [];
+      node.inactive = false;
+    });
+    links.forEach(function(link) {
+      var source = link.source,
+          target = link.target;
+      link.inactive = false;
+      if (typeof source === "number") source = link.source = nodes[link.source];
+      if (typeof target === "number") target = link.target = nodes[link.target];
+      source.sourceLinks.push(link);
+      target.targetLinks.push(link);
+    });
+  }
+
+  // Compute the value (size) of each node by summing the associated links.
+  function computeNodeValues() {
+    if (typeof nodes[0].value == "undefined") {
+      nodes.forEach(function(node) {
+        node.value = Math.max(
+          d3Array.sum(node.sourceLinks, value),
+          d3Array.sum(node.targetLinks, value)
+        );
+      });
+    }
+  }
+
+  var summed_str_length = [0];
+  var max_posX;
+
+  // Iteratively assign the breadth (x-position) for each node.
+  // Nodes are assigned the maximum breadth of incoming neighbors plus one;
+  // nodes with no incoming links are assigned breadth zero, while
+  // nodes with no outgoing links are assigned the maximum breadth.
+  function computeNodeBreadths() {
+    var reverse = (align === 'right'); // Reverse traversal direction
+
+    if (typeof nodes[0].posX == "undefined") {
+      var remainingNodes = nodes,
+          x = 0,
+          nextNodes;
+      // Work from left to right.
+      // Keep updating the breath (x-position) of nodes that are target of recently updated nodes.
+      while (remainingNodes.length && x < nodes.length) {
+        nextNodes = [];
+        remainingNodes.forEach(function(node) {
+          node.x = x;
+          node.posX = x;
+          node.dx = nodeWidth;
+
+          node[reverse ? 'targetLinks' : 'sourceLinks'].forEach(function(link) {
+            var nextNode = link[reverse ? 'source' : 'target'];
+            if (nextNodes.indexOf(nextNode) < 0) {
+              nextNodes.push(nextNode);
+            }
+          });
+        });
+        if (nextNodes.length == remainingNodes.length) {
+          // There must be a cycle here. Let's search for a link that breaks it.
+          findAndMarkCycleBreaker(nextNodes);
+          // Start over.
+          // TODO: make this optional?
+          return computeNodeBreadths();
+        }
+        else {
+          remainingNodes = nextNodes;
+          ++x;
+        }
+      }
+    } else {
+        nodes.forEach(function(node) {
+            node.x = node.posX;
+            node.dx = nodeWidth;
+        });
+    }
+
+    // calculate maximum string lengths at each posX
+    max_posX= d3Array.max(nodes, function(d) { return(d.posX); } ) + 1;
+    var max_str_length = new Array(max_posX);
+    nodes.forEach(function(node) {
+        if (typeof max_str_length[node.x] == "undefined" || node.name.length > max_str_length[node.x]) {
+          max_str_length[node.x] = node.name.length;
+        }
+
+        // make a path to the beginning for vertical ordering
+        if (orderByPath) {
+          node.path = node.name;
+          nn = node;
+          while (nn.targetLinks.length) {
+              if (nn.targetLinks.length > 1) {
+                console.log("Error - orderByPath not useful when there is more than one parent for a node.");
+              }
+              nn = nn.targetLinks[0].source;
+              node.path = nn.name + ";" + node.path;
+          }
+        }
+
+    });
+
+    for (var i=1; i<max_posX; ++i) {
+        summed_str_length[i] = summed_str_length[i-1] + max_str_length[i-1] * 6 + nodeWidth + nodePadding;
+    }
+
+    if (reverse) {
+      // Flip nodes horizontally
+      nodes.forEach(function(node) {
+        node.x *= -1;
+        node.x += x - 1;
+      });
+    }
+    
+
+    if (align === 'center') {
+      moveSourcesRight();
+    } else if (align === 'justify') {
+      moveSinksRight(max_posX);
+    }
+    
+    if (align == 'none') {
+      scaleNodeBreadths((size[0] - nodeWidth) / (max_posX));
+    } else {
+      scaleNodeBreadths((size[0] - nodeWidth) / (max_posX - 1));
+    }
+  }
+
+  // Find a link that breaks a cycle in the graph (if any).
+  function findAndMarkCycleBreaker(nodes) {
+  // Go through all nodes from the given subset and traverse links searching for cycles.
+    var link;
+    for (var n=nodes.length - 1; n >= 0; n--) {
+      link = depthFirstCycleSearch(nodes[n], []);
+      if (link) {
+        return link;
+      }
+    }
+
+    // Depth-first search to find a link that is part of a cycle.
+    function depthFirstCycleSearch(cursorNode, path) {
+      var target, link;
+      for (var n = cursorNode.sourceLinks.length - 1; n >= 0; n--) {
+        link = cursorNode.sourceLinks[n];
+        if (link.cycleBreaker) {
+          // Skip already known cycle breakers.
+          continue;
+        }
+
+        // Check if target of link makes a cycle in current path.
+        target = link.target;
+        for (var l = 0; l < path.length; l++) {
+          if (path[l].source == target) {
+            // We found a cycle. Search for weakest link in cycle
+            var weakest = link;
+            for (; l < path.length; l++) {
+              if (path[l].value < weakest.value) {
+                weakest = path[l];
+              }
+            }
+            // Mark weakest link as (known) cycle breaker and abort search.
+            weakest.cycleBreaker = true;
+            return weakest;
+          }
+        }
+
+        // Recurse deeper.
+        path.push(link);
+        link = depthFirstCycleSearch(target, path);
+        path.pop();
+        // Stop further search if we found a cycle breaker.
+        if (link) {
+          return link;
+        }
+      }
+    }
+  }
+
+  function moveSourcesRight() {
+    nodes.slice()
+      // Pack nodes from right to left
+      .sort(function(a, b) { return b.x - a.x; })
+      .forEach(function(node) {
+        if (!node.targetLinks.length) {
+          node.x = d3Array.min(node.sourceLinks, function(d) { return d.target.x; }) - 1;
+        }
+      });
+  }
+
+  function moveSinksRight(x) {
+    nodes.forEach(function(node) {
+      if (!node.sourceLinks.length) {
+        node.x = x - 1;
+      } else {
+        //move node to second from right
+        var nodes_to_right = 0;
+        node.sourceLinks.forEach(function(n) {
+          nodes_to_right = Math.max(nodes_to_right,n.target.sourceLinks.length);
+        });
+         if (nodes_to_right==0)node.x = x - 2;
+      }
+    });
+  }
+
+  function scaleNodeBreadths(kx) {
+    nodes.forEach(function(node) {
+      if (scaleNodeBreadthsByString) {
+        // this scaling is suboptimal - ideally it will be moved out to sankeyNetwork.js and 
+        // calculated based on measured string lengths using el.getComputedTextLength() or 
+        
+        node.x = summed_str_length[node.x];
+      } else {
+        node.x *= kx;
+      }
+    });
+  }
+
+  // Compute the depth (y-position) for each node.
+  function computeNodeDepths(iterations) {
+    var nodesByBreadth;
+
+    if (orderByPath) {
+      nodesByBreadth = new Array(max_posX);
+      for (var i=0; i < nodesByBreadth.length; ++i) {
+          nodesByBreadth[i] = [];
+      }
+
+      // Add 'invisible' nodes to account for different depths
+      for (posX=0; posX < max_posX; ++posX) {
+          for (j=0; j < nodes.length; ++j) {
+              if (nodes[j].posX != posX) {
+                  continue;
+              }
+              node = nodes[j];
+              nodesByBreadth[posX].push(node);
+              no_intermediary_nodes = node.sourceLinks.length && node.sourceLinks[0].target.posX > node.posX +1;
+              no_end_nodes = !node.sourceLinks.length && node.posX < max_posX;
+
+              if (no_intermediary_nodes || no_end_nodes) {
+                end_node = no_intermediary_nodes? node.sourceLinks[0].target.posX : max_posX;
+                  for (new_node_posX=node.posX+1; new_node_posX < end_node; ++new_node_posX) {
+                      var new_node = node.constructor();
+                      new_node.posX = new_node_posX;
+                      new_node.dy = node.dy;
+                      new_node.y = node.y;
+                      new_node.value = node.value;
+                      new_node.path = node.path;
+                      new_node.sourceLinks = node.sourceLinks;
+                      new_node.targetLinks = node.targetLinks;
+                      nodesByBreadth[new_node_posX].push(new_node);
+                  }
+              }
+          }
+      }
+    } else {
+      nodesByBreadth = d3Collection.nest()
+                             .key(function(d) { return d.x; })
+                             .sortKeys(function(a, b) { return a - b; }) // pull request #124 in d3/d3-plugins
+                             .entries(nodes)
+                             .map(function(d) { return d.values; });
+
+    }
+
+    //console.log(nodesByBreadth)
+
+    initializeNodeDepth();
+    resolveCollisions();
+    computeLinkDepths();
+
+    for (var alpha = 1; iterations > 0; --iterations) {
+      relaxRightToLeft(alpha *= .99);
+      resolveCollisions();
+      computeLinkDepths();
+      relaxLeftToRight(alpha);
+      resolveCollisions();
+      computeLinkDepths();
+    }
+
+    function initializeNodeDepth() {
+      // Calculate vertical scaling factor.
+      var ky = d3Array.min(nodesByBreadth, function(nodes) {
+        return (size[1] - (nodes.length - 1) * nodePadding) / d3Array.sum(nodes, value);
+      });
+
+      nodesByBreadth.forEach(function(nodes) {
+        nodes.forEach(function(node, i) {
+          node.y = i;
+          node.dy = node.value * ky;
+        });
+      });
+
+      links.forEach(function(link) {
+        link.dy = link.value * ky;
+      });
+    }
+
+    function relaxLeftToRight(alpha) {
+      nodesByBreadth.forEach(function(nodes) {
+        nodes.forEach(function(node) {
+          if (node.targetLinks.length) {
+            // Value-weighted average of the y-position of source node centers linked to this node.
+            var y = d3Array.sum(node.targetLinks, weightedSource) / d3Array.sum(node.targetLinks, value);
+
+            //console.log([y, node.targetLinks[0].source.y, node.targetLinks[0].sy, node.targetLinks[0] ]);
+            //var y = node.targetLinks[0].source.y;
+            //if (typeof node.targetLinks[0].sy != "undefined") {
+            //  y = y + node.targetLinks[0].sy;
+            //}
+            node.y += (y - center(node)) * alpha;
+          }
+        });
+      });
+
+      function weightedSource(link) {
+        return center(link.source) * link.value;
+      }
+    }
+
+    function relaxRightToLeft(alpha) {
+      nodesByBreadth.slice().reverse().forEach(function(nodes) {
+        nodes.forEach(function(node) {
+          if (node.sourceLinks.length) {
+            // Value-weighted average of the y-positions of target nodes linked to this node.
+            var y = d3Array.sum(node.sourceLinks, weightedTarget) / d3Array.sum(node.sourceLinks, value);
+            node.y += (y - center(node)) * alpha;
+          }
+        });
+      });
+
+      function weightedTarget(link) {
+        return center(link.target) * link.value;
+      }
+    }
+
+    function resolveCollisions() {
+      nodesByBreadth.forEach(function(nodes) {
+        var node,
+            dy,
+            y0 = 0,
+            n = nodes.length,
+            i;
+
+        // Push any overlapping nodes down.
+        nodes.sort(ascendingDepth);
+        for (var i = 0; i < n; ++i) {
+          node = nodes[i];
+          dy = y0 - node.y;
+          if (dy > 0) node.y += dy;
+          y0 = node.y + node.dy + nodePadding;
+        }
+
+        // If the bottommost node goes outside the bounds, push it back up.
+        dy = y0 - nodePadding - size[1];
+        if (dy > 0) {
+          y0 = node.y -= dy;
+
+          // Push any overlapping nodes back up.
+          for (var i = n - 2; i >= 0; --i) {
+            node = nodes[i];
+            dy = node.y + node.dy + nodePadding - y0;
+            if (dy > 0) node.y -= dy;
+            y0 = node.y;
+          }
+        }
+      });
+    }
+
+    function ascendingDepth(a, b) {
+      if (orderByPath) {
+        return ( a.path < b.path ? -1 : (a.path > b.path ? 1 : 0 ));
+      } else {
+        return a.y - b.y;
+      }
+    }
+  }
+
+  // Compute y-offset of the source endpoint (sy) and target endpoints (ty) of links,
+  // relative to the source/target node's y-position.
+  // includes fix by @gmadrid in pull request #74 in d3/d3-plugins
+  function computeLinkDepths() {
+    nodes.forEach(function(node) {
+      node.sourceLinks.sort(ascendingTargetDepth);
+    });
+    nodes.forEach(function(node) {
+      var sy = 0;
+      node.sourceLinks.forEach(function(link) {
+        link.sy = sy;
+        sy += link.dy;
+      });
+    });
+    nodes.forEach(function(node) {
+      node.targetLinks.sort(descendingLinkSlope);
+    });
+    nodes.forEach(function(node) {
+      var ty = 0;
+      node.targetLinks.forEach(function(link) {
+        link.ty = ty;
+        ty += link.dy;
+      });
+    });
+
+    function descendingLinkSlope(a, b) {
+        function slope(l) {
+          return (l.target.y - (l.source.y + l.sy)) /
+              (l.target.x - l.source.x);
+        }
+        return slope(b) - slope(a);
+    }
+
+    function ascendingTargetDepth(a, b) {
+      return a.target.y - b.target.y;
+    }
+  }
+
+  // Y-position of the middle of a node.
+  function center(node) {
+    return node.y + node.dy / 2;
+  }
+
+  // Value property accessor.
+  function value(x) {
+    return x.value;
+  }
+
+  return sankey;
+}
+
+HTMLWidgets.widget({
+
+    name: "sankeyNetwork",
+
+    type: "output",
+
+    initialize: function(el, width, height) {
+
+        d3Selection.select(el).append("svg")
+            .style("width", "100%")
+            .style("height", "100%");
+
+        return {
+          sankey: sankey(),
+          x: null
+        };
+    },
+
+    resize: function(el, width, height, instance) {
+        /*  handle resizing now through the viewBox
+        select(el).select("svg")
+            .attr("width", width)
+            .attr("height", height + height * 0.05);
+
+        this.renderValue(el, instance.x, instance);
+        */
+        
+        // with flexdashboard and slides
+        //   sankey might be hidden so height and width 0
+        //   in this instance re-render on resize
+        if( d3Array.min(instance.sankey.size()) <= 0 ) {
+          this.renderValue(el, instance.x, instance);
+        }
+    },
+
+    renderValue: function(el, x, instance) {
+
+        // save the x in our instance (for calling back from resize)
+        instance.x = x;
+        
+        // alias sankey and options
+        var sankey$$1 = instance.sankey;
+        var options = x.options;
+
+        // convert links and nodes data frames to d3 friendly format
+        var links = HTMLWidgets.dataframeToD3(x.links);
+        var nodes = HTMLWidgets.dataframeToD3(x.nodes);
+
+        // margin handling
+        //   set our default margin to be 20
+        //   will override with x.options.margin if provided
+        var margin = {top: 20, right: 20, bottom: 20, left: 20};
+        //   go through each key of x.options.margin
+        //   use this value if provided from the R side
+        Object.keys(x.options.margin).map(function(ky){
+          if(x.options.margin[ky] !== null) {
+            margin[ky] = x.options.margin[ky];
+          }
+          // set the margin on the svg with css style
+          // commenting this out since not correct
+          // s.style(["margin",ky].join("-"), margin[ky]);
+        });
+
+        // get the width and height
+        var width = el.getBoundingClientRect().width - margin.right - margin.left;
+        var height = el.getBoundingClientRect().height - margin.top - margin.bottom;
+
+        // set this up even if d3Zoom = F
+        var d3Zoom$$1 = d3Zoom.zoom().scaleExtent([.75, 3]);    
+
+        var color = eval(options.colourScale);
+        
+        var color_node = function color_node(d){
+          if (d.group){
+            return color(d.group);
+          } else {
+            return options.linkColor;
+          }
+        };
+
+        var color_link = function color_link(d) {
+          if (d.group){
+            return color(d.group);
+          } else if (options.linkGradient) {
+            return "url(#linearLinkGradient)";
+          } else {
+            return  "#CCCCCC";
+          }
+        };
+
+        var animation_duration = 50;
+        var opacity_node = 1;
+        var opacity_link_plus = 0.45;
+        
+        var opacity_link = function opacity_link(d) {
+          if (d.inactive) {
+            return 0;
+          }
+          if (d.group){
+            return options.linkOpacity;
+          } else {
+            return options.linkOpacity;
+          }
+        };
+
+        var format_use = function(d) { 
+          if (options.numberFormat == "pavian") {
+            var formated_num;
+            if (d > 1000) {
+              formated_num = d3Format.format(".3s")(d);
+            } else if (d > 0.001) {
+              formated_num = d3Format.format(".3r")(d);
+            } else {
+              formated_num = d3Format.format(".3g")(d);
+            }
+              
+            if (formated_num.indexOf('.') >= 0) {
+              if (formated_num.search(/[0-9]$/ >= 0)) {
+                formated_num = formated_num.replace(/0+$/, "");
+                formated_num = formated_num.replace(/\.$/, "");
+              } else {
+                formated_num = formated_num.replace(/0+(.)/, "$1");
+                formated_num = formated_num.replace(/\.(.)/, "$1");
+              }
+            }
+            
+          } else {
+            formated_num = d3Format.format(options.numberFormat)(d);
+          }
+          return formated_num;
+        };
+
+        // create d3 sankey layout
+        sankey$$1
+            .nodes(d3Collection.values(nodes))
+            .align(options.align)
+            .links(links)
+            .size([width, height - 20])
+            .linkType(options.linkType)
+            .nodeWidth(options.nodeWidth)
+            .nodePadding(options.nodePadding)
+            .scaleNodeBreadthsByString(options.scaleNodeBreadthsByString)
+            .curvature(options.curvature)
+            .orderByPath(options.orderByPath)
+            .showNodeValues(options.showNodeValues)
+            .nodeCornerRadius(options.nodeCornerRadius)
+            .layout(options.iterations);
+
+
+        var max_posX = d3Array.max(sankey$$1.nodes(), function(d) { return d.posX; });
+        sankey$$1.nodes().forEach(function(node) { node.x = node.x * options.xScalingFactor; });
+
+        // thanks http://plnkr.co/edit/cxLlvIlmo1Y6vJyPs6N9?p=preview
+        //  http://stackoverflow.com/questions/22924253/adding-pan-d3Zoom-to-d3js-force-directed
+        // allow force drag to work with pan/d3Zoom drag
+        function dragstart(d) {
+          d3Selection.event.sourceEvent.preventDefault();
+          d3Selection.event.sourceEvent.stopPropagation();
+        }
+
+
+        function dragmove(d) {
+          if (options.dragX || options.dragY) {
+            d3Selection.select(this).attr("transform", 
+                    "translate(" + 
+                      (options.dragX? (d.x = Math.max(0, d3Selection.event.x)) : d.x ) + "," +
+                      (options.dragY? (d.y = Math.max(0, d3Selection.event.y)) : d.y ) + ")");
+            sankey$$1.relayout();
+            
+            // update link path description
+            link.attr("d", draw_link);
+          }
+        }
+
+        // select the svg element and remove existing children or previously set viewBox attribute
+        var svg = d3Selection.select(el).select("svg");
+        svg.selectAll("*").remove();
+        svg.attr("viewBox", null);
+        
+        // append g for our container to transform by margin
+        svg = svg
+                .append("g").attr("class","zoom-layer")
+                .append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+        //make defs and add the linear gradient
+        // filters go in defs element
+        var defs = svg.append("defs");
+
+        if (options.linkGradient) {
+          var lg = defs.append("linearGradient")
+          .attr("id", "linearLinkGradient")
+          .attr("x1", "0%")
+          .attr("x2", "100%") // horizontal gradient
+          .attr("y1", "0%")
+          .attr("y2", "0%");
+
+          lg.append("stop")
+          .attr("offset", "0%")
+          .style("stop-color", "#A0A0A0")//end in light gray
+          .style("stop-opacity", 1);
+        
+          lg.append("stop")
+          .attr("offset", "100%")
+          .style("stop-color", "#D0D0D0")//start in dark gray
+          .style("stop-opacity", 1);
+        }
+        
+       
+        if (options.nodeShadow) {
+          // drop shadow definitions from http://bl.ocks.org/cpbotha/5200394
+          // create filter with id #drop-shadow
+          // height=130% so that the shadow is not clipped
+          var filter = defs.append("filter")
+              .attr("id", "drop-shadow")
+              .attr("height", "130%")
+              .attr("width", "130%");
+ 
+          // SourceAlpha refers to opacity of graphic that this filter will be applied to
+          // convolve that with a Gaussian with standard deviation 3 and store result
+          // in blur
+          filter.append("feGaussianBlur")
+              .attr("in", "SourceAlpha")
+              .attr("stdDeviation", .5)
+              .attr("result", "blur");
+          
+          // translate output of Gaussian blur to the right and downwards with 2px
+          // store result in offsetBlur
+          filter.append("feOffset")
+              .attr("in", "blur")
+              .attr("dx", .5)
+              .attr("dy", .5)
+              .attr("rx", options.nodeCornerRadius)
+              .attr("ry", options.nodeCornerRadius)
+              .attr("result", "offsetBlur");
+          
+          // overlay original SourceGraphic over translated blurred opacity by using
+          // feMerge filter. Order of specifying inputs is important!
+          var feMerge = filter.append("feMerge");
+          
+          feMerge.append("feMergeNode")
+              .attr("in", "offsetBlur");
+          feMerge.append("feMergeNode")
+              .attr("in", "SourceGraphic");
+        }
+        
+               
+        // add zooming if requested
+        if (options.zoom) {
+          d3Zoom$$1.on("zoom", redraw);
+          function redraw() {
+            d3Selection.select(el).select(".zoom-layer").attr("transform",
+            "translate(" + d3Selection.event.transform.x + "," + d3Selection.event.transform.y + ")"+
+            " scale(" + d3Selection.event.transform.k + ")");
+          }
+      
+          d3Selection.select(el).select("svg")
+            .attr("pointer-events", "all")
+            .call(d3Zoom$$1);
+
+          d3Selection.select(el).select("svg").on("dblclick.zoom", null);
+
+  
+        } else {
+          d3Zoom$$1.on("zoom", null);
+ 
+        }
+        
+        if (typeof options.title != "undefined") {
+          svg.append("text")
+            .attr("dy", ".5em")
+            .attr("render-order", -1)
+            .text(options.title)
+            .style("cursor", "move")
+            .style("fill", "black")
+            .style("font-size", "28px")
+            .style("font-family", options.fontFamily ? options.fontFamily : "inherit");
+            
+        }
+
+        // draw path
+        var draw_link = sankey$$1.link();
+
+        // draw links
+        var link = svg.selectAll(".link").data(sankey$$1.links());
+
+        // new objects
+        var newLink = link.enter().append("path").attr("class", "link");
+        
+        link = newLink.merge(link);
+            
+        function min1_or_dy(d) {
+          return Math.max(1, d.dy);
+        }
+
+
+        if (options.linkType == "bezier" || options.linkType == "l-bezier") {
+          link.attr("d", draw_link)
+              .style("stroke",         color_link)
+              .style("stroke-width",   min1_or_dy)
+              .style("stroke-opacity", opacity_link)
+              .style("fill",           "none");
+        } else {
+          link.attr("d", draw_link)
+              .style("fill",         color_link)
+              .style("fill-opacity", opacity_link);
+        }
+
+        link
+            .sort(function(a, b) { return b.dy - a.dy; })
+            .on("mouseover", function(d) {
+              if (d.inactive) return;
+              var sel = d3Selection.select(this);
+              if (options.highlightChildLinks) {
+                sel = link.filter(function(d1, i) { return(d == d1 || is_child(d.target, d1)); } );
+              }
+              sel
+                .style("stroke-opacity", function(d){return opacity_link(d) + opacity_link_plus})
+                .style("fill-opacity", function(d){return opacity_link(d) + opacity_link_plus});
+            })
+            .on("mouseout", function(d) {
+              if (d.inactive) return;
+                var sel = d3Selection.select(this);
+                if (options.highlightChildLinks) {
+                  sel = link.filter(function(d1, i) { return(d == d1 || is_child(d.target, d1)); } );
+                }
+                sel
+                .style("stroke-opacity", opacity_link)
+                .style("fill-opacity", opacity_link);
+            });
+
+        // add backwards class to cycles
+        link.classed('backwards', function (d) { return d.target.x < d.source.x; });
+
+        svg.selectAll(".link.backwards")
+            .style("stroke-dasharray","9,1")
+            .style("stroke","#402");
+
+        // draw nodes
+        var node = svg.selectAll(".node")
+            .data(sankey$$1.nodes());
+
+        function is_child (source_node, target_link) {
+          for (var i=0; i < source_node.sourceLinks.length; i++) {
+            if (source_node.sourceLinks[i] == target_link || is_child(source_node.sourceLinks[i].target, target_link)) {
+              return true;
+            } 
+          }
+          return false;
+        }
+        function is_child_node (source_node, target_node) {
+          for (var i=0; i < source_node.sourceLinks.length; i++) {
+            if (source_node.sourceLinks[i].target == target_node || is_child_node(source_node.sourceLinks[i].target, target_node)) {
+              return true;
+            } 
+          }
+          return false;
+        }
+
+        var newNode = node.enter().append("g")
+            .attr("class", "node")
+            .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })  // change here if you wanna change
+            .call(d3Drag.drag()
+            .subject(function(d) { return d; })
+            .on("start", function() { 
+                dragstart(this);
+                this.parentNode.appendChild(this); 
+            })
+            .on("drag", dragmove))
+            .on("mouseover", function(d,i) {
+              if (d.inactive) return;
+              
+              if (options.highlightChildLinks) {
+                  link.filter(function(d1, i) { return(is_child(d, d1)); } )
+                      .style("stroke-opacity", function(d){return opacity_link(d) + opacity_link_plus})
+                      .style("fill-opacity", function(d){return opacity_link(d) + opacity_link_plus});
+              }
+              
+             var t = setTimeout(function() {
+               Shiny.onInputChange(el.id + '_hover', d.name);
+             }, 1000);
+             $(this).data('timeout', t);
+
+            })
+            .on("mouseout", function(d,i) {
+              clearTimeout($(this).data('timeout')); // Clear hover timeout when the mouse leaves the node
+
+              if (d.inactive) return;
+              if (options.highlightChildLinks) {
+                  link.filter(function(d1, i) { return(is_child(d, d1)); } )
+                      .style("stroke-opacity", opacity_link)
+                      .style("fill-opacity", opacity_link);
+              }
+            })
+            .on("click", function(d) {
+               Shiny.onInputChange(el.id + '_clicked', d.name);
+            })
+            .on("dblclick", function(d) {
+               Shiny.onInputChange(el.id + '_clicked', d.name);
+               if (!options.doubleclickTogglesChildren) {
+                 return;
+               }
+               d.inactive = !d.inactive;
+
+               if (d.inactive) {
+                 d3Selection.select(this).selectAll('rect').style("stroke-width",options.nodeStrokeWidth+2);
+                 d3Selection.select(this).selectAll('text').style('font-weight', 'bold');
+               } else {
+                 d3Selection.select(this).selectAll('rect').style("stroke-width",options.nodeStrokeWidth);
+                 d3Selection.select(this).selectAll('text').style('font-weight', 'normal');
+               }
+               
+               /* Draft of a transform animation of the links - not working currently
+               if (d.inactive) {
+                link.filter(function(d1, i) { if(is_child(d, d1)) { d1.inactive = d.inactive; return true; } else { return false; }} )
+                 .attr("transform", "scale(1, 1)")
+                  .transition().duration(500)
+                  .delay(function(d1) { 
+                    var delay = (d1.source.posX - d.posX )*100 + 50; 
+                    if (!d.inactive) delay = 500 - delay;
+                    return delay
+                  } )
+                  .attr("transform", "scale(0, 1)");
+               } else {
+                 link.filter(function(d1, i) { if(is_child(d, d1)) { d1.inactive = d.inactive; return true; } else { return false; }} )
+                  .attr("transform", "scale(0, 1)")
+                  .transition().duration(500)
+                  .delay(function(d1) { 
+                    var delay = (d1.source.posX - d.posX )*100 + 50; 
+                    if (!d.inactive) delay = 500 - delay;
+                    return delay
+                  } )
+                  .attr("transform", "scale(1, 1)");
+                  
+               } */
+               
+               var max_delay = (max_posX - d.posX) * animation_duration;
+               
+               link.filter(function(d1, i) { if(is_child(d, d1)) { d1.inactive = d.inactive; return true; } else { return false; }} )
+                 .transition().duration(max_delay)
+                  .delay(function(d1) { 
+                    var delay = (d1.source.posX - d.posX + .5)*animation_duration; 
+                    if (d.inactive) delay = max_delay - delay;
+                    return delay
+                  } )
+                  .style("stroke-opacity", opacity_link)
+                  .style("fill-opacity",   opacity_link);
+               
+               var new_opacity = d.inactive? 0 : opacity_node;
+               node.filter(function(d1, i) { if(is_child_node(d, d1)) { d1.inactive = d.inactive; return true; } else { return false; }} )
+                  .transition().duration(max_delay)
+                  .delay(function(d1) { 
+                    var delay = (d1.posX - d.posX + .5)*animation_duration; 
+                    if (d.inactive) delay = max_delay - delay;
+                    return delay
+                  })
+                  .style("opacity", new_opacity);
+               
+            });
+        
+        node = newNode.merge(node);
+        
+        // note: u2192 is right-arrow
+        link.append("title")
+            .text(function(d) { 
+                return d.source.name + " \u2192 " + d.target.name +
+                " \r\n" + format_use(d.value) + " " + options.units; });
+
+        node
+            .append("rect")
+            .attr("height", function(d) { return d.dy; })
+            .attr("width", sankey$$1.nodeWidth())
+            .style("fill", function(d) {
+                if (d.targetLinks[0]) {
+                  return d.color = color_node(d); 
+                  return d.color = d3Color.rgb(d.targetLinks[0].source.color).darker(1); 
+                } else {
+                  return d.color = color_node(d); 
+                }
+                })
+            .style("stroke", function(d) { return d3Color.rgb(d.color).darker(2); })
+            .style("stroke-width", options.nodeStrokeWidth)
+            .style("opacity", opacity_node )
+            .style("cursor", "move")
+            .attr("rx", options.nodeCornerRadius)
+            .attr("ry", options.nodeCornerRadius)
+			.style("filter", function(d) {
+                if (options.nodeShadow) { return( "url(#drop-shadow)");  } } )
+            .append("title")
+            .attr("class", "tooltip")
+            .attr("title", function(d) { return format_use(d.value); })
+            .text(function(d) { 
+                return d.name + " \r\n" + format_use(d.value) + 
+                " " + options.units; });
+
+        node
+            .append("text")
+            .attr("x", - options.nodeLabelMargin)
+            .attr("y", function(d) { return d.dy / 2; })
+            .attr("class", "node-text")
+            .attr("dy", ".35em")
+            .attr("text-anchor", "end")
+            .attr("transform", null)
+            .text(function(d) { return d.name; })
+            .style("cursor", "move")
+            .style("font-size", options.fontSize + "px")
+            .style("font-family", options.fontFamily ? options.fontFamily : "inherit")
+            .filter(function(d) { return d.x < width / 2 || (options.align == "none"); })
+            .attr("x", options.nodeLabelMargin + sankey$$1.nodeWidth())
+            .attr("text-anchor", "start");
+            
+        if (options.showNodeValues) {
+          node
+            .append("text")
+            .attr("x", sankey$$1.nodeWidth()/2)
+            .attr("text-anchor", "middle")
+            .attr("dy", "-" + (options.nodeStrokeWidth + .1 ) + "em")
+            .attr("transform", null)
+            .attr("class", "node-number")
+            .text(function(d) { return format_use(d.value); })
+            .style("cursor", "move")
+            .style("font-size", ( options.fontSize - 2) + "px")
+            .style("font-family", options.fontFamily ? options.fontFamily : "inherit");
+        }
+        
+        
+        // Create an array with values from 1 to max_posX
+        //var axis_domain = new Array(max_posX + 1)
+        //  .join().split(',')
+        //  .map(function(item, index){ return ++index;})
+
+        
+        if (options.xAxisDomain) {
+          
+          var axisXPos = new Array(options.xAxisDomain.length);
+          sankey$$1.nodes().forEach(function(node) { axisXPos[node.posX] = node.x + options.nodeWidth/2; });
+
+          var x = d3Scale.scaleOrdinal().domain(options.xAxisDomain).range(axisXPos);
+          svg.append("g").attr("class", "x axis")
+             .attr("transform", "translate(0," + height + ")")  // move into position
+           .call(d3Axis.axisBottom(x));
+        }
+
+        // adjust viewBox to fit the bounds of our tree
+        /* // doesn't work with D3 v4
+        var s = select(svg[0][0].parentNode);
+        s.attr(
+            "viewBox",
+            [
+              min(
+                s.selectAll('g')[0].map(function(d){
+                  return d.getBoundingClientRect().left
+                })
+              ) - s.node().getBoundingClientRect().left - margin.right,
+              min(
+                s.selectAll('g')[0].map(function(d){
+                  return d.getBoundingClientRect().top
+                })
+              ) - s.node().getBoundingClientRect().top - margin.top,
+              max(
+                s.selectAll('g')[0].map(function(d){
+                  return d.getBoundingClientRect().right
+                })
+              ) -
+              min(
+                s.selectAll('g')[0].map(function(d){
+                  return d.getBoundingClientRect().left
+                })
+              )  + margin.left + margin.right,
+              max(
+                s.selectAll('g')[0].map(function(d){
+                  return d.getBoundingClientRect().bottom
+                })
+              ) -
+              min(
+                s.selectAll('g')[0].map(function(d){
+                  return d.getBoundingClientRect().top
+                })
+              ) + margin.top + margin.bottom
+            ].join(",")
+          );
+          */
+
+    },
+});
+
+})));
+
+},{"d3-array":1,"d3-axis":2,"d3-collection":3,"d3-color":4,"d3-drag":6,"d3-format":8,"d3-interpolate":9,"d3-scale":10,"d3-selection":11,"d3-zoom":16}]},{},[17]);
